@@ -8,5 +8,7 @@ public class TutorialFeature : Feature
 	{
 		Add(new HelloWorldSystem(contexts));
 		Add(new DebugMessageSystem(contexts));
+		Add(new LogMouseClickSystem(contexts));
+		Add(new CleanupDebugMessageSystem(contexts));
 	}
 }

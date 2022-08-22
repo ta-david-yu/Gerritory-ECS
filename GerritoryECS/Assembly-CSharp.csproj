@@ -85,6 +85,8 @@
     <Compile Include="Assets\Sources\Systems\HelloWorldSystem.cs" />
     <Compile Include="Assets\Sources\Features\TutorialFeature.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Sources\Systems\CleanupDebugMessageSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\LogMouseClickSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
