@@ -9,7 +9,6 @@ using UnityEngine;
 public class CommandMoveOnTileSystem : IFixedUpdateSystem
 {
 	private readonly GameContext m_GameContext;
-	private readonly InputContext m_InputContext;
 
 	private readonly IGroup<GameEntity> m_OnTileElementGroup;
 	private readonly IGroup<InputEntity> m_PlayerInputGroup;
@@ -17,7 +16,6 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 	public CommandMoveOnTileSystem(Contexts contexts)
 	{
 		m_GameContext = contexts.Game;
-		m_InputContext = contexts.Input;
 
 		// Get entities that
 		// 1. Are on tile
@@ -43,7 +41,8 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 				continue;
 			}
 
-			// TODO: validate whether next tile position can be moved to
+			// TODO: validate whether next tile position can be moved to.
+			// Occupied? Empty?
 			bool isValidMove = true;
 			if (!isValidMove)
 			{

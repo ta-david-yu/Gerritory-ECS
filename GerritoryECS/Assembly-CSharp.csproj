@@ -110,6 +110,8 @@
     <Compile Include="Assets\Sources\Generated\Game\Components\GamePlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMovementInputActionComponent.cs" />
     <Compile Include="Assets\Sources\Features\InputFeature.cs" />
+    <Compile Include="Assets\Sources\Features\Debug\MovementDebugFeature.cs" />
+    <Compile Include="Assets\Sources\Systems\Debug\OnGUIPlayerMovementSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

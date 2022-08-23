@@ -9,17 +9,25 @@ using JCMG.EntitasRedux;
 public class GameController : MonoBehaviour
 {
 	private	Systems m_Systems;
+	private Systems m_DebugSystems;
+	
+	private static Systems createSystems(Contexts contexts)
+	{
+		return new Feature("Systems")
+			.Add(new MovementFeature(contexts))
+			.Add(new InputFeature(contexts));
+	}
+
+	private static Systems createDebugSystems(Contexts contexts)
+	{
+		return new Feature("Debug Systems")
+			.Add(new MovementDebugFeature(contexts));
+	}
 
 	// Start is called before the first frame update
 	private void Start()
 	{
 		var contexts = Contexts.SharedInstance;
-
-		m_Systems = new Feature("Systems")
-			.Add(new MovementFeature(contexts))
-			.Add(new InputFeature(contexts));
-
-		m_Systems.Initialize();
 
 		// Create player game entity
 		GameEntity mainPlayerEntity = contexts.Game.CreateEntity();
@@ -29,6 +37,13 @@ public class GameController : MonoBehaviour
 		// Create user input entity
 		InputEntity mainUserInputEntity = contexts.Input.CreateEntity();
 		mainUserInputEntity.AddUserInput(0, 0);
+
+		// Initialize systems
+		m_Systems = createSystems(contexts);
+		m_DebugSystems = createDebugSystems(contexts);
+
+		m_Systems.Initialize();
+		m_DebugSystems.Initialize();
 	}
 
 	// Update is called once per frame
@@ -52,5 +67,10 @@ public class GameController : MonoBehaviour
 	private void OnDestroy()
 	{
 		m_Systems.TearDown();
+	}
+
+	private void OnGUI()
+	{
+		m_DebugSystems.Update();
 	}
 }
