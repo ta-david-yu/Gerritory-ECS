@@ -434,6 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e91642982274e40b0825fbaea38794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MessageBlueprint: {fileID: 11400000, guid: a965575d511fd1b43b29ac6da0dbc19d, type: 2}
 --- !u!4 &1420798419
 Transform:
   m_ObjectHideFlags: 0

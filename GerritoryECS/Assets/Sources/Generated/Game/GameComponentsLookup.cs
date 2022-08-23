@@ -14,22 +14,46 @@ using JCMG.EntitasRedux;
 public static class GameComponentsLookup
 {
 	public const int DebugMessage = 0;
+	public const int MovementInputAction = 1;
+	public const int MoveOnTileComplete = 2;
+	public const int MoveOnTile = 3;
+	public const int OnTileElement = 4;
+	public const int Player = 5;
+	public const int TilePosition = 6;
 
-	public const int TotalComponents = 1;
+	public const int TotalComponents = 7;
 
 	public static readonly string[] ComponentNames =
 	{
-		"DebugMessage"
+		"DebugMessage",
+		"MovementInputAction",
+		"MoveOnTileComplete",
+		"MoveOnTile",
+		"OnTileElement",
+		"Player",
+		"TilePosition"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
-		typeof(DebugMessageComponent)
+		typeof(DebugMessageComponent),
+		typeof(MovementInputActionComponent),
+		typeof(MoveOnTileCompleteComponent),
+		typeof(MoveOnTileComponent),
+		typeof(OnTileElementComponent),
+		typeof(PlayerComponent),
+		typeof(TilePositionComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(DebugMessageComponent), 0 }
+		{ typeof(DebugMessageComponent), 0 },
+		{ typeof(MovementInputActionComponent), 1 },
+		{ typeof(MoveOnTileCompleteComponent), 2 },
+		{ typeof(MoveOnTileComponent), 3 },
+		{ typeof(OnTileElementComponent), 4 },
+		{ typeof(PlayerComponent), 5 },
+		{ typeof(TilePositionComponent), 6 }
 	};
 
 	/// <summary>

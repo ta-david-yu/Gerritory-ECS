@@ -18,9 +18,33 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is DebugMessageComponent DebugMessage)
+		if (component is PlayerComponent Player)
+		{
+			CopyPlayerTo(Player);
+		}
+		else if (component is MovementInputActionComponent MovementInputAction)
+		{
+			CopyMovementInputActionTo(MovementInputAction);
+		}
+		else if (component is MoveOnTileComponent MoveOnTile)
+		{
+			CopyMoveOnTileTo(MoveOnTile);
+		}
+		else if (component is TilePositionComponent TilePosition)
+		{
+			CopyTilePositionTo(TilePosition);
+		}
+		else if (component is OnTileElementComponent OnTileElement)
+		{
+			CopyOnTileElementTo(OnTileElement);
+		}
+		else if (component is DebugMessageComponent DebugMessage)
 		{
 			CopyDebugMessageTo(DebugMessage);
+		}
+		else if (component is MoveOnTileCompleteComponent MoveOnTileComplete)
+		{
+			IsMoveOnTileComplete = true;
 		}
 		#endif
 	}
