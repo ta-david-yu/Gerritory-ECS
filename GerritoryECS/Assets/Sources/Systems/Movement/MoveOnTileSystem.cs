@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using JCMG.EntitasRedux;
 
-public sealed class MoveSystem : IFixedUpdateSystem, ICleanupSystem
+public sealed class MoveOnTileSystem : IFixedUpdateSystem, ICleanupSystem
 {
 	private readonly IGroup<GameEntity> m_MoveOnTileGroup;
 	private readonly IGroup<GameEntity> m_MoveOnTileCompleteGroup;
@@ -11,7 +11,7 @@ public sealed class MoveSystem : IFixedUpdateSystem, ICleanupSystem
 	// Placeholder value, to be replaced
 	const float k_MoveDuration = 0.5f;
 
-	public MoveSystem(Contexts contexts)
+	public MoveOnTileSystem(Contexts contexts)
 	{
 		m_MoveOnTileGroup = contexts.Game.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.MoveOnTile));
 		m_MoveOnTileCompleteGroup = contexts.Game.GetGroup(GameMatcher.MoveOnTileComplete);

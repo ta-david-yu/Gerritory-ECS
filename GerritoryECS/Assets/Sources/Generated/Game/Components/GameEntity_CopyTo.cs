@@ -45,6 +45,14 @@ public partial class GameEntity
 		else if (component is MoveOnTileCompleteComponent MoveOnTileComplete)
 		{
 			IsMoveOnTileComplete = true;
+		}
+		else if (component is MoveOnTileAddedListenerComponent MoveOnTileAddedListener)
+		{
+			CopyMoveOnTileAddedListenerTo(MoveOnTileAddedListener);
+		}
+		else if (component is MoveOnTileCompleteAddedListenerComponent MoveOnTileCompleteAddedListener)
+		{
+			CopyMoveOnTileCompleteAddedListenerTo(MoveOnTileCompleteAddedListener);
 		}
 		#endif
 	}

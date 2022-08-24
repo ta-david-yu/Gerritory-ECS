@@ -46,6 +46,7 @@ namespace BlueprintHelperClassGeneratorPlugin
 		// Code-generation format strings
 		private const string CREATE_ENTITY_FROM_BLUEPRINT_CLASS_TEMPLATE = @"
 using UnityEngine;
+using UnityEngine.Events;
 using JCMG.EntitasRedux;
 
 /// <summary>
@@ -67,6 +68,8 @@ public class CreateEntityFrom${ContextName}Blueprint : MonoBehaviour
 	[SerializeField]
 	private ${ContextName}BlueprintBehaviour m_Blueprint;
 	
+	public UnityEvent<IEntity> OnEntityCreated;
+
 	private EntityLink m_LinkedEntity = null;
 
 	private void Awake()
@@ -105,6 +108,8 @@ public class CreateEntityFrom${ContextName}Blueprint : MonoBehaviour
 		var entity = Contexts.SharedInstance.${ContextName}.CreateEntity();
 		m_Blueprint.ApplyToEntity(entity);
 		m_LinkedEntity = gameObject.Link(entity);
+
+		OnEntityCreated?.Invoke(entity);
 	}
 }
 ";

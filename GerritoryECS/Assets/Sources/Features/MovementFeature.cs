@@ -7,6 +7,6 @@ public sealed class MovementFeature : Feature
 {
 	public MovementFeature(Contexts contexts)
 	{
-		Add(new MoveSystem(contexts));
+		Add(new MoveOnTileSystem(contexts));
 	}
 }

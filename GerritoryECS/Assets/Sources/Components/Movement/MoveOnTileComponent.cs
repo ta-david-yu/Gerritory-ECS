@@ -4,6 +4,7 @@ using UnityEngine;
 using JCMG.EntitasRedux;
 
 [Game]
+[Event(EventTarget.Self)]
 public sealed class MoveOnTileComponent : IComponent
 {
 	// Move progress ranges from 0 to 1, where 1 means the move is completed

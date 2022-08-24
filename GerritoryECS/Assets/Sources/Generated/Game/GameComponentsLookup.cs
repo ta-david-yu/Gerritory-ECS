@@ -15,18 +15,22 @@ public static class GameComponentsLookup
 {
 	public const int DebugMessage = 0;
 	public const int MovementInputAction = 1;
-	public const int MoveOnTileComplete = 2;
-	public const int MoveOnTile = 3;
-	public const int OnTileElement = 4;
-	public const int Player = 5;
-	public const int TilePosition = 6;
+	public const int MoveOnTileAddedListener = 2;
+	public const int MoveOnTileCompleteAddedListener = 3;
+	public const int MoveOnTileComplete = 4;
+	public const int MoveOnTile = 5;
+	public const int OnTileElement = 6;
+	public const int Player = 7;
+	public const int TilePosition = 8;
 
-	public const int TotalComponents = 7;
+	public const int TotalComponents = 9;
 
 	public static readonly string[] ComponentNames =
 	{
 		"DebugMessage",
 		"MovementInputAction",
+		"MoveOnTileAddedListener",
+		"MoveOnTileCompleteAddedListener",
 		"MoveOnTileComplete",
 		"MoveOnTile",
 		"OnTileElement",
@@ -38,6 +42,8 @@ public static class GameComponentsLookup
 	{
 		typeof(DebugMessageComponent),
 		typeof(MovementInputActionComponent),
+		typeof(MoveOnTileAddedListenerComponent),
+		typeof(MoveOnTileCompleteAddedListenerComponent),
 		typeof(MoveOnTileCompleteComponent),
 		typeof(MoveOnTileComponent),
 		typeof(OnTileElementComponent),
@@ -49,11 +55,13 @@ public static class GameComponentsLookup
 	{
 		{ typeof(DebugMessageComponent), 0 },
 		{ typeof(MovementInputActionComponent), 1 },
-		{ typeof(MoveOnTileCompleteComponent), 2 },
-		{ typeof(MoveOnTileComponent), 3 },
-		{ typeof(OnTileElementComponent), 4 },
-		{ typeof(PlayerComponent), 5 },
-		{ typeof(TilePositionComponent), 6 }
+		{ typeof(MoveOnTileAddedListenerComponent), 2 },
+		{ typeof(MoveOnTileCompleteAddedListenerComponent), 3 },
+		{ typeof(MoveOnTileCompleteComponent), 4 },
+		{ typeof(MoveOnTileComponent), 5 },
+		{ typeof(OnTileElementComponent), 6 },
+		{ typeof(PlayerComponent), 7 },
+		{ typeof(TilePositionComponent), 8 }
 	};
 
 	/// <summary>

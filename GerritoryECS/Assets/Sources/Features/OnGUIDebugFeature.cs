@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using JCMG.EntitasRedux;
 
-public sealed class MovementDebugFeature : Feature
+public sealed class OnGUIDebugFeature : Feature
 {
-	public MovementDebugFeature(Contexts contexts)
+	public OnGUIDebugFeature(Contexts contexts)
 	{
 		Add(new OnGUIPlayerMovementSystem(contexts));
 	}
