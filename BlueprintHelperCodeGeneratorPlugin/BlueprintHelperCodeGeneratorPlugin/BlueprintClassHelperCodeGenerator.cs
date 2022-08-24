@@ -66,6 +66,8 @@ public class CreateEntityFrom${ContextName}Blueprint : MonoBehaviour
 
 	[SerializeField]
 	private ${ContextName}BlueprintBehaviour m_Blueprint;
+	
+	private EntityLink m_LinkedEntity = null;
 
 	private void Awake()
 	{
@@ -94,16 +96,15 @@ public class CreateEntityFrom${ContextName}Blueprint : MonoBehaviour
 
 	public void Execute()
 	{
-		EntityLink linkedEntity = gameObject.GetEntityLink();
-		if (linkedEntity != null)
+		if (m_LinkedEntity != null)
 		{
-			Debug.LogWarning($""There is already an entity ({linkedEntity.Entity.CreationIndex}) created for the gameObject - {gameObject.name}."");
+			Debug.LogWarning($""There is already an entity ({m_LinkedEntity.Entity.CreationIndex}) created from this behaveiour attached to the gameObject ${gameObject.name}."");
 			return;
 		}
 
-		var entity = Contexts.SharedInstance.Game.CreateEntity();
+		var entity = Contexts.SharedInstance.${ContextName}.CreateEntity();
 		m_Blueprint.ApplyToEntity(entity);
-		gameObject.Link(entity);
+		m_LinkedEntity = gameObject.Link(entity);
 	}
 }
 ";
@@ -111,7 +112,7 @@ public class CreateEntityFrom${ContextName}Blueprint : MonoBehaviour
 		// Find and replace tokens
 		private const string CONTEXT_NAME_TOKEN = "${ContextName}";
 
-		private const string CREATE_ENTITY_FROM_BLUEPRINT_FILENAME_FORMAT = "$CreateEntityFrom{ContextName}Blueprint.cs";
+		private const string CREATE_ENTITY_FROM_BLUEPRINT_FILENAME_FORMAT = "CreateEntityFrom${ContextName}Blueprint.cs";
 
 		public CodeGenFile[] Generate(CodeGeneratorData[] data)
 		{
