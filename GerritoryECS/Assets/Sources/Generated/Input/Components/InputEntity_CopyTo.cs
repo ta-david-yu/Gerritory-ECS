@@ -18,7 +18,11 @@ public partial class InputEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is BufferedMovementInputComponent BufferedMovementInput)
+		if (component is AIInputComponent AIInput)
+		{
+			CopyAIInputTo(AIInput);
+		}
+		else if (component is BufferedMovementInputComponent BufferedMovementInput)
 		{
 			CopyBufferedMovementInputTo(BufferedMovementInput);
 		}

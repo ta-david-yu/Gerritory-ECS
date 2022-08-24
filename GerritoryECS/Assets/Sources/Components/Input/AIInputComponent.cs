@@ -1,17 +1,13 @@
+using JCMG.EntitasRedux;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using JCMG.EntitasRedux;
 
 [Input]
 [System.Serializable]
-public sealed class UserInputComponent : IComponent
+public sealed class AIInputComponent : IComponent
 {
-	/// <summary>
-	/// The user input device index
-	/// </summary>
-	[EntityIndex]
-	public int UserIndex;
+	public Movement.Type Movement;
 
 	/// <summary>
 	/// The player id this user input is controlling

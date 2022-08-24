@@ -9,7 +9,7 @@ public sealed class InputFeature : Feature
 	{
 		// Read/emit Input from Users or AI
 		Add(new EmitUserInputSystem(contexts));
-		// TODO: EmitAIInputSystem
+		Add(new EmitAIInputSystem(contexts));
 
 		// Input Action Validation
 		Add(new CommandMoveOnTileSystem(contexts));

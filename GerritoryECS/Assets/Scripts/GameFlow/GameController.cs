@@ -29,14 +29,26 @@ public class GameController : MonoBehaviour
 	{
 		var contexts = Contexts.SharedInstance;
 
+		for (int i = 0; i < 4; i++)
+		{
+			// Create player game entity
+			GameEntity playerEntity = contexts.Game.CreateEntity();
+			playerEntity.AddPlayer(i);
+			playerEntity.AddOnTileElement(Vector2Int.zero);
+
+			// Create user input entity
+			InputEntity userInputEntity = contexts.Input.CreateEntity();
+			userInputEntity.AddUserInput(i, i);
+		}
+
 		// Create player game entity
-		GameEntity mainPlayerEntity = contexts.Game.CreateEntity();
-		mainPlayerEntity.AddPlayer(0);
-		mainPlayerEntity.AddOnTileElement(Vector2Int.zero);
+		GameEntity aiPlayerEntity = contexts.Game.CreateEntity();
+		aiPlayerEntity.AddPlayer(5);
+		aiPlayerEntity.AddOnTileElement(Vector2Int.right);
 
 		// Create user input entity
-		InputEntity mainUserInputEntity = contexts.Input.CreateEntity();
-		mainUserInputEntity.AddUserInput(0, 0);
+		InputEntity aiInputEntity = contexts.Input.CreateEntity();
+		aiInputEntity.AddAIInput(Movement.Type.Down, 5);
 
 		// Initialize systems
 		m_Systems = createSystems(contexts);

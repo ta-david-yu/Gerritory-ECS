@@ -64,6 +64,7 @@
     <Compile Include="Assets\Sources\Systems\EmitUserInputSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprint.cs" />
+    <Compile Include="Assets\Sources\Components\PlayerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\HelloWorldSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\IInputBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameAttribute.cs" />
@@ -74,17 +75,23 @@
     <Compile Include="Assets\Sources\Generated\Game\GameContext.cs" />
     <Compile Include="Assets\Sources\Components\TilePositionComponent.cs" />
     <Compile Include="Assets\Sources\Features\MovementFeature.cs" />
-    <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameFlow\GameController.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Systems\InputCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameEntity_CopyTo.cs" />
+    <Compile Include="Assets\Sources\Systems\Debug\OnGUIPlayerMovementSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GamePlayerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\Components\InputUserInputComponent.cs" />
+    <Compile Include="Assets\Sources\Features\InputFeature.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\DebugMessageSystem.cs" />
     <Compile Include="Assets\Sources\Systems\CommandMoveOnTileSystem.cs" />
     <Compile Include="Assets\Sources\Components\Input\UserInputComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameMovementInputActionComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Contexts.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameEntity.cs" />
     <Compile Include="Assets\Sources\Components\Input\BufferedMovementInputComponent.cs" />
+    <Compile Include="Assets\Sources\Features\Debug\MovementDebugFeature.cs" />
     <Compile Include="Assets\Sources\Components\MoveOnTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\IGameBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameTilePositionComponent.cs" />
@@ -96,6 +103,7 @@
     <Compile Include="Assets\Sources\Systems\_Sandbox\LogMouseClickSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Features\InputCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameDebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Components\MovementInputActionComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameComponentsLookup.cs" />
@@ -104,14 +112,9 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputBufferedMovementInputComponent.cs" />
     <Compile Include="Assets\Sources\Systems\MoveSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Input\Components\InputUserInputComponent.cs" />
-    <Compile Include="Assets\Sources\Components\MovementInputActionComponent.cs" />
-    <Compile Include="Assets\Sources\Components\PlayerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GamePlayerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameMovementInputActionComponent.cs" />
-    <Compile Include="Assets\Sources\Features\InputFeature.cs" />
-    <Compile Include="Assets\Sources\Features\Debug\MovementDebugFeature.cs" />
-    <Compile Include="Assets\Sources\Systems\Debug\OnGUIPlayerMovementSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Input\AIInputComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\Components\InputAIInputComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\EmitAIInputSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -117,7 +117,7 @@ public partial class Contexts
 			Game.GetGroup(GameMatcher.Player),
 			(e, c) => ((PlayerComponent)c).Id));
 
-		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>(
+		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, UnityEngine.Vector2Int>(
 			TilePosition,
 			Game.GetGroup(GameMatcher.TilePosition),
 			(e, c) => ((TilePositionComponent)c).Value));
@@ -125,7 +125,7 @@ public partial class Contexts
 		Input.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<InputEntity, int>(
 			UserInput,
 			Input.GetGroup(InputMatcher.UserInput),
-			(e, c) => ((UserInputComponent)c).Index));
+			(e, c) => ((UserInputComponent)c).UserIndex));
 	}
 }
 
@@ -141,14 +141,14 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.Player)).GetEntity(Id);
 	}
 
-	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithTilePosition(this GameContext context, UnityEngine.Vector2Int Value)
+	public static GameEntity GetEntityWithTilePosition(this GameContext context, UnityEngine.Vector2Int Value)
 	{
-		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.TilePosition)).GetEntities(Value);
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.TilePosition)).GetEntity(Value);
 	}
 
-	public static System.Collections.Generic.HashSet<InputEntity> GetEntitiesWithUserInput(this InputContext context, int Index)
+	public static System.Collections.Generic.HashSet<InputEntity> GetEntitiesWithUserInput(this InputContext context, int UserIndex)
 	{
-		return ((JCMG.EntitasRedux.EntityIndex<InputEntity, int>)context.GetEntityIndex(Contexts.UserInput)).GetEntities(Index);
+		return ((JCMG.EntitasRedux.EntityIndex<InputEntity, int>)context.GetEntityIndex(Contexts.UserInput)).GetEntities(UserIndex);
 	}
 }
 //------------------------------------------------------------------------------

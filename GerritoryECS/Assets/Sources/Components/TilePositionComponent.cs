@@ -7,7 +7,7 @@ using JCMG.EntitasRedux;
 [System.Serializable]
 public sealed class TilePositionComponent : IComponent
 {
-	[EntityIndex]
+	[PrimaryEntityIndex]
 	public Vector2Int Value;
 }
 

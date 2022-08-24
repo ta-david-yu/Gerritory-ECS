@@ -50,8 +50,6 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 			}
 
 			entity.AddMoveOnTile(0, fromPosition, toPosition);
-
-			Debug.Log($"MoveOnTile Added: {fromPosition} -> {toPosition}");
 		}
 	}
 }

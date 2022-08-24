@@ -18,11 +18,7 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is PlayerComponent Player)
-		{
-			CopyPlayerTo(Player);
-		}
-		else if (component is MovementInputActionComponent MovementInputAction)
+		if (component is MovementInputActionComponent MovementInputAction)
 		{
 			CopyMovementInputActionTo(MovementInputAction);
 		}
@@ -41,6 +37,10 @@ public partial class GameEntity
 		else if (component is DebugMessageComponent DebugMessage)
 		{
 			CopyDebugMessageTo(DebugMessage);
+		}
+		else if (component is PlayerComponent Player)
+		{
+			CopyPlayerTo(Player);
 		}
 		else if (component is MoveOnTileCompleteComponent MoveOnTileComplete)
 		{

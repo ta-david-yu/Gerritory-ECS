@@ -24,7 +24,6 @@ public sealed class MoveSystem : IFixedUpdateSystem, ICleanupSystem
 			float progress = entity.MoveOnTile.Progress;
 			progress += (1 / k_MoveDuration) * Time.fixedDeltaTime;
 			entity.ReplaceMoveOnTile(progress, entity.MoveOnTile.FromPosition, entity.MoveOnTile.ToPosition);
-			Debug.Log($"Move InProgress {entity.MoveOnTile.FromPosition} -> {entity.MoveOnTile.ToPosition}: {progress}");
 
 			if (progress >= 1.0f)
 			{
@@ -38,8 +37,6 @@ public sealed class MoveSystem : IFixedUpdateSystem, ICleanupSystem
 				entity.ReplaceOnTileElement(entity.MoveOnTile.ToPosition);
 				entity.RemoveMoveOnTile();
 				entity.IsMoveOnTileComplete = true;
-
-				Debug.Log($"MoveOnTile Removed {from} -> {to}");
 			}
 		}
 	}
@@ -50,7 +47,6 @@ public sealed class MoveSystem : IFixedUpdateSystem, ICleanupSystem
 		{
 			// Clean up the IsComplete flag in Cleanup phase in case other system needs the information
 			entity.IsMoveOnTileComplete = false;
-			Debug.Log($"IsMoveOnTileComplete = false");
 		}
 	}
 }
