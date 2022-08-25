@@ -50,6 +50,10 @@ public partial class GameEntity
 		{
 			CopyMoveOnTileAddedListenerTo(MoveOnTileAddedListener);
 		}
+		else if (component is OnTileElementAddedListenerComponent OnTileElementAddedListener)
+		{
+			CopyOnTileElementAddedListenerTo(OnTileElementAddedListener);
+		}
 		else if (component is MoveOnTileCompleteAddedListenerComponent MoveOnTileCompleteAddedListener)
 		{
 			CopyMoveOnTileCompleteAddedListenerTo(MoveOnTileCompleteAddedListener);

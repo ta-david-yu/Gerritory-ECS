@@ -19,11 +19,12 @@ public static class GameComponentsLookup
 	public const int MoveOnTileCompleteAddedListener = 3;
 	public const int MoveOnTileComplete = 4;
 	public const int MoveOnTile = 5;
-	public const int OnTileElement = 6;
-	public const int Player = 7;
-	public const int TilePosition = 8;
+	public const int OnTileElementAddedListener = 6;
+	public const int OnTileElement = 7;
+	public const int Player = 8;
+	public const int TilePosition = 9;
 
-	public const int TotalComponents = 9;
+	public const int TotalComponents = 10;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -33,6 +34,7 @@ public static class GameComponentsLookup
 		"MoveOnTileCompleteAddedListener",
 		"MoveOnTileComplete",
 		"MoveOnTile",
+		"OnTileElementAddedListener",
 		"OnTileElement",
 		"Player",
 		"TilePosition"
@@ -46,6 +48,7 @@ public static class GameComponentsLookup
 		typeof(MoveOnTileCompleteAddedListenerComponent),
 		typeof(MoveOnTileCompleteComponent),
 		typeof(MoveOnTileComponent),
+		typeof(OnTileElementAddedListenerComponent),
 		typeof(OnTileElementComponent),
 		typeof(PlayerComponent),
 		typeof(TilePositionComponent)
@@ -59,9 +62,10 @@ public static class GameComponentsLookup
 		{ typeof(MoveOnTileCompleteAddedListenerComponent), 3 },
 		{ typeof(MoveOnTileCompleteComponent), 4 },
 		{ typeof(MoveOnTileComponent), 5 },
-		{ typeof(OnTileElementComponent), 6 },
-		{ typeof(PlayerComponent), 7 },
-		{ typeof(TilePositionComponent), 8 }
+		{ typeof(OnTileElementAddedListenerComponent), 6 },
+		{ typeof(OnTileElementComponent), 7 },
+		{ typeof(PlayerComponent), 8 },
+		{ typeof(TilePositionComponent), 9 }
 	};
 
 	/// <summary>

@@ -128,7 +128,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6637677535779970085}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4929449301945637596
 MonoBehaviour:
@@ -166,6 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ExecutionTime: 1
   m_Blueprint: {fileID: 4929449301945637596}
+  OnEntityCreated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &5899683879576081117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -233,30 +236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_UserPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 5918677264162381190, guid: 22517eb0638d10a48a39d7feb6a0a5cf,
+    - target: {fileID: 6983035614630871999, guid: 22517eb0638d10a48a39d7feb6a0a5cf,
         type: 3}
-      propertyPath: _components.Array.size
+      propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5918677264162381190, guid: 22517eb0638d10a48a39d7feb6a0a5cf,
-        type: 3}
-      propertyPath: _components.Array.data[2]
-      value: 2812320405144731650
-      objectReference: {fileID: 0}
-    - target: {fileID: 5918677264162381190, guid: 22517eb0638d10a48a39d7feb6a0a5cf,
-        type: 3}
-      propertyPath: managedReferences[2812320405144731648]
-      value: Assembly-CSharp ViewComponent
-      objectReference: {fileID: 0}
-    - target: {fileID: 5918677264162381190, guid: 22517eb0638d10a48a39d7feb6a0a5cf,
-        type: 3}
-      propertyPath: managedReferences[2812320405144731649]
-      value: Assembly-CSharp ViewComponent
-      objectReference: {fileID: 0}
-    - target: {fileID: 5918677264162381190, guid: 22517eb0638d10a48a39d7feb6a0a5cf,
-        type: 3}
-      propertyPath: managedReferences[2812320405144731650]
-      value: Assembly-CSharp ViewComponent
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22517eb0638d10a48a39d7feb6a0a5cf, type: 3}

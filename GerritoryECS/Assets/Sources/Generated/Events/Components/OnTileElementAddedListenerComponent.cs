@@ -7,12 +7,8 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class GameEventSystems : Feature
+[JCMG.EntitasRedux.DontGenerate(false)]
+public sealed class OnTileElementAddedListenerComponent : JCMG.EntitasRedux.IComponent
 {
-	public GameEventSystems(Contexts contexts)
-	{
-		Add(new MoveOnTileAddedEventSystem(contexts)); // priority: 0
-		Add(new MoveOnTileCompleteAddedEventSystem(contexts)); // priority: 0
-		Add(new OnTileElementAddedEventSystem(contexts)); // priority: 0
-	}
+	public System.Collections.Generic.List<IOnTileElementAddedListener> value;
 }

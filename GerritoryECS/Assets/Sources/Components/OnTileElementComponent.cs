@@ -4,6 +4,7 @@ using UnityEngine;
 using JCMG.EntitasRedux;
 
 [Game]
+[Event(EventTarget.Self)]
 [System.Serializable]
 public sealed class OnTileElementComponent : IComponent
 {

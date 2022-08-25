@@ -7,12 +7,7 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class GameEventSystems : Feature
+public interface IOnTileElementAddedListener
 {
-	public GameEventSystems(Contexts contexts)
-	{
-		Add(new MoveOnTileAddedEventSystem(contexts)); // priority: 0
-		Add(new MoveOnTileCompleteAddedEventSystem(contexts)); // priority: 0
-		Add(new OnTileElementAddedEventSystem(contexts)); // priority: 0
-	}
+	void OnOnTileElementAdded(GameEntity entity, UnityEngine.Vector2Int position);
 }

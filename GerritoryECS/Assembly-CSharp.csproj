@@ -91,6 +91,7 @@
     <Compile Include="Assets\Sources\Generated\Game\Components\GamePlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileCompleteAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputUserInputComponent.cs" />
+    <Compile Include="Assets\Scripts\View\IEntityEventListener.cs" />
     <Compile Include="Assets\Sources\Features\InputFeature.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\DebugMessageSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Movement\CommandMoveOnTileSystem.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Assets\Sources\Generated\Game\Features\GameCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\LogMouseClickSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Features\InputCleanupFeature.cs" />
+    <Compile Include="Assets\Scripts\View\EntityEventListenerBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileCompleteAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameDebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MovementInputActionComponent.cs" />
@@ -127,8 +129,10 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputBufferedMovementInputComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Movement\MoveOnTileSystem.cs" />
-    <Compile Include="Assets\Scripts\View\IEntityEventListener.cs" />
-    <Compile Include="Assets\Scripts\View\EntityEventListenerBehaviour.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\OnTileElementAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\OnTileElementAddedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTileElementAddedListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

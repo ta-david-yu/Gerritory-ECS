@@ -18,6 +18,16 @@ using JCMG.EntitasRedux;
 [RequireComponent(typeof(GameBlueprintBehaviour))]
 public class CreateEntityFromGameBlueprint : MonoBehaviour
 {
+	[System.Serializable]
+	public class ExecuteEvents
+	{
+		[Tooltip("Invoked when the entity is created")]
+		public UnityEvent<IEntity> OnEntityCreated;
+
+		[Tooltip("Invoked when the given blueprint is applied to the created entity")]
+		public UnityEvent<IEntity> OnBlueprintApplied;
+	}
+
 	public enum ExecutionTime
 	{
 		Never,
@@ -30,8 +40,8 @@ public class CreateEntityFromGameBlueprint : MonoBehaviour
 
 	[SerializeField]
 	private GameBlueprintBehaviour m_Blueprint;
-	
-	public UnityEvent<IEntity> OnEntityCreated;
+
+	public ExecuteEvents Events = new ExecuteEvents();
 
 	private EntityLink m_LinkedEntity = null;
 
@@ -69,9 +79,11 @@ public class CreateEntityFromGameBlueprint : MonoBehaviour
 		}
 
 		var entity = Contexts.SharedInstance.Game.CreateEntity();
-		m_Blueprint.ApplyToEntity(entity);
-		m_LinkedEntity = gameObject.Link(entity);
+		Events.OnEntityCreated?.Invoke(entity);
 
-		OnEntityCreated?.Invoke(entity);
+		m_Blueprint.ApplyToEntity(entity);
+		Events.OnBlueprintApplied?.Invoke(entity);
+
+		m_LinkedEntity = gameObject.Link(entity);
 	}
 }

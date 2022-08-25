@@ -176,7 +176,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -200,8 +200,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.287274, y: -0.22790219, z: 0.07057517, w: -0.9276602}
+  m_LocalPosition: {x: -4.2265434, y: 8.546742, z: -9.925814}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -368,6 +368,16 @@ PrefabInstance:
       propertyPath: managedReferences[2812320396538019846].Id
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[2812320396538019847].Position.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[2812320396538019847].Position.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1430065688062647575, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: m_Name
@@ -516,6 +526,11 @@ PrefabInstance:
       propertyPath: managedReferences[2812320396538019846].Id
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[2812320396538019847].Position.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1430065688062647575, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: m_Name
@@ -614,6 +629,16 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[2812320396538019846].Id
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[2812320396538019847].Position.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[2812320396538019847].Position.y
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1430065688062647575, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
