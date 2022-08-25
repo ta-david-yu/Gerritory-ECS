@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6983035614630871999}
   - component: {fileID: 1386533871630071357}
   m_Layer: 0
-  m_Name: MoveOnTileAnimationController
+  m_Name: RollOnTileAnimationController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

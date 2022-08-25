@@ -58,12 +58,13 @@
   <ItemGroup>
     <Compile Include="Assets\Sources\Generated\Input\InputContext.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputEntity_CopyTo.cs" />
-    <Compile Include="Assets\Scripts\Animation\BasicMoveOnTileAnimationController.cs" />
+    <Compile Include="Assets\Scripts\Animation\RollOnTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MoveOnTileCompleteComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileCompleteComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputMatcher.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\OnTileElementAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Input\EmitUserInputSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprint.cs" />
@@ -74,10 +75,12 @@
     <Compile Include="Assets\Sources\Generated\Input\CreateEntityFromInputBlueprint.cs" />
     <Compile Include="Assets\Sources\Components\Input\AIInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputAttribute.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\_Sandbox\DebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Features\_Sandbox\TutorialFeature.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameContext.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTileElementAddedListener.cs" />
     <Compile Include="Assets\Sources\Components\TilePositionComponent.cs" />
     <Compile Include="Assets\Sources\Features\MovementFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Events\GameEventSystems.cs" />
@@ -85,6 +88,7 @@
     <Compile Include="Assets\Scripts\GameFlow\GameController.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Game\CreateEntityFromGameBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\OnTileElementAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Systems\InputCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Systems\Debug\OnGUIPlayerMovementSystem.cs" />
@@ -127,10 +131,6 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputBufferedMovementInputComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Movement\MoveOnTileSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Components\OnTileElementAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Systems\OnTileElementAddedEventSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTileElementAddedListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
