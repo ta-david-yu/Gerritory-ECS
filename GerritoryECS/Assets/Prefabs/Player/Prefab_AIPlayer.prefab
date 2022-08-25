@@ -143,14 +143,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - rid: 2812320396538019848
+  - rid: 2812320429617971200
   references:
     version: 2
     RefIds:
-    - rid: 2812320396538019848
-      type: {class: UserInputComponent, ns: , asm: Assembly-CSharp}
+    - rid: 2812320429617971200
+      type: {class: AIInputComponent, ns: , asm: Assembly-CSharp}
       data:
-        UserIndex: 0
+        Movement: 0
         TargetPlayerId: 0
 --- !u!114 &2035692867427367417
 MonoBehaviour:
@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 4757910145357959114, guid: 22517eb0638d10a48a39d7feb6a0a5cf,
         type: 3}
       propertyPath: m_Name
-      value: Prefab_UserPlayer
+      value: Prefab_AIPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 6983035614630871999, guid: 22517eb0638d10a48a39d7feb6a0a5cf,
         type: 3}
