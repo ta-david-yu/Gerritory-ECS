@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicMoveOnTileAnimationController : EntityEventListenerBehaviour, IMoveOnTileAddedListener, IMoveOnTileCompleteAddedListener
+public class BasicMoveOnTileAnimationController : MonoBehaviour, IMoveOnTileAddedListener, IMoveOnTileCompleteAddedListener
 {
 	[SerializeField]
 	private Transform m_TransformToMove;
 
 	const float k_TileWorldPositionOffset = 1;
 
-	public override void RegisterListenerToEntity(IEntity entity)
+	public void HandleOnEntityCreated(IEntity entity)
 	{
 		GameEntity gameEntity = entity as GameEntity;
 
+		// Register listener to relevant components
 		gameEntity.AddMoveOnTileAddedListener(this);
 		gameEntity.AddMoveOnTileCompleteAddedListener(this);
 	}
@@ -28,21 +29,25 @@ public class BasicMoveOnTileAnimationController : EntityEventListenerBehaviour, 
 			return;
 		}
 
-		Vector2Int position = gameEntity.OnTileElement.Position;
-		m_TransformToMove.localPosition = new Vector3(position.x, 0, position.y) * k_TileWorldPositionOffset;
+		// Set initial view transform position
+		m_TransformToMove.localPosition = getWorldPositionFromTilePosition(gameEntity.OnTileElement.Position);
 	}
 
 	public void OnMoveOnTileAdded(GameEntity entity, float progress, Vector2Int fromPosition, Vector2Int toPosition)
 	{
-		Vector3 fromWorldPosition = new Vector3(fromPosition.x, 0, fromPosition.y) * k_TileWorldPositionOffset;
-		Vector3 toWorldPosition = new Vector3(toPosition.x, 0, toPosition.y) * k_TileWorldPositionOffset;
+		Vector3 fromWorldPosition = getWorldPositionFromTilePosition(fromPosition);
+		Vector3 toWorldPosition = getWorldPositionFromTilePosition(toPosition);
 
 		m_TransformToMove.localPosition = Vector3.Lerp(fromWorldPosition, toWorldPosition, progress);
 	}
 
-	public void OnMoveOnTileCompleteAdded(GameEntity entity)
+	public void OnMoveOnTileCompleteAdded(GameEntity gameEntity)
 	{
-		Vector2Int finalPosition = entity.OnTileElement.Position;
-		m_TransformToMove.localPosition = new Vector3(finalPosition.x, 0, finalPosition.y) * k_TileWorldPositionOffset;
+		m_TransformToMove.localPosition = getWorldPositionFromTilePosition(gameEntity.OnTileElement.Position);
+	}
+
+	private Vector3 getWorldPositionFromTilePosition(Vector2Int tilePosition)
+	{
+		return new Vector3(tilePosition.x, 0, tilePosition.y) * k_TileWorldPositionOffset;
 	}
 }

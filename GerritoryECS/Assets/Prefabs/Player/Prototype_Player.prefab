@@ -273,7 +273,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1386533871630071357}
           m_TargetAssemblyTypeName: BasicMoveOnTileAnimationController, Assembly-CSharp
-          m_MethodName: RegisterListenerToEntity
+          m_MethodName: HandleOnEntityCreated
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
