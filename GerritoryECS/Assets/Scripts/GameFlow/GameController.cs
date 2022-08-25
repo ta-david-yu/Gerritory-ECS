@@ -10,23 +10,9 @@ public class GameController : MonoBehaviour
 {
 	private	Systems m_Systems;
 	private Systems m_DebugSystems;
-	
-	private static Systems createSystems(Contexts contexts)
-	{
-		return new Feature("Systems")
-			.Add(new MovementFeature(contexts))
-			.Add(new InputFeature(contexts))
-			.Add(new GameEventSystems(contexts));
-	}
-
-	private static Systems createDebugSystems(Contexts contexts)
-	{
-		return new Feature("Debug Systems")
-			.Add(new OnGUIDebugFeature(contexts));
-	}
 
 	// Start is called before the first frame update
-	private void Start()
+	private void Awake()
 	{
 		var contexts = Contexts.SharedInstance;
 
@@ -59,6 +45,20 @@ public class GameController : MonoBehaviour
 	private void OnDestroy()
 	{
 		m_Systems.TearDown();
+	}
+
+	private static Systems createSystems(Contexts contexts)
+	{
+		return new Feature("Systems")
+			.Add(new MovementFeature(contexts))
+			.Add(new InputFeature(contexts))
+			.Add(new GameEventSystems(contexts));
+	}
+
+	private static Systems createDebugSystems(Contexts contexts)
+	{
+		return new Feature("Debug Systems")
+			.Add(new OnGUIDebugFeature(contexts));
 	}
 
 	private void OnGUI()
