@@ -131,12 +131,6 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputBufferedMovementInputComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Movement\MoveOnTileSystem.cs" />
-    <Compile Include="Assets\Sources\Components\Movement\MoveOnTileStartComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileStartAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileStartAddedListener.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileStartComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileStartAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileStartAddedEventSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -18,11 +18,7 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is MoveOnTileStartComponent MoveOnTileStart)
-		{
-			IsMoveOnTileStart = true;
-		}
-		else if (component is MovementInputActionComponent MovementInputAction)
+		if (component is MovementInputActionComponent MovementInputAction)
 		{
 			CopyMovementInputActionTo(MovementInputAction);
 		}
@@ -49,10 +45,6 @@ public partial class GameEntity
 		else if (component is MoveOnTileCompleteComponent MoveOnTileComplete)
 		{
 			CopyMoveOnTileCompleteTo(MoveOnTileComplete);
-		}
-		else if (component is MoveOnTileStartAddedListenerComponent MoveOnTileStartAddedListener)
-		{
-			CopyMoveOnTileStartAddedListenerTo(MoveOnTileStartAddedListener);
 		}
 		else if (component is MoveOnTileAddedListenerComponent MoveOnTileAddedListener)
 		{

@@ -19,14 +19,12 @@ public static class GameComponentsLookup
 	public const int MoveOnTileCompleteAddedListener = 3;
 	public const int MoveOnTileComplete = 4;
 	public const int MoveOnTile = 5;
-	public const int MoveOnTileStartAddedListener = 6;
-	public const int MoveOnTileStart = 7;
-	public const int OnTileElementAddedListener = 8;
-	public const int OnTileElement = 9;
-	public const int Player = 10;
-	public const int TilePosition = 11;
+	public const int OnTileElementAddedListener = 6;
+	public const int OnTileElement = 7;
+	public const int Player = 8;
+	public const int TilePosition = 9;
 
-	public const int TotalComponents = 12;
+	public const int TotalComponents = 10;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -36,8 +34,6 @@ public static class GameComponentsLookup
 		"MoveOnTileCompleteAddedListener",
 		"MoveOnTileComplete",
 		"MoveOnTile",
-		"MoveOnTileStartAddedListener",
-		"MoveOnTileStart",
 		"OnTileElementAddedListener",
 		"OnTileElement",
 		"Player",
@@ -52,8 +48,6 @@ public static class GameComponentsLookup
 		typeof(MoveOnTileCompleteAddedListenerComponent),
 		typeof(MoveOnTileCompleteComponent),
 		typeof(MoveOnTileComponent),
-		typeof(MoveOnTileStartAddedListenerComponent),
-		typeof(MoveOnTileStartComponent),
 		typeof(OnTileElementAddedListenerComponent),
 		typeof(OnTileElementComponent),
 		typeof(PlayerComponent),
@@ -68,12 +62,10 @@ public static class GameComponentsLookup
 		{ typeof(MoveOnTileCompleteAddedListenerComponent), 3 },
 		{ typeof(MoveOnTileCompleteComponent), 4 },
 		{ typeof(MoveOnTileComponent), 5 },
-		{ typeof(MoveOnTileStartAddedListenerComponent), 6 },
-		{ typeof(MoveOnTileStartComponent), 7 },
-		{ typeof(OnTileElementAddedListenerComponent), 8 },
-		{ typeof(OnTileElementComponent), 9 },
-		{ typeof(PlayerComponent), 10 },
-		{ typeof(TilePositionComponent), 11 }
+		{ typeof(OnTileElementAddedListenerComponent), 6 },
+		{ typeof(OnTileElementComponent), 7 },
+		{ typeof(PlayerComponent), 8 },
+		{ typeof(TilePositionComponent), 9 }
 	};
 
 	/// <summary>

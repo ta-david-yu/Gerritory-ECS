@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Basically the roll module in the original game. Roll the cube based on MoveOnTile progress
 /// </summary>
-public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileStartAddedListener, IMoveOnTileAddedListener, IMoveOnTileCompleteAddedListener
+public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileAddedListener, IMoveOnTileCompleteAddedListener
 {
 	[SerializeField]
 	private Transform m_TransformToMove;
@@ -20,7 +20,6 @@ public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileStartAdde
 		GameEntity gameEntity = entity as GameEntity;
 
 		// Register listener to relevant components
-		gameEntity.AddMoveOnTileStartAddedListener(this);
 		gameEntity.AddMoveOnTileAddedListener(this);
 		gameEntity.AddMoveOnTileCompleteAddedListener(this);
 	}
@@ -37,11 +36,6 @@ public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileStartAdde
 
 		// Set initial view transform position
 		m_TransformToMove.localPosition = getWorldPositionFromTilePosition(gameEntity.OnTileElement.Position) + Vector3.up * k_TileWorldPositionOffset * 0.5f;
-	}
-
-	public void OnMoveOnTileStartAdded(GameEntity entity)
-	{
-		//throw new System.NotImplementedException();
 	}
 
 	public void OnMoveOnTileAdded(GameEntity entity, float progress, Vector2Int fromPosition, Vector2Int toPosition)
