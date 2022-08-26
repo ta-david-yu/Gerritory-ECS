@@ -6,15 +6,13 @@ using UnityEngine;
 /// <summary>
 /// Basically the roll module in the original game. Roll the cube based on MoveOnTile progress
 /// </summary>
-public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileAddedListener, IMoveOnTileCompleteAddedListener
+public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileStartAddedListener, IMoveOnTileAddedListener, IMoveOnTileCompleteAddedListener
 {
 	[SerializeField]
 	private Transform m_TransformToMove;
 
 	const float k_TileWorldPositionOffset = 1;
 
-	private Vector3 m_RollingPivot;
-	private Vector3 m_RollingAxis;
 	private float m_PreviousProgress = 0;
 
 	public void HandleOnEntityCreated(IEntity entity)
@@ -22,6 +20,7 @@ public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileAddedList
 		GameEntity gameEntity = entity as GameEntity;
 
 		// Register listener to relevant components
+		gameEntity.AddMoveOnTileStartAddedListener(this);
 		gameEntity.AddMoveOnTileAddedListener(this);
 		gameEntity.AddMoveOnTileCompleteAddedListener(this);
 	}
@@ -40,37 +39,38 @@ public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileAddedList
 		m_TransformToMove.localPosition = getWorldPositionFromTilePosition(gameEntity.OnTileElement.Position) + Vector3.up * k_TileWorldPositionOffset * 0.5f;
 	}
 
-	public void OnMoveOnTileAdded(GameEntity entity, float progress, Vector2Int fromPosition, Vector2Int toPosition)
+	public void OnMoveOnTileStartAdded(GameEntity entity)
 	{
-		if (progress == 0.0f)
-		{
-			// The initial frame where the cube player is moving.
-			// This looks dangerous, but since the listener is triggered with system, this will always be stable.
-			Vector3 fromWorldPosition = getWorldPositionFromTilePosition(fromPosition);
-			Vector3 toWorldPosition = getWorldPositionFromTilePosition(toPosition);
-			Vector3 moveDirection = (toWorldPosition - fromWorldPosition).normalized;
-			m_RollingPivot = fromWorldPosition + k_TileWorldPositionOffset * moveDirection * 0.5f;
-			m_RollingAxis = Vector3.Cross(-moveDirection, Vector3.up);
-
-			m_PreviousProgress = 0.0f;
-		}
-		else
-		{
-			float progressDiff = progress - m_PreviousProgress;
-			m_TransformToMove.RotateAround(m_RollingPivot, m_RollingAxis, 90.0f * progressDiff);
-			m_PreviousProgress = progress;
-		}
-		//m_TransformToMove.localPosition = Vector3.Lerp(fromWorldPosition, toWorldPosition, progress);
-
-		// TODO: Fix consequent rotation movement bug
+		//throw new System.NotImplementedException();
 	}
 
-	public void OnMoveOnTileCompleteAdded(GameEntity gameEntity)
+	public void OnMoveOnTileAdded(GameEntity entity, float progress, Vector2Int fromPosition, Vector2Int toPosition)
 	{
+		Vector3 fromWorldPosition = getWorldPositionFromTilePosition(fromPosition);
+		Vector3 toWorldPosition = getWorldPositionFromTilePosition(toPosition);
+		Vector3 moveDirection = (toWorldPosition - fromWorldPosition).normalized;
+		Vector3 rollingPivot = fromWorldPosition + k_TileWorldPositionOffset * moveDirection * 0.5f;
+		Vector3 rollingAxis = Vector3.Cross(-moveDirection, Vector3.up);
+
+		float progressDiff = progress - m_PreviousProgress;
+		float rotateAngle = 90.0f * progressDiff;
+		m_TransformToMove.RotateAround(rollingPivot, rollingAxis, rotateAngle);
+		m_PreviousProgress = progress;
+	}
+
+	public void OnMoveOnTileCompleteAdded(GameEntity gameEntity, Vector2Int fromPosition, Vector2Int toPosition)
+	{
+		Vector3 fromWorldPosition = getWorldPositionFromTilePosition(fromPosition);
+		Vector3 toWorldPosition = getWorldPositionFromTilePosition(toPosition);
+		Vector3 moveDirection = (toWorldPosition - fromWorldPosition).normalized;
+		Vector3 rollingPivot = fromWorldPosition + k_TileWorldPositionOffset * moveDirection * 0.5f;
+		Vector3 rollingAxis = Vector3.Cross(-moveDirection, Vector3.up);
+
 		float adjustStep = (1.0f - m_PreviousProgress);
 		float adjustAngle = 90.0f * adjustStep;
-		m_TransformToMove.RotateAround(m_RollingPivot, m_RollingAxis, adjustAngle);
-		//m_TransformToMove.localPosition = getWorldPositionFromTilePosition(gameEntity.OnTileElement.Position) + Vector3.up * k_TileWorldPositionOffset * 0.5f;
+		m_TransformToMove.RotateAround(rollingPivot, rollingAxis, adjustAngle);
+
+		m_PreviousProgress = 0.0f;
 	}
 
 	private Vector3 getWorldPositionFromTilePosition(Vector2Int tilePosition)

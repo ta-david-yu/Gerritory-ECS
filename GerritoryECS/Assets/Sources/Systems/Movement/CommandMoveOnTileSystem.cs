@@ -35,9 +35,9 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 			// Consume movement input action
 			entity.RemoveMovementInputAction();
 
-			if (entity.HasMoveOnTile)
+			if (entity.HasMoveOnTile || entity.HasMoveOnTileComplete)
 			{
-				// The entity is already moving. Ignore the input action.
+				// The entity is already moving / ending its previous move. Ignore the input action.
 				continue;
 			}
 

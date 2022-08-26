@@ -23,20 +23,23 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem, ICleanupSystem
 		{
 			float progress = entity.MoveOnTile.Progress;
 			progress += (1 / k_MoveDuration) * Time.fixedDeltaTime;
-			entity.ReplaceMoveOnTile(progress, entity.MoveOnTile.FromPosition, entity.MoveOnTile.ToPosition);
 
-			if (progress >= 1.0f)
+			if (progress < 1.0f)
+			{
+				entity.ReplaceMoveOnTile(progress, entity.MoveOnTile.FromPosition, entity.MoveOnTile.ToPosition);
+			}
+			else if (progress >= 1.0f)
 			{
 				Vector2Int from = entity.MoveOnTile.FromPosition;
 				Vector2Int to = entity.MoveOnTile.ToPosition;
 
 				// TODO: progress overflow movement
 				// Sometimes the progress value might go over 1.0, when that happens we want to move the entity based on buffered movement input
+				entity.RemoveMoveOnTile();
 
 				// Set the position to the target move position and set IsComplete flag to true
-				entity.ReplaceOnTileElement(entity.MoveOnTile.ToPosition);
-				entity.RemoveMoveOnTile();
-				entity.IsMoveOnTileComplete = true;
+				entity.ReplaceOnTileElement(to);
+				entity.AddMoveOnTileComplete(from, to);
 			}
 		}
 	}
@@ -46,7 +49,7 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem, ICleanupSystem
 		foreach (var entity in m_MoveOnTileCompleteGroup.GetEntities())
 		{
 			// Clean up the IsComplete flag in Cleanup phase in case other system needs the information
-			entity.IsMoveOnTileComplete = false;
+			entity.RemoveMoveOnTileComplete();
 		}
 	}
 }

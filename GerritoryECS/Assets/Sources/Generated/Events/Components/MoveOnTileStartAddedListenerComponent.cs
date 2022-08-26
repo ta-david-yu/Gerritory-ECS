@@ -7,7 +7,8 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public interface IMoveOnTileCompleteAddedListener
+[JCMG.EntitasRedux.DontGenerate(false)]
+public sealed class MoveOnTileStartAddedListenerComponent : JCMG.EntitasRedux.IComponent
 {
-	void OnMoveOnTileCompleteAdded(GameEntity entity, UnityEngine.Vector2Int fromPosition, UnityEngine.Vector2Int toPosition);
+	public System.Collections.Generic.List<IMoveOnTileStartAddedListener> value;
 }

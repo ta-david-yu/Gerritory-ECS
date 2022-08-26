@@ -50,8 +50,8 @@ public class GameController : MonoBehaviour
 	private static Systems createSystems(Contexts contexts)
 	{
 		return new Feature("Systems")
-			.Add(new MovementFeature(contexts))
 			.Add(new InputFeature(contexts))
+			.Add(new MovementFeature(contexts))
 			.Add(new GameEventSystems(contexts));
 	}
 

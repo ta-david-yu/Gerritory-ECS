@@ -5,4 +5,6 @@ using UnityEngine;
 [Event(EventTarget.Self)]
 public sealed class MoveOnTileCompleteComponent : IComponent
 {
+	public Vector2Int FromPosition;
+	public Vector2Int ToPosition;
 }

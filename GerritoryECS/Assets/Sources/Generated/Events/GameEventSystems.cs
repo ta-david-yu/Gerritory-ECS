@@ -13,6 +13,7 @@ public sealed class GameEventSystems : Feature
 	{
 		Add(new MoveOnTileAddedEventSystem(contexts)); // priority: 0
 		Add(new MoveOnTileCompleteAddedEventSystem(contexts)); // priority: 0
+		Add(new MoveOnTileStartAddedEventSystem(contexts)); // priority: 0
 		Add(new OnTileElementAddedEventSystem(contexts)); // priority: 0
 	}
 }

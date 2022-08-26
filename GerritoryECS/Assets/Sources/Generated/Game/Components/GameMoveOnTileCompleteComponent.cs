@@ -9,31 +9,45 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity
 {
-	static readonly MoveOnTileCompleteComponent MoveOnTileCompleteComponent = new MoveOnTileCompleteComponent();
+	public MoveOnTileCompleteComponent MoveOnTileComplete { get { return (MoveOnTileCompleteComponent)GetComponent(GameComponentsLookup.MoveOnTileComplete); } }
+	public bool HasMoveOnTileComplete { get { return HasComponent(GameComponentsLookup.MoveOnTileComplete); } }
 
-	public bool IsMoveOnTileComplete
+	public void AddMoveOnTileComplete(UnityEngine.Vector2Int newFromPosition, UnityEngine.Vector2Int newToPosition)
 	{
-		get { return HasComponent(GameComponentsLookup.MoveOnTileComplete); }
-		set
-		{
-			if (value != IsMoveOnTileComplete)
-			{
-				var index = GameComponentsLookup.MoveOnTileComplete;
-				if (value)
-				{
-					var componentPool = GetComponentPool(index);
-					var component = componentPool.Count > 0
-							? componentPool.Pop()
-							: MoveOnTileCompleteComponent;
+		var index = GameComponentsLookup.MoveOnTileComplete;
+		var component = (MoveOnTileCompleteComponent)CreateComponent(index, typeof(MoveOnTileCompleteComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.FromPosition = newFromPosition;
+		component.ToPosition = newToPosition;
+		#endif
+		AddComponent(index, component);
+	}
 
-					AddComponent(index, component);
-				}
-				else
-				{
-					RemoveComponent(index);
-				}
-			}
-		}
+	public void ReplaceMoveOnTileComplete(UnityEngine.Vector2Int newFromPosition, UnityEngine.Vector2Int newToPosition)
+	{
+		var index = GameComponentsLookup.MoveOnTileComplete;
+		var component = (MoveOnTileCompleteComponent)CreateComponent(index, typeof(MoveOnTileCompleteComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.FromPosition = newFromPosition;
+		component.ToPosition = newToPosition;
+		#endif
+		ReplaceComponent(index, component);
+	}
+
+	public void CopyMoveOnTileCompleteTo(MoveOnTileCompleteComponent copyComponent)
+	{
+		var index = GameComponentsLookup.MoveOnTileComplete;
+		var component = (MoveOnTileCompleteComponent)CreateComponent(index, typeof(MoveOnTileCompleteComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.FromPosition = copyComponent.FromPosition;
+		component.ToPosition = copyComponent.ToPosition;
+		#endif
+		ReplaceComponent(index, component);
+	}
+
+	public void RemoveMoveOnTileComplete()
+	{
+		RemoveComponent(GameComponentsLookup.MoveOnTileComplete);
 	}
 }
 
