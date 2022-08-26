@@ -55,6 +55,7 @@ public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileStartAdde
 		float progressDiff = progress - m_PreviousProgress;
 		float rotateAngle = 90.0f * progressDiff;
 		m_TransformToMove.RotateAround(rollingPivot, rollingAxis, rotateAngle);
+
 		m_PreviousProgress = progress;
 	}
 
