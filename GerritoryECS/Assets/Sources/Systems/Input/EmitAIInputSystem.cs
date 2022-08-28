@@ -27,7 +27,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 				//continue;
 			}
 
-			playerEntity.ReplaceMovementInputAction(movement);
+			playerEntity.ReplaceMovementInputAction(movement, 0.0f);
 		}
 	}
 }

@@ -38,13 +38,17 @@ public partial class GameEntity
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
-		else if (component is PlayerComponent Player)
-		{
-			CopyPlayerTo(Player);
-		}
 		else if (component is MoveOnTileCompleteComponent MoveOnTileComplete)
 		{
 			CopyMoveOnTileCompleteTo(MoveOnTileComplete);
+		}
+		else if (component is LevelComponent Level)
+		{
+			IsLevel = true;
+		}
+		else if (component is PlayerComponent Player)
+		{
+			CopyPlayerTo(Player);
 		}
 		else if (component is MoveOnTileAddedListenerComponent MoveOnTileAddedListener)
 		{

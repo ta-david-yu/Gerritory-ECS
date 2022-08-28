@@ -27,28 +27,51 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 	{
 		foreach (var entity in m_OnTileElementGroup.GetEntities())
 		{
+			if (entity.HasMoveOnTile || entity.HasMoveOnTileComplete)
+			{
+				float decayTimer = entity.MovementInputAction.DecayTimer;
+				decayTimer -= Time.fixedDeltaTime;
+				if (decayTimer <= 0)
+				{
+					// If the input action has decayed, remove it!
+					entity.RemoveMovementInputAction();
+				}
+				else
+				{
+					entity.ReplaceMovementInputAction(entity.MovementInputAction.Type, decayTimer);
+				}
+
+				// The entity is already moving / ending its previous move. Ignore the input action.
+				continue;
+			}
+
 			// Calculate next move position based on the movement input action
 			Vector2Int offset = Movement.TypeToOffset[(int)entity.MovementInputAction.Type];
 			Vector2Int fromPosition = entity.OnTileElement.Position;
 			Vector2Int toPosition = fromPosition + offset;
-
-			// Consume movement input action
-			entity.RemoveMovementInputAction();
-
-			if (entity.HasMoveOnTile || entity.HasMoveOnTileComplete)
-			{
-				// The entity is already moving / ending its previous move. Ignore the input action.
-				continue;
-			}
 
 			// TODO: validate whether next tile position can be moved to.
 			// Occupied? Empty?
 			bool isValidMove = true;
 			if (!isValidMove)
 			{
+				float decayTimer = entity.MovementInputAction.DecayTimer;
+				decayTimer -= Time.fixedDeltaTime;
+				if (decayTimer <= 0)
+				{
+					// If the input action has decayed, remove it!
+					entity.RemoveMovementInputAction();
+				}
+				else
+				{
+					entity.ReplaceMovementInputAction(entity.MovementInputAction.Type, decayTimer);
+				}
+
 				continue;
 			}
 
+			// Consume movement input action
+			entity.RemoveMovementInputAction();
 			entity.AddMoveOnTile(0, fromPosition, toPosition);
 		}
 	}

@@ -19,7 +19,10 @@ public class GameController : MonoBehaviour
 		// Initialize systems
 		m_Systems = createSystems(contexts);
 		m_DebugSystems = createDebugSystems(contexts);
+	}
 
+	private void Start()
+	{
 		m_Systems.Initialize();
 		m_DebugSystems.Initialize();
 	}

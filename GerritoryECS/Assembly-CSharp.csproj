@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\</OutputPath>
-    <DefineConstants>UNITY_2021_3_7;UNITY_2021_3;UNITY_2021;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;USE_SEARCH_TABLE;USE_SEARCH_MODULE;USE_PROPERTY_DATABASE;USE_SEARCH_EXTENSION_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2021_3_7;UNITY_2021_3;UNITY_2021;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;USE_SEARCH_TABLE;USE_SEARCH_MODULE;USE_PROPERTY_DATABASE;USE_SEARCH_EXTENSION_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -58,79 +58,80 @@
   <ItemGroup>
     <Compile Include="Assets\Sources\Generated\Input\InputContext.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputEntity_CopyTo.cs" />
-    <Compile Include="Assets\Scripts\Animation\RollOnTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Movement\MoveOnTileCompleteComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileCompleteComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Input\InputMatcher.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameLevelComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\OnTileElementAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Input\EmitUserInputSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Input\InputBlueprint.cs" />
     <Compile Include="Assets\Sources\Components\PlayerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\HelloWorldSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\IInputBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameAttribute.cs" />
-    <Compile Include="Assets\Sources\Generated\Input\CreateEntityFromInputBlueprint.cs" />
-    <Compile Include="Assets\Sources\Components\Input\AIInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputAttribute.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Components\_Sandbox\DebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\LevelComponent.cs" />
     <Compile Include="Assets\Sources\Features\_Sandbox\TutorialFeature.cs" />
-    <Compile Include="Assets\Sources\Components\OnTileElementComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\GameContext.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTileElementAddedListener.cs" />
-    <Compile Include="Assets\Sources\Components\TilePositionComponent.cs" />
-    <Compile Include="Assets\Sources\Features\MovementFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Events\GameEventSystems.cs" />
-    <Compile Include="Assets\Sources\Systems\Input\EmitAIInputSystem.cs" />
-    <Compile Include="Assets\Scripts\GameFlow\GameController.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\GameBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Game\CreateEntityFromGameBlueprint.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Components\OnTileElementAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Systems\InputCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Systems\Debug\OnGUIPlayerMovementSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GamePlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileCompleteAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputUserInputComponent.cs" />
     <Compile Include="Assets\Sources\Features\InputFeature.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\DebugMessageSystem.cs" />
-    <Compile Include="Assets\Sources\Systems\Movement\CommandMoveOnTileSystem.cs" />
     <Compile Include="Assets\Sources\Components\Input\UserInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMovementInputActionComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Input\Components\InputAIInputComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Contexts.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameEntity.cs" />
-    <Compile Include="Assets\Sources\Components\Input\BufferedMovementInputComponent.cs" />
-    <Compile Include="Assets\Sources\Features\OnGUIDebugFeature.cs" />
-    <Compile Include="Assets\Sources\Components\Movement\MoveOnTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\IGameBlueprint.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameTilePositionComponent.cs" />
-    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\CleanupDebugMessageSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputEntity.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Feature.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Features\GameCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\LogMouseClickSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Features\InputCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileCompleteAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameDebugMessageComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Movement\MovementInputActionComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileCompleteAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Input\InputComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileCompleteAddedListener.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileAddedListener.cs" />
+    <Compile Include="Assets\Sources\Systems\Movement\MoveOnTileSystem.cs" />
+    <Compile Include="Assets\Scripts\Animation\RollOnTileAnimationController.cs" />
+    <Compile Include="Assets\Sources\Components\Movement\MoveOnTileCompleteComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileAddedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\InputMatcher.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\InputBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\CreateEntityFromInputBlueprint.cs" />
+    <Compile Include="Assets\Sources\Components\Input\AIInputComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\_Sandbox\DebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\OnTileElementComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\GameContext.cs" />
+    <Compile Include="Assets\Sources\Components\Level\TilePositionComponent.cs" />
+    <Compile Include="Assets\Settings\InputManager.cs" />
+    <Compile Include="Assets\Sources\Features\MovementFeature.cs" />
+    <Compile Include="Assets\Sources\Systems\Input\EmitAIInputSystem.cs" />
+    <Compile Include="Assets\Scripts\GameFlow\GameController.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\GameBlueprintBehaviour.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\OnTileElementAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameEntity_CopyTo.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GamePlayerComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Movement\CommandMoveOnTileSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\Components\InputAIInputComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Contexts.cs" />
+    <Compile Include="Assets\Sources\Features\OnGUIDebugFeature.cs" />
+    <Compile Include="Assets\Sources\Components\Movement\MoveOnTileComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameTilePositionComponent.cs" />
+    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Feature.cs" />
+    <Compile Include="Assets\Sources\Components\Movement\MovementInputActionComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileCompleteAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\InputComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprintBehaviour.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Input\Components\InputBufferedMovementInputComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Movement\MoveOnTileSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -844,8 +845,8 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
@@ -858,6 +859,9 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>

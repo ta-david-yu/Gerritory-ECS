@@ -14,21 +14,23 @@ using JCMG.EntitasRedux;
 public static class GameComponentsLookup
 {
 	public const int DebugMessage = 0;
-	public const int MovementInputAction = 1;
-	public const int MoveOnTileAddedListener = 2;
-	public const int MoveOnTileCompleteAddedListener = 3;
-	public const int MoveOnTileComplete = 4;
-	public const int MoveOnTile = 5;
-	public const int OnTileElementAddedListener = 6;
-	public const int OnTileElement = 7;
-	public const int Player = 8;
-	public const int TilePosition = 9;
+	public const int Level = 1;
+	public const int MovementInputAction = 2;
+	public const int MoveOnTileAddedListener = 3;
+	public const int MoveOnTileCompleteAddedListener = 4;
+	public const int MoveOnTileComplete = 5;
+	public const int MoveOnTile = 6;
+	public const int OnTileElementAddedListener = 7;
+	public const int OnTileElement = 8;
+	public const int Player = 9;
+	public const int TilePosition = 10;
 
-	public const int TotalComponents = 10;
+	public const int TotalComponents = 11;
 
 	public static readonly string[] ComponentNames =
 	{
 		"DebugMessage",
+		"Level",
 		"MovementInputAction",
 		"MoveOnTileAddedListener",
 		"MoveOnTileCompleteAddedListener",
@@ -43,6 +45,7 @@ public static class GameComponentsLookup
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(DebugMessageComponent),
+		typeof(LevelComponent),
 		typeof(MovementInputActionComponent),
 		typeof(MoveOnTileAddedListenerComponent),
 		typeof(MoveOnTileCompleteAddedListenerComponent),
@@ -57,15 +60,16 @@ public static class GameComponentsLookup
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(DebugMessageComponent), 0 },
-		{ typeof(MovementInputActionComponent), 1 },
-		{ typeof(MoveOnTileAddedListenerComponent), 2 },
-		{ typeof(MoveOnTileCompleteAddedListenerComponent), 3 },
-		{ typeof(MoveOnTileCompleteComponent), 4 },
-		{ typeof(MoveOnTileComponent), 5 },
-		{ typeof(OnTileElementAddedListenerComponent), 6 },
-		{ typeof(OnTileElementComponent), 7 },
-		{ typeof(PlayerComponent), 8 },
-		{ typeof(TilePositionComponent), 9 }
+		{ typeof(LevelComponent), 1 },
+		{ typeof(MovementInputActionComponent), 2 },
+		{ typeof(MoveOnTileAddedListenerComponent), 3 },
+		{ typeof(MoveOnTileCompleteAddedListenerComponent), 4 },
+		{ typeof(MoveOnTileCompleteComponent), 5 },
+		{ typeof(MoveOnTileComponent), 6 },
+		{ typeof(OnTileElementAddedListenerComponent), 7 },
+		{ typeof(OnTileElementComponent), 8 },
+		{ typeof(PlayerComponent), 9 },
+		{ typeof(TilePositionComponent), 10 }
 	};
 
 	/// <summary>

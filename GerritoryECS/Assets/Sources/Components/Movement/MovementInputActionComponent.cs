@@ -21,4 +21,5 @@ public static class Movement
 public sealed class MovementInputActionComponent : IComponent
 {
 	public Movement.Type Type;
+	public float DecayTimer;
 }

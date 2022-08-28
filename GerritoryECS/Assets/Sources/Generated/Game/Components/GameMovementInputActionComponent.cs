@@ -12,22 +12,24 @@ public partial class GameEntity
 	public MovementInputActionComponent MovementInputAction { get { return (MovementInputActionComponent)GetComponent(GameComponentsLookup.MovementInputAction); } }
 	public bool HasMovementInputAction { get { return HasComponent(GameComponentsLookup.MovementInputAction); } }
 
-	public void AddMovementInputAction(Movement.Type newType)
+	public void AddMovementInputAction(Movement.Type newType, float newDecayTimer)
 	{
 		var index = GameComponentsLookup.MovementInputAction;
 		var component = (MovementInputActionComponent)CreateComponent(index, typeof(MovementInputActionComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Type = newType;
+		component.DecayTimer = newDecayTimer;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceMovementInputAction(Movement.Type newType)
+	public void ReplaceMovementInputAction(Movement.Type newType, float newDecayTimer)
 	{
 		var index = GameComponentsLookup.MovementInputAction;
 		var component = (MovementInputActionComponent)CreateComponent(index, typeof(MovementInputActionComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Type = newType;
+		component.DecayTimer = newDecayTimer;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -37,7 +39,8 @@ public partial class GameEntity
 		var index = GameComponentsLookup.MovementInputAction;
 		var component = (MovementInputActionComponent)CreateComponent(index, typeof(MovementInputActionComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.Type = copyComponent.Type;
+		component.Type = copyComponent.Type;
+		component.DecayTimer = copyComponent.DecayTimer;
 		#endif
 		ReplaceComponent(index, component);
 	}
