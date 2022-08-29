@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Game]
+[Game, Unique]
 [System.Serializable]
 public sealed class LevelComponent : IComponent
 {
-	Vector2Int LevelSize;
+	public Vector2Int LevelSize;
 }

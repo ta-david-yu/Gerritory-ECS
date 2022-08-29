@@ -8,8 +8,12 @@ using JCMG.EntitasRedux;
 /// </summary>
 public class GameController : MonoBehaviour
 {
+	[SerializeField]
+	private ScriptableGameConfig m_GameConfig;
+
 	private	Systems m_Systems;
-	private Systems m_DebugSystems;
+	private Systems m_OnGUIDebugSystems;
+	private Systems m_OnDrawGizmosDebugSystems;
 
 	// Start is called before the first frame update
 	private void Awake()
@@ -18,13 +22,17 @@ public class GameController : MonoBehaviour
 
 		// Initialize systems
 		m_Systems = createSystems(contexts);
-		m_DebugSystems = createDebugSystems(contexts);
+		m_OnGUIDebugSystems = createOnGUIDebugSystems(contexts);
+		m_OnDrawGizmosDebugSystems = createOnDrawGizmosDebugSystems(contexts);
+
+		// Setup game config for systems to initialize
+		contexts.Config.SetGameConfig(m_GameConfig);
 	}
 
 	private void Start()
 	{
 		m_Systems.Initialize();
-		m_DebugSystems.Initialize();
+		m_OnGUIDebugSystems.Initialize();
 	}
 
 	// Update is called once per frame
@@ -55,17 +63,34 @@ public class GameController : MonoBehaviour
 		return new Feature("Systems")
 			.Add(new InputFeature(contexts))
 			.Add(new MovementFeature(contexts))
+			.Add(new LevelFeature(contexts))
 			.Add(new GameEventSystems(contexts));
 	}
 
-	private static Systems createDebugSystems(Contexts contexts)
+	private static Systems createOnGUIDebugSystems(Contexts contexts)
 	{
-		return new Feature("Debug Systems")
+		return new Feature("OnGUI Systems")
 			.Add(new OnGUIDebugFeature(contexts));
+	}
+
+	private static Systems createOnDrawGizmosDebugSystems(Contexts contexts)
+	{
+		return new Feature("Gizmos Systems")
+			.Add(new OnDrawGizmosDebugFeature(contexts));
 	}
 
 	private void OnGUI()
 	{
-		m_DebugSystems.Update();
+		m_OnGUIDebugSystems.Update();
+	}
+
+	private void OnDrawGizmos()
+	{
+		if (!Application.isPlaying)
+		{
+			return;
+		}
+
+		m_OnDrawGizmosDebugSystems.Update();
 	}
 }

@@ -133,6 +133,30 @@
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Movement\DecayMovementInputActionSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Config\IGameConfig.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\ConfigComponentsLookup.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\ConfigEntity.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\Components\ConfigEntity_CopyTo.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\ConfigAttribute.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\ConfigContext.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprintBehaviour.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\CreateEntityFromConfigBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\ConfigMatcher.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprint.cs" />
+    <Compile Include="Assets\Sources\Components\Config\IMatchConfig.cs" />
+    <Compile Include="Assets\Scripts\GameFlow\ScriptableGameConfig.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\Components\ConfigMatchConfigComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\Components\ConfigGameConfigComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\Features\ConfigCleanupFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Components\GameConfigComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Components\MatchConfigComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\Systems\ConfigCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\ConstructLevelSystem.cs" />
+    <Compile Include="Assets\Sources\Features\LevelFeature.cs" />
+    <Compile Include="Assets\Sources\Features\OnDrawGizmosDebugFeature.cs" />
+    <Compile Include="Assets\Sources\Systems\Debug\OnDrawGizmosTileSystem.cs" />
+    <Compile Include="Assets\Scripts\Util\GameConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

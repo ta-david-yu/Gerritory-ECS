@@ -10,7 +10,7 @@
 
 using JCMG.EntitasRedux;
 
-public partial class GameEntity
+public partial class ConfigEntity
 {
 	/// <summary>
 	/// Copies <paramref name="component"/> to this entity as a new component instance.
@@ -18,49 +18,13 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is MovementInputActionComponent MovementInputAction)
+		if (component is MatchConfigComponent MatchConfig)
 		{
-			CopyMovementInputActionTo(MovementInputAction);
+			CopyMatchConfigTo(MatchConfig);
 		}
-		else if (component is MoveOnTileComponent MoveOnTile)
+		else if (component is GameConfigComponent GameConfig)
 		{
-			CopyMoveOnTileTo(MoveOnTile);
-		}
-		else if (component is TilePositionComponent TilePosition)
-		{
-			CopyTilePositionTo(TilePosition);
-		}
-		else if (component is OnTileElementComponent OnTileElement)
-		{
-			CopyOnTileElementTo(OnTileElement);
-		}
-		else if (component is DebugMessageComponent DebugMessage)
-		{
-			CopyDebugMessageTo(DebugMessage);
-		}
-		else if (component is MoveOnTileCompleteComponent MoveOnTileComplete)
-		{
-			CopyMoveOnTileCompleteTo(MoveOnTileComplete);
-		}
-		else if (component is LevelComponent Level)
-		{
-			CopyLevelTo(Level);
-		}
-		else if (component is PlayerComponent Player)
-		{
-			CopyPlayerTo(Player);
-		}
-		else if (component is MoveOnTileAddedListenerComponent MoveOnTileAddedListener)
-		{
-			CopyMoveOnTileAddedListenerTo(MoveOnTileAddedListener);
-		}
-		else if (component is OnTileElementAddedListenerComponent OnTileElementAddedListener)
-		{
-			CopyOnTileElementAddedListenerTo(OnTileElementAddedListener);
-		}
-		else if (component is MoveOnTileCompleteAddedListenerComponent MoveOnTileCompleteAddedListener)
-		{
-			CopyMoveOnTileCompleteAddedListenerTo(MoveOnTileCompleteAddedListener);
+			CopyGameConfigTo(GameConfig);
 		}
 		#endif
 	}
@@ -68,9 +32,9 @@ public partial class GameEntity
 	/// <summary>
 	/// Copies all components on this entity to <paramref name="copyToEntity"/>.
 	/// </summary>
-	public void CopyTo(GameEntity copyToEntity)
+	public void CopyTo(ConfigEntity copyToEntity)
 	{
-		for (var i = 0; i < GameComponentsLookup.TotalComponents; ++i)
+		for (var i = 0; i < ConfigComponentsLookup.TotalComponents; ++i)
 		{
 			if (HasComponent(i))
 			{
@@ -79,7 +43,7 @@ public partial class GameEntity
 					throw new EntityAlreadyHasComponentException(
 						i,
 						"Cannot copy component '" +
-						GameComponentsLookup.ComponentNames[i] +
+						ConfigComponentsLookup.ComponentNames[i] +
 						"' to " +
 						this +
 						"!",
@@ -97,9 +61,9 @@ public partial class GameEntity
 	/// is true any of the components that <paramref name="copyToEntity"/> has that this entity has will be replaced,
 	/// otherwise they will be skipped.
 	/// </summary>
-	public void CopyTo(GameEntity copyToEntity, bool replaceExisting)
+	public void CopyTo(ConfigEntity copyToEntity, bool replaceExisting)
 	{
-		for (var i = 0; i < GameComponentsLookup.TotalComponents; ++i)
+		for (var i = 0; i < ConfigComponentsLookup.TotalComponents; ++i)
 		{
 			if (!HasComponent(i))
 			{
@@ -115,18 +79,18 @@ public partial class GameEntity
 	}
 
 	/// <summary>
-	/// Copies components on this entity at <paramref name="indices"/> in the <see cref="GameComponentsLookup"/> to
+	/// Copies components on this entity at <paramref name="indices"/> in the <see cref="ConfigComponentsLookup"/> to
 	/// <paramref name="copyToEntity"/>. If <paramref name="replaceExisting"/> is true any of the components that
 	/// <paramref name="copyToEntity"/> has that this entity has will be replaced, otherwise they will be skipped.
 	/// </summary>
-	public void CopyTo(GameEntity copyToEntity, bool replaceExisting, params int[] indices)
+	public void CopyTo(ConfigEntity copyToEntity, bool replaceExisting, params int[] indices)
 	{
 		for (var i = 0; i < indices.Length; ++i)
 		{
 			var index = indices[i];
 
 			// Validate that the index is within range of the component lookup
-			if (index < 0 && index >= GameComponentsLookup.TotalComponents)
+			if (index < 0 && index >= ConfigComponentsLookup.TotalComponents)
 			{
 				const string OUT_OF_RANGE_WARNING =
 					"Component Index [{0}] is out of range for [{1}].";
@@ -134,7 +98,7 @@ public partial class GameEntity
 				const string HINT = "Please ensure any CopyTo indices are valid.";
 
 				throw new IndexOutOfLookupRangeException(
-					string.Format(OUT_OF_RANGE_WARNING, index, nameof(GameComponentsLookup)),
+					string.Format(OUT_OF_RANGE_WARNING, index, nameof(ConfigComponentsLookup)),
 					HINT);
 			}
 

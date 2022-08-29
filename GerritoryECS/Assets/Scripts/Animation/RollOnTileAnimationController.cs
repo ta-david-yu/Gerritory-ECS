@@ -11,8 +11,6 @@ public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileAddedList
 	[SerializeField]
 	private Transform m_TransformToMove;
 
-	const float k_TileWorldPositionOffset = 1;
-
 	private float m_PreviousProgress = 0;
 
 	public void HandleOnEntityCreated(IEntity entity)
@@ -35,15 +33,15 @@ public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileAddedList
 		}
 
 		// Set initial view transform position
-		m_TransformToMove.localPosition = getWorldPositionFromTilePosition(gameEntity.OnTileElement.Position) + Vector3.up * k_TileWorldPositionOffset * 0.5f;
+		m_TransformToMove.localPosition = GameConstants.TilePositionToWorldPosition(gameEntity.OnTileElement.Position) + Vector3.up * GameConstants.TileOffset * 0.5f;
 	}
 
 	public void OnMoveOnTileAdded(GameEntity entity, float progress, Vector2Int fromPosition, Vector2Int toPosition)
 	{
-		Vector3 fromWorldPosition = getWorldPositionFromTilePosition(fromPosition);
-		Vector3 toWorldPosition = getWorldPositionFromTilePosition(toPosition);
+		Vector3 fromWorldPosition = GameConstants.TilePositionToWorldPosition(fromPosition);
+		Vector3 toWorldPosition = GameConstants.TilePositionToWorldPosition(toPosition);
 		Vector3 moveDirection = (toWorldPosition - fromWorldPosition).normalized;
-		Vector3 rollingPivot = fromWorldPosition + k_TileWorldPositionOffset * moveDirection * 0.5f;
+		Vector3 rollingPivot = fromWorldPosition + GameConstants.TileOffset * moveDirection * 0.5f;
 		Vector3 rollingAxis = Vector3.Cross(-moveDirection, Vector3.up);
 
 		float progressDiff = progress - m_PreviousProgress;
@@ -55,10 +53,10 @@ public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileAddedList
 
 	public void OnMoveOnTileCompleteAdded(GameEntity gameEntity, Vector2Int fromPosition, Vector2Int toPosition)
 	{
-		Vector3 fromWorldPosition = getWorldPositionFromTilePosition(fromPosition);
-		Vector3 toWorldPosition = getWorldPositionFromTilePosition(toPosition);
+		Vector3 fromWorldPosition = GameConstants.TilePositionToWorldPosition(fromPosition);
+		Vector3 toWorldPosition = GameConstants.TilePositionToWorldPosition(toPosition);
 		Vector3 moveDirection = (toWorldPosition - fromWorldPosition).normalized;
-		Vector3 rollingPivot = fromWorldPosition + k_TileWorldPositionOffset * moveDirection * 0.5f;
+		Vector3 rollingPivot = fromWorldPosition + GameConstants.TileOffset * moveDirection * 0.5f;
 		Vector3 rollingAxis = Vector3.Cross(-moveDirection, Vector3.up);
 
 		float adjustStep = (1.0f - m_PreviousProgress);
@@ -66,10 +64,5 @@ public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileAddedList
 		m_TransformToMove.RotateAround(rollingPivot, rollingAxis, adjustAngle);
 
 		m_PreviousProgress = 0.0f;
-	}
-
-	private Vector3 getWorldPositionFromTilePosition(Vector2Int tilePosition)
-	{
-		return new Vector3(tilePosition.x, 0, tilePosition.y) * k_TileWorldPositionOffset;
 	}
 }

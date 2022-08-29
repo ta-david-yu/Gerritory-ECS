@@ -38,8 +38,26 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 			Vector2Int fromPosition = entity.OnTileElement.Position;
 			Vector2Int toPosition = fromPosition + offset;
 
+			Vector2Int levelSize = m_GameContext.Level.LevelSize;
+			if (toPosition.x < 0 || toPosition.x >= levelSize.x || toPosition.y < 0 || toPosition.y >= levelSize.y)
+			{
+				// The give position is out of bounds of the level size, cannot move here.
+				continue;
+			}
+
+			HashSet<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTileElement(toPosition);
+			// TODO: Use occupy layers to check whether this tile can be moved to
+			// i.e. Ghost layer, Player layer, Obstacle layer
+			// For now all OnTileElements are exclusive to each other :D
+			if (onTileEntities.Count > 0)
+			{
+				// The spot of the layer has already been occupied, cannot move here.
+				continue;
+			}
+
+
 			// TODO: validate whether next tile position can be moved to.
-			// Occupied? Empty?
+			// Occupied? Empty? Other stuff ofc...
 			bool isValidMove = true;
 			if (!isValidMove)
 			{
