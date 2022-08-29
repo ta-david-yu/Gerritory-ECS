@@ -16,7 +16,7 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 	private readonly InputContext m_InputContext;
 	private readonly IGroup<InputEntity> m_UserInputGroup;
 	private List<InputManager> m_PlayerInputManagers;
-	private const float k_DecayTime = 0.1f;
+	private const float k_DecayTime = 0.05f;
 
 	public EmitUserInputSystem(Contexts contexts)
 	{

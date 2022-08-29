@@ -29,18 +29,6 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 		{
 			if (entity.HasMoveOnTile || entity.HasMoveOnTileComplete)
 			{
-				float decayTimer = entity.MovementInputAction.DecayTimer;
-				decayTimer -= Time.fixedDeltaTime;
-				if (decayTimer <= 0)
-				{
-					// If the input action has decayed, remove it!
-					entity.RemoveMovementInputAction();
-				}
-				else
-				{
-					entity.ReplaceMovementInputAction(entity.MovementInputAction.Type, decayTimer);
-				}
-
 				// The entity is already moving / ending its previous move. Ignore the input action.
 				continue;
 			}
@@ -55,18 +43,6 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 			bool isValidMove = true;
 			if (!isValidMove)
 			{
-				float decayTimer = entity.MovementInputAction.DecayTimer;
-				decayTimer -= Time.fixedDeltaTime;
-				if (decayTimer <= 0)
-				{
-					// If the input action has decayed, remove it!
-					entity.RemoveMovementInputAction();
-				}
-				else
-				{
-					entity.ReplaceMovementInputAction(entity.MovementInputAction.Type, decayTimer);
-				}
-
 				continue;
 			}
 

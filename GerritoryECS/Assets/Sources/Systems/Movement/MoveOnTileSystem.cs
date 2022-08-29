@@ -9,7 +9,7 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem, ICleanupSystem
 	private readonly IGroup<GameEntity> m_MoveOnTileCompleteGroup;
 
 	// Placeholder value, to be replaced
-	const float k_MoveDuration = 0.5f;
+	const float k_MoveDuration = 0.2f;
 
 	public MoveOnTileSystem(Contexts contexts)
 	{
