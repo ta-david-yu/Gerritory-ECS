@@ -7,7 +7,7 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public interface IMoveOnTileCompleteAddedListener
+public interface IMoveOnTileEndAddedListener
 {
-	void OnMoveOnTileCompleteAdded(GameEntity entity, UnityEngine.Vector2Int fromPosition, UnityEngine.Vector2Int toPosition);
+	void OnMoveOnTileEndAdded(GameEntity entity, UnityEngine.Vector2Int fromPosition, UnityEngine.Vector2Int toPosition);
 }

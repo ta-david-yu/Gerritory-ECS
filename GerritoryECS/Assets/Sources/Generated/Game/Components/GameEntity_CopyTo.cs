@@ -18,7 +18,11 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is MovementInputActionComponent MovementInputAction)
+		if (component is ReservedTileForPlayerComponent ReservedTileForPlayer)
+		{
+			CopyReservedTileForPlayerTo(ReservedTileForPlayer);
+		}
+		else if (component is MovementInputActionComponent MovementInputAction)
 		{
 			CopyMovementInputActionTo(MovementInputAction);
 		}
@@ -38,13 +42,17 @@ public partial class GameEntity
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
-		else if (component is MoveOnTileCompleteComponent MoveOnTileComplete)
+		else if (component is MoveOnTileEndComponent MoveOnTileEnd)
 		{
-			CopyMoveOnTileCompleteTo(MoveOnTileComplete);
+			CopyMoveOnTileEndTo(MoveOnTileEnd);
 		}
 		else if (component is LevelComponent Level)
 		{
 			CopyLevelTo(Level);
+		}
+		else if (component is MoveOnTileBeginComponent MoveOnTileBegin)
+		{
+			CopyMoveOnTileBeginTo(MoveOnTileBegin);
 		}
 		else if (component is PlayerComponent Player)
 		{
@@ -58,9 +66,13 @@ public partial class GameEntity
 		{
 			CopyOnTileElementAddedListenerTo(OnTileElementAddedListener);
 		}
-		else if (component is MoveOnTileCompleteAddedListenerComponent MoveOnTileCompleteAddedListener)
+		else if (component is MoveOnTileEndAddedListenerComponent MoveOnTileEndAddedListener)
 		{
-			CopyMoveOnTileCompleteAddedListenerTo(MoveOnTileCompleteAddedListener);
+			CopyMoveOnTileEndAddedListenerTo(MoveOnTileEndAddedListener);
+		}
+		else if (component is MoveOnTileBeginAddedListenerComponent MoveOnTileBeginAddedListener)
+		{
+			CopyMoveOnTileBeginAddedListenerTo(MoveOnTileBeginAddedListener);
 		}
 		#endif
 	}

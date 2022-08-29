@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 [JCMG.EntitasRedux.DontGenerate(false)]
-public sealed class MoveOnTileCompleteAddedListenerComponent : JCMG.EntitasRedux.IComponent
+public sealed class MoveOnTileEndAddedListenerComponent : JCMG.EntitasRedux.IComponent
 {
-	public System.Collections.Generic.List<IMoveOnTileCompleteAddedListener> value;
+	public System.Collections.Generic.List<IMoveOnTileEndAddedListener> value;
 }

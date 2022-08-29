@@ -5,8 +5,11 @@ using JCMG.EntitasRedux;
 
 public sealed class MoveOnTileSystem : IFixedUpdateSystem, ICleanupSystem
 {
+	private readonly GameContext m_GameContext;
+
 	private readonly IGroup<GameEntity> m_MoveOnTileGroup;
-	private readonly IGroup<GameEntity> m_MoveOnTileCompleteGroup;
+	private readonly IGroup<GameEntity> m_MoveOnTileBeginGroup;
+	private readonly IGroup<GameEntity> m_MoveOnTileEndGroup;
 
 	// Placeholder value, to be replaced
 	const float k_MoveDuration = 0.2f;
@@ -14,11 +17,13 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem, ICleanupSystem
 	public MoveOnTileSystem(Contexts contexts)
 	{
 		m_MoveOnTileGroup = contexts.Game.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.MoveOnTile));
-		m_MoveOnTileCompleteGroup = contexts.Game.GetGroup(GameMatcher.MoveOnTileComplete);
+		m_MoveOnTileBeginGroup = contexts.Game.GetGroup(GameMatcher.MoveOnTileBegin);
+		m_MoveOnTileEndGroup = contexts.Game.GetGroup(GameMatcher.MoveOnTileEnd);
 	}
 
 	public void FixedUpdate()
 	{
+		// Move OnTileElements with MoveOnTile component
 		foreach (var entity in m_MoveOnTileGroup.GetEntities())
 		{
 			float progress = entity.MoveOnTile.Progress;
@@ -35,21 +40,29 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem, ICleanupSystem
 
 				// TODO: progress overflow movement
 				// Sometimes the progress value might go over 1.0, when that happens we want to move the entity based on buffered movement input
+				
 				entity.RemoveMoveOnTile();
+				
 
 				// Set the position to the target move position and set IsComplete flag to true
 				entity.ReplaceOnTileElement(to);
-				entity.AddMoveOnTileComplete(from, to);
+				entity.AddMoveOnTileEnd(from, to);
 			}
 		}
 	}
 
 	public void Cleanup()
 	{
-		foreach (var entity in m_MoveOnTileCompleteGroup.GetEntities())
+		foreach (var entity in m_MoveOnTileBeginGroup.GetEntities())
 		{
-			// Clean up the IsComplete flag in Cleanup phase in case other system needs the information
-			entity.RemoveMoveOnTileComplete();
+			// Clean up MoveOnTileBegin flag in Cleanup() in case other system needs the information
+			entity.RemoveMoveOnTileBegin();
+		}
+
+		foreach (var entity in m_MoveOnTileEndGroup.GetEntities())
+		{
+			// Clean up MoveOnTileEnd flag in Cleanup() in case other system needs the information
+			entity.RemoveMoveOnTileEnd();
 		}
 	}
 }

@@ -101,6 +101,7 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 //------------------------------------------------------------------------------
 public partial class Contexts
 {
+	public const string MoveOnTile = "MoveOnTile";
 	public const string OnTileElement = "OnTileElement";
 	public const string Player = "Player";
 	public const string TilePosition = "TilePosition";
@@ -109,6 +110,11 @@ public partial class Contexts
 	[JCMG.EntitasRedux.PostConstructor]
 	public void InitializeEntityIndices()
 	{
+		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>(
+			MoveOnTile,
+			Game.GetGroup(GameMatcher.MoveOnTile),
+			(e, c) => ((MoveOnTileComponent)c).ToPosition));
+
 		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>(
 			OnTileElement,
 			Game.GetGroup(GameMatcher.OnTileElement),
@@ -133,6 +139,11 @@ public partial class Contexts
 
 public static class ContextsExtensions
 {
+	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithMoveOnTile(this GameContext context, UnityEngine.Vector2Int ToPosition)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.MoveOnTile)).GetEntities(ToPosition);
+	}
+
 	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithOnTileElement(this GameContext context, UnityEngine.Vector2Int Position)
 	{
 		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTileElement)).GetEntities(Position);

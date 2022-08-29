@@ -18,13 +18,13 @@ public partial class ConfigEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is MatchConfigComponent MatchConfig)
-		{
-			CopyMatchConfigTo(MatchConfig);
-		}
-		else if (component is GameConfigComponent GameConfig)
+		if (component is GameConfigComponent GameConfig)
 		{
 			CopyGameConfigTo(GameConfig);
+		}
+		else if (component is MatchConfigComponent MatchConfig)
+		{
+			CopyMatchConfigTo(MatchConfig);
 		}
 		#endif
 	}

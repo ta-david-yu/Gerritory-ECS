@@ -17,15 +17,18 @@ public static class GameComponentsLookup
 	public const int Level = 1;
 	public const int MovementInputAction = 2;
 	public const int MoveOnTileAddedListener = 3;
-	public const int MoveOnTileCompleteAddedListener = 4;
-	public const int MoveOnTileComplete = 5;
+	public const int MoveOnTileBeginAddedListener = 4;
+	public const int MoveOnTileBegin = 5;
 	public const int MoveOnTile = 6;
-	public const int OnTileElementAddedListener = 7;
-	public const int OnTileElement = 8;
-	public const int Player = 9;
-	public const int TilePosition = 10;
+	public const int MoveOnTileEndAddedListener = 7;
+	public const int MoveOnTileEnd = 8;
+	public const int OnTileElementAddedListener = 9;
+	public const int OnTileElement = 10;
+	public const int Player = 11;
+	public const int ReservedTileForPlayer = 12;
+	public const int TilePosition = 13;
 
-	public const int TotalComponents = 11;
+	public const int TotalComponents = 14;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -33,12 +36,15 @@ public static class GameComponentsLookup
 		"Level",
 		"MovementInputAction",
 		"MoveOnTileAddedListener",
-		"MoveOnTileCompleteAddedListener",
-		"MoveOnTileComplete",
+		"MoveOnTileBeginAddedListener",
+		"MoveOnTileBegin",
 		"MoveOnTile",
+		"MoveOnTileEndAddedListener",
+		"MoveOnTileEnd",
 		"OnTileElementAddedListener",
 		"OnTileElement",
 		"Player",
+		"ReservedTileForPlayer",
 		"TilePosition"
 	};
 
@@ -48,12 +54,15 @@ public static class GameComponentsLookup
 		typeof(LevelComponent),
 		typeof(MovementInputActionComponent),
 		typeof(MoveOnTileAddedListenerComponent),
-		typeof(MoveOnTileCompleteAddedListenerComponent),
-		typeof(MoveOnTileCompleteComponent),
+		typeof(MoveOnTileBeginAddedListenerComponent),
+		typeof(MoveOnTileBeginComponent),
 		typeof(MoveOnTileComponent),
+		typeof(MoveOnTileEndAddedListenerComponent),
+		typeof(MoveOnTileEndComponent),
 		typeof(OnTileElementAddedListenerComponent),
 		typeof(OnTileElementComponent),
 		typeof(PlayerComponent),
+		typeof(ReservedTileForPlayerComponent),
 		typeof(TilePositionComponent)
 	};
 
@@ -63,13 +72,16 @@ public static class GameComponentsLookup
 		{ typeof(LevelComponent), 1 },
 		{ typeof(MovementInputActionComponent), 2 },
 		{ typeof(MoveOnTileAddedListenerComponent), 3 },
-		{ typeof(MoveOnTileCompleteAddedListenerComponent), 4 },
-		{ typeof(MoveOnTileCompleteComponent), 5 },
+		{ typeof(MoveOnTileBeginAddedListenerComponent), 4 },
+		{ typeof(MoveOnTileBeginComponent), 5 },
 		{ typeof(MoveOnTileComponent), 6 },
-		{ typeof(OnTileElementAddedListenerComponent), 7 },
-		{ typeof(OnTileElementComponent), 8 },
-		{ typeof(PlayerComponent), 9 },
-		{ typeof(TilePositionComponent), 10 }
+		{ typeof(MoveOnTileEndAddedListenerComponent), 7 },
+		{ typeof(MoveOnTileEndComponent), 8 },
+		{ typeof(OnTileElementAddedListenerComponent), 9 },
+		{ typeof(OnTileElementComponent), 10 },
+		{ typeof(PlayerComponent), 11 },
+		{ typeof(ReservedTileForPlayerComponent), 12 },
+		{ typeof(TilePositionComponent), 13 }
 	};
 
 	/// <summary>

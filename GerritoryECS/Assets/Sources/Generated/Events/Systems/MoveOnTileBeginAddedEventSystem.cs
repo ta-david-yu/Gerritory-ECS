@@ -7,38 +7,38 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class MoveOnTileCompleteAddedEventSystem : JCMG.EntitasRedux.ReactiveSystem<GameEntity>
+public sealed class MoveOnTileBeginAddedEventSystem : JCMG.EntitasRedux.ReactiveSystem<GameEntity>
 {
-	readonly System.Collections.Generic.List<IMoveOnTileCompleteAddedListener> _listenerBuffer;
+	readonly System.Collections.Generic.List<IMoveOnTileBeginAddedListener> _listenerBuffer;
 
-	public MoveOnTileCompleteAddedEventSystem(Contexts contexts) : base(contexts.Game)
+	public MoveOnTileBeginAddedEventSystem(Contexts contexts) : base(contexts.Game)
 	{
-		_listenerBuffer = new System.Collections.Generic.List<IMoveOnTileCompleteAddedListener>();
+		_listenerBuffer = new System.Collections.Generic.List<IMoveOnTileBeginAddedListener>();
 	}
 
 	protected override JCMG.EntitasRedux.ICollector<GameEntity> GetTrigger(JCMG.EntitasRedux.IContext<GameEntity> context)
 	{
 		return JCMG.EntitasRedux.CollectorContextExtension.CreateCollector(
 			context,
-			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Added(GameMatcher.MoveOnTileComplete)
+			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Added(GameMatcher.MoveOnTileBegin)
 		);
 	}
 
 	protected override bool Filter(GameEntity entity)
 	{
-		return entity.HasMoveOnTileComplete && entity.HasMoveOnTileCompleteAddedListener;
+		return entity.HasMoveOnTileBegin && entity.HasMoveOnTileBeginAddedListener;
 	}
 
 	protected override void Execute(System.Collections.Generic.List<GameEntity> entities)
 	{
 		foreach (var e in entities)
 		{
-			var component = e.MoveOnTileComplete;
+			var component = e.MoveOnTileBegin;
 			_listenerBuffer.Clear();
-			_listenerBuffer.AddRange(e.MoveOnTileCompleteAddedListener.value);
+			_listenerBuffer.AddRange(e.MoveOnTileBeginAddedListener.value);
 			foreach (var listener in _listenerBuffer)
 			{
-				listener.OnMoveOnTileCompleteAdded(e, component.FromPosition, component.ToPosition);
+				listener.OnMoveOnTileBeginAdded(e, component.FromPosition, component.ToPosition);
 			}
 		}
 	}
