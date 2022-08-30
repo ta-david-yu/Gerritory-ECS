@@ -25,10 +25,9 @@ public static class GameComponentsLookup
 	public const int OnTileElementAddedListener = 9;
 	public const int OnTileElement = 10;
 	public const int Player = 11;
-	public const int ReservedTileForPlayer = 12;
-	public const int TilePosition = 13;
+	public const int TilePosition = 12;
 
-	public const int TotalComponents = 14;
+	public const int TotalComponents = 13;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -44,7 +43,6 @@ public static class GameComponentsLookup
 		"OnTileElementAddedListener",
 		"OnTileElement",
 		"Player",
-		"ReservedTileForPlayer",
 		"TilePosition"
 	};
 
@@ -62,7 +60,6 @@ public static class GameComponentsLookup
 		typeof(OnTileElementAddedListenerComponent),
 		typeof(OnTileElementComponent),
 		typeof(PlayerComponent),
-		typeof(ReservedTileForPlayerComponent),
 		typeof(TilePositionComponent)
 	};
 
@@ -80,8 +77,7 @@ public static class GameComponentsLookup
 		{ typeof(OnTileElementAddedListenerComponent), 9 },
 		{ typeof(OnTileElementComponent), 10 },
 		{ typeof(PlayerComponent), 11 },
-		{ typeof(ReservedTileForPlayerComponent), 12 },
-		{ typeof(TilePositionComponent), 13 }
+		{ typeof(TilePositionComponent), 12 }
 	};
 
 	/// <summary>

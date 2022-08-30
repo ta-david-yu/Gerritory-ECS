@@ -61,7 +61,6 @@
     <Compile Include="Assets\Sources\Generated\Input\Components\InputEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameReservedTileForPlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameLevelComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileEndAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\OnTileElementAddedEventSystem.cs" />
@@ -121,14 +120,14 @@
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Input\CreateEntityFromInputBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileEndAddedEventSystem.cs" />
-    <Compile Include="Assets\Scripts\Util\GameConstants.cs" />
+    <Compile Include="Assets\Scripts\GameFlow\GameConstants.cs" />
     <Compile Include="Assets\Sources\Components\Input\AIInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\_Sandbox\DebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Components\Level\OnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameContext.cs" />
     <Compile Include="Assets\Sources\Components\Level\TilePositionComponent.cs" />
-    <Compile Include="Assets\Settings\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Sources\Features\OnDrawGizmosDebugFeature.cs" />
     <Compile Include="Assets\Sources\Features\MovementFeature.cs" />
     <Compile Include="Assets\Sources\Systems\Input\EmitAIInputSystem.cs" />
@@ -161,7 +160,6 @@
     <Compile Include="Assets\Sources\Generated\Config\ConfigContext.cs" />
     <Compile Include="Assets\Sources\Systems\Debug\OnDrawGizmosTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigEntity_CopyTo.cs" />
-    <Compile Include="Assets\Sources\Components\Level\ReservedTileForPlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Features\ConfigCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />

@@ -18,11 +18,7 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is ReservedTileForPlayerComponent ReservedTileForPlayer)
-		{
-			CopyReservedTileForPlayerTo(ReservedTileForPlayer);
-		}
-		else if (component is MovementInputActionComponent MovementInputAction)
+		if (component is MovementInputActionComponent MovementInputAction)
 		{
 			CopyMovementInputActionTo(MovementInputAction);
 		}
