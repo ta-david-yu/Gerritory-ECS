@@ -26,8 +26,17 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 		{
 			for (int y = 0; y < levelSize.y; y++)
 			{
+				if (Random.Range(0.0f, 1.0f) < 0.2f)
+				{
+					// TODO: Removed this testing enterable line
+					continue;
+				}
+
 				var tileEntity = m_GameContext.CreateEntity();
 				tileEntity.AddTilePosition(new Vector2Int(x, y));
+
+				// TODO: Removed this testing enterable line
+				tileEntity.IsEnterable = Random.Range(0.0f, 1.0f) > 0.2f;
 			}
 		}
 	}

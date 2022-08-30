@@ -18,7 +18,15 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is MovementInputActionComponent MovementInputAction)
+		if (component is EnterableComponent Enterable)
+		{
+			IsEnterable = true;
+		}
+		else if (component is OwnableComponent Ownable)
+		{
+			CopyOwnableTo(Ownable);
+		}
+		else if (component is MovementInputActionComponent MovementInputAction)
 		{
 			CopyMovementInputActionTo(MovementInputAction);
 		}

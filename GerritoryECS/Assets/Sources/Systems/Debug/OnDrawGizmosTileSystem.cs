@@ -19,6 +19,15 @@ public class OnDrawGizmosTileSystem : IUpdateSystem
 	{
 		foreach (var tileEntity in m_TileGroup.GetEntities())
 		{
+			if (tileEntity.IsEnterable)
+			{
+				Gizmos.color = Color.blue;
+			}
+			else
+			{
+				Gizmos.color = Color.red;
+			}
+
 			Vector3 worldPos = GameConstants.TilePositionToWorldPosition(tileEntity.TilePosition.Value);
 			Gizmos.DrawCube(worldPos, Vector3.one * 0.2f);
 		}

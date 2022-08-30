@@ -47,6 +47,19 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 				continue;
 			}
 
+			GameEntity tileEntity = m_GameContext.GetEntityWithTilePosition(toPosition);
+			if (tileEntity == null)
+			{
+				// There is no tile here, cannot move here.
+				continue;
+			}
+
+			if (!tileEntity.IsEnterable)
+			{
+				// The tile is not enterable, cannot move here.
+				continue;
+			}
+
 			HashSet<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTileElement(toPosition);
 			if (onTileEntities.Any(entity => !entity.HasMoveOnTile))
 			{

@@ -164,6 +164,10 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Features\ConfigCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
+    <Compile Include="Assets\Sources\Components\Level\OwnableComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\EnterableComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameEnterableComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameOwnableComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
