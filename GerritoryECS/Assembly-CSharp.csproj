@@ -67,6 +67,7 @@
     <Compile Include="Assets\Sources\Systems\Input\EmitUserInputSystem.cs" />
     <Compile Include="Assets\Sources\Components\Player\PlayerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\HelloWorldSystem.cs" />
+    <Compile Include="Assets\Scripts\Input\InputActionManager.cs" />
     <Compile Include="Assets\Sources\Generated\Input\IInputBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameAttribute.cs" />
     <Compile Include="Assets\Sources\Systems\Movement\DecayMovementInputActionSystem.cs" />
@@ -163,7 +164,6 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Features\ConfigCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
-    <Compile Include="Assets\Scripts\Input\InputActionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

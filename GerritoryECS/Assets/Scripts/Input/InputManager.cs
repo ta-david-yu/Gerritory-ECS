@@ -68,6 +68,12 @@ public sealed class InputManager
 
 	public void PairDeviceToUser(InputDevice device, int userIndex)
 	{
+		if (device == null)
+		{
+			Debug.LogError("The given device is null.");
+			return;
+		}
+
 		InputUser user = getOrCreateUserInputSettings(userIndex).User;
 		InputUser.PerformPairingWithDevice(device, user: user);
 	}
