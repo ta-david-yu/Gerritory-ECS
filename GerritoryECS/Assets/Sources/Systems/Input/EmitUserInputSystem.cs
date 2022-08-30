@@ -34,7 +34,7 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 			var inputManager = new InputManager();
 			var userInput = InputUser.PerformPairingWithDevice(UnityEngine.InputSystem.InputSystem.GetDevice<Keyboard>());
 			userInput.AssociateActionsWithUser(inputManager);
-			userInput.ActivateControlScheme("Normal");
+			userInput.ActivateControlScheme($"Player{inputEntity.UserInput.UserIndex}");
 			inputManager.Enable();
 
 			m_PlayerInputManagers.Add(inputManager);
