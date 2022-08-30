@@ -163,6 +163,7 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Features\ConfigCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
+    <Compile Include="Assets\Scripts\Input\InputActionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -15,7 +15,6 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 	private readonly GameContext m_GameContext;
 	private readonly InputContext m_InputContext;
 	private readonly IGroup<InputEntity> m_UserInputGroup;
-	private List<InputManager> m_PlayerInputManagers;
 	private const float k_DecayTime = 0.15f;
 
 	public EmitUserInputSystem(Contexts contexts)
@@ -28,17 +27,6 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 
 	public void Initialize()
 	{
-		m_PlayerInputManagers = new List<InputManager>();
-		foreach (var inputEntity in m_UserInputGroup)
-		{
-			var inputManager = new InputManager();
-			var userInput = InputUser.PerformPairingWithDevice(UnityEngine.InputSystem.InputSystem.GetDevice<Keyboard>());
-			userInput.AssociateActionsWithUser(inputManager);
-			userInput.ActivateControlScheme($"Player{inputEntity.UserInput.UserIndex}");
-			inputManager.Enable();
-
-			m_PlayerInputManagers.Add(inputManager);
-		}
 	}
 
 	public void Update()
@@ -46,10 +34,12 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 		// TODO: loop through all user input, then apply input aciton to the target player entity
 		foreach (var entity in m_UserInputGroup)
 		{
+			int userIndex = entity.UserInput.UserIndex;
 			int targetPlayerId = entity.UserInput.TargetPlayerId;
 			GameEntity playerEntity = m_GameContext.GetEntityWithPlayer(targetPlayerId);
 
-			Vector2 axis = m_PlayerInputManagers[entity.UserInput.UserIndex].Player.Move.ReadValue<Vector2>();
+			InputActionManager userInputActions = InputManager.Instance.GetOrCreateUserInputWithIndex(userIndex);
+			Vector2 axis = userInputActions.Player.Move.ReadValue<Vector2>();
 
 			if (axis.x > 0.5f)
 			{
@@ -72,9 +62,5 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 
 	public void TearDown()
 	{
-		foreach (var inputManager in m_PlayerInputManagers)
-		{
-			inputManager.Disable();
-		}
 	}
 }

@@ -1,5 +1,5 @@
 {
-    "name": "InputManager",
+    "name": "InputActionManager",
     "maps": [
         {
             "name": "Player",
@@ -337,7 +337,18 @@
         {
             "name": "System",
             "bindingGroup": "System",
-            "devices": []
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
         },
         {
             "name": "Player0",
