@@ -29,8 +29,15 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 				var tileEntity = m_GameContext.CreateEntity();
 				tileEntity.AddTilePosition(new Vector2Int(x, y));
 				tileEntity.IsEnterable = true;
-				tileEntity.AddOwnable(false, -1);
-				tileEntity.AddCollapseOnStepped(1);
+
+				if (Random.Range(0.0f, 1.0f) > 0.8f)
+				{
+					tileEntity.AddCollapseOnStepped(1);
+				}
+				else
+				{
+					tileEntity.AddOwnable(false, -1);
+				}
 			}
 		}
 	}

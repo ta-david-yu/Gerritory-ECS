@@ -23,18 +23,25 @@ public class OnDrawGizmosTileSystem : IUpdateSystem
 		{
 			if (!tileEntity.IsEnterable)
 			{
-				Gizmos.color = Color.grey;
+				Gizmos.color = Color.black;
 			}
 			else
 			{
-				if (tileEntity.HasOwnable && tileEntity.Ownable.HasOwner)
+				if (tileEntity.HasOwnable)
 				{
-					int ownerId = tileEntity.Ownable.OwnerId;
-					Gizmos.color = m_TileOwnerColors[ownerId % m_TileOwnerColors.Length];
+					if (tileEntity.Ownable.HasOwner)
+					{
+						int ownerId = tileEntity.Ownable.OwnerId;
+						Gizmos.color = m_TileOwnerColors[ownerId % m_TileOwnerColors.Length];
+					}
+					else
+					{
+						Gizmos.color = Color.white;
+					}
 				}
 				else
 				{
-					Gizmos.color = Color.white;
+					Gizmos.color = Color.grey;
 				}
 			}
 
