@@ -12,22 +12,24 @@ public partial class GameEntity
 	public TileOwnerComponent TileOwner { get { return (TileOwnerComponent)GetComponent(GameComponentsLookup.TileOwner); } }
 	public bool HasTileOwner { get { return HasComponent(GameComponentsLookup.TileOwner); } }
 
-	public void AddTileOwner(int newId)
+	public void AddTileOwner(int newId, int newNumberOfOwnedTiles)
 	{
 		var index = GameComponentsLookup.TileOwner;
 		var component = (TileOwnerComponent)CreateComponent(index, typeof(TileOwnerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Id = newId;
+		component.NumberOfOwnedTiles = newNumberOfOwnedTiles;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceTileOwner(int newId)
+	public void ReplaceTileOwner(int newId, int newNumberOfOwnedTiles)
 	{
 		var index = GameComponentsLookup.TileOwner;
 		var component = (TileOwnerComponent)CreateComponent(index, typeof(TileOwnerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Id = newId;
+		component.NumberOfOwnedTiles = newNumberOfOwnedTiles;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -37,7 +39,8 @@ public partial class GameEntity
 		var index = GameComponentsLookup.TileOwner;
 		var component = (TileOwnerComponent)CreateComponent(index, typeof(TileOwnerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.Id = copyComponent.Id;
+		component.Id = copyComponent.Id;
+		component.NumberOfOwnedTiles = copyComponent.NumberOfOwnedTiles;
 		#endif
 		ReplaceComponent(index, component);
 	}

@@ -28,9 +28,9 @@ public sealed class TakeOverOwnableOnMoveEndSystem : ReactiveSystem<GameEntity>
 
 	protected override void Execute(List<GameEntity> entities)
 	{
-		foreach (var entity in entities)
+		foreach (var ownerEntity in entities)
 		{
-			Vector2Int tilePosition = entity.MoveOnTileEnd.ToPosition;
+			Vector2Int tilePosition = ownerEntity.MoveOnTileEnd.ToPosition;
 			GameEntity tileEntity = m_GameContext.GetEntityWithTilePosition(tilePosition);
 			
 			if (!tileEntity.HasOwnable)
@@ -39,14 +39,20 @@ public sealed class TakeOverOwnableOnMoveEndSystem : ReactiveSystem<GameEntity>
 				continue;
 			}
 
+
 			// TODO: take-overable check logic
 			// ...
 
-			// TODO: do take over points counting
-			// ...
+			if (tileEntity.Ownable.HasOwner)
+			{
+				// Decrement previous owner's number of owned tiles.
+				GameEntity previousOwnerEntity = m_GameContext.GetEntityWithTileOwner(tileEntity.Ownable.OwnerId);
+				previousOwnerEntity.ReplaceTileOwner(previousOwnerEntity.TileOwner.Id, previousOwnerEntity.TileOwner.NumberOfOwnedTiles - 1);
+			}
 
-			// Take over the tile
-			tileEntity.ReplaceOwnable(true, entity.TileOwner.Id);
+			// Take over the tile and increment owner's number of owned tiles.
+			tileEntity.ReplaceOwnable(true, ownerEntity.TileOwner.Id);
+			ownerEntity.ReplaceTileOwner(ownerEntity.TileOwner.Id, ownerEntity.TileOwner.NumberOfOwnedTiles + 1);
 		}
 	}
 }

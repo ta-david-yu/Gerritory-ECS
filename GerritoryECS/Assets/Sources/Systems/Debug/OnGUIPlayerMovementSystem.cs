@@ -22,6 +22,11 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 				GUILayout.Label($"Id: {entity.Player.Id}");
 				GUILayout.Label($"Position: {entity.OnTileElement.Position}");
 
+				if (entity.HasTileOwner)
+				{
+					GUILayout.Label($"Tiles: {entity.TileOwner.NumberOfOwnedTiles}");
+				}
+
 				if (entity.HasMoveOnTile)
 				{
 					GUILayout.Label($"ToPosition: {entity.MoveOnTile.ToPosition}, Progress: {entity.MoveOnTile.Progress}");

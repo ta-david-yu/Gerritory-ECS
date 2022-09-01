@@ -9,4 +9,6 @@ public sealed class TileOwnerComponent : IComponent
 {
 	[PrimaryEntityIndex]
 	public int Id;
+
+	public int NumberOfOwnedTiles;
 }
