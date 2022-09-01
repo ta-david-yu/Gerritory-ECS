@@ -18,7 +18,15 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is TileOwnerComponent TileOwner)
+		if (component is TileCollapserComponent TileCollapser)
+		{
+			IsTileCollapser = true;
+		}
+		else if (component is CollapseOnSteppedComponent CollapseOnStepped)
+		{
+			CopyCollapseOnSteppedTo(CollapseOnStepped);
+		}
+		else if (component is TileOwnerComponent TileOwner)
 		{
 			CopyTileOwnerTo(TileOwner);
 		}

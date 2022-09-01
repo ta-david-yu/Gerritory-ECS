@@ -4,7 +4,7 @@ using UnityEngine;
 using JCMG.EntitasRedux;
 
 /// <summary>
-/// Do take over logic if entities that end movement have TileOwner component.
+/// Do take over logic if entities that end a movement have <see cref="TileOwnerComponent"/> + the move-to tile is <see cref="OwnableComponent"/>
 /// </summary>
 public sealed class TakeOverOwnableOnMoveEndSystem : ReactiveSystem<GameEntity> 
 {
@@ -30,10 +30,10 @@ public sealed class TakeOverOwnableOnMoveEndSystem : ReactiveSystem<GameEntity>
 	{
 		foreach (var ownerEntity in entities)
 		{
-			Vector2Int tilePosition = ownerEntity.MoveOnTileEnd.ToPosition;
-			GameEntity tileEntity = m_GameContext.GetEntityWithTilePosition(tilePosition);
+			Vector2Int enterTilePosition = ownerEntity.MoveOnTileEnd.ToPosition;
+			GameEntity enterTileEntity = m_GameContext.GetEntityWithTilePosition(enterTilePosition);
 			
-			if (!tileEntity.HasOwnable)
+			if (!enterTileEntity.HasOwnable)
 			{
 				// The tile is not ownable, do nothing.
 				continue;
@@ -43,15 +43,15 @@ public sealed class TakeOverOwnableOnMoveEndSystem : ReactiveSystem<GameEntity>
 			// TODO: take-overable check logic
 			// ...
 
-			if (tileEntity.Ownable.HasOwner)
+			if (enterTileEntity.Ownable.HasOwner)
 			{
 				// Decrement previous owner's number of owned tiles.
-				GameEntity previousOwnerEntity = m_GameContext.GetEntityWithTileOwner(tileEntity.Ownable.OwnerId);
+				GameEntity previousOwnerEntity = m_GameContext.GetEntityWithTileOwner(enterTileEntity.Ownable.OwnerId);
 				previousOwnerEntity.ReplaceTileOwner(previousOwnerEntity.TileOwner.Id, previousOwnerEntity.TileOwner.NumberOfOwnedTiles - 1);
 			}
 
 			// Take over the tile and increment owner's number of owned tiles.
-			tileEntity.ReplaceOwnable(true, ownerEntity.TileOwner.Id);
+			enterTileEntity.ReplaceOwnable(true, ownerEntity.TileOwner.Id);
 			ownerEntity.ReplaceTileOwner(ownerEntity.TileOwner.Id, ownerEntity.TileOwner.NumberOfOwnedTiles + 1);
 		}
 	}

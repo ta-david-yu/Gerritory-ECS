@@ -8,7 +8,7 @@ public class OnDrawGizmosTileSystem : IUpdateSystem
 	private readonly GameContext m_GameContext;
 	private IGroup<GameEntity> m_TileGroup;
 
-	private readonly Color[] m_TileOwnerColors = new Color[] { Color.yellow, Color.blue, Color.red, Color.black, Color.black };
+	private readonly Color[] m_TileOwnerColors = new Color[] { Color.yellow, Color.blue, Color.red, Color.cyan, Color.green };
 
 	public OnDrawGizmosTileSystem(Contexts contexts)
 	{
@@ -21,14 +21,21 @@ public class OnDrawGizmosTileSystem : IUpdateSystem
 	{
 		foreach (var tileEntity in m_TileGroup.GetEntities())
 		{
-			if (tileEntity.HasOwnable && tileEntity.Ownable.HasOwner)
+			if (!tileEntity.IsEnterable)
 			{
-				int ownerId = tileEntity.Ownable.OwnerId;
-				Gizmos.color = m_TileOwnerColors[ownerId % m_TileOwnerColors.Length];
+				Gizmos.color = Color.grey;
 			}
 			else
 			{
-				Gizmos.color = Color.white;
+				if (tileEntity.HasOwnable && tileEntity.Ownable.HasOwner)
+				{
+					int ownerId = tileEntity.Ownable.OwnerId;
+					Gizmos.color = m_TileOwnerColors[ownerId % m_TileOwnerColors.Length];
+				}
+				else
+				{
+					Gizmos.color = Color.white;
+				}
 			}
 
 			Vector3 worldPos = GameConstants.TilePositionToWorldPosition(tileEntity.TilePosition.Value);

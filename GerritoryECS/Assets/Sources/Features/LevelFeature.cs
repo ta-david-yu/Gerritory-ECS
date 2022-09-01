@@ -8,5 +8,6 @@ public sealed class LevelFeature : Feature
 	{
 		Add(new ConstructLevelSystem(contexts));
 		Add(new TakeOverOwnableOnMoveEndSystem(contexts));
+		Add(new CollapseTileOnMoveBeginSystem(contexts));
 	}
 }

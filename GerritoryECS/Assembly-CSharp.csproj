@@ -65,7 +65,7 @@
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileEndAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\OnTileElementAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Input\EmitUserInputSystem.cs" />
-    <Compile Include="Assets\Sources\Components\Player\PlayerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\PlayerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\HelloWorldSystem.cs" />
     <Compile Include="Assets\Scripts\Input\InputActionManager.cs" />
     <Compile Include="Assets\Sources\Generated\Input\IInputBlueprint.cs" />
@@ -127,9 +127,9 @@
     <Compile Include="Assets\Sources\Components\Input\AIInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\_Sandbox\DebugMessageComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Level\OnTileElementComponent.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\OnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameContext.cs" />
-    <Compile Include="Assets\Sources\Components\Level\TilePositionComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Tile\TilePositionComponent.cs" />
     <Compile Include="Assets\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Sources\Features\OnDrawGizmosDebugFeature.cs" />
     <Compile Include="Assets\Sources\Features\MovementFeature.cs" />
@@ -154,12 +154,12 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Level\EnterableComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Tile\EnterableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Feature.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MovementInputActionComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputComponentsLookup.cs" />
-    <Compile Include="Assets\Sources\Components\Level\OwnableComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Tile\OwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigContext.cs" />
@@ -168,9 +168,14 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Features\ConfigCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
-    <Compile Include="Assets\Sources\Components\Level\TileOwnerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\TileOwnerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameTileOwnerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Level\TakeOverOwnableOnMoveEndSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Tile\CollapseOnSteppedComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameCollapseOnSteppedComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\CollapseTileOnMoveStartSystem.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\TileCollapserComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameTileCollapserComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

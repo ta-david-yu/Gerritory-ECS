@@ -30,6 +30,7 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 				tileEntity.AddTilePosition(new Vector2Int(x, y));
 				tileEntity.IsEnterable = true;
 				tileEntity.AddOwnable(false, -1);
+				tileEntity.AddCollapseOnStepped(1);
 			}
 		}
 	}

@@ -13,27 +13,30 @@ using JCMG.EntitasRedux;
 
 public static class GameComponentsLookup
 {
-	public const int DebugMessage = 0;
-	public const int Enterable = 1;
-	public const int Level = 2;
-	public const int MovementInputAction = 3;
-	public const int MoveOnTileAddedListener = 4;
-	public const int MoveOnTileBeginAddedListener = 5;
-	public const int MoveOnTileBegin = 6;
-	public const int MoveOnTile = 7;
-	public const int MoveOnTileEndAddedListener = 8;
-	public const int MoveOnTileEnd = 9;
-	public const int OnTileElementAddedListener = 10;
-	public const int OnTileElement = 11;
-	public const int Ownable = 12;
-	public const int Player = 13;
-	public const int TileOwner = 14;
-	public const int TilePosition = 15;
+	public const int CollapseOnStepped = 0;
+	public const int DebugMessage = 1;
+	public const int Enterable = 2;
+	public const int Level = 3;
+	public const int MovementInputAction = 4;
+	public const int MoveOnTileAddedListener = 5;
+	public const int MoveOnTileBeginAddedListener = 6;
+	public const int MoveOnTileBegin = 7;
+	public const int MoveOnTile = 8;
+	public const int MoveOnTileEndAddedListener = 9;
+	public const int MoveOnTileEnd = 10;
+	public const int OnTileElementAddedListener = 11;
+	public const int OnTileElement = 12;
+	public const int Ownable = 13;
+	public const int Player = 14;
+	public const int TileCollapser = 15;
+	public const int TileOwner = 16;
+	public const int TilePosition = 17;
 
-	public const int TotalComponents = 16;
+	public const int TotalComponents = 18;
 
 	public static readonly string[] ComponentNames =
 	{
+		"CollapseOnStepped",
 		"DebugMessage",
 		"Enterable",
 		"Level",
@@ -48,12 +51,14 @@ public static class GameComponentsLookup
 		"OnTileElement",
 		"Ownable",
 		"Player",
+		"TileCollapser",
 		"TileOwner",
 		"TilePosition"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
+		typeof(CollapseOnSteppedComponent),
 		typeof(DebugMessageComponent),
 		typeof(EnterableComponent),
 		typeof(LevelComponent),
@@ -68,28 +73,31 @@ public static class GameComponentsLookup
 		typeof(OnTileElementComponent),
 		typeof(OwnableComponent),
 		typeof(PlayerComponent),
+		typeof(TileCollapserComponent),
 		typeof(TileOwnerComponent),
 		typeof(TilePositionComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(DebugMessageComponent), 0 },
-		{ typeof(EnterableComponent), 1 },
-		{ typeof(LevelComponent), 2 },
-		{ typeof(MovementInputActionComponent), 3 },
-		{ typeof(MoveOnTileAddedListenerComponent), 4 },
-		{ typeof(MoveOnTileBeginAddedListenerComponent), 5 },
-		{ typeof(MoveOnTileBeginComponent), 6 },
-		{ typeof(MoveOnTileComponent), 7 },
-		{ typeof(MoveOnTileEndAddedListenerComponent), 8 },
-		{ typeof(MoveOnTileEndComponent), 9 },
-		{ typeof(OnTileElementAddedListenerComponent), 10 },
-		{ typeof(OnTileElementComponent), 11 },
-		{ typeof(OwnableComponent), 12 },
-		{ typeof(PlayerComponent), 13 },
-		{ typeof(TileOwnerComponent), 14 },
-		{ typeof(TilePositionComponent), 15 }
+		{ typeof(CollapseOnSteppedComponent), 0 },
+		{ typeof(DebugMessageComponent), 1 },
+		{ typeof(EnterableComponent), 2 },
+		{ typeof(LevelComponent), 3 },
+		{ typeof(MovementInputActionComponent), 4 },
+		{ typeof(MoveOnTileAddedListenerComponent), 5 },
+		{ typeof(MoveOnTileBeginAddedListenerComponent), 6 },
+		{ typeof(MoveOnTileBeginComponent), 7 },
+		{ typeof(MoveOnTileComponent), 8 },
+		{ typeof(MoveOnTileEndAddedListenerComponent), 9 },
+		{ typeof(MoveOnTileEndComponent), 10 },
+		{ typeof(OnTileElementAddedListenerComponent), 11 },
+		{ typeof(OnTileElementComponent), 12 },
+		{ typeof(OwnableComponent), 13 },
+		{ typeof(PlayerComponent), 14 },
+		{ typeof(TileCollapserComponent), 15 },
+		{ typeof(TileOwnerComponent), 16 },
+		{ typeof(TilePositionComponent), 17 }
 	};
 
 	/// <summary>
