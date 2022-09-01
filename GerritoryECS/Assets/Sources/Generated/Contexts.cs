@@ -102,8 +102,10 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 public partial class Contexts
 {
 	public const string MoveOnTile = "MoveOnTile";
-	public const string OnTileElement = "OnTileElement";
+	public const string OnTileElementId = "OnTileElementId";
+	public const string OnTileElementPosition = "OnTileElementPosition";
 	public const string Player = "Player";
+	public const string TileOwner = "TileOwner";
 	public const string TilePosition = "TilePosition";
 	public const string UserInput = "UserInput";
 
@@ -115,8 +117,13 @@ public partial class Contexts
 			Game.GetGroup(GameMatcher.MoveOnTile),
 			(e, c) => ((MoveOnTileComponent)c).ToPosition));
 
+		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
+			OnTileElementId,
+			Game.GetGroup(GameMatcher.OnTileElement),
+			(e, c) => ((OnTileElementComponent)c).Id));
+
 		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>(
-			OnTileElement,
+			OnTileElementPosition,
 			Game.GetGroup(GameMatcher.OnTileElement),
 			(e, c) => ((OnTileElementComponent)c).Position));
 
@@ -124,6 +131,11 @@ public partial class Contexts
 			Player,
 			Game.GetGroup(GameMatcher.Player),
 			(e, c) => ((PlayerComponent)c).Id));
+
+		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
+			TileOwner,
+			Game.GetGroup(GameMatcher.TileOwner),
+			(e, c) => ((TileOwnerComponent)c).Id));
 
 		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, UnityEngine.Vector2Int>(
 			TilePosition,
@@ -133,7 +145,7 @@ public partial class Contexts
 		Input.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<InputEntity, int>(
 			UserInput,
 			Input.GetGroup(InputMatcher.UserInput),
-			(e, c) => ((UserInputComponent)c).UserIndex));
+			(e, c) => ((UserInputComponent)c).UserId));
 	}
 }
 
@@ -144,9 +156,14 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.MoveOnTile)).GetEntities(ToPosition);
 	}
 
-	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithOnTileElement(this GameContext context, UnityEngine.Vector2Int Position)
+	public static GameEntity GetEntityWithOnTileElementId(this GameContext context, int Id)
 	{
-		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTileElement)).GetEntities(Position);
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.OnTileElementId)).GetEntity(Id);
+	}
+
+	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithOnTileElementPosition(this GameContext context, UnityEngine.Vector2Int Position)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTileElementPosition)).GetEntities(Position);
 	}
 
 	public static GameEntity GetEntityWithPlayer(this GameContext context, int Id)
@@ -154,14 +171,19 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.Player)).GetEntity(Id);
 	}
 
+	public static GameEntity GetEntityWithTileOwner(this GameContext context, int Id)
+	{
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.TileOwner)).GetEntity(Id);
+	}
+
 	public static GameEntity GetEntityWithTilePosition(this GameContext context, UnityEngine.Vector2Int Value)
 	{
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.TilePosition)).GetEntity(Value);
 	}
 
-	public static System.Collections.Generic.HashSet<InputEntity> GetEntitiesWithUserInput(this InputContext context, int UserIndex)
+	public static System.Collections.Generic.HashSet<InputEntity> GetEntitiesWithUserInput(this InputContext context, int UserId)
 	{
-		return ((JCMG.EntitasRedux.EntityIndex<InputEntity, int>)context.GetEntityIndex(Contexts.UserInput)).GetEntities(UserIndex);
+		return ((JCMG.EntitasRedux.EntityIndex<InputEntity, int>)context.GetEntityIndex(Contexts.UserInput)).GetEntities(UserId);
 	}
 }
 //------------------------------------------------------------------------------

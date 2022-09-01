@@ -34,7 +34,7 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 		// TODO: loop through all user input, then apply input aciton to the target player entity
 		foreach (var entity in m_UserInputGroup)
 		{
-			int userIndex = entity.UserInput.UserIndex;
+			int userIndex = entity.UserInput.UserId;
 			int targetPlayerId = entity.UserInput.TargetPlayerId;
 			GameEntity playerEntity = m_GameContext.GetEntityWithPlayer(targetPlayerId);
 

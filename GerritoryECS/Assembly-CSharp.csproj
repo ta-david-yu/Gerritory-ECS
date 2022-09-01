@@ -92,7 +92,9 @@
     <Compile Include="Assets\Sources\Components\Input\UserInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMovementInputActionComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameEntity.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameOwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\IGameBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameEnterableComponent.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\CleanupDebugMessageSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputEntity.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Features\GameCleanupFeature.cs" />
@@ -152,10 +154,12 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\EnterableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Feature.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MovementInputActionComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputComponentsLookup.cs" />
+    <Compile Include="Assets\Sources\Components\Level\OwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigContext.cs" />
@@ -164,10 +168,9 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Features\ConfigCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
-    <Compile Include="Assets\Sources\Components\Level\OwnableComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Level\EnterableComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameEnterableComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameOwnableComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\TileOwnerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameTileOwnerComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\TakeOverOwnableOnMoveEndSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

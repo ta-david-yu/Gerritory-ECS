@@ -60,7 +60,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 				continue;
 			}
 
-			HashSet<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTileElement(toPosition);
+			HashSet<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTileElementPosition(toPosition);
 			if (onTileEntities.Any(entity => !entity.HasMoveOnTile))
 			{
 				// There are already more than one entities on the given tile position & not moving away.

@@ -18,9 +18,9 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is EnterableComponent Enterable)
+		if (component is TileOwnerComponent TileOwner)
 		{
-			IsEnterable = true;
+			CopyTileOwnerTo(TileOwner);
 		}
 		else if (component is OwnableComponent Ownable)
 		{
@@ -29,6 +29,10 @@ public partial class GameEntity
 		else if (component is MovementInputActionComponent MovementInputAction)
 		{
 			CopyMovementInputActionTo(MovementInputAction);
+		}
+		else if (component is EnterableComponent Enterable)
+		{
+			IsEnterable = true;
 		}
 		else if (component is MoveOnTileComponent MoveOnTile)
 		{

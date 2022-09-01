@@ -12,21 +12,23 @@ public partial class GameEntity
 	public OnTileElementComponent OnTileElement { get { return (OnTileElementComponent)GetComponent(GameComponentsLookup.OnTileElement); } }
 	public bool HasOnTileElement { get { return HasComponent(GameComponentsLookup.OnTileElement); } }
 
-	public void AddOnTileElement(UnityEngine.Vector2Int newPosition)
+	public void AddOnTileElement(int newId, UnityEngine.Vector2Int newPosition)
 	{
 		var index = GameComponentsLookup.OnTileElement;
 		var component = (OnTileElementComponent)CreateComponent(index, typeof(OnTileElementComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
+		component.Id = newId;
 		component.Position = newPosition;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceOnTileElement(UnityEngine.Vector2Int newPosition)
+	public void ReplaceOnTileElement(int newId, UnityEngine.Vector2Int newPosition)
 	{
 		var index = GameComponentsLookup.OnTileElement;
 		var component = (OnTileElementComponent)CreateComponent(index, typeof(OnTileElementComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
+		component.Id = newId;
 		component.Position = newPosition;
 		#endif
 		ReplaceComponent(index, component);
@@ -37,6 +39,7 @@ public partial class GameEntity
 		var index = GameComponentsLookup.OnTileElement;
 		var component = (OnTileElementComponent)CreateComponent(index, typeof(OnTileElementComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
+		component.Id = copyComponent.Id;
 		component.Position = copyComponent.Position;
 		#endif
 		ReplaceComponent(index, component);

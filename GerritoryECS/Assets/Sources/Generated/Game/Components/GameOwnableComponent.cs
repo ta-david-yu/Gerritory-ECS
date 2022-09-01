@@ -12,22 +12,24 @@ public partial class GameEntity
 	public OwnableComponent Ownable { get { return (OwnableComponent)GetComponent(GameComponentsLookup.Ownable); } }
 	public bool HasOwnable { get { return HasComponent(GameComponentsLookup.Ownable); } }
 
-	public void AddOwnable(int newOwnerPlayerIndex)
+	public void AddOwnable(bool newHasOwner, int newOwnerId)
 	{
 		var index = GameComponentsLookup.Ownable;
 		var component = (OwnableComponent)CreateComponent(index, typeof(OwnableComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.OwnerPlayerIndex = newOwnerPlayerIndex;
+		component.HasOwner = newHasOwner;
+		component.OwnerId = newOwnerId;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceOwnable(int newOwnerPlayerIndex)
+	public void ReplaceOwnable(bool newHasOwner, int newOwnerId)
 	{
 		var index = GameComponentsLookup.Ownable;
 		var component = (OwnableComponent)CreateComponent(index, typeof(OwnableComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.OwnerPlayerIndex = newOwnerPlayerIndex;
+		component.HasOwner = newHasOwner;
+		component.OwnerId = newOwnerId;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -37,7 +39,8 @@ public partial class GameEntity
 		var index = GameComponentsLookup.Ownable;
 		var component = (OwnableComponent)CreateComponent(index, typeof(OwnableComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.OwnerPlayerIndex = copyComponent.OwnerPlayerIndex;
+		component.HasOwner = copyComponent.HasOwner;
+		component.OwnerId = copyComponent.OwnerId;
 		#endif
 		ReplaceComponent(index, component);
 	}

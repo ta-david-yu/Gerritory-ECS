@@ -35,16 +35,15 @@ public class GameController : MonoBehaviour
 		m_OnGUIDebugSystems.Initialize();
 	}
 
-	// Update is called once per frame
+	private void FixedUpdate()
+	{
+		m_Systems.FixedUpdate();
+	}
+
 	private void Update()
 	{
 		m_Systems.Update();
 		m_Systems.Execute();
-	}
-
-	private void FixedUpdate()
-	{
-		m_Systems.FixedUpdate();
 	}
 
 	private void LateUpdate()

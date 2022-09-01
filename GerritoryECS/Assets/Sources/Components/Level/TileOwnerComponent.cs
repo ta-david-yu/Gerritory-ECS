@@ -5,8 +5,8 @@ using UnityEngine;
 
 [Game]
 [System.Serializable]
-public sealed class OwnableComponent : IComponent
+public sealed class TileOwnerComponent : IComponent
 {
-	public bool HasOwner;
-	public int OwnerId;
+	[PrimaryEntityIndex]
+	public int Id;
 }

@@ -45,7 +45,7 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem, ICleanupSystem
 				
 
 				// Set the position to the target move position and set IsComplete flag to true
-				entity.ReplaceOnTileElement(to);
+				entity.ReplaceOnTileElement(entity.OnTileElement.Id, to);
 				entity.AddMoveOnTileEnd(from, to);
 			}
 		}

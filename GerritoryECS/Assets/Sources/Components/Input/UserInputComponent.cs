@@ -12,7 +12,7 @@ public sealed class UserInputComponent : IComponent
 	/// The user input device index
 	/// </summary>
 	[EntityIndex]
-	public int UserIndex;
+	public int UserId;
 
 	/// <summary>
 	/// The player id this user input is controlling
