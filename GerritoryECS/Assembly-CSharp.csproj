@@ -56,6 +56,8 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Sources\Components\Tile\CollapseOnSteppedComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameTileOwnerComponent.cs" />
     <Compile Include="Assets\Scripts\GameFlow\ScriptableGameConfig.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputContext.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputEntity_CopyTo.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameLevelComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileEndAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\TakeOverOwnableOnMoveEndSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\OnTileElementAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Input\EmitUserInputSystem.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\PlayerComponent.cs" />
@@ -73,6 +76,7 @@
     <Compile Include="Assets\Sources\Systems\Movement\DecayMovementInputActionSystem.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MoveOnTileBeginComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputAttribute.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\CollapseTileOnMoveBeginSystem.cs" />
     <Compile Include="Assets\Sources\Components\Level\LevelComponent.cs" />
     <Compile Include="Assets\Sources\Features\_Sandbox\TutorialFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTileElementAddedListener.cs" />
@@ -105,12 +109,15 @@
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigGameConfigComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameComponentsLookup.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\TileOwnerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\TileCollapserComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileBeginComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileBeginAddedListener.cs" />
     <Compile Include="Assets\Sources\Systems\Movement\MoveOnTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigMatchConfigComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameCollapseOnSteppedComponent.cs" />
     <Compile Include="Assets\Scripts\Animation\RollOnTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MoveOnTileEndComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileAddedEventSystem.cs" />
@@ -143,6 +150,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileEndAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Movement\CommandMoveOnTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameTileCollapserComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputAIInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Contexts.cs" />
     <Compile Include="Assets\Sources\Features\OnGUIDebugFeature.cs" />
@@ -168,14 +176,6 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Features\ConfigCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
-    <Compile Include="Assets\Sources\Components\OnTileElement\TileOwnerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameTileOwnerComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\TakeOverOwnableOnMoveEndSystem.cs" />
-    <Compile Include="Assets\Sources\Components\Tile\CollapseOnSteppedComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameCollapseOnSteppedComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\CollapseTileOnMoveStartSystem.cs" />
-    <Compile Include="Assets\Sources\Components\OnTileElement\TileCollapserComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameTileCollapserComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
