@@ -5,10 +5,10 @@ using UnityEngine;
 
 [Item]
 [System.Serializable]
-public class ChangeStateOnEatenComponent : IComponent
+public sealed class ChangeStateOnEatenComponent : IComponent
 {
 	/// <summary>
-	/// The state entity blueprint
+	/// The state entity blueprint that gets applied when 
 	/// </summary>
 	public PlayerStateBlueprint StateEntityBlueprint;
 }

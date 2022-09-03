@@ -222,6 +222,12 @@
     <Compile Include="Assets\Sources\Generated\PlayerState\Systems\PlayerStateCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Features\PlayerStateCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateStateComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\Components\InputDebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateDebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Components\Interfaces\IDebugMessageEntity.cs" />
+    <Compile Include="Assets\Sources\Generated\Tile\Components\TileDebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Config\Components\ConfigDebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemDebugMessageComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -14,16 +14,18 @@ using JCMG.EntitasRedux;
 public static class TileComponentsLookup
 {
 	public const int CollapseOnStepped = 0;
-	public const int Enterable = 1;
-	public const int ItemHolder = 2;
-	public const int Ownable = 3;
-	public const int TilePosition = 4;
+	public const int DebugMessage = 1;
+	public const int Enterable = 2;
+	public const int ItemHolder = 3;
+	public const int Ownable = 4;
+	public const int TilePosition = 5;
 
-	public const int TotalComponents = 5;
+	public const int TotalComponents = 6;
 
 	public static readonly string[] ComponentNames =
 	{
 		"CollapseOnStepped",
+		"DebugMessage",
 		"Enterable",
 		"ItemHolder",
 		"Ownable",
@@ -33,6 +35,7 @@ public static class TileComponentsLookup
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(CollapseOnSteppedComponent),
+		typeof(DebugMessageComponent),
 		typeof(EnterableComponent),
 		typeof(ItemHolderComponent),
 		typeof(OwnableComponent),
@@ -42,10 +45,11 @@ public static class TileComponentsLookup
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(CollapseOnSteppedComponent), 0 },
-		{ typeof(EnterableComponent), 1 },
-		{ typeof(ItemHolderComponent), 2 },
-		{ typeof(OwnableComponent), 3 },
-		{ typeof(TilePositionComponent), 4 }
+		{ typeof(DebugMessageComponent), 1 },
+		{ typeof(EnterableComponent), 2 },
+		{ typeof(ItemHolderComponent), 3 },
+		{ typeof(OwnableComponent), 4 },
+		{ typeof(TilePositionComponent), 5 }
 	};
 
 	/// <summary>

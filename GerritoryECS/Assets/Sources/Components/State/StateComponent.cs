@@ -5,7 +5,7 @@ using UnityEngine;
 
 [PlayerState]
 [System.Serializable]
-public class StateComponent : IComponent
+public sealed class StateComponent : IComponent
 {
 	/// <summary>
 	/// The id of the status holder that this status is targetting

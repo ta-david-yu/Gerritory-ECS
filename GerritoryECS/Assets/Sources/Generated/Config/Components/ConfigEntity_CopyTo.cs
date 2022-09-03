@@ -18,7 +18,11 @@ public partial class ConfigEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is GameConfigComponent GameConfig)
+		if (component is DebugMessageComponent DebugMessage)
+		{
+			CopyDebugMessageTo(DebugMessage);
+		}
+		else if (component is GameConfigComponent GameConfig)
 		{
 			CopyGameConfigTo(GameConfig);
 		}

@@ -25,6 +25,10 @@ public partial class ItemEntity
 		else if (component is ItemComponent Item)
 		{
 			IsItem = true;
+		}
+		else if (component is DebugMessageComponent DebugMessage)
+		{
+			CopyDebugMessageTo(DebugMessage);
 		}
 		#endif
 	}

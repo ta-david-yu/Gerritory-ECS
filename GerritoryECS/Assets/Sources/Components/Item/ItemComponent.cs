@@ -5,6 +5,6 @@ using UnityEngine;
 
 [Item]
 [System.Serializable]
-public class ItemComponent : IComponent
+public sealed class ItemComponent : IComponent
 {
 }

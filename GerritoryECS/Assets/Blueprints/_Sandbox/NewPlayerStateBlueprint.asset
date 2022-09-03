@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a9d2cd2ce6613449de83a6e37124c2, type: 3}
-  m_Name: NewGameBlueprint
+  m_Script: {fileID: 11500000, guid: 4a19f594c9b6a6a4ba0f23731e12af56, type: 3}
+  m_Name: NewPlayerStateBlueprint
   m_EditorClassIdentifier: 
   _components: []
   references:

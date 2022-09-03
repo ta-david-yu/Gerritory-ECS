@@ -13,27 +13,31 @@ using JCMG.EntitasRedux;
 
 public static class ConfigComponentsLookup
 {
-	public const int GameConfig = 0;
-	public const int MatchConfig = 1;
+	public const int DebugMessage = 0;
+	public const int GameConfig = 1;
+	public const int MatchConfig = 2;
 
-	public const int TotalComponents = 2;
+	public const int TotalComponents = 3;
 
 	public static readonly string[] ComponentNames =
 	{
+		"DebugMessage",
 		"GameConfig",
 		"MatchConfig"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
+		typeof(DebugMessageComponent),
 		typeof(GameConfigComponent),
 		typeof(MatchConfigComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(GameConfigComponent), 0 },
-		{ typeof(MatchConfigComponent), 1 }
+		{ typeof(DebugMessageComponent), 0 },
+		{ typeof(GameConfigComponent), 1 },
+		{ typeof(MatchConfigComponent), 2 }
 	};
 
 	/// <summary>

@@ -34,6 +34,10 @@ public partial class TileEntity
 		{
 			CopyTilePositionTo(TilePosition);
 		}
+		else if (component is DebugMessageComponent DebugMessage)
+		{
+			CopyDebugMessageTo(DebugMessage);
+		}
 		else if (component is CollapseOnSteppedComponent CollapseOnStepped)
 		{
 			CopyCollapseOnSteppedTo(CollapseOnStepped);

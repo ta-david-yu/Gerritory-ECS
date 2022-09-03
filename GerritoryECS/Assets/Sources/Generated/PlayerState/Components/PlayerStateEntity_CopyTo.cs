@@ -21,6 +21,10 @@ public partial class PlayerStateEntity
 		if (component is StateComponent State)
 		{
 			CopyStateTo(State);
+		}
+		else if (component is DebugMessageComponent DebugMessage)
+		{
+			CopyDebugMessageTo(DebugMessage);
 		}
 		#endif
 	}
