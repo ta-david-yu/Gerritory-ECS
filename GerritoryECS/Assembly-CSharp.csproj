@@ -228,6 +228,8 @@
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileDebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigDebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemDebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Components\_Sandbox\IComponentRefComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameIComponentRefComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

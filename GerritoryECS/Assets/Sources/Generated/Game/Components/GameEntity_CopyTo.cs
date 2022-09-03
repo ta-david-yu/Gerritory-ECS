@@ -18,7 +18,11 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is StateHolderComponent StateHolder)
+		if (component is IComponentRefComponent IComponentRef)
+		{
+			CopyIComponentRefTo(IComponentRef);
+		}
+		else if (component is StateHolderComponent StateHolder)
 		{
 			CopyStateHolderTo(StateHolder);
 		}

@@ -14,26 +14,28 @@ using JCMG.EntitasRedux;
 public static class GameComponentsLookup
 {
 	public const int DebugMessage = 0;
-	public const int Level = 1;
-	public const int MovementInputAction = 2;
-	public const int MoveOnTileAddedListener = 3;
-	public const int MoveOnTileBeginAddedListener = 4;
-	public const int MoveOnTileBegin = 5;
-	public const int MoveOnTile = 6;
-	public const int MoveOnTileEndAddedListener = 7;
-	public const int MoveOnTileEnd = 8;
-	public const int OnTileElementAddedListener = 9;
-	public const int OnTileElement = 10;
-	public const int Player = 11;
-	public const int StateHolder = 12;
-	public const int TileCollapser = 13;
-	public const int TileOwner = 14;
+	public const int IComponentRef = 1;
+	public const int Level = 2;
+	public const int MovementInputAction = 3;
+	public const int MoveOnTileAddedListener = 4;
+	public const int MoveOnTileBeginAddedListener = 5;
+	public const int MoveOnTileBegin = 6;
+	public const int MoveOnTile = 7;
+	public const int MoveOnTileEndAddedListener = 8;
+	public const int MoveOnTileEnd = 9;
+	public const int OnTileElementAddedListener = 10;
+	public const int OnTileElement = 11;
+	public const int Player = 12;
+	public const int StateHolder = 13;
+	public const int TileCollapser = 14;
+	public const int TileOwner = 15;
 
-	public const int TotalComponents = 15;
+	public const int TotalComponents = 16;
 
 	public static readonly string[] ComponentNames =
 	{
 		"DebugMessage",
+		"IComponentRef",
 		"Level",
 		"MovementInputAction",
 		"MoveOnTileAddedListener",
@@ -53,6 +55,7 @@ public static class GameComponentsLookup
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(DebugMessageComponent),
+		typeof(IComponentRefComponent),
 		typeof(LevelComponent),
 		typeof(MovementInputActionComponent),
 		typeof(MoveOnTileAddedListenerComponent),
@@ -72,20 +75,21 @@ public static class GameComponentsLookup
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(DebugMessageComponent), 0 },
-		{ typeof(LevelComponent), 1 },
-		{ typeof(MovementInputActionComponent), 2 },
-		{ typeof(MoveOnTileAddedListenerComponent), 3 },
-		{ typeof(MoveOnTileBeginAddedListenerComponent), 4 },
-		{ typeof(MoveOnTileBeginComponent), 5 },
-		{ typeof(MoveOnTileComponent), 6 },
-		{ typeof(MoveOnTileEndAddedListenerComponent), 7 },
-		{ typeof(MoveOnTileEndComponent), 8 },
-		{ typeof(OnTileElementAddedListenerComponent), 9 },
-		{ typeof(OnTileElementComponent), 10 },
-		{ typeof(PlayerComponent), 11 },
-		{ typeof(StateHolderComponent), 12 },
-		{ typeof(TileCollapserComponent), 13 },
-		{ typeof(TileOwnerComponent), 14 }
+		{ typeof(IComponentRefComponent), 1 },
+		{ typeof(LevelComponent), 2 },
+		{ typeof(MovementInputActionComponent), 3 },
+		{ typeof(MoveOnTileAddedListenerComponent), 4 },
+		{ typeof(MoveOnTileBeginAddedListenerComponent), 5 },
+		{ typeof(MoveOnTileBeginComponent), 6 },
+		{ typeof(MoveOnTileComponent), 7 },
+		{ typeof(MoveOnTileEndAddedListenerComponent), 8 },
+		{ typeof(MoveOnTileEndComponent), 9 },
+		{ typeof(OnTileElementAddedListenerComponent), 10 },
+		{ typeof(OnTileElementComponent), 11 },
+		{ typeof(PlayerComponent), 12 },
+		{ typeof(StateHolderComponent), 13 },
+		{ typeof(TileCollapserComponent), 14 },
+		{ typeof(TileOwnerComponent), 15 }
 	};
 
 	/// <summary>

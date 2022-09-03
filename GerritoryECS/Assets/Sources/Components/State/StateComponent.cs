@@ -8,7 +8,7 @@ using UnityEngine;
 public sealed class StateComponent : IComponent
 {
 	/// <summary>
-	/// The id of the status holder that this status is targetting
+	/// The id of the state holder that this status is targetting
 	/// </summary>
 	[EntityIndex]
 	public int HolderId;
