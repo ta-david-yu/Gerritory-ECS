@@ -18,37 +18,17 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is TileCollapserComponent TileCollapser)
+		if (component is StateHolderComponent StateHolder)
 		{
-			IsTileCollapser = true;
-		}
-		else if (component is CollapseOnSteppedComponent CollapseOnStepped)
-		{
-			CopyCollapseOnSteppedTo(CollapseOnStepped);
-		}
-		else if (component is TileOwnerComponent TileOwner)
-		{
-			CopyTileOwnerTo(TileOwner);
-		}
-		else if (component is OwnableComponent Ownable)
-		{
-			CopyOwnableTo(Ownable);
+			CopyStateHolderTo(StateHolder);
 		}
 		else if (component is MovementInputActionComponent MovementInputAction)
 		{
 			CopyMovementInputActionTo(MovementInputAction);
 		}
-		else if (component is EnterableComponent Enterable)
-		{
-			IsEnterable = true;
-		}
 		else if (component is MoveOnTileComponent MoveOnTile)
 		{
 			CopyMoveOnTileTo(MoveOnTile);
-		}
-		else if (component is TilePositionComponent TilePosition)
-		{
-			CopyTilePositionTo(TilePosition);
 		}
 		else if (component is OnTileElementComponent OnTileElement)
 		{
@@ -61,6 +41,14 @@ public partial class GameEntity
 		else if (component is MoveOnTileEndComponent MoveOnTileEnd)
 		{
 			CopyMoveOnTileEndTo(MoveOnTileEnd);
+		}
+		else if (component is TileCollapserComponent TileCollapser)
+		{
+			IsTileCollapser = true;
+		}
+		else if (component is TileOwnerComponent TileOwner)
+		{
+			CopyTileOwnerTo(TileOwner);
 		}
 		else if (component is LevelComponent Level)
 		{

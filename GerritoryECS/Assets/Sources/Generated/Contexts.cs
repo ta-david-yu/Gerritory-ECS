@@ -60,14 +60,20 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 	public ConfigContext Config { get; set; }
 	public GameContext Game { get; set; }
 	public InputContext Input { get; set; }
+	public ItemContext Item { get; set; }
+	public PlayerStateContext PlayerState { get; set; }
+	public TileContext Tile { get; set; }
 
-	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Config, Game, Input }; } }
+	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Config, Game, Input, Item, PlayerState, Tile }; } }
 
 	public Contexts()
 	{
 		Config = new ConfigContext();
 		Game = new GameContext();
 		Input = new InputContext();
+		Item = new ItemContext();
+		PlayerState = new PlayerStateContext();
+		Tile = new TileContext();
 
 		var postConstructors = System.Linq.Enumerable.Where(
 			GetType().GetMethods(),
@@ -105,6 +111,8 @@ public partial class Contexts
 	public const string OnTileElementId = "OnTileElementId";
 	public const string OnTileElementPosition = "OnTileElementPosition";
 	public const string Player = "Player";
+	public const string State = "State";
+	public const string StateHolder = "StateHolder";
 	public const string TileOwner = "TileOwner";
 	public const string TilePosition = "TilePosition";
 	public const string UserInput = "UserInput";
@@ -132,14 +140,24 @@ public partial class Contexts
 			Game.GetGroup(GameMatcher.Player),
 			(e, c) => ((PlayerComponent)c).Id));
 
+		PlayerState.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<PlayerStateEntity, int>(
+			State,
+			PlayerState.GetGroup(PlayerStateMatcher.State),
+			(e, c) => ((StateComponent)c).HolderId));
+
+		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
+			StateHolder,
+			Game.GetGroup(GameMatcher.StateHolder),
+			(e, c) => ((StateHolderComponent)c).Id));
+
 		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
 			TileOwner,
 			Game.GetGroup(GameMatcher.TileOwner),
 			(e, c) => ((TileOwnerComponent)c).Id));
 
-		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, UnityEngine.Vector2Int>(
+		Tile.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<TileEntity, UnityEngine.Vector2Int>(
 			TilePosition,
-			Game.GetGroup(GameMatcher.TilePosition),
+			Tile.GetGroup(TileMatcher.TilePosition),
 			(e, c) => ((TilePositionComponent)c).Value));
 
 		Input.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<InputEntity, int>(
@@ -171,14 +189,24 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.Player)).GetEntity(Id);
 	}
 
+	public static System.Collections.Generic.HashSet<PlayerStateEntity> GetEntitiesWithState(this PlayerStateContext context, int HolderId)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<PlayerStateEntity, int>)context.GetEntityIndex(Contexts.State)).GetEntities(HolderId);
+	}
+
+	public static GameEntity GetEntityWithStateHolder(this GameContext context, int Id)
+	{
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.StateHolder)).GetEntity(Id);
+	}
+
 	public static GameEntity GetEntityWithTileOwner(this GameContext context, int Id)
 	{
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.TileOwner)).GetEntity(Id);
 	}
 
-	public static GameEntity GetEntityWithTilePosition(this GameContext context, UnityEngine.Vector2Int Value)
+	public static TileEntity GetEntityWithTilePosition(this TileContext context, UnityEngine.Vector2Int Value)
 	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.TilePosition)).GetEntity(Value);
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<TileEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.TilePosition)).GetEntity(Value);
 	}
 
 	public static System.Collections.Generic.HashSet<InputEntity> GetEntitiesWithUserInput(this InputContext context, int UserId)
@@ -205,6 +233,9 @@ public partial class Contexts {
 			CreateContextObserver(Config);
 			CreateContextObserver(Game);
 			CreateContextObserver(Input);
+			CreateContextObserver(Item);
+			CreateContextObserver(PlayerState);
+			CreateContextObserver(Tile);
 		} catch(System.Exception) {
 		}
 	}

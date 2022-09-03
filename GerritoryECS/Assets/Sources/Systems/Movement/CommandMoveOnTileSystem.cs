@@ -10,6 +10,7 @@ using UnityEngine;
 public class CommandMoveOnTileSystem : IFixedUpdateSystem
 {
 	private readonly GameContext m_GameContext;
+	private readonly TileContext m_TileContext;
 
 	private readonly IGroup<GameEntity> m_OnTileElementGroup;
 	private readonly IGroup<GameEntity> m_PlayerGroup;
@@ -17,6 +18,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 	public CommandMoveOnTileSystem(Contexts contexts)
 	{
 		m_GameContext = contexts.Game;
+		m_TileContext = contexts.Tile;
 
 		// Get entities that
 		// 1. Are on tile
@@ -47,7 +49,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 				continue;
 			}
 
-			GameEntity tileEntity = m_GameContext.GetEntityWithTilePosition(toPosition);
+			TileEntity tileEntity = m_TileContext.GetEntityWithTilePosition(toPosition);
 			if (tileEntity == null)
 			{
 				// There is no tile here, cannot move here.
@@ -61,9 +63,9 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 			}
 
 			HashSet<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTileElementPosition(toPosition);
-			if (onTileEntities.Any(entity => !entity.HasMoveOnTile))
+			if (onTileEntities.Any(entity => entity.HasPlayer && !entity.HasMoveOnTile))
 			{
-				// There are already more than one entities on the given tile position & not moving away.
+				// There are already more than one player entity on the given tile position & not moving away.
 				continue;
 			}
 

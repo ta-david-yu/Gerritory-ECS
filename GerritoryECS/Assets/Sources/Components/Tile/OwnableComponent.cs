@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Game]
+[Tile]
 [System.Serializable]
 public sealed class OwnableComponent : IComponent
 {

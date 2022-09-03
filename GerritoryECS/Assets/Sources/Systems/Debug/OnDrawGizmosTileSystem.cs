@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class OnDrawGizmosTileSystem : IUpdateSystem
 {
-	private readonly GameContext m_GameContext;
-	private IGroup<GameEntity> m_TileGroup;
+	private readonly TileContext m_TileContext;
+	private IGroup<TileEntity> m_TileGroup;
 
 	private readonly Color[] m_TileOwnerColors = new Color[] { Color.yellow, Color.blue, Color.red, Color.cyan, Color.green };
 
 	public OnDrawGizmosTileSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
-		m_TileGroup = m_GameContext.GetGroup(GameMatcher.TilePosition);
+		m_TileContext = contexts.Tile;
+		m_TileGroup = m_TileContext.GetGroup(TileMatcher.TilePosition);
 	}
 
 

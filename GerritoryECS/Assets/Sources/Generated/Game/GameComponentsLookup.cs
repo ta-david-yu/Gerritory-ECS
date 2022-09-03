@@ -13,32 +13,27 @@ using JCMG.EntitasRedux;
 
 public static class GameComponentsLookup
 {
-	public const int CollapseOnStepped = 0;
-	public const int DebugMessage = 1;
-	public const int Enterable = 2;
-	public const int Level = 3;
-	public const int MovementInputAction = 4;
-	public const int MoveOnTileAddedListener = 5;
-	public const int MoveOnTileBeginAddedListener = 6;
-	public const int MoveOnTileBegin = 7;
-	public const int MoveOnTile = 8;
-	public const int MoveOnTileEndAddedListener = 9;
-	public const int MoveOnTileEnd = 10;
-	public const int OnTileElementAddedListener = 11;
-	public const int OnTileElement = 12;
-	public const int Ownable = 13;
-	public const int Player = 14;
-	public const int TileCollapser = 15;
-	public const int TileOwner = 16;
-	public const int TilePosition = 17;
+	public const int DebugMessage = 0;
+	public const int Level = 1;
+	public const int MovementInputAction = 2;
+	public const int MoveOnTileAddedListener = 3;
+	public const int MoveOnTileBeginAddedListener = 4;
+	public const int MoveOnTileBegin = 5;
+	public const int MoveOnTile = 6;
+	public const int MoveOnTileEndAddedListener = 7;
+	public const int MoveOnTileEnd = 8;
+	public const int OnTileElementAddedListener = 9;
+	public const int OnTileElement = 10;
+	public const int Player = 11;
+	public const int StateHolder = 12;
+	public const int TileCollapser = 13;
+	public const int TileOwner = 14;
 
-	public const int TotalComponents = 18;
+	public const int TotalComponents = 15;
 
 	public static readonly string[] ComponentNames =
 	{
-		"CollapseOnStepped",
 		"DebugMessage",
-		"Enterable",
 		"Level",
 		"MovementInputAction",
 		"MoveOnTileAddedListener",
@@ -49,18 +44,15 @@ public static class GameComponentsLookup
 		"MoveOnTileEnd",
 		"OnTileElementAddedListener",
 		"OnTileElement",
-		"Ownable",
 		"Player",
+		"StateHolder",
 		"TileCollapser",
-		"TileOwner",
-		"TilePosition"
+		"TileOwner"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
-		typeof(CollapseOnSteppedComponent),
 		typeof(DebugMessageComponent),
-		typeof(EnterableComponent),
 		typeof(LevelComponent),
 		typeof(MovementInputActionComponent),
 		typeof(MoveOnTileAddedListenerComponent),
@@ -71,33 +63,29 @@ public static class GameComponentsLookup
 		typeof(MoveOnTileEndComponent),
 		typeof(OnTileElementAddedListenerComponent),
 		typeof(OnTileElementComponent),
-		typeof(OwnableComponent),
 		typeof(PlayerComponent),
+		typeof(StateHolderComponent),
 		typeof(TileCollapserComponent),
-		typeof(TileOwnerComponent),
-		typeof(TilePositionComponent)
+		typeof(TileOwnerComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(CollapseOnSteppedComponent), 0 },
-		{ typeof(DebugMessageComponent), 1 },
-		{ typeof(EnterableComponent), 2 },
-		{ typeof(LevelComponent), 3 },
-		{ typeof(MovementInputActionComponent), 4 },
-		{ typeof(MoveOnTileAddedListenerComponent), 5 },
-		{ typeof(MoveOnTileBeginAddedListenerComponent), 6 },
-		{ typeof(MoveOnTileBeginComponent), 7 },
-		{ typeof(MoveOnTileComponent), 8 },
-		{ typeof(MoveOnTileEndAddedListenerComponent), 9 },
-		{ typeof(MoveOnTileEndComponent), 10 },
-		{ typeof(OnTileElementAddedListenerComponent), 11 },
-		{ typeof(OnTileElementComponent), 12 },
-		{ typeof(OwnableComponent), 13 },
-		{ typeof(PlayerComponent), 14 },
-		{ typeof(TileCollapserComponent), 15 },
-		{ typeof(TileOwnerComponent), 16 },
-		{ typeof(TilePositionComponent), 17 }
+		{ typeof(DebugMessageComponent), 0 },
+		{ typeof(LevelComponent), 1 },
+		{ typeof(MovementInputActionComponent), 2 },
+		{ typeof(MoveOnTileAddedListenerComponent), 3 },
+		{ typeof(MoveOnTileBeginAddedListenerComponent), 4 },
+		{ typeof(MoveOnTileBeginComponent), 5 },
+		{ typeof(MoveOnTileComponent), 6 },
+		{ typeof(MoveOnTileEndAddedListenerComponent), 7 },
+		{ typeof(MoveOnTileEndComponent), 8 },
+		{ typeof(OnTileElementAddedListenerComponent), 9 },
+		{ typeof(OnTileElementComponent), 10 },
+		{ typeof(PlayerComponent), 11 },
+		{ typeof(StateHolderComponent), 12 },
+		{ typeof(TileCollapserComponent), 13 },
+		{ typeof(TileOwnerComponent), 14 }
 	};
 
 	/// <summary>

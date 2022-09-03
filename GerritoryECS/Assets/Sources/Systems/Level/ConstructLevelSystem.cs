@@ -9,11 +9,13 @@ using UnityEngine;
 public sealed class ConstructLevelSystem : IInitializeSystem
 {
 	private readonly GameContext m_GameContext;
+	private readonly TileContext m_TileContext;
 	private readonly ConfigContext m_ConfigContext;
 
 	public ConstructLevelSystem(Contexts contexts)
 	{
 		m_GameContext = contexts.Game;
+		m_TileContext = contexts.Tile;
 		m_ConfigContext = contexts.Config;
 	}
 
@@ -26,9 +28,10 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 		{
 			for (int y = 0; y < levelSize.y; y++)
 			{
-				var tileEntity = m_GameContext.CreateEntity();
+				var tileEntity = m_TileContext.CreateEntity();
 				tileEntity.AddTilePosition(new Vector2Int(x, y));
 				tileEntity.IsEnterable = true;
+				tileEntity.IsItemHolder = true;
 
 				if (Random.Range(0.0f, 1.0f) > 0.8f)
 				{

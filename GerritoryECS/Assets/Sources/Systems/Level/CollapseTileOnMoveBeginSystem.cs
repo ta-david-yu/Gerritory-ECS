@@ -9,10 +9,12 @@ using JCMG.EntitasRedux;
 public class CollapseTileOnMoveBeginSystem : ReactiveSystem<GameEntity>
 {
 	private readonly GameContext m_GameContext;
+	private readonly TileContext m_TileContext;
 
 	public CollapseTileOnMoveBeginSystem(Contexts contexts) : base(contexts.Game)
 	{
 		m_GameContext = contexts.Game;
+		m_TileContext = contexts.Tile;
 	}
 
 	protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -30,7 +32,7 @@ public class CollapseTileOnMoveBeginSystem : ReactiveSystem<GameEntity>
 		foreach (GameEntity collapserEntity in entities)
 		{
 			Vector2Int departPosition = collapserEntity.MoveOnTileBegin.FromPosition;
-			GameEntity departTileEntity = m_GameContext.GetEntityWithTilePosition(departPosition);
+			TileEntity departTileEntity = m_TileContext.GetEntityWithTilePosition(departPosition);
 
 			if (!departTileEntity.HasCollapseOnStepped)
 			{

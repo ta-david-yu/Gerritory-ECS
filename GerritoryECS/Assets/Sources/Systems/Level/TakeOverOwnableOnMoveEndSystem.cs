@@ -9,10 +9,12 @@ using JCMG.EntitasRedux;
 public sealed class TakeOverOwnableOnMoveEndSystem : ReactiveSystem<GameEntity> 
 {
 	private readonly GameContext m_GameContext;
+	private readonly TileContext m_TileContext;
 
 	public TakeOverOwnableOnMoveEndSystem(Contexts contexts) : base(contexts.Game)
 	{
 		m_GameContext = contexts.Game;
+		m_TileContext = contexts.Tile;
 	}
 
 	protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -31,7 +33,7 @@ public sealed class TakeOverOwnableOnMoveEndSystem : ReactiveSystem<GameEntity>
 		foreach (var ownerEntity in entities)
 		{
 			Vector2Int enterTilePosition = ownerEntity.MoveOnTileEnd.ToPosition;
-			GameEntity enterTileEntity = m_GameContext.GetEntityWithTilePosition(enterTilePosition);
+			TileEntity enterTileEntity = m_TileContext.GetEntityWithTilePosition(enterTilePosition);
 			
 			if (!enterTileEntity.HasOwnable)
 			{

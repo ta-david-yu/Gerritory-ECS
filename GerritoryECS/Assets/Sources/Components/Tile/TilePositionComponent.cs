@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using JCMG.EntitasRedux;
 
-[Game]
+[Tile]
 [System.Serializable]
 public sealed class TilePositionComponent : IComponent
 {
