@@ -391,7 +391,7 @@ PrefabInstance:
     - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: managedReferences[2812320396538019847].Position.y
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1430065688062647575, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
@@ -415,12 +415,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
+      propertyPath: _components.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: _components.Array.data[0]
+      value: 1863424923071414275
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: _components.Array.data[1]
+      value: 1863424923071414275
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424923071414275]
+      value: Assembly-CSharp AIInputComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
       propertyPath: managedReferences[2812320396538019848].UserId
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
+      propertyPath: managedReferences[1863424923071414275].Movement
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
       propertyPath: managedReferences[2812320396538019848].UserIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424923071414275].TargetPlayerId
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
@@ -593,12 +623,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
+      propertyPath: _components.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: _components.Array.data[0]
+      value: 1863424923071414276
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424923071414276]
+      value: Assembly-CSharp AIInputComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
       propertyPath: managedReferences[2812320396538019848].UserId
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
+      propertyPath: managedReferences[1863424923071414276].Movement
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
       propertyPath: managedReferences[2812320396538019848].UserIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424923071414276].TargetPlayerId
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
@@ -670,140 +725,6 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[2812320396538019846].Id
       value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 807437b7a9bd16d4eb9fa66618e3a9f5, type: 3}
---- !u!1001 &1182302893
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[1863424855467622400].Id
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[2812320396538019846].Id
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[2812320396538019847].Id
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[2812320396538019847].ElementId
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[2812320396538019847].Position.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[2812320396538019847].Position.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430065688062647575, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_Name
-      value: Prefab_UserPlayer (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430065688062647575, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2951472646693310849, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[2812320396538019848].UserIndex
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2951472646693310849, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[2812320396538019848].TargetPlayerId
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[2812320396538019848].UserId
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[2812320396538019848].UserIndex
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[2812320396538019848].TargetPlayerId
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525608035197139517, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
-        type: 3}
-      propertyPath: managedReferences[2812320396538019846].Id
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 807437b7a9bd16d4eb9fa66618e3a9f5, type: 3}
@@ -882,7 +803,7 @@ PrefabInstance:
     - target: {fileID: 287314104869146459, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
         type: 3}
       propertyPath: managedReferences[2812320396538019847].Position.y
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1430065688062647575, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
         type: 3}
@@ -902,7 +823,7 @@ PrefabInstance:
     - target: {fileID: 6637677535779970085, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6637677535779970085, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
         type: 3}
@@ -981,12 +902,12 @@ PrefabInstance:
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: _components.Array.data[0]
-      value: 1863424923071414274
+      value: 1863424923071414277
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: _components.Array.data[1]
-      value: 1863424923071414274
+      value: 1863424923071414277
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
@@ -1000,6 +921,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
+      propertyPath: managedReferences[1863424923071414277]
+      value: Assembly-CSharp AIInputComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
       propertyPath: managedReferences[1863424923071414274].UserId
       value: 0
       objectReference: {fileID: 0}
@@ -1010,12 +936,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
+      propertyPath: managedReferences[1863424923071414277].Movement
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
       propertyPath: managedReferences[1863424923071414272].TargetPlayerId
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: managedReferences[1863424923071414274].TargetPlayerId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424923071414277].TargetPlayerId
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,

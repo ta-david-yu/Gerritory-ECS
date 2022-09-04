@@ -1,4 +1,5 @@
 using JCMG.EntitasRedux;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,9 +64,14 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 			}
 
 			HashSet<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTileElementPosition(toPosition);
-			if (onTileEntities.Any(entity => entity.HasPlayer && !entity.HasMoveOnTile))
+
+			Func<GameEntity, bool> isEntityOccupyingSpot = (GameEntity entity) => { return !entity.HasMoveOnTile || entity.HasMoveOnTileBegin; };
+			if (onTileEntities.Any(entity => isEntityOccupyingSpot(entity)))
 			{
-				// There are already more than one player entity on the given tile position & not moving away.
+				// There are already more than 1 OnTileElement entity on the given tile position & not moving away.
+				// Note that the first frame of the movement (MoveOnTileBegin) is also considered to be still occupying the departure tile,
+				// to avoid having two OnTileElement entities on the same tile at the same time.
+				// (One entering a tile right after another left the tile in the same fixed update frame)
 				continue;
 			}
 

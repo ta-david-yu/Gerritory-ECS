@@ -33,7 +33,7 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 				tileEntity.IsEnterable = true;
 				tileEntity.IsItemHolder = true;
 
-				if (Random.Range(0.0f, 1.0f) > 0.8f)
+				if (Random.Range(0.0f, 1.0f) > 0.0f)
 				{
 					tileEntity.AddCollapseOnStepped(1);
 				}

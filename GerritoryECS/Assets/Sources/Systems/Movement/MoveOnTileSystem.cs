@@ -11,9 +11,6 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem
 	private readonly IGroup<GameEntity> m_MoveOnTileBeginGroup;
 	private readonly IGroup<GameEntity> m_MoveOnTileEndGroup;
 
-	// Placeholder value, to be replaced
-	const float k_MoveDuration = 0.2f;
-
 	public MoveOnTileSystem(Contexts contexts)
 	{
 		m_MoveOnTileGroup = contexts.Game.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.MoveOnTile));
@@ -27,7 +24,7 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem
 		foreach (var entity in m_MoveOnTileGroup.GetEntities())
 		{
 			float progress = entity.MoveOnTile.Progress;
-			progress += (1 / k_MoveDuration) * Time.fixedDeltaTime;
+			progress += (1 / GameConstants.MoveOnTileDurationBase) * Time.fixedDeltaTime;
 
 			if (progress < 1.0f)
 			{
