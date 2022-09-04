@@ -24,7 +24,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 
 			if (playerEntity.HasMoveOnTile)
 			{
-				//continue;
+				continue;
 			}
 
 			playerEntity.ReplaceMovementInputAction(movement, 0.0f);

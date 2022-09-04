@@ -2,6 +2,7 @@ using JCMG.EntitasRedux;
 using UnityEngine;
 
 [Game]
+[Cleanup(CleanupMode.RemoveComponent)]
 [Event(EventTarget.Self)]
 public sealed class MoveOnTileBeginComponent : IComponent
 {

@@ -13,6 +13,5 @@ public sealed class InputFeature : Feature
 
 		// Input Action Validation
 		Add(new DecayMovementInputActionSystem(contexts));
-		Add(new CommandMoveOnTileSystem(contexts));
 	}
 }

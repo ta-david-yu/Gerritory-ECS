@@ -18,15 +18,7 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is IComponentRefComponent IComponentRef)
-		{
-			CopyIComponentRefTo(IComponentRef);
-		}
-		else if (component is StateHolderComponent StateHolder)
-		{
-			CopyStateHolderTo(StateHolder);
-		}
-		else if (component is MovementInputActionComponent MovementInputAction)
+		if (component is MovementInputActionComponent MovementInputAction)
 		{
 			CopyMovementInputActionTo(MovementInputAction);
 		}
@@ -53,6 +45,14 @@ public partial class GameEntity
 		else if (component is TileOwnerComponent TileOwner)
 		{
 			CopyTileOwnerTo(TileOwner);
+		}
+		else if (component is StateHolderComponent StateHolder)
+		{
+			CopyStateHolderTo(StateHolder);
+		}
+		else if (component is IComponentRefComponent IComponentRef)
+		{
+			CopyIComponentRefTo(IComponentRef);
 		}
 		else if (component is LevelComponent Level)
 		{

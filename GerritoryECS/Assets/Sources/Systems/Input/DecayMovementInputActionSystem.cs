@@ -23,8 +23,9 @@ public sealed class DecayMovementInputActionSystem : IFixedUpdateSystem
 		foreach (var entity in m_InputActionGroup.GetEntities())
 		{
 			float decayTimer = entity.MovementInputAction.DecayTimer;
-			decayTimer -= Time.fixedDeltaTime;
-			if (decayTimer <= 0)
+
+			// The reason why we don't guard == 0 is because, we want the MovementInputAction to exist at least for one frame before it's decayed.
+			if (decayTimer < 0)
 			{
 				// If the input action has decayed, remove it!
 				entity.RemoveMovementInputAction();
@@ -32,6 +33,7 @@ public sealed class DecayMovementInputActionSystem : IFixedUpdateSystem
 			else
 			{
 				// Decrease decay timer.
+				decayTimer -= Time.fixedDeltaTime;
 				entity.ReplaceMovementInputAction(entity.MovementInputAction.Type, decayTimer);
 			}
 		}

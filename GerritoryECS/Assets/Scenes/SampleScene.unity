@@ -718,7 +718,7 @@ PrefabInstance:
     - target: {fileID: 1430065688062647575, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2951472646693310849, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
@@ -859,6 +859,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 287314104869146459, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
+        type: 3}
+      propertyPath: managedReferences[1863424855467622400].Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
+        type: 3}
+      propertyPath: managedReferences[2812320396538019846].Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
+        type: 3}
+      propertyPath: managedReferences[2812320396538019847].Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
+        type: 3}
+      propertyPath: managedReferences[2812320396538019847].Position.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
+        type: 3}
+      propertyPath: managedReferences[2812320396538019847].Position.y
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1430065688062647575, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
         type: 3}
       propertyPath: m_Name
@@ -867,7 +892,12 @@ PrefabInstance:
     - target: {fileID: 1430065688062647575, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
+        type: 3}
+      propertyPath: managedReferences[2812320429617971200].TargetPlayerId
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6637677535779970085, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
         type: 3}
@@ -942,6 +972,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: _components.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: _components.Array.data[0]
+      value: 1863424923071414274
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: _components.Array.data[1]
+      value: 1863424923071414274
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424923071414272]
+      value: Assembly-CSharp AIInputComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424923071414274]
+      value: Assembly-CSharp UserInputComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424923071414274].UserId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424923071414272].Movement
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424923071414272].TargetPlayerId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424923071414274].TargetPlayerId
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}

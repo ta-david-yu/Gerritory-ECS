@@ -7,6 +7,9 @@ public sealed class MovementFeature : Feature
 {
 	public MovementFeature(Contexts contexts)
 	{
+		Add(new CommandMoveOnTileSystem(contexts));
 		Add(new MoveOnTileSystem(contexts));
+		Add(new RemoveMoveOnTileBeginFromGameEntitiesSystem(contexts.Game));
+		Add(new RemoveMoveOnTileEndFromGameEntitiesSystem(contexts.Game));
 	}
 }

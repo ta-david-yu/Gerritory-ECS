@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using JCMG.EntitasRedux;
 
-public sealed class MoveOnTileSystem : IFixedUpdateSystem, ICleanupSystem
+public sealed class MoveOnTileSystem : IFixedUpdateSystem
 {
 	private readonly GameContext m_GameContext;
 
@@ -48,21 +48,6 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem, ICleanupSystem
 				entity.ReplaceOnTileElement(entity.OnTileElement.Id, to);
 				entity.AddMoveOnTileEnd(from, to);
 			}
-		}
-	}
-
-	public void Cleanup()
-	{
-		foreach (var entity in m_MoveOnTileBeginGroup.GetEntities())
-		{
-			// Clean up MoveOnTileBegin flag in Cleanup() in case other system needs the information
-			entity.RemoveMoveOnTileBegin();
-		}
-
-		foreach (var entity in m_MoveOnTileEndGroup.GetEntities())
-		{
-			// Clean up MoveOnTileEnd flag in Cleanup() in case other system needs the information
-			entity.RemoveMoveOnTileEnd();
 		}
 	}
 }

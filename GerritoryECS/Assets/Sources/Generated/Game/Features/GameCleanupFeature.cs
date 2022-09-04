@@ -25,6 +25,7 @@ public class GameCleanupFeature : Feature
 
 	private void AddSystems(IContext<GameEntity> context)
 	{
-
+		Add(new RemoveMoveOnTileEndFromGameEntitiesSystem(context));
+		Add(new RemoveMoveOnTileBeginFromGameEntitiesSystem(context));
 	}
 }

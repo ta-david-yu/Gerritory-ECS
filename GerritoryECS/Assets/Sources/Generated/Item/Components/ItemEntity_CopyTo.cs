@@ -18,17 +18,17 @@ public partial class ItemEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is ChangeStateOnEatenComponent ChangeStateOnEaten)
-		{
-			CopyChangeStateOnEatenTo(ChangeStateOnEaten);
-		}
-		else if (component is ItemComponent Item)
+		if (component is ItemComponent Item)
 		{
 			IsItem = true;
 		}
 		else if (component is DebugMessageComponent DebugMessage)
 		{
 			CopyDebugMessageTo(DebugMessage);
+		}
+		else if (component is ChangeStateOnEatenComponent ChangeStateOnEaten)
+		{
+			CopyChangeStateOnEatenTo(ChangeStateOnEaten);
 		}
 		#endif
 	}

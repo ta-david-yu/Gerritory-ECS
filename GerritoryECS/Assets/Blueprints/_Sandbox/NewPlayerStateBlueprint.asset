@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a19f594c9b6a6a4ba0f23731e12af56, type: 3}
   m_Name: NewPlayerStateBlueprint
   m_EditorClassIdentifier: 
-  _components: []
+  _components:
+  - rid: 1863424900822466563
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1863424900822466563
+      type: {class: StateComponent, ns: , asm: Assembly-CSharp}
+      data:
+        HolderId: 0

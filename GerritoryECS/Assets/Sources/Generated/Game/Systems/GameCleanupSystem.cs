@@ -15,12 +15,14 @@ public class GameCleanupSystems : JCMG.EntitasRedux.Systems
 	public GameCleanupSystems() : base()
 	{
 		var context = Contexts.SharedInstance.Game;
-
+		_cleanupSystems.Add(new RemoveMoveOnTileEndFromGameEntitiesSystem(context));
+		_cleanupSystems.Add(new RemoveMoveOnTileBeginFromGameEntitiesSystem(context));
 	}
 	#endif
 
 	public GameCleanupSystems(IContext<GameEntity> context) : base()
 	{
-
+		_cleanupSystems.Add(new RemoveMoveOnTileEndFromGameEntitiesSystem(context));
+		_cleanupSystems.Add(new RemoveMoveOnTileBeginFromGameEntitiesSystem(context));
 	}
 }
