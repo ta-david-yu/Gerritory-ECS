@@ -7,23 +7,23 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem
 {
 	private readonly GameContext m_GameContext;
 
-	private readonly IGroup<GameEntity> m_MoveOnTileBeginGroup;
+	private readonly IGroup<GameEntity> m_JustBeginMoveOnTileGroup;
 	private readonly IGroup<GameEntity> m_MoveOnTileGroup;
 
 	public MoveOnTileSystem(Contexts contexts)
 	{
-		m_MoveOnTileBeginGroup = contexts.Game.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.MoveOnTileBegin));
+		m_JustBeginMoveOnTileGroup = contexts.Game.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.MoveOnTileBegin).NoneOf(GameMatcher.MoveOnTile));
 		m_MoveOnTileGroup = contexts.Game.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.MoveOnTile));
 	}
 
 	public void FixedUpdate()
 	{
 		// Cache group entities first, so MoveOnTileBegin group won't move right away in the second foreach loop.
-		var moveOnTileBeginGroupCache = m_MoveOnTileBeginGroup.GetEntities();
+		var justBeginMoveOnTileGroupCache = m_JustBeginMoveOnTileGroup.GetEntities();
 		var moveOnTileGroupCache = m_MoveOnTileGroup.GetEntities();
 
-		// Add MoveOnTile component to entities that have MoveOnTileBegin component.
-		foreach (var beginMoveEntity in moveOnTileBeginGroupCache)
+		// Add MoveOnTile component to entities that just start moving (have MoveOnTileBegin component but no MoveOnTile).
+		foreach (var beginMoveEntity in justBeginMoveOnTileGroupCache)
 		{
 			beginMoveEntity.AddMoveOnTile(0, beginMoveEntity.MoveOnTileBegin.FromPosition, beginMoveEntity.MoveOnTileBegin.ToPosition);
 		}

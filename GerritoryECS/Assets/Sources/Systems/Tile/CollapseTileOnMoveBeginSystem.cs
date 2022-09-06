@@ -6,30 +6,24 @@ using JCMG.EntitasRedux;
 /// <summary>
 /// Do collapse/collapse counting logic if entities that start a movement have <see cref="TileCollapserComponent"/> + the departing tile is <see cref="CollapseOnSteppedComponent"/>.
 /// </summary>
-public class CollapseTileOnMoveBeginSystem : ReactiveSystem<GameEntity>
+public class CollapseTileOnMoveBeginSystem : IUpdateSystem
 {
 	private readonly GameContext m_GameContext;
 	private readonly TileContext m_TileContext;
 
-	public CollapseTileOnMoveBeginSystem(Contexts contexts) : base(contexts.Game)
+	private readonly IGroup<GameEntity> m_DepartingCollapserGroup;
+
+	public CollapseTileOnMoveBeginSystem(Contexts contexts)
 	{
 		m_GameContext = contexts.Game;
 		m_TileContext = contexts.Tile;
+
+		m_DepartingCollapserGroup = m_GameContext.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.TileCollapser, GameMatcher.MoveOnTileBegin));
 	}
 
-	protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
+	public void Update()
 	{
-		return context.CreateCollector(GameMatcher.MoveOnTileBegin.Added());
-	}
-
-	protected override bool Filter(GameEntity entity)
-	{
-		return entity.IsTileCollapser && entity.HasMoveOnTileBegin;
-	}
-
-	protected override void Execute(List<GameEntity> entities)
-	{
-		foreach (GameEntity collapserEntity in entities)
+		foreach (GameEntity collapserEntity in m_DepartingCollapserGroup.GetEntities())
 		{
 			Vector2Int departPosition = collapserEntity.MoveOnTileBegin.FromPosition;
 			TileEntity departTileEntity = m_TileContext.GetEntityWithTilePosition(departPosition);

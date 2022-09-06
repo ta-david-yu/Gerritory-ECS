@@ -629,12 +629,27 @@ PrefabInstance:
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: _components.Array.data[0]
-      value: 1863424923071414276
+      value: 1863424960403603461
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: _components.Array.data[1]
+      value: 1863424960403603461
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: managedReferences[1863424923071414276]
       value: Assembly-CSharp AIInputComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424960403603461]
+      value: Assembly-CSharp UserInputComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424960403603461].UserId
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
@@ -654,6 +669,11 @@ PrefabInstance:
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: managedReferences[1863424923071414276].TargetPlayerId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424960403603461].TargetPlayerId
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
@@ -757,7 +777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e91642982274e40b0825fbaea38794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Enum: 1
   m_GameConfig: {fileID: 11400000, guid: 3868ea2f75f72a4438918dda28d900b4, type: 2}
 --- !u!4 &1420798419
 Transform:

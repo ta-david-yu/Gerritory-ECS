@@ -24,6 +24,8 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 		Vector2Int levelSize = m_ConfigContext.GameConfig.value.LevelSize;
 		m_GameContext.SetLevel(levelSize);
 
+		Random.InitState(20);
+
 		for (int x = 0; x < levelSize.x; x++)
 		{
 			for (int y = 0; y < levelSize.y; y++)
@@ -33,7 +35,7 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 				tileEntity.IsEnterable = true;
 				tileEntity.IsItemHolder = true;
 
-				if (Random.Range(0.0f, 1.0f) > 0.0f)
+				if (Random.Range(0.0f, 1.0f) > 0.5f)
 				{
 					tileEntity.AddCollapseOnStepped(1);
 				}
