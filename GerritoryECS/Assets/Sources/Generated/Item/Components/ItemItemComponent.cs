@@ -9,31 +9,42 @@
 //------------------------------------------------------------------------------
 public partial class ItemEntity
 {
-	static readonly ItemComponent ItemComponent = new ItemComponent();
+	public ItemComponent Item { get { return (ItemComponent)GetComponent(ItemComponentsLookup.Item); } }
+	public bool HasItem { get { return HasComponent(ItemComponentsLookup.Item); } }
 
-	public bool IsItem
+	public void AddItem(UnityEngine.Vector2Int newTilePosition)
 	{
-		get { return HasComponent(ItemComponentsLookup.Item); }
-		set
-		{
-			if (value != IsItem)
-			{
-				var index = ItemComponentsLookup.Item;
-				if (value)
-				{
-					var componentPool = GetComponentPool(index);
-					var component = componentPool.Count > 0
-							? componentPool.Pop()
-							: ItemComponent;
+		var index = ItemComponentsLookup.Item;
+		var component = (ItemComponent)CreateComponent(index, typeof(ItemComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.TilePosition = newTilePosition;
+		#endif
+		AddComponent(index, component);
+	}
 
-					AddComponent(index, component);
-				}
-				else
-				{
-					RemoveComponent(index);
-				}
-			}
-		}
+	public void ReplaceItem(UnityEngine.Vector2Int newTilePosition)
+	{
+		var index = ItemComponentsLookup.Item;
+		var component = (ItemComponent)CreateComponent(index, typeof(ItemComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.TilePosition = newTilePosition;
+		#endif
+		ReplaceComponent(index, component);
+	}
+
+	public void CopyItemTo(ItemComponent copyComponent)
+	{
+		var index = ItemComponentsLookup.Item;
+		var component = (ItemComponent)CreateComponent(index, typeof(ItemComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.TilePosition = copyComponent.TilePosition;
+		#endif
+		ReplaceComponent(index, component);
+	}
+
+	public void RemoveItem()
+	{
+		RemoveComponent(ItemComponentsLookup.Item);
 	}
 }
 

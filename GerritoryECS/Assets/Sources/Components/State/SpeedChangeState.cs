@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Item]
-[System.Serializable]
-public sealed class ItemComponent : IComponent
+[PlayerState]
+public sealed class SpeedChangeState : IComponent
 {
-	public Vector2Int TilePosition;
+	public float SpeedMultiplier = 1.0f;
 }

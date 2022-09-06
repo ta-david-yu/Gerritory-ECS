@@ -14,26 +14,30 @@ using JCMG.EntitasRedux;
 public static class PlayerStateComponentsLookup
 {
 	public const int DebugMessage = 0;
-	public const int State = 1;
+	public const int SpeedChangeState = 1;
+	public const int State = 2;
 
-	public const int TotalComponents = 2;
+	public const int TotalComponents = 3;
 
 	public static readonly string[] ComponentNames =
 	{
 		"DebugMessage",
+		"SpeedChangeState",
 		"State"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(DebugMessageComponent),
+		typeof(SpeedChangeState),
 		typeof(StateComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(DebugMessageComponent), 0 },
-		{ typeof(StateComponent), 1 }
+		{ typeof(SpeedChangeState), 1 },
+		{ typeof(StateComponent), 2 }
 	};
 
 	/// <summary>

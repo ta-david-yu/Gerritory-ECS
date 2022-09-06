@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="EntitasRedux.Core.Plugins" Version="2.1.4" />
+		<PackageReference Include="Genesis.Plugin" Version="2.4.7" />
+	</ItemGroup>
+
+
+	<Target Name="CopyBuildArtifacts" AfterTargets="Build">
+		<ItemGroup>
+			<DataFiles Include="$(ProjectDir)$(OutDir)**\*.*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(DataFiles)" DestinationFolder="$(ProjectDir)..\..\GerritoryECS\Genesis\Plugins\%(RecursiveDir)" SkipUnchangedFiles="true" />
+	</Target>
+
+</Project>

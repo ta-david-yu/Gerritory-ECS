@@ -20,15 +20,15 @@ public partial class ItemEntity
 		#if !ENTITAS_REDUX_NO_IMPL
 		if (component is ItemComponent Item)
 		{
-			IsItem = true;
+			CopyItemTo(Item);
 		}
 		else if (component is DebugMessageComponent DebugMessage)
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
-		else if (component is ChangeStateOnEatenComponent ChangeStateOnEaten)
+		else if (component is ApplySpeedChangeOnEatenComponent ApplySpeedChangeOnEaten)
 		{
-			CopyChangeStateOnEatenTo(ChangeStateOnEaten);
+			CopyApplySpeedChangeOnEatenTo(ApplySpeedChangeOnEaten);
 		}
 		#endif
 	}

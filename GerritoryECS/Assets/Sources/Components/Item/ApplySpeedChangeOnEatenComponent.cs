@@ -5,7 +5,7 @@ using UnityEngine;
 
 [Item]
 [System.Serializable]
-public sealed class ItemComponent : IComponent
+public sealed class ApplySpeedChangeOnEatenComponent : IComponent
 {
-	public Vector2Int TilePosition;
+	public float SpeedMultiplier = 1;
 }

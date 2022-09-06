@@ -29,7 +29,7 @@ using System.Linq;
 using EntitasRedux.Core.Plugins;
 using Genesis.Plugin;
 
-namespace BlueprintHelperClassGeneratorPlugin
+namespace EntitasReduxCodeGeneratorPlugin.Blueprint.CodeGenerators
 {
 	internal sealed class BlueprintHelperClassGenerator : ICodeGenerator
 	{
