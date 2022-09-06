@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Item]
+[Game]
 [System.Serializable]
-public sealed class OnTileItemComponent : IComponent
+public sealed class ItemEaterComponent : IComponent
 {
 	[PrimaryEntityIndex]
-	public Vector2Int Position;
+	public int Id;
 }

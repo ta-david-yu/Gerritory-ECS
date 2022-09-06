@@ -18,7 +18,11 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is MovementInputActionComponent MovementInputAction)
+		if (component is ItemEaterComponent ItemEater)
+		{
+			CopyItemEaterTo(ItemEater);
+		}
+		else if (component is MovementInputActionComponent MovementInputAction)
 		{
 			CopyMovementInputActionTo(MovementInputAction);
 		}

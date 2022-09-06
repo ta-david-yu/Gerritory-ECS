@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
 			.Add(new InputFeature(contexts))
 			.Add(new MovementFeature(contexts))
 			.Add(new LevelFeature(contexts))
+			.Add(new ItemFeature(contexts))
 			.Add(new GameEventSystems(contexts));
 	}
 

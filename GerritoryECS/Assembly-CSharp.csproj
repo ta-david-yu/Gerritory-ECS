@@ -172,7 +172,6 @@
     <Compile Include="Assets\Sources\Components\OnTileElement\OnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameContext.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateContext.cs" />
-    <Compile Include="Assets\Sources\Generated\Item\Components\ItemItemComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\TilePositionComponent.cs" />
     <Compile Include="Assets\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Sources\Features\OnDrawGizmosDebugFeature.cs" />
@@ -235,6 +234,13 @@
     <Compile Include="Assets\Sources\Components\State\SpeedChangeState.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateSpeedChangeStateComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Item\EatItemOnMoveEndSystem.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\ItemEaterComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Item\EatenComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemEatenComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameItemEaterComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemOnTileItemComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Systems\RemoveEatenFromItemEntitiesSystem.cs" />
+    <Compile Include="Assets\Sources\Features\ItemFeature.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

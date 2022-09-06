@@ -18,9 +18,13 @@ public partial class ItemEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is ItemComponent Item)
+		if (component is EatenComponent Eaten)
 		{
-			CopyItemTo(Item);
+			CopyEatenTo(Eaten);
+		}
+		else if (component is OnTileItemComponent OnTileItem)
+		{
+			CopyOnTileItemTo(OnTileItem);
 		}
 		else if (component is DebugMessageComponent DebugMessage)
 		{

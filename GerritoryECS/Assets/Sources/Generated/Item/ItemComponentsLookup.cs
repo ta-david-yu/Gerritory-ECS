@@ -15,29 +15,33 @@ public static class ItemComponentsLookup
 {
 	public const int ApplySpeedChangeOnEaten = 0;
 	public const int DebugMessage = 1;
-	public const int Item = 2;
+	public const int Eaten = 2;
+	public const int OnTileItem = 3;
 
-	public const int TotalComponents = 3;
+	public const int TotalComponents = 4;
 
 	public static readonly string[] ComponentNames =
 	{
 		"ApplySpeedChangeOnEaten",
 		"DebugMessage",
-		"Item"
+		"Eaten",
+		"OnTileItem"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(ApplySpeedChangeOnEatenComponent),
 		typeof(DebugMessageComponent),
-		typeof(ItemComponent)
+		typeof(EatenComponent),
+		typeof(OnTileItemComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(ApplySpeedChangeOnEatenComponent), 0 },
 		{ typeof(DebugMessageComponent), 1 },
-		{ typeof(ItemComponent), 2 }
+		{ typeof(EatenComponent), 2 },
+		{ typeof(OnTileItemComponent), 3 }
 	};
 
 	/// <summary>

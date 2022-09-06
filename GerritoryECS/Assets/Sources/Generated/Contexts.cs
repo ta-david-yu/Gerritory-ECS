@@ -107,9 +107,12 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 //------------------------------------------------------------------------------
 public partial class Contexts
 {
+	public const string Eaten = "Eaten";
+	public const string ItemEater = "ItemEater";
 	public const string MoveOnTile = "MoveOnTile";
 	public const string OnTileElementId = "OnTileElementId";
 	public const string OnTileElementPosition = "OnTileElementPosition";
+	public const string OnTileItem = "OnTileItem";
 	public const string Player = "Player";
 	public const string State = "State";
 	public const string StateHolder = "StateHolder";
@@ -120,6 +123,16 @@ public partial class Contexts
 	[JCMG.EntitasRedux.PostConstructor]
 	public void InitializeEntityIndices()
 	{
+		Item.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<ItemEntity, int>(
+			Eaten,
+			Item.GetGroup(ItemMatcher.Eaten),
+			(e, c) => ((EatenComponent)c).EaterId));
+
+		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
+			ItemEater,
+			Game.GetGroup(GameMatcher.ItemEater),
+			(e, c) => ((ItemEaterComponent)c).Id));
+
 		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>(
 			MoveOnTile,
 			Game.GetGroup(GameMatcher.MoveOnTile),
@@ -134,6 +147,11 @@ public partial class Contexts
 			OnTileElementPosition,
 			Game.GetGroup(GameMatcher.OnTileElement),
 			(e, c) => ((OnTileElementComponent)c).Position));
+
+		Item.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<ItemEntity, UnityEngine.Vector2Int>(
+			OnTileItem,
+			Item.GetGroup(ItemMatcher.OnTileItem),
+			(e, c) => ((OnTileItemComponent)c).Position));
 
 		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
 			Player,
@@ -169,6 +187,16 @@ public partial class Contexts
 
 public static class ContextsExtensions
 {
+	public static System.Collections.Generic.HashSet<ItemEntity> GetEntitiesWithEaten(this ItemContext context, int EaterId)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<ItemEntity, int>)context.GetEntityIndex(Contexts.Eaten)).GetEntities(EaterId);
+	}
+
+	public static GameEntity GetEntityWithItemEater(this GameContext context, int Id)
+	{
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.ItemEater)).GetEntity(Id);
+	}
+
 	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithMoveOnTile(this GameContext context, UnityEngine.Vector2Int ToPosition)
 	{
 		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.MoveOnTile)).GetEntities(ToPosition);
@@ -182,6 +210,11 @@ public static class ContextsExtensions
 	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithOnTileElementPosition(this GameContext context, UnityEngine.Vector2Int Position)
 	{
 		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTileElementPosition)).GetEntities(Position);
+	}
+
+	public static ItemEntity GetEntityWithOnTileItem(this ItemContext context, UnityEngine.Vector2Int Position)
+	{
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ItemEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTileItem)).GetEntity(Position);
 	}
 
 	public static GameEntity GetEntityWithPlayer(this GameContext context, int Id)
