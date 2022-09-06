@@ -35,11 +35,15 @@ public sealed class EatItemOnMoveEndSystem : IUpdateSystem
 
 			if (itemOnPosition.HasEaten)
 			{
-				Debug.LogWarning($"Normally an item that is eaten shouldn't be still on the tile {enterPosition}. Something is wrong here!");
+				Debug.LogWarning($"Normally an item that is marked as eaten shouldn't be on the tile {enterPosition}. Something is wrong here!");
 				continue;
 			}
 
-			// Eat the item!
+			// TODO: Check more logic if this item is actually edible to the item eater
+			// ...
+
+			// Mark this item as eaten,
+			// it will later be processed by its respective reactive system to actually apply the item effect on the eater.
 			itemOnPosition.AddEaten(eaterEntity.ItemEater.Id);
 		}
 	}
