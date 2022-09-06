@@ -64,14 +64,10 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 			}
 
 			HashSet<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTileElementPosition(toPosition);
-
-			Func<GameEntity, bool> isEntityOccupyingSpot = (GameEntity entity) => { return !entity.HasMoveOnTile; };
-			if (onTileEntities.Any(entity => isEntityOccupyingSpot(entity)))
+			bool isEntityOccupyingTheGiveTile = onTileEntities.Any(entity => !entity.HasMoveOnTile);
+			if (isEntityOccupyingTheGiveTile)
 			{
 				// There are already more than 1 OnTileElement entity on the given tile position & not moving away.
-				// Note that the first frame of the movement (MoveOnTileBegin) is also considered to be still occupying the departure tile,
-				// to avoid having two OnTileElement entities on the same tile at the same time.
-				// (One entering a tile right after another left the tile in the same fixed update frame)
 				continue;
 			}
 
