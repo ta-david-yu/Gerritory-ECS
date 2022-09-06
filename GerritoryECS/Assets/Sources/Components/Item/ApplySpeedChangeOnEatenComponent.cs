@@ -5,7 +5,8 @@ using UnityEngine;
 
 [Item]
 [System.Serializable]
-public sealed class ApplySpeedChangeOnEatenComponent : IComponent
+public sealed class ApplySpeedChangeStateOnEatenComponent : IComponent
 {
+	public float Duration = 3;
 	public float SpeedMultiplier = 1;
 }

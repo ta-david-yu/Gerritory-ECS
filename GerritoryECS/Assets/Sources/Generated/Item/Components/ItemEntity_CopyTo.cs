@@ -18,21 +18,21 @@ public partial class ItemEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is EatenComponent Eaten)
-		{
-			CopyEatenTo(Eaten);
-		}
-		else if (component is OnTileItemComponent OnTileItem)
+		if (component is OnTileItemComponent OnTileItem)
 		{
 			CopyOnTileItemTo(OnTileItem);
+		}
+		else if (component is EatenComponent Eaten)
+		{
+			CopyEatenTo(Eaten);
 		}
 		else if (component is DebugMessageComponent DebugMessage)
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
-		else if (component is ApplySpeedChangeOnEatenComponent ApplySpeedChangeOnEaten)
+		else if (component is ApplySpeedChangeStateOnEatenComponent ApplySpeedChangeStateOnEaten)
 		{
-			CopyApplySpeedChangeOnEatenTo(ApplySpeedChangeOnEaten);
+			CopyApplySpeedChangeStateOnEatenTo(ApplySpeedChangeStateOnEaten);
 		}
 		#endif
 	}

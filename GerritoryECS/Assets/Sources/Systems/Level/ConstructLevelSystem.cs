@@ -10,12 +10,14 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 {
 	private readonly GameContext m_GameContext;
 	private readonly TileContext m_TileContext;
+	private readonly ItemContext m_ItemContext;
 	private readonly ConfigContext m_ConfigContext;
 
 	public ConstructLevelSystem(Contexts contexts)
 	{
 		m_GameContext = contexts.Game;
 		m_TileContext = contexts.Tile;
+		m_ItemContext = contexts.Item;
 		m_ConfigContext = contexts.Config;
 	}
 
@@ -30,8 +32,10 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 		{
 			for (int y = 0; y < levelSize.y; y++)
 			{
+				Vector2Int position = new Vector2Int(x, y);
+
 				var tileEntity = m_TileContext.CreateEntity();
-				tileEntity.AddTilePosition(new Vector2Int(x, y));
+				tileEntity.AddTilePosition(position);
 				tileEntity.IsEnterable = true;
 				tileEntity.IsItemHolder = true;
 
@@ -42,6 +46,13 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 				else
 				{
 					tileEntity.AddOwnable(false, -1);
+				}
+
+				if (Random.Range(0.0f, 1.0f) > 0.8f)
+				{
+					var itemEntity = m_ItemContext.CreateEntity();
+					itemEntity.AddOnTileItem(position);
+					itemEntity.AddApplySpeedChangeStateOnEaten(3.0f, 2.0f);
 				}
 			}
 		}

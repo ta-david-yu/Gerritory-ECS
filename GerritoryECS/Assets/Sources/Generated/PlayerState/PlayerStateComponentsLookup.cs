@@ -16,28 +16,32 @@ public static class PlayerStateComponentsLookup
 	public const int DebugMessage = 0;
 	public const int SpeedChangeState = 1;
 	public const int State = 2;
+	public const int StateTimer = 3;
 
-	public const int TotalComponents = 3;
+	public const int TotalComponents = 4;
 
 	public static readonly string[] ComponentNames =
 	{
 		"DebugMessage",
 		"SpeedChangeState",
-		"State"
+		"State",
+		"StateTimer"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(DebugMessageComponent),
 		typeof(SpeedChangeState),
-		typeof(StateComponent)
+		typeof(StateComponent),
+		typeof(StateTimerComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(DebugMessageComponent), 0 },
 		{ typeof(SpeedChangeState), 1 },
-		{ typeof(StateComponent), 2 }
+		{ typeof(StateComponent), 2 },
+		{ typeof(StateTimerComponent), 3 }
 	};
 
 	/// <summary>

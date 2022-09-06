@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: SlowdownPowerup
   m_EditorClassIdentifier: 
   _components:
-  - rid: 1863424960403603458
   - rid: 1863424960403603459
+  - rid: 1863424971442487296
   references:
     version: 2
     RefIds:
-    - rid: 1863424960403603458
-      type: {class: ApplySpeedChangeOnEatenComponent, ns: , asm: Assembly-CSharp}
-      data:
-        SpeedMultiplier: 0.5
     - rid: 1863424960403603459
       type: {class: OnTileItemComponent, ns: , asm: Assembly-CSharp}
       data:
         Position: {x: 0, y: 0}
+    - rid: 1863424971442487296
+      type: {class: ApplySpeedChangeStateOnEatenComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Duration: 3
+        SpeedMultiplier: 0.5

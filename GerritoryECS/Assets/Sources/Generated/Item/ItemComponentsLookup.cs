@@ -13,7 +13,7 @@ using JCMG.EntitasRedux;
 
 public static class ItemComponentsLookup
 {
-	public const int ApplySpeedChangeOnEaten = 0;
+	public const int ApplySpeedChangeStateOnEaten = 0;
 	public const int DebugMessage = 1;
 	public const int Eaten = 2;
 	public const int OnTileItem = 3;
@@ -22,7 +22,7 @@ public static class ItemComponentsLookup
 
 	public static readonly string[] ComponentNames =
 	{
-		"ApplySpeedChangeOnEaten",
+		"ApplySpeedChangeStateOnEaten",
 		"DebugMessage",
 		"Eaten",
 		"OnTileItem"
@@ -30,7 +30,7 @@ public static class ItemComponentsLookup
 
 	public static readonly System.Type[] ComponentTypes =
 	{
-		typeof(ApplySpeedChangeOnEatenComponent),
+		typeof(ApplySpeedChangeStateOnEatenComponent),
 		typeof(DebugMessageComponent),
 		typeof(EatenComponent),
 		typeof(OnTileItemComponent)
@@ -38,7 +38,7 @@ public static class ItemComponentsLookup
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(ApplySpeedChangeOnEatenComponent), 0 },
+		{ typeof(ApplySpeedChangeStateOnEatenComponent), 0 },
 		{ typeof(DebugMessageComponent), 1 },
 		{ typeof(EatenComponent), 2 },
 		{ typeof(OnTileItemComponent), 3 }

@@ -10,7 +10,7 @@ public sealed class ItemFeature : Feature
 		Add(new EatItemOnMoveEndSystem(contexts));
 
 		// Apply item effect systems
-		// ...
+		Add(new ApplySpeedChangeStateOnItemEatenSystem(contexts));
 
 		// Generated cleanup systems
 		Add(new RemoveEatenFromItemEntitiesSystem(contexts.Item));
