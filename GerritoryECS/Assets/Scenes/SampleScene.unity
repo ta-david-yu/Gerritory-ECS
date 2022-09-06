@@ -902,12 +902,12 @@ PrefabInstance:
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: _components.Array.data[0]
-      value: 1863424923071414277
+      value: 1863424960403603456
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: _components.Array.data[1]
-      value: 1863424923071414277
+      value: 1863424960403603456
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
@@ -926,7 +926,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
+      propertyPath: managedReferences[1863424960403603456]
+      value: Assembly-CSharp UserInputComponent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
       propertyPath: managedReferences[1863424923071414274].UserId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424960403603456].UserId
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
@@ -952,6 +962,11 @@ PrefabInstance:
     - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: managedReferences[1863424923071414277].TargetPlayerId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929449301945637596, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863424960403603456].TargetPlayerId
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6637677535779970085, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,

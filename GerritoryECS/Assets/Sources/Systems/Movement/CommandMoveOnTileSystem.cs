@@ -65,7 +65,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 
 			HashSet<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTileElementPosition(toPosition);
 
-			Func<GameEntity, bool> isEntityOccupyingSpot = (GameEntity entity) => { return !entity.HasMoveOnTile || entity.HasMoveOnTileBegin; };
+			Func<GameEntity, bool> isEntityOccupyingSpot = (GameEntity entity) => { return !entity.HasMoveOnTile; };
 			if (onTileEntities.Any(entity => isEntityOccupyingSpot(entity)))
 			{
 				// There are already more than 1 OnTileElement entity on the given tile position & not moving away.
@@ -85,7 +85,6 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 			// Consume movement input action
 			entity.RemoveMovementInputAction();
 			entity.AddMoveOnTileBegin(fromPosition, toPosition);
-			entity.AddMoveOnTile(0, fromPosition, toPosition);
 		}
 	}
 }

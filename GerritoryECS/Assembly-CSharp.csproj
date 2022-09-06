@@ -82,6 +82,7 @@
     <Compile Include="Assets\Sources\Generated\Game\GameAttribute.cs" />
     <Compile Include="Assets\Sources\Systems\Input\DecayMovementInputActionSystem.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MoveOnTileBeginComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Systems\RemoveMoveOnTileEndFromGameEntitiesSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputAttribute.cs" />
     <Compile Include="Assets\Sources\Systems\Level\CollapseTileOnMoveBeginSystem.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateBlueprintBehaviour.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileItemHolderComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Movement\CommandMoveOnTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Features\ItemCleanupFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Systems\RemoveMoveOnTileBeginFromGameEntitiesSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileComponent.cs" />
     <Compile Include="Assets\Sources\Components\State\StateComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameTileCollapserComponent.cs" />
@@ -230,8 +232,6 @@
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Systems\RemoveMoveOnTileEndFromGameEntitiesSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Systems\RemoveMoveOnTileBeginFromGameEntitiesSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
