@@ -21,32 +21,26 @@ public class OnDrawGizmosTileSystem : IUpdateSystem
 	{
 		foreach (var tileEntity in m_TileGroup.GetEntities())
 		{
-			if (!tileEntity.IsEnterable)
+			if (tileEntity.HasOwnable)
 			{
-				Gizmos.color = Color.black;
-			}
-			else
-			{
-				if (tileEntity.HasOwnable)
+				if (tileEntity.Ownable.HasOwner)
 				{
-					if (tileEntity.Ownable.HasOwner)
-					{
-						int ownerId = tileEntity.Ownable.OwnerId;
-						Gizmos.color = m_TileOwnerColors[ownerId % m_TileOwnerColors.Length];
-					}
-					else
-					{
-						Gizmos.color = Color.white;
-					}
+					int ownerId = tileEntity.Ownable.OwnerId;
+					Gizmos.color = m_TileOwnerColors[ownerId % m_TileOwnerColors.Length];
 				}
 				else
 				{
-					Gizmos.color = Color.grey;
+					Gizmos.color = Color.white;
 				}
+			}
+			else
+			{
+				Gizmos.color = Color.grey;
 			}
 
 			Vector3 worldPos = GameConstants.TilePositionToWorldPosition(tileEntity.TilePosition.Value);
-			Gizmos.DrawCube(worldPos, Vector3.one * 0.2f);
+			Vector3 size = tileEntity.IsEnterable ? new Vector3(0.8f, 0.2f, 0.8f) : Vector3.one * 0.2f;
+			Gizmos.DrawCube(worldPos, size);
 		}
 	}
 }
