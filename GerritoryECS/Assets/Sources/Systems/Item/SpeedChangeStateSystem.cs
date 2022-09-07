@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Group event-based system that modifies <see cref="StateHolder"/>'s speed on <see cref="SpeedChangeState"/> creation & destruction.
+/// </summary>
 public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 {
 	private readonly GameContext m_GameContext;
