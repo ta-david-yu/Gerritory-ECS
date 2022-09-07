@@ -65,7 +65,8 @@ public class GameController : MonoBehaviour
 			.Add(new MovementFeature(contexts))
 			.Add(new TileFeature(contexts))
 			.Add(new ItemFeature(contexts))
-			.Add(new GameEventSystems(contexts));
+			.Add(new GameEventSystems(contexts))
+			.Add(new GameCleanupSystems());
 	}
 
 	private static Systems createOnGUIDebugSystems(Contexts contexts)

@@ -9,9 +9,5 @@ public sealed class MovementFeature : Feature
 	{
 		Add(new CommandMoveOnTileSystem(contexts));
 		Add(new MoveOnTileSystem(contexts));
-
-		// Generated cleanup systems
-		Add(new RemoveMoveOnTileBeginFromGameEntitiesSystem(contexts.Game));
-		Add(new RemoveMoveOnTileEndFromGameEntitiesSystem(contexts.Game));
 	}
 }
