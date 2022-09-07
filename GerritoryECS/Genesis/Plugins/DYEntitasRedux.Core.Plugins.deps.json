@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "DYEntitasRedux.Core.Plugins/1.0.0": {
         "dependencies": {
+          "DYEntitasRedux.Core": "1.0.0",
           "EntitasRedux.Core.Plugins": "2.1.4",
           "Genesis.Plugin": "2.4.7"
         },
@@ -1193,6 +1194,14 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
         }
+      },
+      "DYEntitasRedux.Core/1.0.0": {
+        "dependencies": {
+          "EntitasRedux.Core": "2.1.4"
+        },
+        "runtime": {
+          "DYEntitasRedux.Core.dll": {}
+        }
       }
     }
   },
@@ -1929,6 +1938,11 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "DYEntitasRedux.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
