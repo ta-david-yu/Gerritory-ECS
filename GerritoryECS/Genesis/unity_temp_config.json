@@ -14,7 +14,7 @@
     },
     {
       "key": "Genesis.Plugins",
-      "value": "EntitasRedux.Core.Plugins, EntitasRedux.Unity.Blueprint.Plugins, EntitasRedux.Unity.VisualDebugging.Plugins, EntitasReduxCodeGeneratorPlugin, Genesis.Core.Plugin, Genesis.Unity.Factory.Plugin"
+      "value": "DYEntitasRedux.Core.Plugins, EntitasRedux.Core.Plugins, EntitasRedux.Unity.Blueprint.Plugins, EntitasRedux.Unity.VisualDebugging.Plugins, Genesis.Core.Plugin, Genesis.Unity.Factory.Plugin"
     },
     {
       "key": "Genesis.PreProcessors",
