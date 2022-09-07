@@ -4,38 +4,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class CreateSpeedChangeStateOnItemEatenSystem : ReactiveSystem<ItemEntity>
+public sealed class CreateSpeedChangeStateOnItemEatenSystem : IFixedUpdateSystem
 {
 	private readonly GameContext m_GameContext;
-	private readonly ItemContext m_ItemContex;
+	private readonly ItemContext m_ItemContext;
 	private readonly PlayerStateContext m_PlayerStateContext;
+
+	private readonly IGroup<ItemEntity> m_EatenSpeedChangePowerupGroup;
 
 	private readonly PlayerStateEntity[] m_PreallocatedPlayerStateEntitiesToBeDestroyed = new PlayerStateEntity[4];
 
-	public CreateSpeedChangeStateOnItemEatenSystem(Contexts contexts) : base(contexts.Item)
+	public CreateSpeedChangeStateOnItemEatenSystem(Contexts contexts)
 	{
 		m_GameContext = contexts.Game;
-		m_ItemContex = contexts.Item;
+		m_ItemContext = contexts.Item;
 		m_PlayerStateContext = contexts.PlayerState;
+		m_EatenSpeedChangePowerupGroup = m_ItemContext.GetGroup(ItemMatcher.AllOf(ItemMatcher.OnTileItem, ItemMatcher.ApplySpeedChangeStateOnEaten, ItemMatcher.Eaten));
 	}
 
-	protected override ICollector<ItemEntity> GetTrigger(IContext<ItemEntity> context)
+	public void FixedUpdate()
 	{
-		return context.CreateCollector(ItemMatcher.Eaten.Added());
-	}
-
-	protected override bool Filter(ItemEntity entity)
-	{
-		return entity.HasOnTileItem && entity.HasApplySpeedChangeStateOnEaten && entity.HasEaten;
-	}
-
-	protected override void Execute(List<ItemEntity> entities)
-	{
-		// Create SpeedChangeState entity for the target state holder.
-		foreach (var powerupEntity in entities)
+		foreach (var powerupEntity in m_EatenSpeedChangePowerupGroup.GetEntities())
 		{
 			GameEntity eaterEntity = m_GameContext.GetEntityWithItemEater(powerupEntity.Eaten.EaterId);
-
 			if (!eaterEntity.HasStateHolder)
 			{
 				// The eater doesn't hold a state, skip it.
@@ -43,7 +34,6 @@ public sealed class CreateSpeedChangeStateOnItemEatenSystem : ReactiveSystem<Ite
 			}
 
 			int stateHolderId = eaterEntity.StateHolder.Id;
-
 			var playerStateEntitiesSet = m_PlayerStateContext.GetEntitiesWithState(stateHolderId);
 			if (playerStateEntitiesSet.Count > 1)
 			{
@@ -66,6 +56,9 @@ public sealed class CreateSpeedChangeStateOnItemEatenSystem : ReactiveSystem<Ite
 			newStateEntity.AddState(stateHolderId);
 			newStateEntity.AddStateTimer(powerupEntity.ApplySpeedChangeStateOnEaten.Duration);
 			newStateEntity.AddSpeedChangeState(powerupEntity.ApplySpeedChangeStateOnEaten.SpeedMultiplier);
+
+			// Consume & destroy the item.
+			powerupEntity.Destroy();
 		}
 	}
 }

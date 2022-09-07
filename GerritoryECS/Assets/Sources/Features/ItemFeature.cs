@@ -6,12 +6,14 @@ public sealed class ItemFeature : Feature
 {
 	public ItemFeature(Contexts contexts)
 	{
-		// Core item related systems
+		// Core item interaction systems
 		Add(new EatItemOnMoveEndSystem(contexts));
 		Add(new UpdateStateTimerSystem(contexts));
 
-		// Apply item effect systems
+		// Create powerup item states systems
 		Add(new CreateSpeedChangeStateOnItemEatenSystem(contexts));
+		
+		// State effects systems
 		Add(new SpeedChangeStateSystem(contexts));
 
 		// Generated cleanup systems

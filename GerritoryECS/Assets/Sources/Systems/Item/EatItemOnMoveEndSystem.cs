@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class EatItemOnMoveEndSystem : IUpdateSystem
+public sealed class EatItemOnMoveEndSystem : IFixedUpdateSystem
 {
 	private readonly GameContext m_GameContext;
 	private readonly TileContext m_TileContext;
@@ -20,7 +20,7 @@ public sealed class EatItemOnMoveEndSystem : IUpdateSystem
 		m_EaterMoveOnTileEndGroup = contexts.Game.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.ItemEater, GameMatcher.MoveOnTileEnd));
 	}
 
-	public void Update()
+	public void FixedUpdate()
 	{
 		foreach (var eaterEntity in m_EaterMoveOnTileEndGroup)
 		{
