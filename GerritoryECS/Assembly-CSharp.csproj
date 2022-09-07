@@ -102,6 +102,7 @@
     <Compile Include="Assets\Sources\Generated\Events\GameEventSystems.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemEatenComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Systems\PlayerStateCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Components\PlayerState\StateTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\CreateEntityFromGameBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateEntity.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Systems\RemoveEatenFromItemEntitiesSystem.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Assets\Sources\Components\Input\AIInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\_Sandbox\DebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateStateTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemOnTileItemComponent.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\OnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameContext.cs" />
@@ -197,7 +199,7 @@
     <Compile Include="Assets\Sources\Generated\Game\Components\GamePlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileEndAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Item\ApplySpeedChangeStateOnItemEatenSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Item\CreateSpeedChangeStateOnItemEatenSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileItemHolderComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Movement\CommandMoveOnTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Features\ItemCleanupFeature.cs" />
@@ -220,10 +222,12 @@
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\EnterableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Feature.cs" />
+    <Compile Include="Assets\Sources\Systems\PlayerState\UpdateStateTimerSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MovementInputActionComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputComponentsLookup.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemApplySpeedChangeStateOnEatenComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\OwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprintBehaviour.cs" />
@@ -241,10 +245,7 @@
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Components\PlayerState\StateTimerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateStateTimerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Item\Components\ItemApplySpeedChangeStateOnEatenComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\PlayerState\UpdateStateTimerSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Item\SpeedChangeStateSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

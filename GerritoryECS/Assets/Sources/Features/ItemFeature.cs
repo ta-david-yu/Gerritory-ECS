@@ -11,7 +11,8 @@ public sealed class ItemFeature : Feature
 		Add(new UpdateStateTimerSystem(contexts));
 
 		// Apply item effect systems
-		Add(new ApplySpeedChangeStateOnItemEatenSystem(contexts));
+		Add(new CreateSpeedChangeStateOnItemEatenSystem(contexts));
+		Add(new SpeedChangeStateSystem(contexts));
 
 		// Generated cleanup systems
 		Add(new RemoveEatenFromItemEntitiesSystem(contexts.Item));
