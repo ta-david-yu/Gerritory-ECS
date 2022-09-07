@@ -9,6 +9,10 @@
 		<PackageReference Include="Genesis.Plugin" Version="2.4.7" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\DYEntitasRedux.Core\DYEntitasRedux.Core.csproj" />
+	</ItemGroup>
+
 
 	<Target Name="CopyBuildArtifacts" AfterTargets="Build">
 		<ItemGroup>

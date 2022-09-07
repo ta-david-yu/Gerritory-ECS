@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DYEntitasRedux.Core.Plugins", "DYEntitasRedux.Core.Plugins\DYEntitasRedux.Core.Plugins.csproj", "{E93B2AF3-D188-4C73-858E-01A3E539B065}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1ECD78B7-8593-453C-BB78-703EF0440BD0} = {1ECD78B7-8593-453C-BB78-703EF0440BD0}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DYEntitasRedux.Core", "DYEntitasRedux.Core\DYEntitasRedux.Core.csproj", "{1ECD78B7-8593-453C-BB78-703EF0440BD0}"
 EndProject
