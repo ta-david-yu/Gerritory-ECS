@@ -25,6 +25,6 @@ public class ItemCleanupFeature : Feature
 
 	private void AddSystems(IContext<ItemEntity> context)
 	{
-		Add(new RemoveEatenFromItemEntitiesSystem(context));
+
 	}
 }

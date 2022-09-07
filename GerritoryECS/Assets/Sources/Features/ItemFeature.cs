@@ -17,6 +17,6 @@ public sealed class ItemFeature : Feature
 		Add(new SpeedChangeStateSystem(contexts));
 
 		// Generated cleanup systems
-		Add(new RemoveEatenFromItemEntitiesSystem(contexts.Item));
+		// ...
 	}
 }

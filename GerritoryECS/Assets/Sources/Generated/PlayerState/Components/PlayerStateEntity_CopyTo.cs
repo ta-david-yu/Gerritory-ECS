@@ -18,11 +18,7 @@ public partial class PlayerStateEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is StateTimerComponent StateTimer)
-		{
-			CopyStateTimerTo(StateTimer);
-		}
-		else if (component is StateComponent State)
+		if (component is StateComponent State)
 		{
 			CopyStateTo(State);
 		}
@@ -33,6 +29,10 @@ public partial class PlayerStateEntity
 		else if (component is SpeedChangeState SpeedChangeState)
 		{
 			CopySpeedChangeStateTo(SpeedChangeState);
+		}
+		else if (component is StateTimerComponent StateTimer)
+		{
+			CopyStateTimerTo(StateTimer);
 		}
 		#endif
 	}

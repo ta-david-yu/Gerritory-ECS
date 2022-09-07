@@ -15,12 +15,12 @@ public class ItemCleanupSystems : JCMG.EntitasRedux.Systems
 	public ItemCleanupSystems() : base()
 	{
 		var context = Contexts.SharedInstance.Item;
-		_cleanupSystems.Add(new RemoveEatenFromItemEntitiesSystem(context));
+
 	}
 	#endif
 
 	public ItemCleanupSystems(IContext<ItemEntity> context) : base()
 	{
-		_cleanupSystems.Add(new RemoveEatenFromItemEntitiesSystem(context));
+
 	}
 }
