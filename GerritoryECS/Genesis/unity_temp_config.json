@@ -22,7 +22,7 @@
     },
     {
       "key": "Genesis.DataProviders",
-      "value": "DYEntitasRedux.Core.Plugins.ConsumableComponentDataProvider, EntitasRedux.Core.Plugins.ComponentDataProvider, EntitasRedux.Core.Plugins.ContextDataProvider, EntitasRedux.Core.Plugins.EntityIndexDataProvider, Genesis.Unity.Factory.Plugin.ScriptableFactoryDataProvider"
+      "value": "EntitasRedux.Core.Plugins.ComponentDataProvider, EntitasRedux.Core.Plugins.ContextDataProvider, EntitasRedux.Core.Plugins.EntityIndexDataProvider, Genesis.Unity.Factory.Plugin.ScriptableFactoryDataProvider"
     },
     {
       "key": "Genesis.CodeGenerators",
@@ -38,7 +38,7 @@
     },
     {
       "key": "Genesis.AllDataProviders",
-      "value": "DYEntitasRedux.Core.Plugins.ConsumableComponentDataProvider, EntitasRedux.Core.Plugins.ComponentDataProvider, EntitasRedux.Core.Plugins.ContextDataProvider, EntitasRedux.Core.Plugins.EntityIndexDataProvider, Genesis.Unity.Factory.Plugin.ScriptableFactoryDataProvider"
+      "value": "EntitasRedux.Core.Plugins.ComponentDataProvider, EntitasRedux.Core.Plugins.ContextDataProvider, EntitasRedux.Core.Plugins.EntityIndexDataProvider, Genesis.Unity.Factory.Plugin.ScriptableFactoryDataProvider"
     },
     {
       "key": "Genesis.AllCodeGenerators",
