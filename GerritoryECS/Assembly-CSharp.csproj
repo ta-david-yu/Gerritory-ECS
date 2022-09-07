@@ -246,6 +246,7 @@
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Item\SpeedChangeStateSystem.cs" />
+    <Compile Include="Assets\Sources\Features\TileFeature.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
