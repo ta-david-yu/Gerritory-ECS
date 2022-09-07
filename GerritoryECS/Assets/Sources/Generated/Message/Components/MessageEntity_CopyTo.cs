@@ -26,13 +26,13 @@ public partial class MessageEntity
 		{
 			IsConsumed = true;
 		}
-		else if (component is LeaveTileComponent LeaveTile)
+		else if (component is OnTileElementLeaveTileComponent OnTileElementLeaveTile)
 		{
-			CopyLeaveTileTo(LeaveTile);
+			CopyOnTileElementLeaveTileTo(OnTileElementLeaveTile);
 		}
-		else if (component is EnterTileComponent EnterTile)
+		else if (component is OnTileElementEnterTileComponent OnTileElementEnterTile)
 		{
-			CopyEnterTileTo(EnterTile);
+			CopyOnTileElementEnterTileTo(OnTileElementEnterTile);
 		}
 		#endif
 	}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Message]
-public sealed class LeaveTileComponent : IComponent
+public sealed class OnTileElementLeaveTileComponent : IComponent
 {
 	public int OnTileElementId;
 	

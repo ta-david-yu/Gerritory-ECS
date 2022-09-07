@@ -86,7 +86,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 
 			// Emit global LeaveTile message.
 			var leaveTileMessageEntity = m_MessageContext.CreateFixedUpdateMessageEntity();
-			leaveTileMessageEntity.ReplaceLeaveTile(entity.OnTileElement.Id, fromPosition);
+			leaveTileMessageEntity.ReplaceOnTileElementLeaveTile(entity.OnTileElement.Id, fromPosition);
 		}
 	}
 }

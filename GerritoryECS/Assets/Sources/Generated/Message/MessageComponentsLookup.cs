@@ -15,8 +15,8 @@ public static class MessageComponentsLookup
 {
 	public const int Consumed = 0;
 	public const int ConsumeInFixedUpdate = 1;
-	public const int EnterTile = 2;
-	public const int LeaveTile = 3;
+	public const int OnTileElementEnterTile = 2;
+	public const int OnTileElementLeaveTile = 3;
 
 	public const int TotalComponents = 4;
 
@@ -24,24 +24,24 @@ public static class MessageComponentsLookup
 	{
 		"Consumed",
 		"ConsumeInFixedUpdate",
-		"EnterTile",
-		"LeaveTile"
+		"OnTileElementEnterTile",
+		"OnTileElementLeaveTile"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(Consumed),
 		typeof(ConsumeInFixedUpdate),
-		typeof(EnterTileComponent),
-		typeof(LeaveTileComponent)
+		typeof(OnTileElementEnterTileComponent),
+		typeof(OnTileElementLeaveTileComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(Consumed), 0 },
 		{ typeof(ConsumeInFixedUpdate), 1 },
-		{ typeof(EnterTileComponent), 2 },
-		{ typeof(LeaveTileComponent), 3 }
+		{ typeof(OnTileElementEnterTileComponent), 2 },
+		{ typeof(OnTileElementLeaveTileComponent), 3 }
 	};
 
 	/// <summary>

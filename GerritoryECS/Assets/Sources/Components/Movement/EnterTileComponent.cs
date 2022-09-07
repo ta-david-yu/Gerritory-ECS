@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Message]
-public sealed class EnterTileComponent : IComponent
+public sealed class OnTileElementEnterTileComponent : IComponent
 {
 	public int OnTileElementId;
 
