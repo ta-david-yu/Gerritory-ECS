@@ -4,7 +4,7 @@ using System.Linq;
 using EntitasRedux.Core.Plugins;
 using Genesis.Plugin;
 
-namespace EntitasReduxCodeGeneratorPlugin.Item.CodeGenerators
+namespace DYEntitasRedux.Core.Plugins
 {
 	/*
 	internal sealed class PowerupLookupGenerator : AbstractGenerator
