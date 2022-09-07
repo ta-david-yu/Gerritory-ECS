@@ -12,6 +12,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 {
 	private readonly GameContext m_GameContext;
 	private readonly TileContext m_TileContext;
+	private readonly MessageContext m_MessageContext;
 
 	private readonly IGroup<GameEntity> m_OnTileElementGroup;
 	private readonly IGroup<GameEntity> m_PlayerGroup;
@@ -20,6 +21,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 	{
 		m_GameContext = contexts.Game;
 		m_TileContext = contexts.Tile;
+		m_MessageContext = contexts.Message;
 
 		// Get entities that
 		// 1. Are on tile
@@ -78,9 +80,13 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 				continue;
 			}
 
-			// Consume movement input action
+			// Consume movement input action.
 			entity.RemoveMovementInputAction();
 			entity.AddMoveOnTileBegin(fromPosition, toPosition);
+
+			// Emit global LeaveTile message.
+			var leaveTileMessageEntity = m_MessageContext.CreateFixedUpdateMessageEntity();
+			leaveTileMessageEntity.ReplaceLeaveTile(entity.OnTileElement.Id, fromPosition);
 		}
 	}
 }

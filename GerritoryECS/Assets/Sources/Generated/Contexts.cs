@@ -61,10 +61,11 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 	public GameContext Game { get; set; }
 	public InputContext Input { get; set; }
 	public ItemContext Item { get; set; }
+	public MessageContext Message { get; set; }
 	public PlayerStateContext PlayerState { get; set; }
 	public TileContext Tile { get; set; }
 
-	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Config, Game, Input, Item, PlayerState, Tile }; } }
+	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Config, Game, Input, Item, Message, PlayerState, Tile }; } }
 
 	public Contexts()
 	{
@@ -72,6 +73,7 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 		Game = new GameContext();
 		Input = new InputContext();
 		Item = new ItemContext();
+		Message = new MessageContext();
 		PlayerState = new PlayerStateContext();
 		Tile = new TileContext();
 
@@ -267,6 +269,7 @@ public partial class Contexts {
 			CreateContextObserver(Game);
 			CreateContextObserver(Input);
 			CreateContextObserver(Item);
+			CreateContextObserver(Message);
 			CreateContextObserver(PlayerState);
 			CreateContextObserver(Tile);
 		} catch(System.Exception) {

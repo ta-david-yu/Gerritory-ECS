@@ -105,7 +105,6 @@
     <Compile Include="Assets\Sources\Components\PlayerState\StateTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\CreateEntityFromGameBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateEntity.cs" />
-    <Compile Include="Assets\Sources\Generated\Item\Systems\RemoveEatenFromItemEntitiesSystem.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\TileMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Systems\InputCleanupSystem.cs" />
@@ -162,6 +161,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileBeginAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileBeginAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Movement\EnterTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileBeginAddedEventSystem.cs" />
@@ -172,6 +172,7 @@
     <Compile Include="Assets\Sources\Generated\Tile\TileBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemEntity.cs" />
     <Compile Include="Assets\Sources\Generated\Input\CreateEntityFromInputBlueprint.cs" />
+    <Compile Include="Assets\Sources\Components\Movement\LeaveTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileEndAddedEventSystem.cs" />
     <Compile Include="Assets\Scripts\GameFlow\GameConstants.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemBlueprintBehaviour.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateStateTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemOnTileItemComponent.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\OnTileElementComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Item\SpeedChangeStateSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameContext.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateContext.cs" />
     <Compile Include="Assets\Sources\Components\Tile\TilePositionComponent.cs" />
@@ -206,6 +208,7 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\RemoveMoveOnTileBeginFromGameEntitiesSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileComponent.cs" />
     <Compile Include="Assets\Sources\Components\PlayerState\StateComponent.cs" />
+    <Compile Include="Assets\Sources\Features\TileFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameTileCollapserComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputAIInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Contexts.cs" />
@@ -245,8 +248,27 @@
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Systems\Item\SpeedChangeStateSystem.cs" />
-    <Compile Include="Assets\Sources\Features\TileFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\MessageContext.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Components\MessageEntity_CopyTo.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\MessageComponentsLookup.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\CreateEntityFromMessageBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\MessageMatcher.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\MessageEntity.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\IMessageBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\MessageBlueprintBehaviour.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\MessageBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\MessageAttribute.cs" />
+    <Compile Include="Assets\Sources\Components\Message\Consumed.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Components\MessageEnterTileComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Components\MessageLeaveTileComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Features\MessageCleanupFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Systems\MessageCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Components\MessageConsumedComponent.cs" />
+    <Compile Include="Assets\Sources\Extensions\MessageContextExtensions.cs" />
+    <Compile Include="Assets\Sources\Components\Message\ConsumeInFixedUpdate.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Components\MessageConsumeInFixedUpdateComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Message\ConsumeMessageSystem.cs" />
+    <Compile Include="Assets\Sources\Features\MessageFeature.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

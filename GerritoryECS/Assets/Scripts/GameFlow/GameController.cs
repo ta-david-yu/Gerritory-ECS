@@ -61,10 +61,13 @@ public class GameController : MonoBehaviour
 	{
 		return new Feature("Systems")
 			.Add(new InputFeature(contexts))
+
 			.Add(new LevelFeature(contexts))
 			.Add(new MovementFeature(contexts))
 			.Add(new TileFeature(contexts))
 			.Add(new ItemFeature(contexts))
+
+			.Add(new MessageFeature(contexts))
 			.Add(new GameEventSystems(contexts))
 			.Add(new GameCleanupSystems());
 	}
