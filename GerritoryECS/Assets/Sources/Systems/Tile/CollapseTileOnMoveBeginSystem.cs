@@ -6,7 +6,7 @@ using JCMG.EntitasRedux;
 /// <summary>
 /// Do collapse/collapse counting logic if entities that start a movement have <see cref="TileCollapserComponent"/> + the departing tile is <see cref="CollapseOnSteppedComponent"/>.
 /// </summary>
-public class CollapseTileOnMoveBeginSystem : IUpdateSystem
+public class CollapseTileOnMoveBeginSystem : IFixedUpdateSystem
 {
 	private readonly GameContext m_GameContext;
 	private readonly TileContext m_TileContext;
@@ -21,7 +21,7 @@ public class CollapseTileOnMoveBeginSystem : IUpdateSystem
 		m_DepartingCollapserGroup = m_GameContext.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.TileCollapser, GameMatcher.MoveOnTileBegin));
 	}
 
-	public void Update()
+	public void FixedUpdate()
 	{
 		foreach (GameEntity collapserEntity in m_DepartingCollapserGroup.GetEntities())
 		{

@@ -7,7 +7,7 @@ using System;
 /// <summary>
 /// Do take over logic if entities that end a movement have <see cref="TileOwnerComponent"/> + the move-to tile is <see cref="OwnableComponent"/>
 /// </summary>
-public sealed class TakeOverOwnableOnMoveEndSystem : IUpdateSystem
+public sealed class TakeOverOwnableOnMoveEndSystem : IFixedUpdateSystem
 {
 	private readonly GameContext m_GameContext;
 	private readonly TileContext m_TileContext;
@@ -22,7 +22,7 @@ public sealed class TakeOverOwnableOnMoveEndSystem : IUpdateSystem
 		m_EnteringOwnerGroup = m_GameContext.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.TileOwner, GameMatcher.MoveOnTileEnd));
 	}
 
-	public void Update()
+	public void FixedUpdate()
 	{
 		foreach (var ownerEntity in m_EnteringOwnerGroup.GetEntities())
 		{
