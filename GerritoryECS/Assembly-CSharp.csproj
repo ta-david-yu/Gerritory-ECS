@@ -84,7 +84,7 @@
     <Compile Include="Assets\Sources\Components\Movement\MoveOnTileBeginComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Systems\RemoveMoveOnTileEndFromGameEntitiesSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputAttribute.cs" />
-    <Compile Include="Assets\Sources\Systems\Tile\CollapseTileOnMoveBeginSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Tile\CollapseTileOnLeaveTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Components\Level\LevelComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Item\EatItemOnMoveEndSystem.cs" />
@@ -259,8 +259,6 @@
     <Compile Include="Assets\Sources\Generated\Message\MessageBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageAttribute.cs" />
     <Compile Include="Assets\Sources\Components\Message\Consumed.cs" />
-    <Compile Include="Assets\Sources\Generated\Message\Components\MessageEnterTileComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Message\Components\MessageLeaveTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Message\Features\MessageCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Message\Systems\MessageCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Message\Components\MessageConsumedComponent.cs" />
@@ -269,6 +267,8 @@
     <Compile Include="Assets\Sources\Generated\Message\Components\MessageConsumeInFixedUpdateComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Message\ConsumeMessageSystem.cs" />
     <Compile Include="Assets\Sources\Features\MessageFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Components\MessageOnTileElementEnterTileComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Components\MessageOnTileElementLeaveTileComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

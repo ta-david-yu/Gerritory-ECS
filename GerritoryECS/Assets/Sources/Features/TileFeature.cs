@@ -8,7 +8,7 @@ public sealed class TileFeature : Feature
 	{
 		// Tile systems
 		Add(new TakeOverOwnableOnMoveEndSystem(contexts));
-		Add(new CollapseTileOnMoveBeginSystem(contexts));
+		Add(new CollapseTileOnLeaveTileSystem(contexts));
 	}
 }
 
