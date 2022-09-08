@@ -8,24 +8,33 @@ public sealed class EatItemOnMoveEndSystem : IFixedUpdateSystem
 	private readonly GameContext m_GameContext;
 	private readonly TileContext m_TileContext;
 	private readonly ItemContext m_ItemContext;
+	private readonly MessageContext m_MessageContext;
 
-	private readonly IGroup<GameEntity> m_EaterMoveOnTileEndGroup;
+	private readonly IGroup<MessageEntity> m_EnterTileMessageGroup;
 
 	public EatItemOnMoveEndSystem(Contexts contexts)
 	{
 		m_GameContext = contexts.Game;
 		m_TileContext = contexts.Tile;
 		m_ItemContext = contexts.Item;
+		m_MessageContext = contexts.Message;
 
-		m_EaterMoveOnTileEndGroup = contexts.Game.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.ItemEater, GameMatcher.MoveOnTileEnd));
+		m_EnterTileMessageGroup = m_MessageContext.GetGroup(MessageMatcher.AllOf(MessageMatcher.OnTileElementEnterTile).NoneOf(MessageMatcher.Consumed));
 	}
 
 	public void FixedUpdate()
 	{
-		foreach (var eaterEntity in m_EaterMoveOnTileEndGroup)
+		foreach (MessageEntity enterMessageEntity in m_EnterTileMessageGroup)
 		{
-			Vector2Int enterPosition = eaterEntity.OnTileElement.Position;
-			
+			int onTileElementId = enterMessageEntity.OnTileElementEnterTile.OnTileElementId;
+			GameEntity entererEntity = m_GameContext.GetEntityWithOnTileElementId(onTileElementId);
+			if (!entererEntity.HasItemEater)
+			{
+				// The entering OnTileElement is not an ItemEater, do nothing.
+				continue;
+			}
+
+			Vector2Int enterPosition = enterMessageEntity.OnTileElementEnterTile.Position;
 			ItemEntity itemOnPosition = m_ItemContext.GetEntityWithOnTileItem(enterPosition);
 			if (itemOnPosition == null)
 			{
@@ -44,7 +53,7 @@ public sealed class EatItemOnMoveEndSystem : IFixedUpdateSystem
 
 			// Mark this item as eaten,
 			// it will later be processed by its respective reactive system to actually apply the item effect on the eater.
-			itemOnPosition.AddEaten(eaterEntity.ItemEater.Id);
+			itemOnPosition.AddEaten(entererEntity.ItemEater.Id);
 		}
 	}
 }

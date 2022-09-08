@@ -26,8 +26,6 @@ public sealed class TakeOverOwnableOnMoveEndSystem : IFixedUpdateSystem
 
 	public void FixedUpdate()
 	{
-		//foreach (var ownerEntity in m_EnteringOwnerGroup.GetEntities())
-
 		foreach (MessageEntity enterMessageEntity in m_EnterTileMessageGroup)
 		{
 			int onTileElementId = enterMessageEntity.OnTileElementEnterTile.OnTileElementId;
