@@ -11,7 +11,7 @@ public sealed class ItemFeature : Feature
 		Add(new UpdateStateTimerSystem(contexts));
 
 		// Create powerup item states systems
-		Add(new CreateSpeedChangeStateOnItemEatenSystem(contexts));
+		Add(new CreateSpeedChangeStateForEaterOnItemEatenSystem(contexts));
 		
 		// State effects systems
 		Add(new SpeedChangeStateSystem(contexts));

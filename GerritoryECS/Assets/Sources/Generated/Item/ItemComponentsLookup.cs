@@ -30,7 +30,7 @@ public static class ItemComponentsLookup
 
 	public static readonly System.Type[] ComponentTypes =
 	{
-		typeof(ApplySpeedChangeStateOnEatenComponent),
+		typeof(ApplySpeedChangeStateForEaterOnEatenComponent),
 		typeof(DebugMessageComponent),
 		typeof(EatenComponent),
 		typeof(OnTileItemComponent)
@@ -38,7 +38,7 @@ public static class ItemComponentsLookup
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(ApplySpeedChangeStateOnEatenComponent), 0 },
+		{ typeof(ApplySpeedChangeStateForEaterOnEatenComponent), 0 },
 		{ typeof(DebugMessageComponent), 1 },
 		{ typeof(EatenComponent), 2 },
 		{ typeof(OnTileItemComponent), 3 }

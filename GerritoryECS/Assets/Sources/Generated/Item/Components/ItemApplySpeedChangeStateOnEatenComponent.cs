@@ -9,13 +9,13 @@
 //------------------------------------------------------------------------------
 public partial class ItemEntity
 {
-	public ApplySpeedChangeStateOnEatenComponent ApplySpeedChangeStateOnEaten { get { return (ApplySpeedChangeStateOnEatenComponent)GetComponent(ItemComponentsLookup.ApplySpeedChangeStateOnEaten); } }
+	public ApplySpeedChangeStateForEaterOnEatenComponent ApplySpeedChangeStateOnEaten { get { return (ApplySpeedChangeStateForEaterOnEatenComponent)GetComponent(ItemComponentsLookup.ApplySpeedChangeStateOnEaten); } }
 	public bool HasApplySpeedChangeStateOnEaten { get { return HasComponent(ItemComponentsLookup.ApplySpeedChangeStateOnEaten); } }
 
 	public void AddApplySpeedChangeStateOnEaten(float newDuration, float newSpeedMultiplier)
 	{
 		var index = ItemComponentsLookup.ApplySpeedChangeStateOnEaten;
-		var component = (ApplySpeedChangeStateOnEatenComponent)CreateComponent(index, typeof(ApplySpeedChangeStateOnEatenComponent));
+		var component = (ApplySpeedChangeStateForEaterOnEatenComponent)CreateComponent(index, typeof(ApplySpeedChangeStateForEaterOnEatenComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Duration = newDuration;
 		component.SpeedMultiplier = newSpeedMultiplier;
@@ -26,7 +26,7 @@ public partial class ItemEntity
 	public void ReplaceApplySpeedChangeStateOnEaten(float newDuration, float newSpeedMultiplier)
 	{
 		var index = ItemComponentsLookup.ApplySpeedChangeStateOnEaten;
-		var component = (ApplySpeedChangeStateOnEatenComponent)CreateComponent(index, typeof(ApplySpeedChangeStateOnEatenComponent));
+		var component = (ApplySpeedChangeStateForEaterOnEatenComponent)CreateComponent(index, typeof(ApplySpeedChangeStateForEaterOnEatenComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Duration = newDuration;
 		component.SpeedMultiplier = newSpeedMultiplier;
@@ -34,10 +34,10 @@ public partial class ItemEntity
 		ReplaceComponent(index, component);
 	}
 
-	public void CopyApplySpeedChangeStateOnEatenTo(ApplySpeedChangeStateOnEatenComponent copyComponent)
+	public void CopyApplySpeedChangeStateOnEatenTo(ApplySpeedChangeStateForEaterOnEatenComponent copyComponent)
 	{
 		var index = ItemComponentsLookup.ApplySpeedChangeStateOnEaten;
-		var component = (ApplySpeedChangeStateOnEatenComponent)CreateComponent(index, typeof(ApplySpeedChangeStateOnEatenComponent));
+		var component = (ApplySpeedChangeStateForEaterOnEatenComponent)CreateComponent(index, typeof(ApplySpeedChangeStateForEaterOnEatenComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Duration = copyComponent.Duration;
 		component.SpeedMultiplier = copyComponent.SpeedMultiplier;
