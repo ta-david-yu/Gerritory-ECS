@@ -34,8 +34,14 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem
 		// Move OnTileElements with MoveOnTile component.
 		foreach (var moveEntity in moveOnTileGroupCache)
 		{
+			float multiplier = 1.0f;
+			if (moveEntity.HasSpeedChangeable)
+			{
+				multiplier = moveEntity.SpeedChangeable.BaseSpeed * moveEntity.SpeedChangeable.SpeedMultiplier;
+			}
+
 			float progress = moveEntity.MoveOnTile.Progress;
-			progress += (1 / GameConstants.MoveOnTileDurationBase) * Time.fixedDeltaTime;
+			progress += (1 / GameConstants.MoveOnTileDuration) * Time.fixedDeltaTime * multiplier;
 
 			if (progress < 1.0f)
 			{

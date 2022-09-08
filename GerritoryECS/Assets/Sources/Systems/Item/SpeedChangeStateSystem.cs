@@ -43,9 +43,20 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 	private void handleOnNewSpeedChangeStateCreated(IGroup<PlayerStateEntity> group, PlayerStateEntity entity, int index, IComponent component)
 	{
 		// Change the speed of the state holder based on the speed multiplier.
+		int stateHolderId = entity.State.HolderId;
+		float speedMultiplier = entity.SpeedChangeState.SpeedMultiplier;
 
-		// TODO:
-		// ...
+		var stateHolderEntity = m_GameContext.GetEntityWithOnTileElementId(stateHolderId);
+		if (stateHolderEntity.HasSpeedChangeable)
+		{
+			stateHolderEntity.ReplaceSpeedChangeable(
+				stateHolderEntity.SpeedChangeable.BaseSpeed,
+				stateHolderEntity.SpeedChangeable.SpeedMultiplier * speedMultiplier);
+		}
+		else
+		{
+			Debug.LogWarning($"The target state holder doesn't have SpeedChangeableComponent, therefore the speed change is not applied.");
+		}
 		Debug.Log($"Speed change: {entity.SpeedChangeState.SpeedMultiplier}, On state holder: {entity.State.HolderId}");
 	}
 
@@ -83,8 +94,19 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 			return;
 		}
 
-		// TODO: recover the speed
-		// ...
+		// Recover the speed of the state holder based on the speed multiplier.
+		var stateHolderEntity = m_GameContext.GetEntityWithOnTileElementId(stateHolderId);
+		if (stateHolderEntity.HasSpeedChangeable)
+		{
+			stateHolderEntity.ReplaceSpeedChangeable(
+				stateHolderEntity.SpeedChangeable.BaseSpeed,
+				stateHolderEntity.SpeedChangeable.SpeedMultiplier / speedMultiplier);
+		}
+		else
+		{
+			Debug.LogWarning($"The target state holder doesn't have SpeedChangeableComponent, therefore the speed change is not recovered.");
+		}
+
 		Debug.Log($"Speed recovered: {speedMultiplier}, On state holder: {stateHolderId}");
 	}
 

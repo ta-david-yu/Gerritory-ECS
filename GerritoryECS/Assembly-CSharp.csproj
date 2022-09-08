@@ -218,7 +218,7 @@
     <Compile Include="Assets\Sources\Generated\Game\Components\GamePlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileEndAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Item\CreateSpeedChangeStateOnItemEatenSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Item\CreateSpeedChangeStateForEaterOnItemEatenSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileItemHolderComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Movement\CommandMoveOnTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Features\ItemCleanupFeature.cs" />
@@ -248,7 +248,6 @@
     <Compile Include="Assets\Sources\Generated\Config\ConfigComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MovementInputActionComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputComponentsLookup.cs" />
-    <Compile Include="Assets\Sources\Generated\Item\Components\ItemApplySpeedChangeStateOnEatenComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\OwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprintBehaviour.cs" />
@@ -269,6 +268,25 @@
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Effect\OnTileElementEffectComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\EffectBlueprintBehaviour.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\CreateEntityFromEffectBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\IEffectBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\EffectEntity.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\EffectBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\EffectAttribute.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\EffectComponentsLookup.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\Components\EffectEntity_CopyTo.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\EffectMatcher.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\EffectContext.cs" />
+    <Compile Include="Assets\Sources\Components\Effect\SpeedEffectComponent.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\SpeedChangeableComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\Features\EffectCleanupFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameSpeedChangeableComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemApplySpeedChangeStateForEaterOnEatenComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\Components\EffectSpeedEffectComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\Systems\EffectCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Effect\Components\EffectOnTileElementEffectComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

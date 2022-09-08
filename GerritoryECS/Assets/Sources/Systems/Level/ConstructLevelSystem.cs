@@ -52,7 +52,7 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 				{
 					var itemEntity = m_ItemContext.CreateEntity();
 					itemEntity.AddOnTileItem(position);
-					itemEntity.AddApplySpeedChangeStateOnEaten(3.0f, 2.0f);
+					itemEntity.AddApplySpeedChangeStateForEaterOnEaten(3.0f, 2.0f);
 				}
 			}
 		}

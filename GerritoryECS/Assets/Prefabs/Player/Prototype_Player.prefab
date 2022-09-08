@@ -246,6 +246,7 @@ MonoBehaviour:
   - rid: 1863424855467622401
   - rid: 1863424971442487298
   - rid: 1863424971442487299
+  - rid: 1863425006132002816
   references:
     version: 2
     RefIds:
@@ -264,6 +265,11 @@ MonoBehaviour:
       type: {class: StateHolderComponent, ns: , asm: Assembly-CSharp}
       data:
         Id: 0
+    - rid: 1863425006132002816
+      type: {class: SpeedChangeableComponent, ns: , asm: Assembly-CSharp}
+      data:
+        BaseSpeed: 1
+        SpeedMultiplier: 1
     - rid: 2812320396538019846
       type: {class: PlayerComponent, ns: , asm: Assembly-CSharp}
       data:

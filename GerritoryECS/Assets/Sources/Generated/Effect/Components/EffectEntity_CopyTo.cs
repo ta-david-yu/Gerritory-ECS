@@ -10,7 +10,7 @@
 
 using JCMG.EntitasRedux;
 
-public partial class MessageEntity
+public partial class EffectEntity
 {
 	/// <summary>
 	/// Copies <paramref name="component"/> to this entity as a new component instance.
@@ -18,21 +18,13 @@ public partial class MessageEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is ConsumeInFixedUpdate ConsumeInFixedUpdate)
+		if (component is SpeedEffectComponent SpeedEffect)
 		{
-			IsConsumeInFixedUpdate = true;
+			CopySpeedEffectTo(SpeedEffect);
 		}
-		else if (component is OnTileElementLeaveTileComponent OnTileElementLeaveTile)
+		else if (component is OnTileElementEffectComponent OnTileElementEffect)
 		{
-			CopyOnTileElementLeaveTileTo(OnTileElementLeaveTile);
-		}
-		else if (component is Consumed Consumed)
-		{
-			IsConsumed = true;
-		}
-		else if (component is OnTileElementEnterTileComponent OnTileElementEnterTile)
-		{
-			CopyOnTileElementEnterTileTo(OnTileElementEnterTile);
+			CopyOnTileElementEffectTo(OnTileElementEffect);
 		}
 		#endif
 	}
@@ -40,9 +32,9 @@ public partial class MessageEntity
 	/// <summary>
 	/// Copies all components on this entity to <paramref name="copyToEntity"/>.
 	/// </summary>
-	public void CopyTo(MessageEntity copyToEntity)
+	public void CopyTo(EffectEntity copyToEntity)
 	{
-		for (var i = 0; i < MessageComponentsLookup.TotalComponents; ++i)
+		for (var i = 0; i < EffectComponentsLookup.TotalComponents; ++i)
 		{
 			if (HasComponent(i))
 			{
@@ -51,7 +43,7 @@ public partial class MessageEntity
 					throw new EntityAlreadyHasComponentException(
 						i,
 						"Cannot copy component '" +
-						MessageComponentsLookup.ComponentNames[i] +
+						EffectComponentsLookup.ComponentNames[i] +
 						"' to " +
 						this +
 						"!",
@@ -69,9 +61,9 @@ public partial class MessageEntity
 	/// is true any of the components that <paramref name="copyToEntity"/> has that this entity has will be replaced,
 	/// otherwise they will be skipped.
 	/// </summary>
-	public void CopyTo(MessageEntity copyToEntity, bool replaceExisting)
+	public void CopyTo(EffectEntity copyToEntity, bool replaceExisting)
 	{
-		for (var i = 0; i < MessageComponentsLookup.TotalComponents; ++i)
+		for (var i = 0; i < EffectComponentsLookup.TotalComponents; ++i)
 		{
 			if (!HasComponent(i))
 			{
@@ -87,18 +79,18 @@ public partial class MessageEntity
 	}
 
 	/// <summary>
-	/// Copies components on this entity at <paramref name="indices"/> in the <see cref="MessageComponentsLookup"/> to
+	/// Copies components on this entity at <paramref name="indices"/> in the <see cref="EffectComponentsLookup"/> to
 	/// <paramref name="copyToEntity"/>. If <paramref name="replaceExisting"/> is true any of the components that
 	/// <paramref name="copyToEntity"/> has that this entity has will be replaced, otherwise they will be skipped.
 	/// </summary>
-	public void CopyTo(MessageEntity copyToEntity, bool replaceExisting, params int[] indices)
+	public void CopyTo(EffectEntity copyToEntity, bool replaceExisting, params int[] indices)
 	{
 		for (var i = 0; i < indices.Length; ++i)
 		{
 			var index = indices[i];
 
 			// Validate that the index is within range of the component lookup
-			if (index < 0 && index >= MessageComponentsLookup.TotalComponents)
+			if (index < 0 && index >= EffectComponentsLookup.TotalComponents)
 			{
 				const string OUT_OF_RANGE_WARNING =
 					"Component Index [{0}] is out of range for [{1}].";
@@ -106,7 +98,7 @@ public partial class MessageEntity
 				const string HINT = "Please ensure any CopyTo indices are valid.";
 
 				throw new IndexOutOfLookupRangeException(
-					string.Format(OUT_OF_RANGE_WARNING, index, nameof(MessageComponentsLookup)),
+					string.Format(OUT_OF_RANGE_WARNING, index, nameof(EffectComponentsLookup)),
 					HINT);
 			}
 

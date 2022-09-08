@@ -27,11 +27,12 @@ public static class GameComponentsLookup
 	public const int OnTileElementAddedListener = 11;
 	public const int OnTileElement = 12;
 	public const int Player = 13;
-	public const int StateHolder = 14;
-	public const int TileCollapser = 15;
-	public const int TileOwner = 16;
+	public const int SpeedChangeable = 14;
+	public const int StateHolder = 15;
+	public const int TileCollapser = 16;
+	public const int TileOwner = 17;
 
-	public const int TotalComponents = 17;
+	public const int TotalComponents = 18;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -49,6 +50,7 @@ public static class GameComponentsLookup
 		"OnTileElementAddedListener",
 		"OnTileElement",
 		"Player",
+		"SpeedChangeable",
 		"StateHolder",
 		"TileCollapser",
 		"TileOwner"
@@ -70,6 +72,7 @@ public static class GameComponentsLookup
 		typeof(OnTileElementAddedListenerComponent),
 		typeof(OnTileElementComponent),
 		typeof(PlayerComponent),
+		typeof(SpeedChangeableComponent),
 		typeof(StateHolderComponent),
 		typeof(TileCollapserComponent),
 		typeof(TileOwnerComponent)
@@ -91,9 +94,10 @@ public static class GameComponentsLookup
 		{ typeof(OnTileElementAddedListenerComponent), 11 },
 		{ typeof(OnTileElementComponent), 12 },
 		{ typeof(PlayerComponent), 13 },
-		{ typeof(StateHolderComponent), 14 },
-		{ typeof(TileCollapserComponent), 15 },
-		{ typeof(TileOwnerComponent), 16 }
+		{ typeof(SpeedChangeableComponent), 14 },
+		{ typeof(StateHolderComponent), 15 },
+		{ typeof(TileCollapserComponent), 16 },
+		{ typeof(TileOwnerComponent), 17 }
 	};
 
 	/// <summary>

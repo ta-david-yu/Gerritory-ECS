@@ -11,37 +11,29 @@ using System;
 using System.Collections.Generic;
 using JCMG.EntitasRedux;
 
-public static class ItemComponentsLookup
+public static class EffectComponentsLookup
 {
-	public const int ApplySpeedChangeStateForEaterOnEaten = 0;
-	public const int DebugMessage = 1;
-	public const int Eaten = 2;
-	public const int OnTileItem = 3;
+	public const int OnTileElementEffect = 0;
+	public const int SpeedEffect = 1;
 
-	public const int TotalComponents = 4;
+	public const int TotalComponents = 2;
 
 	public static readonly string[] ComponentNames =
 	{
-		"ApplySpeedChangeStateForEaterOnEaten",
-		"DebugMessage",
-		"Eaten",
-		"OnTileItem"
+		"OnTileElementEffect",
+		"SpeedEffect"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
-		typeof(ApplySpeedChangeStateForEaterOnEatenComponent),
-		typeof(DebugMessageComponent),
-		typeof(EatenComponent),
-		typeof(OnTileItemComponent)
+		typeof(OnTileElementEffectComponent),
+		typeof(SpeedEffectComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(ApplySpeedChangeStateForEaterOnEatenComponent), 0 },
-		{ typeof(DebugMessageComponent), 1 },
-		{ typeof(EatenComponent), 2 },
-		{ typeof(OnTileItemComponent), 3 }
+		{ typeof(OnTileElementEffectComponent), 0 },
+		{ typeof(SpeedEffectComponent), 1 }
 	};
 
 	/// <summary>

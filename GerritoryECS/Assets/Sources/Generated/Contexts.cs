@@ -58,6 +58,7 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 	#endif
 
 	public ConfigContext Config { get; set; }
+	public EffectContext Effect { get; set; }
 	public GameContext Game { get; set; }
 	public InputContext Input { get; set; }
 	public ItemContext Item { get; set; }
@@ -65,11 +66,12 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 	public PlayerStateContext PlayerState { get; set; }
 	public TileContext Tile { get; set; }
 
-	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Config, Game, Input, Item, Message, PlayerState, Tile }; } }
+	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Config, Effect, Game, Input, Item, Message, PlayerState, Tile }; } }
 
 	public Contexts()
 	{
 		Config = new ConfigContext();
+		Effect = new EffectContext();
 		Game = new GameContext();
 		Input = new InputContext();
 		Item = new ItemContext();
@@ -114,6 +116,7 @@ public partial class Contexts
 	public const string MoveOnTile = "MoveOnTile";
 	public const string OnTileElementId = "OnTileElementId";
 	public const string OnTileElementPosition = "OnTileElementPosition";
+	public const string OnTileElementEffect = "OnTileElementEffect";
 	public const string OnTileItem = "OnTileItem";
 	public const string Player = "Player";
 	public const string State = "State";
@@ -149,6 +152,11 @@ public partial class Contexts
 			OnTileElementPosition,
 			Game.GetGroup(GameMatcher.OnTileElement),
 			(e, c) => ((OnTileElementComponent)c).Position));
+
+		Effect.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<EffectEntity, int>(
+			OnTileElementEffect,
+			Effect.GetGroup(EffectMatcher.OnTileElementEffect),
+			(e, c) => ((OnTileElementEffectComponent)c).OnTileElementId));
 
 		Item.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<ItemEntity, UnityEngine.Vector2Int>(
 			OnTileItem,
@@ -214,6 +222,11 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTileElementPosition)).GetEntities(Position);
 	}
 
+	public static System.Collections.Generic.HashSet<EffectEntity> GetEntitiesWithOnTileElementEffect(this EffectContext context, int OnTileElementId)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<EffectEntity, int>)context.GetEntityIndex(Contexts.OnTileElementEffect)).GetEntities(OnTileElementId);
+	}
+
 	public static ItemEntity GetEntityWithOnTileItem(this ItemContext context, UnityEngine.Vector2Int Position)
 	{
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ItemEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTileItem)).GetEntity(Position);
@@ -266,6 +279,7 @@ public partial class Contexts {
 	public void InitializeContextObservers() {
 		try {
 			CreateContextObserver(Config);
+			CreateContextObserver(Effect);
 			CreateContextObserver(Game);
 			CreateContextObserver(Input);
 			CreateContextObserver(Item);

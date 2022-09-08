@@ -30,9 +30,9 @@ public partial class ItemEntity
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
-		else if (component is ApplySpeedChangeStateForEaterOnEatenComponent ApplySpeedChangeStateOnEaten)
+		else if (component is ApplySpeedChangeStateForEaterOnEatenComponent ApplySpeedChangeStateForEaterOnEaten)
 		{
-			CopyApplySpeedChangeStateOnEatenTo(ApplySpeedChangeStateOnEaten);
+			CopyApplySpeedChangeStateForEaterOnEatenTo(ApplySpeedChangeStateForEaterOnEaten);
 		}
 		#endif
 	}

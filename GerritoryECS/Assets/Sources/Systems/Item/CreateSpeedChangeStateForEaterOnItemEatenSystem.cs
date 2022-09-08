@@ -19,7 +19,7 @@ public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpda
 		m_GameContext = contexts.Game;
 		m_ItemContext = contexts.Item;
 		m_PlayerStateContext = contexts.PlayerState;
-		m_EatenSpeedChangePowerupGroup = m_ItemContext.GetGroup(ItemMatcher.AllOf(ItemMatcher.OnTileItem, ItemMatcher.ApplySpeedChangeStateOnEaten, ItemMatcher.Eaten));
+		m_EatenSpeedChangePowerupGroup = m_ItemContext.GetGroup(ItemMatcher.AllOf(ItemMatcher.OnTileItem, ItemMatcher.ApplySpeedChangeStateForEaterOnEaten, ItemMatcher.Eaten));
 	}
 
 	public void FixedUpdate()
@@ -54,8 +54,8 @@ public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpda
 			// Create a new state entity targetting the holder.
 			PlayerStateEntity newStateEntity = m_PlayerStateContext.CreateEntity();
 			newStateEntity.AddState(stateHolderId);
-			newStateEntity.AddStateTimer(powerupEntity.ApplySpeedChangeStateOnEaten.Duration);
-			newStateEntity.AddSpeedChangeState(powerupEntity.ApplySpeedChangeStateOnEaten.SpeedMultiplier);
+			newStateEntity.AddStateTimer(powerupEntity.ApplySpeedChangeStateForEaterOnEaten.Duration);
+			newStateEntity.AddSpeedChangeState(powerupEntity.ApplySpeedChangeStateForEaterOnEaten.SpeedMultiplier);
 
 			// Consume & destroy the item.
 			powerupEntity.Destroy();

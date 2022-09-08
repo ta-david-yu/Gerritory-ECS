@@ -9,12 +9,12 @@
 //------------------------------------------------------------------------------
 public partial class ItemEntity
 {
-	public ApplySpeedChangeStateForEaterOnEatenComponent ApplySpeedChangeStateOnEaten { get { return (ApplySpeedChangeStateForEaterOnEatenComponent)GetComponent(ItemComponentsLookup.ApplySpeedChangeStateOnEaten); } }
-	public bool HasApplySpeedChangeStateOnEaten { get { return HasComponent(ItemComponentsLookup.ApplySpeedChangeStateOnEaten); } }
+	public ApplySpeedChangeStateForEaterOnEatenComponent ApplySpeedChangeStateForEaterOnEaten { get { return (ApplySpeedChangeStateForEaterOnEatenComponent)GetComponent(ItemComponentsLookup.ApplySpeedChangeStateForEaterOnEaten); } }
+	public bool HasApplySpeedChangeStateForEaterOnEaten { get { return HasComponent(ItemComponentsLookup.ApplySpeedChangeStateForEaterOnEaten); } }
 
-	public void AddApplySpeedChangeStateOnEaten(float newDuration, float newSpeedMultiplier)
+	public void AddApplySpeedChangeStateForEaterOnEaten(float newDuration, float newSpeedMultiplier)
 	{
-		var index = ItemComponentsLookup.ApplySpeedChangeStateOnEaten;
+		var index = ItemComponentsLookup.ApplySpeedChangeStateForEaterOnEaten;
 		var component = (ApplySpeedChangeStateForEaterOnEatenComponent)CreateComponent(index, typeof(ApplySpeedChangeStateForEaterOnEatenComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Duration = newDuration;
@@ -23,9 +23,9 @@ public partial class ItemEntity
 		AddComponent(index, component);
 	}
 
-	public void ReplaceApplySpeedChangeStateOnEaten(float newDuration, float newSpeedMultiplier)
+	public void ReplaceApplySpeedChangeStateForEaterOnEaten(float newDuration, float newSpeedMultiplier)
 	{
-		var index = ItemComponentsLookup.ApplySpeedChangeStateOnEaten;
+		var index = ItemComponentsLookup.ApplySpeedChangeStateForEaterOnEaten;
 		var component = (ApplySpeedChangeStateForEaterOnEatenComponent)CreateComponent(index, typeof(ApplySpeedChangeStateForEaterOnEatenComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Duration = newDuration;
@@ -34,9 +34,9 @@ public partial class ItemEntity
 		ReplaceComponent(index, component);
 	}
 
-	public void CopyApplySpeedChangeStateOnEatenTo(ApplySpeedChangeStateForEaterOnEatenComponent copyComponent)
+	public void CopyApplySpeedChangeStateForEaterOnEatenTo(ApplySpeedChangeStateForEaterOnEatenComponent copyComponent)
 	{
-		var index = ItemComponentsLookup.ApplySpeedChangeStateOnEaten;
+		var index = ItemComponentsLookup.ApplySpeedChangeStateForEaterOnEaten;
 		var component = (ApplySpeedChangeStateForEaterOnEatenComponent)CreateComponent(index, typeof(ApplySpeedChangeStateForEaterOnEatenComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Duration = copyComponent.Duration;
@@ -45,9 +45,9 @@ public partial class ItemEntity
 		ReplaceComponent(index, component);
 	}
 
-	public void RemoveApplySpeedChangeStateOnEaten()
+	public void RemoveApplySpeedChangeStateForEaterOnEaten()
 	{
-		RemoveComponent(ItemComponentsLookup.ApplySpeedChangeStateOnEaten);
+		RemoveComponent(ItemComponentsLookup.ApplySpeedChangeStateForEaterOnEaten);
 	}
 }
 
@@ -62,20 +62,20 @@ public partial class ItemEntity
 //------------------------------------------------------------------------------
 public sealed partial class ItemMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<ItemEntity> _matcherApplySpeedChangeStateOnEaten;
+	static JCMG.EntitasRedux.IMatcher<ItemEntity> _matcherApplySpeedChangeStateForEaterOnEaten;
 
-	public static JCMG.EntitasRedux.IMatcher<ItemEntity> ApplySpeedChangeStateOnEaten
+	public static JCMG.EntitasRedux.IMatcher<ItemEntity> ApplySpeedChangeStateForEaterOnEaten
 	{
 		get
 		{
-			if (_matcherApplySpeedChangeStateOnEaten == null)
+			if (_matcherApplySpeedChangeStateForEaterOnEaten == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<ItemEntity>)JCMG.EntitasRedux.Matcher<ItemEntity>.AllOf(ItemComponentsLookup.ApplySpeedChangeStateOnEaten);
+				var matcher = (JCMG.EntitasRedux.Matcher<ItemEntity>)JCMG.EntitasRedux.Matcher<ItemEntity>.AllOf(ItemComponentsLookup.ApplySpeedChangeStateForEaterOnEaten);
 				matcher.ComponentNames = ItemComponentsLookup.ComponentNames;
-				_matcherApplySpeedChangeStateOnEaten = matcher;
+				_matcherApplySpeedChangeStateForEaterOnEaten = matcher;
 			}
 
-			return _matcherApplySpeedChangeStateOnEaten;
+			return _matcherApplySpeedChangeStateForEaterOnEaten;
 		}
 	}
 }
