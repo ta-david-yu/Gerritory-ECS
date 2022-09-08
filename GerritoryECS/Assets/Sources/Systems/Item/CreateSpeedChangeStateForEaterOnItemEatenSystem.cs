@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class CreateSpeedChangeStateOnItemEatenSystem : IFixedUpdateSystem
+public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpdateSystem
 {
 	private readonly GameContext m_GameContext;
 	private readonly ItemContext m_ItemContext;
@@ -14,7 +14,7 @@ public sealed class CreateSpeedChangeStateOnItemEatenSystem : IFixedUpdateSystem
 
 	private readonly PlayerStateEntity[] m_PreallocatedPlayerStateEntitiesToBeDestroyed = new PlayerStateEntity[4];
 
-	public CreateSpeedChangeStateOnItemEatenSystem(Contexts contexts)
+	public CreateSpeedChangeStateForEaterOnItemEatenSystem(Contexts contexts)
 	{
 		m_GameContext = contexts.Game;
 		m_ItemContext = contexts.Item;
