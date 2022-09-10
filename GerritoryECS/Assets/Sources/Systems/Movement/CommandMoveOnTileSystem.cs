@@ -10,6 +10,7 @@ using UnityEngine;
 /// </summary>
 public class CommandMoveOnTileSystem : IFixedUpdateSystem
 {
+	private Contexts m_Contexts;
 	private readonly GameContext m_GameContext;
 	private readonly TileContext m_TileContext;
 	private readonly MessageContext m_MessageContext;
@@ -19,6 +20,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 
 	public CommandMoveOnTileSystem(Contexts contexts)
 	{
+		m_Contexts = contexts;
 		m_GameContext = contexts.Game;
 		m_TileContext = contexts.Tile;
 		m_MessageContext = contexts.Message;
@@ -45,44 +47,16 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 			Vector2Int fromPosition = entity.OnTileElement.Position;
 			Vector2Int toPosition = fromPosition + moveOffset;
 
-			Vector2Int levelSize = m_GameContext.Level.LevelSize;
-			if (toPosition.x < 0 || toPosition.x >= levelSize.x || toPosition.y < 0 || toPosition.y >= levelSize.y)
+			bool isMoveableTo = m_Contexts.IsPositionMoveableTo(toPosition);
+			if (!isMoveableTo)
 			{
-				// The give position is out of bounds of the level size, cannot move here.
-				continue;
-			}
-
-			TileEntity tileEntity = m_TileContext.GetEntityWithTilePosition(toPosition);
-			if (tileEntity == null)
-			{
-				// There is no tile here, cannot move here.
-				continue;
-			}
-
-			if (!tileEntity.IsEnterable)
-			{
-				// The tile is not enterable, cannot move here.
-				continue;
-			}
-
-			HashSet<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTileElementPosition(toPosition);
-			bool isEntityOccupyingTheGiveTile = onTileEntities.Any(entity => !entity.HasMoveOnTile);
-			if (isEntityOccupyingTheGiveTile)
-			{
-				// There are already more than 1 OnTileElement entity on the given tile position & not moving away.
-				continue;
-			}
-
-			HashSet<GameEntity> movingToTargetPositionEntities = m_GameContext.GetEntitiesWithMoveOnTile(toPosition);
-			if (movingToTargetPositionEntities.Count > 0)
-			{
-				// This position has already been reserved by another MoveOnTile entity.
 				continue;
 			}
 
 			// Consume movement input action.
 			entity.RemoveMovementInputAction();
 			entity.AddMoveOnTileBegin(fromPosition, toPosition);
+			entity.AddMoveOnTile(0, fromPosition, toPosition);
 
 			// Emit global LeaveTile message.
 			var leaveTileMessageEntity = m_MessageContext.CreateFixedUpdateMessageEntity();
