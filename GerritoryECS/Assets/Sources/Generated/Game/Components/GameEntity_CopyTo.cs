@@ -18,9 +18,9 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is SpeedChangeableComponent SpeedChangeable)
+		if (component is OnTilePositionComponent OnTilePosition)
 		{
-			CopySpeedChangeableTo(SpeedChangeable);
+			CopyOnTilePositionTo(OnTilePosition);
 		}
 		else if (component is MovementInputActionComponent MovementInputAction)
 		{
@@ -53,6 +53,10 @@ public partial class GameEntity
 		else if (component is StateHolderComponent StateHolder)
 		{
 			CopyStateHolderTo(StateHolder);
+		}
+		else if (component is SpeedChangeableComponent SpeedChangeable)
+		{
+			CopySpeedChangeableTo(SpeedChangeable);
 		}
 		else if (component is IComponentRefComponent IComponentRef)
 		{

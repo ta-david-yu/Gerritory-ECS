@@ -288,6 +288,8 @@
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\OnTilePositionComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTilePositionComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

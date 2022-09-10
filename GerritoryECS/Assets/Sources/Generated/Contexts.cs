@@ -118,6 +118,7 @@ public partial class Contexts
 	public const string OnTileElementPosition = "OnTileElementPosition";
 	public const string OnTileElementEffect = "OnTileElementEffect";
 	public const string OnTileItem = "OnTileItem";
+	public const string OnTilePosition = "OnTilePosition";
 	public const string Player = "Player";
 	public const string State = "State";
 	public const string StateHolder = "StateHolder";
@@ -162,6 +163,11 @@ public partial class Contexts
 			OnTileItem,
 			Item.GetGroup(ItemMatcher.OnTileItem),
 			(e, c) => ((OnTileItemComponent)c).Position));
+
+		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>(
+			OnTilePosition,
+			Game.GetGroup(GameMatcher.OnTilePosition),
+			(e, c) => ((OnTilePositionComponent)c).Value));
 
 		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
 			Player,
@@ -230,6 +236,11 @@ public static class ContextsExtensions
 	public static ItemEntity GetEntityWithOnTileItem(this ItemContext context, UnityEngine.Vector2Int Position)
 	{
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ItemEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTileItem)).GetEntity(Position);
+	}
+
+	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithOnTilePosition(this GameContext context, UnityEngine.Vector2Int Value)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTilePosition)).GetEntities(Value);
 	}
 
 	public static GameEntity GetEntityWithPlayer(this GameContext context, int Id)
