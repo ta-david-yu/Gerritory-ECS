@@ -114,8 +114,7 @@ public partial class Contexts
 	public const string Eaten = "Eaten";
 	public const string ItemEater = "ItemEater";
 	public const string MoveOnTile = "MoveOnTile";
-	public const string OnTileElementId = "OnTileElementId";
-	public const string OnTileElementPosition = "OnTileElementPosition";
+	public const string OnTileElement = "OnTileElement";
 	public const string OnTileElementEffect = "OnTileElementEffect";
 	public const string OnTileItem = "OnTileItem";
 	public const string OnTilePosition = "OnTilePosition";
@@ -145,14 +144,9 @@ public partial class Contexts
 			(e, c) => ((MoveOnTileComponent)c).ToPosition));
 
 		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
-			OnTileElementId,
+			OnTileElement,
 			Game.GetGroup(GameMatcher.OnTileElement),
 			(e, c) => ((OnTileElementComponent)c).Id));
-
-		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>(
-			OnTileElementPosition,
-			Game.GetGroup(GameMatcher.OnTileElement),
-			(e, c) => ((OnTileElementComponent)c).Position));
 
 		Effect.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<EffectEntity, int>(
 			OnTileElementEffect,
@@ -218,14 +212,9 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.MoveOnTile)).GetEntities(ToPosition);
 	}
 
-	public static GameEntity GetEntityWithOnTileElementId(this GameContext context, int Id)
+	public static GameEntity GetEntityWithOnTileElement(this GameContext context, int Id)
 	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.OnTileElementId)).GetEntity(Id);
-	}
-
-	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithOnTileElementPosition(this GameContext context, UnityEngine.Vector2Int Position)
-	{
-		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTileElementPosition)).GetEntities(Position);
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.OnTileElement)).GetEntity(Id);
 	}
 
 	public static System.Collections.Generic.HashSet<EffectEntity> GetEntitiesWithOnTileElementEffect(this EffectContext context, int OnTileElementId)

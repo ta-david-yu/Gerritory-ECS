@@ -10,7 +10,4 @@ public sealed class OnTileElementComponent : IComponent
 {
 	[PrimaryEntityIndex]
 	public int Id;
-
-	[EntityIndex]
-	public Vector2Int Position;
 }

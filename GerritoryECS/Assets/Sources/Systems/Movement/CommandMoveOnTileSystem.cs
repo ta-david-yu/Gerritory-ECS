@@ -28,7 +28,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 		// Get entities that
 		// 1. Are on tile
 		// 2. Have movement input action
-		m_OnTileElementGroup = m_GameContext.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.MovementInputAction));
+		m_OnTileElementGroup = m_GameContext.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.OnTilePosition, GameMatcher.MovementInputAction));
 		m_PlayerGroup = m_GameContext.GetGroup(GameMatcher.Player);
 	}
 
@@ -44,7 +44,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 
 			// Calculate next move position based on the movement input action
 			Vector2Int moveOffset = Movement.TypeToOffset[(int)entity.MovementInputAction.Type];
-			Vector2Int fromPosition = entity.OnTileElement.Position;
+			Vector2Int fromPosition = entity.OnTilePosition.Value;
 			Vector2Int toPosition = fromPosition + moveOffset;
 
 			bool isMoveableTo = m_Contexts.IsPositionMoveableTo(toPosition);

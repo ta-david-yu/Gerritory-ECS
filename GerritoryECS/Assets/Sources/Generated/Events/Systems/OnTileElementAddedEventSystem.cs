@@ -38,7 +38,7 @@ public sealed class OnTileElementAddedEventSystem : JCMG.EntitasRedux.ReactiveSy
 			_listenerBuffer.AddRange(e.OnTileElementAddedListener.value);
 			foreach (var listener in _listenerBuffer)
 			{
-				listener.OnOnTileElementAdded(e, component.Id, component.Position);
+				listener.OnOnTileElementAdded(e, component.Id);
 			}
 		}
 	}

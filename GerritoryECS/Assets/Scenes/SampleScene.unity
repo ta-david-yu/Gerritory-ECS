@@ -390,6 +390,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
+      propertyPath: managedReferences[1863425049261768704].Value.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
       propertyPath: managedReferences[2812320396538019847].ElementId
       value: 2
       objectReference: {fileID: 0}
@@ -609,6 +614,11 @@ PrefabInstance:
     - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
         type: 3}
       propertyPath: managedReferences[2812320396538019847].Id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
+        type: 3}
+      propertyPath: managedReferences[1863425049261768704].Value.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 287314104869146459, guid: 807437b7a9bd16d4eb9fa66618e3a9f5,
@@ -843,6 +853,11 @@ PrefabInstance:
     - target: {fileID: 287314104869146459, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
         type: 3}
       propertyPath: managedReferences[2812320396538019847].Id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 287314104869146459, guid: 800b273e999ec664f9b02f9d0ae0d7a8,
+        type: 3}
+      propertyPath: managedReferences[1863425049261768704].Value.x
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 287314104869146459, guid: 800b273e999ec664f9b02f9d0ae0d7a8,

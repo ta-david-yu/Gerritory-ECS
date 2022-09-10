@@ -27,7 +27,7 @@ public static class GameHelper
 			return false;
 		}
 
-		HashSet<GameEntity> onTileEntities = contexts.Game.GetEntitiesWithOnTileElementPosition(position);
+		HashSet<GameEntity> onTileEntities = contexts.Game.GetEntitiesWithOnTilePosition(position);
 		bool isEntityOccupyingTheGiveTile = onTileEntities.Any(entity => !entity.HasMoveOnTile || entity.HasMoveOnTileBegin);
 		if (isEntityOccupyingTheGiveTile)
 		{

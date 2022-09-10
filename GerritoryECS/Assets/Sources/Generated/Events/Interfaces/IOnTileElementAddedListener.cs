@@ -9,5 +9,5 @@
 //------------------------------------------------------------------------------
 public interface IOnTileElementAddedListener
 {
-	void OnOnTileElementAdded(GameEntity entity, int id, UnityEngine.Vector2Int position);
+	void OnOnTileElementAdded(GameEntity entity, int id);
 }

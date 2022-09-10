@@ -26,14 +26,14 @@ public class RollOnTileAnimationController : MonoBehaviour, IMoveOnTileAddedList
 	{
 		GameEntity gameEntity = entity as GameEntity;
 		
-		if (!gameEntity.HasOnTileElement)
+		if (!gameEntity.HasOnTilePosition)
 		{
-			Debug.LogWarning($"The entity ({entity.CreationIndex}) doesn't have OnTileElement! Cannot set initial view transform position.");
+			Debug.LogWarning($"The entity ({entity.CreationIndex}) doesn't have OnTilePosition! Cannot set initial view transform position.");
 			return;
 		}
 
 		// Set initial view transform position
-		m_TransformToMove.localPosition = GameConstants.TilePositionToWorldPosition(gameEntity.OnTileElement.Position) + Vector3.up * GameConstants.TileOffset * 0.5f;
+		m_TransformToMove.localPosition = GameConstants.TilePositionToWorldPosition(gameEntity.OnTilePosition.Value) + Vector3.up * GameConstants.TileOffset * 0.5f;
 	}
 
 	public void OnMoveOnTileAdded(GameEntity entity, float progress, Vector2Int fromPosition, Vector2Int toPosition)

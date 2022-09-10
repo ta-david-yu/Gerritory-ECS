@@ -20,7 +20,15 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 			using (new GUILayout.VerticalScope(areaStyle, GUILayout.Width(250)))
 			{
 				GUILayout.Label($"Id: {entity.Player.Id}");
-				GUILayout.Label($"Position: {entity.OnTileElement.Position}");
+
+				if (entity.HasOnTilePosition)
+				{
+					GUILayout.Label($"Position: {entity.OnTilePosition.Value}");
+				}
+				else
+				{
+					GUILayout.Label($"Position: not on any position!");
+				}
 
 				if (entity.HasTileOwner)
 				{

@@ -58,7 +58,7 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem
 				moveEntity.RemoveMoveOnTile();
 				
 				// Set the position to the target move position and set IsComplete flag to true
-				moveEntity.ReplaceOnTileElement(moveEntity.OnTileElement.Id, toPosition);
+				moveEntity.ReplaceOnTilePosition(toPosition);
 				moveEntity.AddMoveOnTileEnd(fromPosition, toPosition);
 
 				// Emit global EnterTile message.

@@ -28,7 +28,7 @@ public class CollapseTileOnLeaveTileSystem : IFixedUpdateSystem
 		foreach (MessageEntity leaveMessageEntity in m_LeaveTileMessageGroup.GetEntities())
 		{
 			int onTileElementId = leaveMessageEntity.OnTileElementLeaveTile.OnTileElementId;
-			GameEntity leaverEntity = m_GameContext.GetEntityWithOnTileElementId(onTileElementId);
+			GameEntity leaverEntity = m_GameContext.GetEntityWithOnTileElement(onTileElementId);
 			if (!leaverEntity.IsTileCollapser)
 			{
 				// The leaving OnTileElement is not a TileCollapser, do nothing.

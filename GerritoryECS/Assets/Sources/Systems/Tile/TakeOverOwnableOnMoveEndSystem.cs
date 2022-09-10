@@ -29,7 +29,7 @@ public sealed class TakeOverOwnableOnMoveEndSystem : IFixedUpdateSystem
 		foreach (MessageEntity enterMessageEntity in m_EnterTileMessageGroup)
 		{
 			int onTileElementId = enterMessageEntity.OnTileElementEnterTile.OnTileElementId;
-			GameEntity entererEntity = m_GameContext.GetEntityWithOnTileElementId(onTileElementId);
+			GameEntity entererEntity = m_GameContext.GetEntityWithOnTileElement(onTileElementId);
 			if (!entererEntity.HasTileOwner)
 			{
 				// The entering OnTileElement is not a TileOwner, do nothing.

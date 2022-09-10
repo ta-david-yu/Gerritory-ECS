@@ -46,7 +46,7 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 		int stateHolderId = entity.State.HolderId;
 		float speedMultiplier = entity.SpeedChangeState.SpeedMultiplier;
 
-		var stateHolderEntity = m_GameContext.GetEntityWithOnTileElementId(stateHolderId);
+		var stateHolderEntity = m_GameContext.GetEntityWithOnTileElement(stateHolderId);
 		if (stateHolderEntity.HasSpeedChangeable)
 		{
 			stateHolderEntity.ReplaceSpeedChangeable(
@@ -95,7 +95,7 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 		}
 
 		// Recover the speed of the state holder based on the speed multiplier.
-		var stateHolderEntity = m_GameContext.GetEntityWithOnTileElementId(stateHolderId);
+		var stateHolderEntity = m_GameContext.GetEntityWithOnTileElement(stateHolderId);
 		if (stateHolderEntity.HasSpeedChangeable)
 		{
 			stateHolderEntity.ReplaceSpeedChangeable(

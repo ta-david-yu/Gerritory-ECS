@@ -27,7 +27,7 @@ public sealed class EatItemOnMoveEndSystem : IFixedUpdateSystem
 		foreach (MessageEntity enterMessageEntity in m_EnterTileMessageGroup)
 		{
 			int onTileElementId = enterMessageEntity.OnTileElementEnterTile.OnTileElementId;
-			GameEntity entererEntity = m_GameContext.GetEntityWithOnTileElementId(onTileElementId);
+			GameEntity entererEntity = m_GameContext.GetEntityWithOnTileElement(onTileElementId);
 			if (!entererEntity.HasItemEater)
 			{
 				// The entering OnTileElement is not an ItemEater, do nothing.

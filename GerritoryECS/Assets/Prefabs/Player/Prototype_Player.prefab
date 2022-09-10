@@ -242,11 +242,12 @@ MonoBehaviour:
   _components:
   - rid: 2812320396538019846
   - rid: 2812320396538019847
+  - rid: 1863425049261768704
+  - rid: 1863425006132002816
   - rid: 1863424855467622400
   - rid: 1863424855467622401
   - rid: 1863424971442487298
   - rid: 1863424971442487299
-  - rid: 1863425006132002816
   references:
     version: 2
     RefIds:
@@ -270,6 +271,10 @@ MonoBehaviour:
       data:
         BaseSpeed: 1
         SpeedMultiplier: 1
+    - rid: 1863425049261768704
+      type: {class: OnTilePositionComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Value: {x: 0, y: 0}
     - rid: 2812320396538019846
       type: {class: PlayerComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -278,7 +283,6 @@ MonoBehaviour:
       type: {class: OnTileElementComponent, ns: , asm: Assembly-CSharp}
       data:
         Id: 0
-        Position: {x: 0, y: 0}
 --- !u!114 &4148664826822929995
 MonoBehaviour:
   m_ObjectHideFlags: 0
