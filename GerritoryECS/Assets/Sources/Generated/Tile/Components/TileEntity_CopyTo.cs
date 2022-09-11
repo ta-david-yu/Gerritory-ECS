@@ -38,6 +38,10 @@ public partial class TileEntity
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
+		else if (component is CanBeRespawnedOnComponent CanBeRespawnedOn)
+		{
+			CopyCanBeRespawnedOnTo(CanBeRespawnedOn);
+		}
 		else if (component is CollapseOnSteppedComponent CollapseOnStepped)
 		{
 			CopyCollapseOnSteppedTo(CollapseOnStepped);

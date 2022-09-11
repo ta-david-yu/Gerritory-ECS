@@ -18,21 +18,21 @@ public partial class MessageEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is ConsumeInFixedUpdate ConsumeInFixedUpdate)
-		{
-			IsConsumeInFixedUpdate = true;
-		}
-		else if (component is OnTileElementLeaveTileComponent OnTileElementLeaveTile)
+		if (component is OnTileElementLeaveTileComponent OnTileElementLeaveTile)
 		{
 			CopyOnTileElementLeaveTileTo(OnTileElementLeaveTile);
-		}
-		else if (component is Consumed Consumed)
-		{
-			IsConsumed = true;
 		}
 		else if (component is OnTileElementEnterTileComponent OnTileElementEnterTile)
 		{
 			CopyOnTileElementEnterTileTo(OnTileElementEnterTile);
+		}
+		else if (component is ConsumeInFixedUpdateComponent ConsumeInFixedUpdate)
+		{
+			IsConsumeInFixedUpdate = true;
+		}
+		else if (component is ConsumedComponent Consumed)
+		{
+			IsConsumed = true;
 		}
 		#endif
 	}

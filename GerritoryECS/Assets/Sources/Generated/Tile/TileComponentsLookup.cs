@@ -13,17 +13,19 @@ using JCMG.EntitasRedux;
 
 public static class TileComponentsLookup
 {
-	public const int CollapseOnStepped = 0;
-	public const int DebugMessage = 1;
-	public const int Enterable = 2;
-	public const int ItemHolder = 3;
-	public const int Ownable = 4;
-	public const int TilePosition = 5;
+	public const int CanBeRespawnedOn = 0;
+	public const int CollapseOnStepped = 1;
+	public const int DebugMessage = 2;
+	public const int Enterable = 3;
+	public const int ItemHolder = 4;
+	public const int Ownable = 5;
+	public const int TilePosition = 6;
 
-	public const int TotalComponents = 6;
+	public const int TotalComponents = 7;
 
 	public static readonly string[] ComponentNames =
 	{
+		"CanBeRespawnedOn",
 		"CollapseOnStepped",
 		"DebugMessage",
 		"Enterable",
@@ -34,6 +36,7 @@ public static class TileComponentsLookup
 
 	public static readonly System.Type[] ComponentTypes =
 	{
+		typeof(CanBeRespawnedOnComponent),
 		typeof(CollapseOnSteppedComponent),
 		typeof(DebugMessageComponent),
 		typeof(EnterableComponent),
@@ -44,12 +47,13 @@ public static class TileComponentsLookup
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(CollapseOnSteppedComponent), 0 },
-		{ typeof(DebugMessageComponent), 1 },
-		{ typeof(EnterableComponent), 2 },
-		{ typeof(ItemHolderComponent), 3 },
-		{ typeof(OwnableComponent), 4 },
-		{ typeof(TilePositionComponent), 5 }
+		{ typeof(CanBeRespawnedOnComponent), 0 },
+		{ typeof(CollapseOnSteppedComponent), 1 },
+		{ typeof(DebugMessageComponent), 2 },
+		{ typeof(EnterableComponent), 3 },
+		{ typeof(ItemHolderComponent), 4 },
+		{ typeof(OwnableComponent), 5 },
+		{ typeof(TilePositionComponent), 6 }
 	};
 
 	/// <summary>

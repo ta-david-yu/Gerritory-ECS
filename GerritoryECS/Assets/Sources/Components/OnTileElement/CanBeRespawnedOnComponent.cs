@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Game]
-[Event(EventTarget.Self)]
+[Tile]
 [System.Serializable]
-public sealed class OnTilePositionComponent : IComponent
+public sealed class CanBeRespawnedOnComponent : IComponent
 {
 	[EntityIndex]
-	public Vector2Int Value;
+	public int RespawnAreaId;
 }

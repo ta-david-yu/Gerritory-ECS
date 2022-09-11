@@ -18,9 +18,9 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is OnTilePositionComponent OnTilePosition)
+		if (component is DeadComponent Dead)
 		{
-			CopyOnTilePositionTo(OnTilePosition);
+			IsDead = true;
 		}
 		else if (component is MovementInputActionComponent MovementInputAction)
 		{
@@ -38,6 +38,10 @@ public partial class GameEntity
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
+		else if (component is OnTilePositionComponent OnTilePosition)
+		{
+			CopyOnTilePositionTo(OnTilePosition);
+		}
 		else if (component is MoveOnTileEndComponent MoveOnTileEnd)
 		{
 			CopyMoveOnTileEndTo(MoveOnTileEnd);
@@ -45,6 +49,10 @@ public partial class GameEntity
 		else if (component is TileCollapserComponent TileCollapser)
 		{
 			IsTileCollapser = true;
+		}
+		else if (component is CanBeDeadComponent CanBeDead)
+		{
+			IsCanBeDead = true;
 		}
 		else if (component is TileOwnerComponent TileOwner)
 		{
@@ -82,9 +90,9 @@ public partial class GameEntity
 		{
 			CopyMoveOnTileAddedListenerTo(MoveOnTileAddedListener);
 		}
-		else if (component is OnTileElementAddedListenerComponent OnTileElementAddedListener)
+		else if (component is OnTilePositionAddedListenerComponent OnTilePositionAddedListener)
 		{
-			CopyOnTileElementAddedListenerTo(OnTileElementAddedListener);
+			CopyOnTilePositionAddedListenerTo(OnTilePositionAddedListener);
 		}
 		else if (component is MoveOnTileEndAddedListenerComponent MoveOnTileEndAddedListener)
 		{

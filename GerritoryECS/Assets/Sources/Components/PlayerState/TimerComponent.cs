@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [PlayerState]
-public sealed class StateTimerComponent : IComponent
+public sealed class TimerComponent : IComponent
 {
 	public float Value;
 }

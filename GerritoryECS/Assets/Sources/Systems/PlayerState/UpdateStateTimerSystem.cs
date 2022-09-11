@@ -17,14 +17,14 @@ public sealed class UpdateStateTimerSystem : IFixedUpdateSystem
 		m_ItemContex = contexts.Item;
 		m_PlayerStateContext = contexts.PlayerState;
 
-		m_StateTimerGroup = m_PlayerStateContext.GetGroup(PlayerStateMatcher.AllOf(PlayerStateMatcher.State, PlayerStateMatcher.StateTimer));
+		m_StateTimerGroup = m_PlayerStateContext.GetGroup(PlayerStateMatcher.AllOf(PlayerStateMatcher.State, PlayerStateMatcher.Timer));
 	}
 
 	public void FixedUpdate()
 	{
 		foreach (var stateEntity in m_StateTimerGroup.GetEntities())
 		{
-			float stateTimer = stateEntity.StateTimer.Value;
+			float stateTimer = stateEntity.Timer.Value;
 			if (stateTimer < 0)
 			{
 				// The state timer is up, remove the state entity.
@@ -33,7 +33,7 @@ public sealed class UpdateStateTimerSystem : IFixedUpdateSystem
 			else
 			{
 				stateTimer -= Time.fixedDeltaTime;
-				stateEntity.ReplaceStateTimer(stateTimer);
+				stateEntity.ReplaceTimer(stateTimer);
 			}
 		}
 	}

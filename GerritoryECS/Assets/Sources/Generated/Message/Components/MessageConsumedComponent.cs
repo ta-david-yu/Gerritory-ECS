@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 public partial class MessageEntity
 {
-	static readonly Consumed ConsumedComponent = new Consumed();
+	static readonly ConsumedComponent ConsumedComponent = new ConsumedComponent();
 
 	public bool IsConsumed
 	{

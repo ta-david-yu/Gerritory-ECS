@@ -75,7 +75,7 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 		}
 		else
 		{
-			Debug.LogWarning("Cannot aquire State component from group.removed event. Therefore state removal cannot be properly applied to the state holder.");
+			Debug.LogWarning("Cannot acquire State component from group.removed event. Therefore state removal cannot be properly applied to the state holder.");
 			return;
 		}
 
@@ -90,12 +90,12 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 		}
 		else
 		{
-			Debug.LogWarning("Cannot aquire SpeedChangeState component from group.removed event. Therefore state removal cannot be properly applied to the state holder.");
+			Debug.LogWarning("Cannot acquire SpeedChangeState component from group.removed event. Therefore state removal cannot be properly applied to the state holder.");
 			return;
 		}
 
 		// Recover the speed of the state holder based on the speed multiplier.
-		var stateHolderEntity = m_GameContext.GetEntityWithOnTileElement(stateHolderId);
+		var stateHolderEntity = m_GameContext.GetEntityWithStateHolder(stateHolderId);
 		if (stateHolderEntity.HasSpeedChangeable)
 		{
 			stateHolderEntity.ReplaceSpeedChangeable(

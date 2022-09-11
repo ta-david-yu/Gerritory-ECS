@@ -30,16 +30,16 @@ public static class MessageComponentsLookup
 
 	public static readonly System.Type[] ComponentTypes =
 	{
-		typeof(Consumed),
-		typeof(ConsumeInFixedUpdate),
+		typeof(ConsumedComponent),
+		typeof(ConsumeInFixedUpdateComponent),
 		typeof(OnTileElementEnterTileComponent),
 		typeof(OnTileElementLeaveTileComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(Consumed), 0 },
-		{ typeof(ConsumeInFixedUpdate), 1 },
+		{ typeof(ConsumedComponent), 0 },
+		{ typeof(ConsumeInFixedUpdateComponent), 1 },
 		{ typeof(OnTileElementEnterTileComponent), 2 },
 		{ typeof(OnTileElementLeaveTileComponent), 3 }
 	};

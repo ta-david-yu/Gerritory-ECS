@@ -111,6 +111,7 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 //------------------------------------------------------------------------------
 public partial class Contexts
 {
+	public const string CanBeRespawnedOn = "CanBeRespawnedOn";
 	public const string Eaten = "Eaten";
 	public const string ItemEater = "ItemEater";
 	public const string MoveOnTile = "MoveOnTile";
@@ -128,6 +129,11 @@ public partial class Contexts
 	[JCMG.EntitasRedux.PostConstructor]
 	public void InitializeEntityIndices()
 	{
+		Tile.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<TileEntity, int>(
+			CanBeRespawnedOn,
+			Tile.GetGroup(TileMatcher.CanBeRespawnedOn),
+			(e, c) => ((CanBeRespawnedOnComponent)c).RespawnAreaId));
+
 		Item.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<ItemEntity, int>(
 			Eaten,
 			Item.GetGroup(ItemMatcher.Eaten),
@@ -197,6 +203,11 @@ public partial class Contexts
 
 public static class ContextsExtensions
 {
+	public static System.Collections.Generic.HashSet<TileEntity> GetEntitiesWithCanBeRespawnedOn(this TileContext context, int RespawnAreaId)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<TileEntity, int>)context.GetEntityIndex(Contexts.CanBeRespawnedOn)).GetEntities(RespawnAreaId);
+	}
+
 	public static System.Collections.Generic.HashSet<ItemEntity> GetEntitiesWithEaten(this ItemContext context, int EaterId)
 	{
 		return ((JCMG.EntitasRedux.EntityIndex<ItemEntity, int>)context.GetEntityIndex(Contexts.Eaten)).GetEntities(EaterId);

@@ -7,7 +7,7 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public interface IOnTileElementAddedListener
+public interface IOnTilePositionAddedListener
 {
-	void OnOnTileElementAdded(GameEntity entity, int id);
+	void OnOnTilePositionAdded(GameEntity entity, UnityEngine.Vector2Int value);
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 [JCMG.EntitasRedux.DontGenerate(false)]
-public sealed class OnTileElementAddedListenerComponent : JCMG.EntitasRedux.IComponent
+public sealed class OnTilePositionAddedListenerComponent : JCMG.EntitasRedux.IComponent
 {
-	public System.Collections.Generic.List<IOnTileElementAddedListener> value;
+	public System.Collections.Generic.List<IOnTilePositionAddedListener> value;
 }

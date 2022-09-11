@@ -1,39 +1,42 @@
 using JCMG.EntitasRedux;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpdateSystem
+public sealed class CreateWaitingForRespawnStateOnDeathSystem : ReactiveSystem<GameEntity>
 {
 	private readonly GameContext m_GameContext;
-	private readonly ItemContext m_ItemContext;
 	private readonly PlayerStateContext m_PlayerStateContext;
-
-	private readonly IGroup<ItemEntity> m_EatenSpeedChangePowerupGroup;
 
 	private readonly PlayerStateEntity[] m_PreallocatedPlayerStateEntitiesToBeDestroyed = new PlayerStateEntity[4];
 
-	public CreateSpeedChangeStateForEaterOnItemEatenSystem(Contexts contexts)
+	public CreateWaitingForRespawnStateOnDeathSystem(Contexts contexts) : base(contexts.Game)
 	{
 		m_GameContext = contexts.Game;
-		m_ItemContext = contexts.Item;
 		m_PlayerStateContext = contexts.PlayerState;
-		m_EatenSpeedChangePowerupGroup = m_ItemContext.GetGroup(ItemMatcher.AllOf(ItemMatcher.OnTileItem, ItemMatcher.ApplySpeedChangeStateForEaterOnEaten, ItemMatcher.Eaten));
 	}
 
-	public void FixedUpdate()
+	protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
 	{
-		foreach (var powerupEntity in m_EatenSpeedChangePowerupGroup.GetEntities())
+		return context.CreateCollector(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.CanBeDead, GameMatcher.Dead));
+	}
+
+	protected override bool Filter(GameEntity entity)
+	{
+		return entity.IsDead;
+	}
+
+	protected override void Execute(List<GameEntity> entities)
+	{
+		foreach (var deadEntity in entities)
 		{
-			GameEntity eaterEntity = m_GameContext.GetEntityWithItemEater(powerupEntity.Eaten.EaterId);
-			if (!eaterEntity.HasStateHolder)
+			if (!deadEntity.HasStateHolder)
 			{
-				// The eater cannot hold a state, skip it.
+				// The dead entity cannot hold a state, skip it.
 				continue;
 			}
 
-			int stateHolderId = eaterEntity.StateHolder.Id;
+			int stateHolderId = deadEntity.StateHolder.Id;
 			var playerStateEntitiesSet = m_PlayerStateContext.GetEntitiesWithState(stateHolderId);
 			if (playerStateEntitiesSet.Count > 1)
 			{
@@ -54,11 +57,8 @@ public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpda
 			// Create a new state entity targetting the holder.
 			PlayerStateEntity newStateEntity = m_PlayerStateContext.CreateEntity();
 			newStateEntity.AddState(stateHolderId);
-			newStateEntity.AddTimer(powerupEntity.ApplySpeedChangeStateForEaterOnEaten.Duration);
-			newStateEntity.AddSpeedChangeState(powerupEntity.ApplySpeedChangeStateForEaterOnEaten.SpeedMultiplier);
-
-			// Consume & destroy the item.
-			powerupEntity.Destroy();
+			newStateEntity.AddTimer(GameConstants.WaitingForRespawnDuration);
+			newStateEntity.AddWaitingForRespawnState(newRespawnAreaId: 0);	// TODO: add custom respawn area id here
 		}
 	}
 }

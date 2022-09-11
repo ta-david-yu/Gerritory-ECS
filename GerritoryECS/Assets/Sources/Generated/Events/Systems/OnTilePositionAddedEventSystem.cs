@@ -7,38 +7,38 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class OnTileElementAddedEventSystem : JCMG.EntitasRedux.ReactiveSystem<GameEntity>
+public sealed class OnTilePositionAddedEventSystem : JCMG.EntitasRedux.ReactiveSystem<GameEntity>
 {
-	readonly System.Collections.Generic.List<IOnTileElementAddedListener> _listenerBuffer;
+	readonly System.Collections.Generic.List<IOnTilePositionAddedListener> _listenerBuffer;
 
-	public OnTileElementAddedEventSystem(Contexts contexts) : base(contexts.Game)
+	public OnTilePositionAddedEventSystem(Contexts contexts) : base(contexts.Game)
 	{
-		_listenerBuffer = new System.Collections.Generic.List<IOnTileElementAddedListener>();
+		_listenerBuffer = new System.Collections.Generic.List<IOnTilePositionAddedListener>();
 	}
 
 	protected override JCMG.EntitasRedux.ICollector<GameEntity> GetTrigger(JCMG.EntitasRedux.IContext<GameEntity> context)
 	{
 		return JCMG.EntitasRedux.CollectorContextExtension.CreateCollector(
 			context,
-			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Added(GameMatcher.OnTileElement)
+			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Added(GameMatcher.OnTilePosition)
 		);
 	}
 
 	protected override bool Filter(GameEntity entity)
 	{
-		return entity.HasOnTileElement && entity.HasOnTileElementAddedListener;
+		return entity.HasOnTilePosition && entity.HasOnTilePositionAddedListener;
 	}
 
 	protected override void Execute(System.Collections.Generic.List<GameEntity> entities)
 	{
 		foreach (var e in entities)
 		{
-			var component = e.OnTileElement;
+			var component = e.OnTilePosition;
 			_listenerBuffer.Clear();
-			_listenerBuffer.AddRange(e.OnTileElementAddedListener.value);
+			_listenerBuffer.AddRange(e.OnTilePositionAddedListener.value);
 			foreach (var listener in _listenerBuffer)
 			{
-				listener.OnOnTileElementAdded(e, component.Id);
+				listener.OnOnTilePositionAdded(e, component.Value);
 			}
 		}
 	}

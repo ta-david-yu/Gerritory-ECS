@@ -9,6 +9,8 @@ public static class GameConstants
 
 	public static readonly float MoveOnTileDuration = 0.33f;
 
+	public static readonly float WaitingForRespawnDuration = 3.0f;
+
 	public static Vector3 TilePositionToWorldPosition(Vector2Int tilePosition)
 	{
 		return new Vector3(tilePosition.x, 0, tilePosition.y) * GameConstants.TileOffset;

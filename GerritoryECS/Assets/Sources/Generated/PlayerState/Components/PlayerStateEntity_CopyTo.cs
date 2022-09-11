@@ -30,9 +30,13 @@ public partial class PlayerStateEntity
 		{
 			CopySpeedChangeStateTo(SpeedChangeState);
 		}
-		else if (component is StateTimerComponent StateTimer)
+		else if (component is WaitingForRespawnState WaitingForRespawnState)
 		{
-			CopyStateTimerTo(StateTimer);
+			CopyWaitingForRespawnStateTo(WaitingForRespawnState);
+		}
+		else if (component is TimerComponent Timer)
+		{
+			CopyTimerTo(Timer);
 		}
 		#endif
 	}

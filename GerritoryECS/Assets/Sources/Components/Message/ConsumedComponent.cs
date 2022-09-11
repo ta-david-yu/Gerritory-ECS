@@ -4,6 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Message]
-public sealed class ConsumeInFixedUpdate : IComponent
+public sealed class ConsumedComponent : IComponent
 {
 }

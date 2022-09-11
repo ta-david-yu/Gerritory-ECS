@@ -54,6 +54,8 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 					itemEntity.AddOnTileItem(position);
 					itemEntity.AddApplySpeedChangeStateForEaterOnEaten(3.0f, 2.0f);
 				}
+
+				tileEntity.AddCanBeRespawnedOn(newRespawnAreaId: 0);
 			}
 		}
 	}

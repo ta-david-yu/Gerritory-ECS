@@ -7,24 +7,24 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class MessageEntity
+public partial class GameEntity
 {
-	static readonly ConsumeInFixedUpdateComponent ConsumeInFixedUpdateComponent = new ConsumeInFixedUpdateComponent();
+	static readonly DeadComponent DeadComponent = new DeadComponent();
 
-	public bool IsConsumeInFixedUpdate
+	public bool IsDead
 	{
-		get { return HasComponent(MessageComponentsLookup.ConsumeInFixedUpdate); }
+		get { return HasComponent(GameComponentsLookup.Dead); }
 		set
 		{
-			if (value != IsConsumeInFixedUpdate)
+			if (value != IsDead)
 			{
-				var index = MessageComponentsLookup.ConsumeInFixedUpdate;
+				var index = GameComponentsLookup.Dead;
 				if (value)
 				{
 					var componentPool = GetComponentPool(index);
 					var component = componentPool.Count > 0
 							? componentPool.Pop()
-							: ConsumeInFixedUpdateComponent;
+							: DeadComponent;
 
 					AddComponent(index, component);
 				}
@@ -46,22 +46,22 @@ public partial class MessageEntity
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class MessageMatcher
+public sealed partial class GameMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<MessageEntity> _matcherConsumeInFixedUpdate;
+	static JCMG.EntitasRedux.IMatcher<GameEntity> _matcherDead;
 
-	public static JCMG.EntitasRedux.IMatcher<MessageEntity> ConsumeInFixedUpdate
+	public static JCMG.EntitasRedux.IMatcher<GameEntity> Dead
 	{
 		get
 		{
-			if (_matcherConsumeInFixedUpdate == null)
+			if (_matcherDead == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<MessageEntity>)JCMG.EntitasRedux.Matcher<MessageEntity>.AllOf(MessageComponentsLookup.ConsumeInFixedUpdate);
-				matcher.ComponentNames = MessageComponentsLookup.ComponentNames;
-				_matcherConsumeInFixedUpdate = matcher;
+				var matcher = (JCMG.EntitasRedux.Matcher<GameEntity>)JCMG.EntitasRedux.Matcher<GameEntity>.AllOf(GameComponentsLookup.Dead);
+				matcher.ComponentNames = GameComponentsLookup.ComponentNames;
+				_matcherDead = matcher;
 			}
 
-			return _matcherConsumeInFixedUpdate;
+			return _matcherDead;
 		}
 	}
 }

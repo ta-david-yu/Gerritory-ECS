@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using JCMG.EntitasRedux;
+
+[System.Serializable]
+public struct TryGetValidRespawnPositionResult
+{
+	public bool Success;
+	public Vector2Int TilePosition;
+}
 
 public static class GameHelper
 {
@@ -43,5 +51,43 @@ public static class GameHelper
 		}
 
 		return true;
+	}
+
+	private static IGroup<TileEntity> s_RespawnableTileGroup = null;
+	public static TryGetValidRespawnPositionResult TryGetValidRespawnPositionFor(this Contexts contexts, GameEntity entity)
+	{
+		if (s_RespawnableTileGroup == null)
+		{
+			s_RespawnableTileGroup = 
+				contexts.Tile.GetGroup(TileMatcher.AllOf(TileMatcher.TilePosition, TileMatcher.Enterable, TileMatcher.CanBeRespawnedOn));
+		}
+
+		var validTileEntities = s_RespawnableTileGroup.GetEntities().Where(
+							tileEntity =>
+							{
+								Vector2Int position = tileEntity.TilePosition.Value;
+								bool isMoveableTo = contexts.IsPositionMoveableTo(position);
+								bool hasItem = contexts.Item.GetEntityWithOnTileItem(position) != null;
+
+								// Only tiles that have nothing on it && can be moved to are valid.
+								return !isMoveableTo && !hasItem;
+							});
+
+		if (!validTileEntities.Any())
+		{
+			// No valid tiles available.
+			Debug.LogWarning($"Cannot find valid tiles for the OnTileElement entity {entity.OnTileElement.Id} to be spawned on.");
+			return new TryGetValidRespawnPositionResult() { Success = false, TilePosition = Vector2Int.zero };
+		}
+
+		TileEntity randomlyPickedTileEntity = validTileEntities.ElementAt(UnityEngine.Random.Range(0, validTileEntities.Count()));
+		return new TryGetValidRespawnPositionResult() { Success = true, TilePosition = randomlyPickedTileEntity.TilePosition.Value };
+	}
+	public static TryGetValidRespawnPositionResult TryGetValidRespawnPositionOfAreaIdFor(this Contexts contexts, GameEntity entity, int respawnAreaId)
+	{
+		// TODO: Add respawn area id search filter
+		// ...
+
+		return TryGetValidRespawnPositionFor(contexts, entity);
 	}
 }
