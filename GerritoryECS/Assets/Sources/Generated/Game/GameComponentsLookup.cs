@@ -14,33 +14,37 @@ using JCMG.EntitasRedux;
 public static class GameComponentsLookup
 {
 	public const int CanBeDead = 0;
-	public const int Dead = 1;
-	public const int DebugMessage = 2;
-	public const int IComponentRef = 3;
-	public const int ItemEater = 4;
-	public const int Level = 5;
-	public const int MovementInputAction = 6;
-	public const int MoveOnTileAddedListener = 7;
-	public const int MoveOnTileBeginAddedListener = 8;
-	public const int MoveOnTileBegin = 9;
-	public const int MoveOnTile = 10;
-	public const int MoveOnTileEndAddedListener = 11;
-	public const int MoveOnTileEnd = 12;
-	public const int OnTileElement = 13;
-	public const int OnTilePositionAddedListener = 14;
-	public const int OnTilePosition = 15;
-	public const int Player = 16;
-	public const int SpeedChangeable = 17;
-	public const int StateHolder = 18;
-	public const int TileCollapser = 19;
-	public const int TileOwner = 20;
+	public const int DeadAddedListener = 1;
+	public const int Dead = 2;
+	public const int DeadRemovedListener = 3;
+	public const int DebugMessage = 4;
+	public const int IComponentRef = 5;
+	public const int ItemEater = 6;
+	public const int Level = 7;
+	public const int MovementInputAction = 8;
+	public const int MoveOnTileAddedListener = 9;
+	public const int MoveOnTileBeginAddedListener = 10;
+	public const int MoveOnTileBegin = 11;
+	public const int MoveOnTile = 12;
+	public const int MoveOnTileEndAddedListener = 13;
+	public const int MoveOnTileEnd = 14;
+	public const int OnTileElement = 15;
+	public const int OnTilePositionAddedListener = 16;
+	public const int OnTilePosition = 17;
+	public const int Player = 18;
+	public const int SpeedChangeable = 19;
+	public const int StateHolder = 20;
+	public const int TileCollapser = 21;
+	public const int TileOwner = 22;
 
-	public const int TotalComponents = 21;
+	public const int TotalComponents = 23;
 
 	public static readonly string[] ComponentNames =
 	{
 		"CanBeDead",
+		"DeadAddedListener",
 		"Dead",
+		"DeadRemovedListener",
 		"DebugMessage",
 		"IComponentRef",
 		"ItemEater",
@@ -65,7 +69,9 @@ public static class GameComponentsLookup
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(CanBeDeadComponent),
+		typeof(DeadAddedListenerComponent),
 		typeof(DeadComponent),
+		typeof(DeadRemovedListenerComponent),
 		typeof(DebugMessageComponent),
 		typeof(IComponentRefComponent),
 		typeof(ItemEaterComponent),
@@ -90,26 +96,28 @@ public static class GameComponentsLookup
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(CanBeDeadComponent), 0 },
-		{ typeof(DeadComponent), 1 },
-		{ typeof(DebugMessageComponent), 2 },
-		{ typeof(IComponentRefComponent), 3 },
-		{ typeof(ItemEaterComponent), 4 },
-		{ typeof(LevelComponent), 5 },
-		{ typeof(MovementInputActionComponent), 6 },
-		{ typeof(MoveOnTileAddedListenerComponent), 7 },
-		{ typeof(MoveOnTileBeginAddedListenerComponent), 8 },
-		{ typeof(MoveOnTileBeginComponent), 9 },
-		{ typeof(MoveOnTileComponent), 10 },
-		{ typeof(MoveOnTileEndAddedListenerComponent), 11 },
-		{ typeof(MoveOnTileEndComponent), 12 },
-		{ typeof(OnTileElementComponent), 13 },
-		{ typeof(OnTilePositionAddedListenerComponent), 14 },
-		{ typeof(OnTilePositionComponent), 15 },
-		{ typeof(PlayerComponent), 16 },
-		{ typeof(SpeedChangeableComponent), 17 },
-		{ typeof(StateHolderComponent), 18 },
-		{ typeof(TileCollapserComponent), 19 },
-		{ typeof(TileOwnerComponent), 20 }
+		{ typeof(DeadAddedListenerComponent), 1 },
+		{ typeof(DeadComponent), 2 },
+		{ typeof(DeadRemovedListenerComponent), 3 },
+		{ typeof(DebugMessageComponent), 4 },
+		{ typeof(IComponentRefComponent), 5 },
+		{ typeof(ItemEaterComponent), 6 },
+		{ typeof(LevelComponent), 7 },
+		{ typeof(MovementInputActionComponent), 8 },
+		{ typeof(MoveOnTileAddedListenerComponent), 9 },
+		{ typeof(MoveOnTileBeginAddedListenerComponent), 10 },
+		{ typeof(MoveOnTileBeginComponent), 11 },
+		{ typeof(MoveOnTileComponent), 12 },
+		{ typeof(MoveOnTileEndAddedListenerComponent), 13 },
+		{ typeof(MoveOnTileEndComponent), 14 },
+		{ typeof(OnTileElementComponent), 15 },
+		{ typeof(OnTilePositionAddedListenerComponent), 16 },
+		{ typeof(OnTilePositionComponent), 17 },
+		{ typeof(PlayerComponent), 18 },
+		{ typeof(SpeedChangeableComponent), 19 },
+		{ typeof(StateHolderComponent), 20 },
+		{ typeof(TileCollapserComponent), 21 },
+		{ typeof(TileOwnerComponent), 22 }
 	};
 
 	/// <summary>

@@ -54,7 +54,7 @@ public static class GameHelper
 	}
 
 	private static IGroup<TileEntity> s_RespawnableTileGroup = null;
-	public static TryGetValidRespawnPositionResult TryGetValidRespawnPositionFor(this Contexts contexts, GameEntity entity)
+	private static TryGetValidRespawnPositionResult tryGetValidRespawnPositionFor(this Contexts contexts, GameEntity entity)
 	{
 		if (s_RespawnableTileGroup == null)
 		{
@@ -70,7 +70,7 @@ public static class GameHelper
 								bool hasItem = contexts.Item.GetEntityWithOnTileItem(position) != null;
 
 								// Only tiles that have nothing on it && can be moved to are valid.
-								return !isMoveableTo && !hasItem;
+								return isMoveableTo && !hasItem;
 							});
 
 		if (!validTileEntities.Any())
@@ -88,7 +88,7 @@ public static class GameHelper
 		// TODO: Add respawn area id search filter
 		// ...
 
-		return TryGetValidRespawnPositionFor(contexts, entity);
+		return tryGetValidRespawnPositionFor(contexts, entity);
 	}
 
 

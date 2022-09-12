@@ -86,6 +86,14 @@ public partial class GameEntity
 		{
 			CopyPlayerTo(Player);
 		}
+		else if (component is DeadAddedListenerComponent DeadAddedListener)
+		{
+			CopyDeadAddedListenerTo(DeadAddedListener);
+		}
+		else if (component is DeadRemovedListenerComponent DeadRemovedListener)
+		{
+			CopyDeadRemovedListenerTo(DeadRemovedListener);
+		}
 		else if (component is MoveOnTileAddedListenerComponent MoveOnTileAddedListener)
 		{
 			CopyMoveOnTileAddedListenerTo(MoveOnTileAddedListener);

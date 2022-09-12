@@ -1,9 +1,8 @@
 using JCMG.EntitasRedux;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 [Game]
+[Event(eventTarget: EventTarget.Self, eventType: EventType.Added)]
+[Event(eventTarget: EventTarget.Self, eventType: EventType.Removed)]
 public sealed class DeadComponent : IComponent
 {
 }

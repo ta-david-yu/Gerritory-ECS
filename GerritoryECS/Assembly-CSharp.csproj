@@ -71,6 +71,7 @@
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectOnTileElementEffectComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigDebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameLevelComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\PlayerState\CreateWaitingForRespawnStateOnDeathSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileEndAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\IPlayerStateBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameIComponentRefComponent.cs" />
@@ -299,7 +300,16 @@
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Systems\PlayerState\CreateWaitingForRespawnStateOnDeathSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\DeadRemovedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\DeadRemovedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\DeadAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IDeadAddedListener.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameDeadAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameDeadRemovedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\DeadAddedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IDeadRemovedListener.cs" />
+    <Compile Include="Assets\Scripts\Animation\PlayerDeathAnimationController.cs" />
+    <Compile Include="Assets\Sources\Features\PlayerStateFeature.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

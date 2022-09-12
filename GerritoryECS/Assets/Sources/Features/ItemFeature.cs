@@ -12,11 +12,5 @@ public sealed class ItemFeature : Feature
 
 		// Create powerup item states systems
 		Add(new CreateSpeedChangeStateForEaterOnItemEatenSystem(contexts));
-		
-		// State effects systems
-		Add(new SpeedChangeStateSystem(contexts));
-
-		// Generated cleanup systems
-		// ...
 	}
 }

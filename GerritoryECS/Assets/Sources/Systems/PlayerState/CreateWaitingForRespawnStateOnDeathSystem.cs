@@ -8,8 +8,6 @@ public sealed class CreateWaitingForRespawnStateOnDeathSystem : ReactiveSystem<G
 	private readonly GameContext m_GameContext;
 	private readonly PlayerStateContext m_PlayerStateContext;
 
-	private readonly PlayerStateEntity[] m_PreallocatedPlayerStateEntitiesToBeDestroyed = new PlayerStateEntity[4];
-
 	public CreateWaitingForRespawnStateOnDeathSystem(Contexts contexts) : base(contexts.Game)
 	{
 		m_GameContext = contexts.Game;

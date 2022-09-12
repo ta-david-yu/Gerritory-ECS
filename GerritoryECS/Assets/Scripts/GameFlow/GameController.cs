@@ -66,6 +66,7 @@ public class GameController : MonoBehaviour
 			.Add(new MovementFeature(contexts))
 			.Add(new TileFeature(contexts))
 			.Add(new ItemFeature(contexts))
+			.Add(new PlayerStateFeature(contexts))
 
 			.Add(new MessageFeature(contexts))
 			.Add(new GameEventSystems(contexts))
