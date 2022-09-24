@@ -78,6 +78,7 @@ public sealed class RespawnOnWaitingForRespawnStateRemovedSystem : IInitializeSy
 		else
 		{
 			Debug.LogWarning($"Cannot find a proper respawn position!");
+			// TODO: respawn later
 		}
 
 		Debug.Log($"State holder {stateHolderId} respawned on {respawnPositionQueryResult.TilePosition}, OnTileElementId {stateHolderEntity.OnTileElement.Id}");
