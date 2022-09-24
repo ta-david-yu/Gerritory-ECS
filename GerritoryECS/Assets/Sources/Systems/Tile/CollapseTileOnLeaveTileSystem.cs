@@ -5,6 +5,7 @@ using JCMG.EntitasRedux;
 
 /// <summary>
 /// Do collapse/collapse counting logic if entities that leave a tile have <see cref="TileCollapserComponent"/> + the leaving tile is <see cref="CollapseOnSteppedComponent"/>.
+/// LeaveTile event caused by death will not trigger collapse.
 /// </summary>
 public class CollapseTileOnLeaveTileSystem : IFixedUpdateSystem
 {
@@ -20,7 +21,9 @@ public class CollapseTileOnLeaveTileSystem : IFixedUpdateSystem
 		m_TileContext = contexts.Tile;
 		m_MessageContext = contexts.Message;
 
-		m_LeaveTileMessageGroup = m_MessageContext.GetGroup(MessageMatcher.AllOf(MessageMatcher.OnTileElementLeaveTile).NoneOf(MessageMatcher.Consumed));
+		m_LeaveTileMessageGroup = m_MessageContext.GetGroup(MessageMatcher.
+			AllOf(MessageMatcher.OnTileElementLeaveTile).
+			NoneOf(MessageMatcher.LeaveBecauseOfDeath, MessageMatcher.Consumed));
 	}
 
 	public void FixedUpdate()
