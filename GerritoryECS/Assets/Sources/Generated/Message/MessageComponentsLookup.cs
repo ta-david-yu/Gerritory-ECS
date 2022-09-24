@@ -15,15 +15,17 @@ public static class MessageComponentsLookup
 {
 	public const int Consumed = 0;
 	public const int ConsumeInFixedUpdate = 1;
-	public const int OnTileElementEnterTile = 2;
-	public const int OnTileElementLeaveTile = 3;
+	public const int LeaveBecauseOfDeath = 2;
+	public const int OnTileElementEnterTile = 3;
+	public const int OnTileElementLeaveTile = 4;
 
-	public const int TotalComponents = 4;
+	public const int TotalComponents = 5;
 
 	public static readonly string[] ComponentNames =
 	{
 		"Consumed",
 		"ConsumeInFixedUpdate",
+		"LeaveBecauseOfDeath",
 		"OnTileElementEnterTile",
 		"OnTileElementLeaveTile"
 	};
@@ -32,6 +34,7 @@ public static class MessageComponentsLookup
 	{
 		typeof(ConsumedComponent),
 		typeof(ConsumeInFixedUpdateComponent),
+		typeof(LeaveBecauseOfDeathComponent),
 		typeof(OnTileElementEnterTileComponent),
 		typeof(OnTileElementLeaveTileComponent)
 	};
@@ -40,8 +43,9 @@ public static class MessageComponentsLookup
 	{
 		{ typeof(ConsumedComponent), 0 },
 		{ typeof(ConsumeInFixedUpdateComponent), 1 },
-		{ typeof(OnTileElementEnterTileComponent), 2 },
-		{ typeof(OnTileElementLeaveTileComponent), 3 }
+		{ typeof(LeaveBecauseOfDeathComponent), 2 },
+		{ typeof(OnTileElementEnterTileComponent), 3 },
+		{ typeof(OnTileElementLeaveTileComponent), 4 }
 	};
 
 	/// <summary>

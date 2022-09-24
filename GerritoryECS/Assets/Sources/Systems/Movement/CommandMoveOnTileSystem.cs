@@ -47,10 +47,62 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 			Vector2Int fromPosition = entity.OnTilePosition.Value;
 			Vector2Int toPosition = fromPosition + moveOffset;
 
-			bool isMoveableTo = m_Contexts.IsPositionMoveableTo(toPosition);
+			bool isMoveableTo = m_Contexts.IsTileAtPositionMoveableTo(toPosition);
 			if (!isMoveableTo)
 			{
 				continue;
+			}
+
+			bool isPositionOccipied = m_Contexts.IsTileAtPositionOccupied(toPosition);
+			if (isPositionOccipied)
+			{
+				if (!entity.IsOnTileElementKiller)
+				{
+					// The entity is not a killer, therefore cannot kill the occupier.
+					continue;
+				}
+
+				// If entity is OnTileElementKiller, could possibly kill the occupier to take over the position.
+				// For now, we assume there will only be at most 1 occupier on a tile.
+				// TODO: do extra logic check if the entity is moving away.
+				List<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTilePosition(toPosition).ToList();
+				if (onTileEntities.Count > 0)
+				{
+					GameEntity occupierEntity = onTileEntities.First();
+					if (!occupierEntity.IsCanBeDead)
+					{
+						// The occupier cannot be dead.
+						continue;
+					}
+
+					if (occupierEntity.HasMoveOnTile)
+					{
+						// The occupier is moving away (escaping) from the tile.
+						continue;
+					}
+
+					int challengerPriority = entity.GetOnTileElementKillPriority();
+					int occupierPriority = occupierEntity.GetOnTileElementKillPriority();
+					if (challengerPriority >= occupierPriority)
+					{
+						// The occupier is stronger / has higher priority, cannot be killed.
+						continue;
+					}
+
+					// Kill the occupier!
+					TryKillResult killResult = m_Contexts.TryKill(occupierEntity);
+					if (!killResult.Success)
+					{
+						// The kill action is not successful.
+						continue;
+					}
+				}
+
+				List<GameEntity> movingInEntities = m_GameContext.GetEntitiesWithMoveOnTile(toPosition).ToList();
+				if (movingInEntities.Count > 0)
+				{
+					// TODO: extra logic that deals with entity that was in the move to this tile. Delay killed might be needed.
+				}
 			}
 
 			// Consume movement input action.

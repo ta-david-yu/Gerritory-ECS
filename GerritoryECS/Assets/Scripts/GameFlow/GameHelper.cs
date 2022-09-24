@@ -11,9 +11,15 @@ public struct TryGetValidRespawnPositionResult
 	public Vector2Int TilePosition;
 }
 
+[System.Serializable]
+public struct TryKillResult
+{
+	public bool Success;
+}
+
 public static class GameHelper
 {
-	public static bool IsPositionMoveableTo(this Contexts contexts, Vector2Int position)
+	public static bool IsTileAtPositionMoveableTo(this Contexts contexts, Vector2Int position)
 	{
 		Vector2Int levelSize = contexts.Game.Level.LevelSize;
 		if (position.x < 0 || position.x >= levelSize.x || position.y < 0 || position.y >= levelSize.y)
@@ -35,22 +41,27 @@ public static class GameHelper
 			return false;
 		}
 
+		return true;
+	}
+
+	public static bool IsTileAtPositionOccupied(this Contexts contexts, Vector2Int position)
+	{
 		HashSet<GameEntity> onTileEntities = contexts.Game.GetEntitiesWithOnTilePosition(position);
 		bool isEntityOccupyingTheGiveTile = onTileEntities.Any(entity => !entity.HasMoveOnTile || entity.HasMoveOnTileBegin);
 		if (isEntityOccupyingTheGiveTile)
 		{
 			// There are already more than 1 OnTileElement entity on the given tile position & not moving away.
-			return false;
+			return true;
 		}
 
 		HashSet<GameEntity> movingToTargetPositionEntities = contexts.Game.GetEntitiesWithMoveOnTile(position);
 		if (movingToTargetPositionEntities.Count > 0)
 		{
 			// This position has already been reserved by another MoveOnTile entity.
-			return false;
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 	private static IGroup<TileEntity> s_RespawnableTileGroup = null;
@@ -66,7 +77,7 @@ public static class GameHelper
 							tileEntity =>
 							{
 								Vector2Int position = tileEntity.TilePosition.Value;
-								bool isMoveableTo = contexts.IsPositionMoveableTo(position);
+								bool isMoveableTo = contexts.IsTileAtPositionMoveableTo(position) && !contexts.IsTileAtPositionOccupied(position);
 								bool hasItem = contexts.Item.GetEntityWithOnTileItem(position) != null;
 
 								// Only tiles that have nothing on it && can be moved to are valid.
@@ -112,5 +123,58 @@ public static class GameHelper
 		}
 
 		return;
+	}
+
+	private const int k_InivinciblePriority = -1;
+	private const int k_GhsotPriority = -1;
+	
+	public static int GetOnTileElementKillPriority(this GameEntity onTileEntity)
+	{
+		int priority = 0;
+		if (onTileEntity.HasTileOwner)
+		{
+			priority += onTileEntity.TileOwner.NumberOfOwnedTiles;
+		}
+
+		// TODO: if invinicible, set priority to k_InivinciblePriority
+		// ...
+
+		// TODO: if it's a ghost, set priority to k_GhostPriority
+		// ...
+
+		return priority;
+	}
+
+	public static TryKillResult TryKill(this Contexts contexts, GameEntity onTileEntity)
+	{
+		if (!onTileEntity.IsCanBeDead)
+		{
+			Debug.LogWarning("The entity cannot be dead.");
+			return new TryKillResult { Success = false };
+		}
+
+		if (onTileEntity.IsDead)
+		{
+			Debug.LogWarning("The entity is already dead. Cannot be killed again.");
+			return new TryKillResult { Success = false };
+		}
+
+		onTileEntity.IsDead = true;
+
+		if (onTileEntity.HasOnTilePosition)
+		{
+			// If the OnTileEntity is occupying a tile, be sure to remove it from the tile.
+
+			// Remove OnTilePosition
+			Vector2Int position = onTileEntity.OnTilePosition.Value;
+			onTileEntity.RemoveOnTilePosition();
+
+			// Emit global LeaveTile message.
+			var leaveTileMessageEntity = contexts.Message.CreateFixedUpdateMessageEntity();
+			leaveTileMessageEntity.ReplaceOnTileElementLeaveTile(onTileEntity.OnTileElement.Id, position);
+			leaveTileMessageEntity.IsLeaveBecauseOfDeath = true;
+		}
+
+		return new TryKillResult { Success = true };
 	}
 }

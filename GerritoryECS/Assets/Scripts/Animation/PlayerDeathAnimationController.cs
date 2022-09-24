@@ -49,7 +49,12 @@ public class PlayerDeathAnimationController : MonoBehaviour, IDeadAddedListener,
 			return;
 		}
 
-		m_CahcedGameEntity.IsDead = true;
-		m_CahcedGameEntity.RemoveOnTilePosition();
+		if (Contexts.SharedInstance == null)
+		{
+			Debug.LogWarning("Contexts non-existent, cannot kill the player.");
+			return;
+		}
+
+		TryKillResult killResult = Contexts.SharedInstance.TryKill(m_CahcedGameEntity);
 	}
 }
