@@ -77,7 +77,7 @@ public sealed class RespawnOnWaitingForRespawnStateRemovedSystem : IInitializeSy
 		}
 		else
 		{
-			Debug.LogWarning($"The target state holder doesn't have SpeedChangeableComponent, therefore the speed change is not recovered.");
+			Debug.LogWarning($"Cannot find a proper respawn position!");
 		}
 
 		Debug.Log($"State holder {stateHolderId} respawned on {respawnPositionQueryResult.TilePosition}, OnTileElementId {stateHolderEntity.OnTileElement.Id}");
