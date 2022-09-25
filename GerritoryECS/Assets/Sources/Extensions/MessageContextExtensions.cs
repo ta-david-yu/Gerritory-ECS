@@ -10,4 +10,18 @@ public static class MessageContextExtensions
 		entity.IsConsumeInFixedUpdate = true;
 		return entity;
 	}
+
+	public static MessageEntity EmitOnTileElementEnterTileMessage(this MessageContext context, int onTileElementId, Vector2Int enterPosition)
+	{
+		var enterTileMessageEntity = CreateFixedUpdateMessageEntity(context);
+		enterTileMessageEntity.ReplaceOnTileElementEnterTile(onTileElementId, enterPosition);
+		return enterTileMessageEntity;
+	}
+
+	public static MessageEntity EmitOnTileElementLeaveTileMessage(this MessageContext context, int onTileElementId, Vector2Int leavePosition)
+	{
+		var leaveTileMessageEntity = CreateFixedUpdateMessageEntity(context);
+		leaveTileMessageEntity.ReplaceOnTileElementLeaveTile(onTileElementId, leavePosition);
+		return leaveTileMessageEntity;
+	}
 }

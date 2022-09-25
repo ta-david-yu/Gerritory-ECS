@@ -62,8 +62,7 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem
 				moveEntity.AddMoveOnTileEnd(fromPosition, toPosition);
 
 				// Emit global EnterTile message.
-				var leaveTileMessageEntity = m_MessageContext.CreateFixedUpdateMessageEntity();
-				leaveTileMessageEntity.ReplaceOnTileElementEnterTile(moveEntity.OnTileElement.Id, toPosition);
+				m_MessageContext.EmitOnTileElementEnterTileMessage(moveEntity.OnTileElement.Id, toPosition);
 			}
 		}
 	}
