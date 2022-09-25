@@ -104,7 +104,7 @@
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileEnterableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileEndAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateComponentsLookup.cs" />
-    <Compile Include="Assets\Scripts\GameData\TileTypeTable.cs" />
+    <Compile Include="Assets\Scripts\GameData\TileFactory.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateStateComponent.cs" />
     <Compile Include="Assets\Sources\Components\Config\IMatchConfig.cs" />
     <Compile Include="Assets\Sources\Generated\Item\CreateEntityFromItemBlueprint.cs" />
@@ -378,7 +378,9 @@
     <Compile Include="Assets\Sources\Generated\Components\ItemEaterIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Components\OnTileElementIdCounterComponent.cs" />
     <Compile Include="Assets\Scripts\View\IEntityCreationEventController.cs" />
-    <Compile Include="Assets\Scripts\GameData\ITileTypeTable.cs" />
+    <Compile Include="Assets\Scripts\GameData\ITileFactory.cs" />
+    <Compile Include="Assets\Scripts\Tile\SetTileWorldPositionOnComponentsAdded.cs" />
+    <Compile Include="Assets\Scripts\GameData\IPlayerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

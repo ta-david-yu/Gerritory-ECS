@@ -7,7 +7,7 @@ using UnityEngine;
 [Config, Unique, ComponentName("GameConfig")]
 public interface IGameConfig
 {
-	ITileTypeTable TileTypeTable { get; }
+	ITileFactory TileTypeTable { get; }
 	LevelData LevelData { get; }
 	ReadOnlyCollection<PlayerGameConfig> PlayerGameConfigs { get; }
 }

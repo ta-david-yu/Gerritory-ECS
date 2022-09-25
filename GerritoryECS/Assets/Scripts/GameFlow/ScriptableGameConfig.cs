@@ -7,8 +7,8 @@ using UnityEngine;
 public class ScriptableGameConfig : ScriptableObject, IGameConfig
 {
 	[SerializeField]
-	private TileTypeTable m_TileTypeTable;
-	public ITileTypeTable TileTypeTable => m_TileTypeTable;
+	private TileFactory m_TileTypeTable;
+	public ITileFactory TileTypeTable => m_TileTypeTable;
 
 	[SerializeField]
 	private LevelData m_LevelData;

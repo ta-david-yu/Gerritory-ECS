@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "TileTypeTable", menuName = "GameData/TileTypeTable")]
-public sealed class TileTypeTable : ScriptableObject, ITileTypeTable, ISerializationCallbackReceiver
+[CreateAssetMenu(fileName = "TileFactory", menuName = "GameData/TileFactory")]
+public sealed class TileFactory : ScriptableObject, ITileFactory, ISerializationCallbackReceiver
 {
 	[System.Serializable]
 	private class TileTypePair
@@ -47,7 +47,7 @@ public sealed class TileTypeTable : ScriptableObject, ITileTypeTable, ISerializa
 		return tileType.Blueprint;
 	}
 
-	public IEntityCreationEventController CreateViewForTileEntity(string tileId, TileEntity tileEntity, Vector2Int tilePosition)
+	public IEntityCreationEventController CreateTileView(string tileId)
 	{
 		if (!TileTypes.TryGetValue(tileId, out TileType tileType))
 		{
@@ -55,7 +55,7 @@ public sealed class TileTypeTable : ScriptableObject, ITileTypeTable, ISerializa
 			tileType = m_FallbackTileType;
 		}
 
-		var tileUnityView = GameObject.Instantiate(tileType.Prefab, GameConstants.TilePositionToWorldPosition(tilePosition), Quaternion.identity, CreatedTileRoot.transform);
+		var tileUnityView = GameObject.Instantiate(tileType.Prefab, CreatedTileRoot.transform);
 		return tileUnityView;
 	}
 

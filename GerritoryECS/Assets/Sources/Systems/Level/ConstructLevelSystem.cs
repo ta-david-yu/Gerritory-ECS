@@ -25,7 +25,7 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 
 	public void Initialize()
 	{
-		ITileTypeTable tileTypeTable = m_ConfigContext.GameConfig.value.TileTypeTable;
+		ITileFactory tileTypeTable = m_ConfigContext.GameConfig.value.TileTypeTable;
 		LevelData levelData = m_ConfigContext.GameConfig.value.LevelData;
 		m_LevelContext.SetLevel(levelData);
 
@@ -38,7 +38,7 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 
 			// Create entity and its view controller
 			var tileEntity = m_TileContext.CreateEntity();
-			IEntityCreationEventController viewController = tileTypeTable.CreateViewForTileEntity(tileId, tileEntity, tilePosition);
+			IEntityCreationEventController viewController = tileTypeTable.CreateTileView(tileId);
 			viewController.OnEntityCreated(tileEntity);
 
 			// Apply blueprint and components
