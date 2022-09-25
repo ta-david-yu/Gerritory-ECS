@@ -29,8 +29,6 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 		{
 			GameEntity playerEntity = createPlayerEntity(playerConfig);
 
-			m_MessageContext.EmitOnTileElementEnterTileMessage(playerEntity.OnTileElement.Id, playerEntity.OnTilePosition.Value);
-
 			InputEntity inputEntity = m_InputContext.CreateEntity();
 			if (playerConfig.IsAI)
 			{
@@ -73,6 +71,8 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 			Debug.LogWarning("Cannot find a valid position to spawn the player, place the player at (0, 0)");
 			playerEntity.AddOnTilePosition(Vector2Int.zero);
 		}
+
+		m_MessageContext.EmitOnTileElementEnterTileMessage(playerEntity.OnTileElement.Id, playerEntity.OnTilePosition.Value);
 
 		viewController.OnComponentsAdded(playerEntity);
 
