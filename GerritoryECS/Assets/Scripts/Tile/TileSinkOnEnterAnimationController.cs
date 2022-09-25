@@ -21,11 +21,11 @@ public class TileSinkOnEnterAnimationController : BlueprintEntityCreationEventLi
 
 	public void OnEnteredByOnTileElementAdded(TileEntity entity, int onTileElementId)
 	{
-		Debug.Log($"{onTileElementId} entered {entity.TilePosition.Value}!");
+		m_Appearance.localPosition -= new Vector3(0.0f, 0.2f, 0.0f);
 	}
 
 	public void OnLeftByOnTileElementAdded(TileEntity entity, int onTileElementId)
 	{
-		Debug.Log($"{onTileElementId} lefted {entity.TilePosition.Value}!");
+		m_Appearance.localPosition += new Vector3(0.0f, 0.2f, 0.0f);
 	}
 }
