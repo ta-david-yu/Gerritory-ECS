@@ -9,6 +9,7 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 	private readonly GameContext m_GameContext;
 	private readonly InputContext m_InputContext;
 	private readonly ConfigContext m_ConfigContext;
+	private readonly MessageContext m_MessageContext;
 	private readonly Contexts m_Contexts;
 
 	public ConstructPlayerSystem(Contexts contexts)
@@ -17,6 +18,7 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 		m_GameContext = contexts.Game;
 		m_InputContext = contexts.Input;
 		m_ConfigContext = contexts.Config;
+		m_MessageContext = contexts.Message;
 		m_Contexts = contexts;
 	}
 
@@ -26,6 +28,8 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 		foreach (var playerConfig in playerConfigs)
 		{
 			GameEntity playerEntity = createPlayerEntity(playerConfig);
+
+			m_MessageContext.EmitOnTileElementEnterTileMessage(playerEntity.OnTileElement.Id, playerEntity.OnTilePosition.Value);
 
 			InputEntity inputEntity = m_InputContext.CreateEntity();
 			if (playerConfig.IsAI)
