@@ -7,5 +7,5 @@ using UnityEngine;
 [System.Serializable]
 public sealed class LevelComponent : IComponent
 {
-	public Vector2Int LevelSize;
+	public LevelData LevelData;
 }

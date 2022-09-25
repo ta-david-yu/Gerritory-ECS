@@ -6,5 +6,6 @@ using UnityEngine;
 [Config, Unique, ComponentName("GameConfig")]
 public interface IGameConfig
 {
-	Vector2Int LevelSize { get; }
+	TileTypeTable TileTypeTable { get; }
+	LevelData LevelData { get; }
 }

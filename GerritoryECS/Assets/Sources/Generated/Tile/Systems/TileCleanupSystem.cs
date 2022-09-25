@@ -15,12 +15,14 @@ public class TileCleanupSystems : JCMG.EntitasRedux.Systems
 	public TileCleanupSystems() : base()
 	{
 		var context = Contexts.SharedInstance.Tile;
-
+		_cleanupSystems.Add(new RemoveLeftByOnTileElementFromTileEntitiesSystem(context));
+		_cleanupSystems.Add(new RemoveEnteredByOnTileElementFromTileEntitiesSystem(context));
 	}
 	#endif
 
 	public TileCleanupSystems(IContext<TileEntity> context) : base()
 	{
-
+		_cleanupSystems.Add(new RemoveLeftByOnTileElementFromTileEntitiesSystem(context));
+		_cleanupSystems.Add(new RemoveEnteredByOnTileElementFromTileEntitiesSystem(context));
 	}
 }

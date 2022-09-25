@@ -21,13 +21,6 @@ public static class GameHelper
 {
 	public static bool IsTileAtPositionMoveableTo(this Contexts contexts, Vector2Int position)
 	{
-		Vector2Int levelSize = contexts.Game.Level.LevelSize;
-		if (position.x < 0 || position.x >= levelSize.x || position.y < 0 || position.y >= levelSize.y)
-		{
-			// The give position is out of bounds of the level size, cannot move here.
-			return false;
-		}
-
 		TileEntity tileEntity = contexts.Tile.GetEntityWithTilePosition(position);
 		if (tileEntity == null)
 		{

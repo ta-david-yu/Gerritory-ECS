@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81e5438151d9c04bbd6092ff1ee03a5, type: 3}
+  m_Name: TileTypeTable
+  m_EditorClassIdentifier: 
+  m_TileTypePairs:
+  - Key: normal
+    Value:
+      Blueprint: {fileID: 11400000, guid: f31b300ff6161c841bb9f0c2bc8cd886, type: 2}
+      Prefab: {fileID: 8472626019930703597, guid: a94e0490d5174ed49bac0ca27d9e9d3e,
+        type: 3}
+  - Key: collapse
+    Value:
+      Blueprint: {fileID: 11400000, guid: 1a3b33b37eb48034085fb68558b71b72, type: 2}
+      Prefab: {fileID: 8472626019930703597, guid: 2e1ad341ce969774fbd7547b8807ff4d,
+        type: 3}
+  - Key: respawn
+    Value:
+      Blueprint: {fileID: 11400000, guid: 21ddf0ce23603c145b42021fd8401ece, type: 2}
+      Prefab: {fileID: 8472626019930703597, guid: 31499afc0ecb2c44d93840a9d8633b86,
+        type: 3}

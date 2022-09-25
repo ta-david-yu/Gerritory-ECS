@@ -6,6 +6,10 @@ using UnityEngine;
 public class ScriptableGameConfig : ScriptableObject, IGameConfig
 {
 	[SerializeField]
-	private Vector2Int m_LevelSize = new Vector2Int(10, 10);
-	public Vector2Int LevelSize => m_LevelSize;
+	private TileTypeTable m_TileTypeTable;
+	public TileTypeTable TileTypeTable => m_TileTypeTable;
+
+	[SerializeField]
+	private LevelData m_LevelData;
+	public LevelData LevelData => m_LevelData;
 }

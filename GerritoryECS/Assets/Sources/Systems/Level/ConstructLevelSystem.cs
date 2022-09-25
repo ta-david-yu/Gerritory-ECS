@@ -23,11 +23,45 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 
 	public void Initialize()
 	{
-		Vector2Int levelSize = m_ConfigContext.GameConfig.value.LevelSize;
-		m_GameContext.SetLevel(levelSize);
+		TileTypeTable tileTypeTable = m_ConfigContext.GameConfig.value.TileTypeTable;
 
-		Random.InitState(20);
+		LevelData levelData = m_ConfigContext.GameConfig.value.LevelData;
+		m_GameContext.SetLevel(levelData);
 
+		GameObject tileUnityViewRoot = new GameObject("TileUnityViewRoot");
+
+		foreach (var tileDataPair in levelData.TileDataPairs)
+		{
+			Vector2Int tilePosition = tileDataPair.Key;
+			string tileId = tileDataPair.Value.TileId;
+
+			if (!tileTypeTable.TileTypes.TryGetValue(tileId, out TileType tileType))
+			{
+				// Use fallback tile type if the given tile id is legal.
+				tileType = tileTypeTable.FallbackTileType;
+			}
+
+			var tileEntity = m_TileContext.CreateEntity();
+			var tileUnityView = GameObject.Instantiate(tileType.Prefab, GameConstants.TilePositionToWorldPosition(tilePosition), Quaternion.identity, tileUnityViewRoot.transform);
+			if (tileUnityView.TryGetComponent<BlueprintEntityCreationEventController>(out BlueprintEntityCreationEventController blueprintEntityCreationEventController))
+			{
+				// Call OnEntityCreated callback if EventController is presented.
+				blueprintEntityCreationEventController.OnEntityCreated(tileEntity);
+			}
+
+			tileType.Blueprint.ApplyToEntity(tileEntity);
+
+			// Remember to set tile position!
+			tileEntity.AddTilePosition(tilePosition);
+			if (blueprintEntityCreationEventController != null)
+			{
+				// Call OnBlueprintApplied callback if EventController is presented.
+				blueprintEntityCreationEventController.OnBlueprintApplied(tileEntity);
+			}
+
+			tileUnityView.Link(tileEntity);
+		}
+		/*
 		for (int x = 0; x < levelSize.x; x++)
 		{
 			for (int y = 0; y < levelSize.y; y++)
@@ -57,6 +91,6 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 
 				tileEntity.AddCanBeRespawnedOn(newRespawnAreaId: 0);
 			}
-		}
+		}*/
 	}
 }

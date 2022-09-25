@@ -25,6 +25,7 @@ public class TileCleanupFeature : Feature
 
 	private void AddSystems(IContext<TileEntity> context)
 	{
-
+		Add(new RemoveLeftByOnTileElementFromTileEntitiesSystem(context));
+		Add(new RemoveEnteredByOnTileElementFromTileEntitiesSystem(context));
 	}
 }

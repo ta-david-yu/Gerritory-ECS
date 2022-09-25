@@ -13,7 +13,7 @@ public partial class GameContext {
 	public LevelComponent Level { get { return LevelEntity.Level; } }
 	public bool HasLevel { get { return LevelEntity != null; } }
 
-	public GameEntity SetLevel(UnityEngine.Vector2Int newLevelSize)
+	public GameEntity SetLevel(LevelData newLevelData)
 	{
 		if (HasLevel)
 		{
@@ -25,22 +25,22 @@ public partial class GameContext {
 		}
 		var entity = CreateEntity();
 		#if !ENTITAS_REDUX_NO_IMPL
-		entity.AddLevel(newLevelSize);
+		entity.AddLevel(newLevelData);
 		#endif
 		return entity;
 	}
 
-	public void ReplaceLevel(UnityEngine.Vector2Int newLevelSize)
+	public void ReplaceLevel(LevelData newLevelData)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
 		var entity = LevelEntity;
 		if (entity == null)
 		{
-			entity = SetLevel(newLevelSize);
+			entity = SetLevel(newLevelData);
 		}
 		else
 		{
-			entity.ReplaceLevel(newLevelSize);
+			entity.ReplaceLevel(newLevelData);
 		}
 		#endif
 	}
@@ -65,22 +65,22 @@ public partial class GameEntity
 	public LevelComponent Level { get { return (LevelComponent)GetComponent(GameComponentsLookup.Level); } }
 	public bool HasLevel { get { return HasComponent(GameComponentsLookup.Level); } }
 
-	public void AddLevel(UnityEngine.Vector2Int newLevelSize)
+	public void AddLevel(LevelData newLevelData)
 	{
 		var index = GameComponentsLookup.Level;
 		var component = (LevelComponent)CreateComponent(index, typeof(LevelComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.LevelSize = newLevelSize;
+		component.LevelData = newLevelData;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceLevel(UnityEngine.Vector2Int newLevelSize)
+	public void ReplaceLevel(LevelData newLevelData)
 	{
 		var index = GameComponentsLookup.Level;
 		var component = (LevelComponent)CreateComponent(index, typeof(LevelComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.LevelSize = newLevelSize;
+		component.LevelData = newLevelData;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -90,7 +90,7 @@ public partial class GameEntity
 		var index = GameComponentsLookup.Level;
 		var component = (LevelComponent)CreateComponent(index, typeof(LevelComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.LevelSize = copyComponent.LevelSize;
+		component.LevelData = copyComponent.LevelData;
 		#endif
 		ReplaceComponent(index, component);
 	}

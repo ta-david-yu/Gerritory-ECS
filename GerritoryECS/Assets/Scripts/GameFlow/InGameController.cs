@@ -4,9 +4,9 @@ using UnityEngine;
 using JCMG.EntitasRedux;
 
 /// <summary>
-/// <see cref="GameController"/> is used to connect Unity Engine lifecycle game events with Entitas system events
+/// <see cref="InGameController"/> is used to connect Unity Engine lifecycle game events with Entitas system events
 /// </summary>
-public class GameController : MonoBehaviour
+public class InGameController : MonoBehaviour
 {
 	[SerializeField]
 	private ScriptableGameConfig m_GameConfig;
@@ -69,8 +69,12 @@ public class GameController : MonoBehaviour
 			.Add(new PlayerStateFeature(contexts))
 
 			.Add(new MessageFeature(contexts))
+
 			.Add(new GameEventSystems(contexts))
-			.Add(new GameCleanupSystems());
+			.Add(new TileEventSystems(contexts))
+
+			.Add(new GameCleanupSystems())
+			.Add(new TileCleanupSystems());
 	}
 
 	private static Systems createOnGUIDebugSystems(Contexts contexts)

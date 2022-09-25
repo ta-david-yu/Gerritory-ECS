@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1421cc89277a7a04c9eae7ada3f1a730, type: 3}
-  m_Name: SpeedUpPowerup
+  m_Name: Blueprint_SlowdownPowerup
   m_EditorClassIdentifier: 
   _components:
-  - rid: 1863424960403603460
-  - rid: 1863425141145600001
+  - rid: 1863424960403603459
+  - rid: 1863425141145600000
   references:
     version: 2
     RefIds:
-    - rid: 1863424960403603460
+    - rid: 1863424960403603459
       type: {class: OnTileItemComponent, ns: , asm: Assembly-CSharp}
       data:
         Position: {x: 0, y: 0}
-    - rid: 1863425141145600001
+    - rid: 1863425141145600000
       type: {class: ApplySpeedChangeStateForEaterOnEatenComponent, ns: , asm: Assembly-CSharp}
       data:
         Duration: 3
-        SpeedMultiplier: 2
+        SpeedMultiplier: 0.5

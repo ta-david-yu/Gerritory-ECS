@@ -16,20 +16,34 @@ public static class TileComponentsLookup
 	public const int CanBeRespawnedOn = 0;
 	public const int CollapseOnStepped = 1;
 	public const int DebugMessage = 2;
-	public const int Enterable = 3;
-	public const int ItemHolder = 4;
-	public const int Ownable = 5;
-	public const int TilePosition = 6;
+	public const int EnterableAddedListener = 3;
+	public const int Enterable = 4;
+	public const int EnterableRemovedListener = 5;
+	public const int EnteredByOnTileElementAddedListener = 6;
+	public const int EnteredByOnTileElement = 7;
+	public const int ItemHolder = 8;
+	public const int LeftByOnTileElementAddedListener = 9;
+	public const int LeftByOnTileElement = 10;
+	public const int OwnableAddedListener = 11;
+	public const int Ownable = 12;
+	public const int TilePosition = 13;
 
-	public const int TotalComponents = 7;
+	public const int TotalComponents = 14;
 
 	public static readonly string[] ComponentNames =
 	{
 		"CanBeRespawnedOn",
 		"CollapseOnStepped",
 		"DebugMessage",
+		"EnterableAddedListener",
 		"Enterable",
+		"EnterableRemovedListener",
+		"EnteredByOnTileElementAddedListener",
+		"EnteredByOnTileElement",
 		"ItemHolder",
+		"LeftByOnTileElementAddedListener",
+		"LeftByOnTileElement",
+		"OwnableAddedListener",
 		"Ownable",
 		"TilePosition"
 	};
@@ -39,8 +53,15 @@ public static class TileComponentsLookup
 		typeof(CanBeRespawnedOnComponent),
 		typeof(CollapseOnSteppedComponent),
 		typeof(DebugMessageComponent),
+		typeof(EnterableAddedListenerComponent),
 		typeof(EnterableComponent),
+		typeof(EnterableRemovedListenerComponent),
+		typeof(EnteredByOnTileElementAddedListenerComponent),
+		typeof(EnteredByOnTileElementComponent),
 		typeof(ItemHolderComponent),
+		typeof(LeftByOnTileElementAddedListenerComponent),
+		typeof(LeftByOnTileElementComponent),
+		typeof(OwnableAddedListenerComponent),
 		typeof(OwnableComponent),
 		typeof(TilePositionComponent)
 	};
@@ -50,10 +71,17 @@ public static class TileComponentsLookup
 		{ typeof(CanBeRespawnedOnComponent), 0 },
 		{ typeof(CollapseOnSteppedComponent), 1 },
 		{ typeof(DebugMessageComponent), 2 },
-		{ typeof(EnterableComponent), 3 },
-		{ typeof(ItemHolderComponent), 4 },
-		{ typeof(OwnableComponent), 5 },
-		{ typeof(TilePositionComponent), 6 }
+		{ typeof(EnterableAddedListenerComponent), 3 },
+		{ typeof(EnterableComponent), 4 },
+		{ typeof(EnterableRemovedListenerComponent), 5 },
+		{ typeof(EnteredByOnTileElementAddedListenerComponent), 6 },
+		{ typeof(EnteredByOnTileElementComponent), 7 },
+		{ typeof(ItemHolderComponent), 8 },
+		{ typeof(LeftByOnTileElementAddedListenerComponent), 9 },
+		{ typeof(LeftByOnTileElementComponent), 10 },
+		{ typeof(OwnableAddedListenerComponent), 11 },
+		{ typeof(OwnableComponent), 12 },
+		{ typeof(TilePositionComponent), 13 }
 	};
 
 	/// <summary>
