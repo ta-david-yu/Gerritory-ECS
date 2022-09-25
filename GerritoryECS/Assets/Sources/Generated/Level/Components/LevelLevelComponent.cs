@@ -7,13 +7,13 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class GameContext {
+public partial class LevelContext {
 
-	public GameEntity LevelEntity { get { return GetGroup(GameMatcher.Level).GetSingleEntity(); } }
+	public LevelEntity LevelEntity { get { return GetGroup(LevelMatcher.Level).GetSingleEntity(); } }
 	public LevelComponent Level { get { return LevelEntity.Level; } }
 	public bool HasLevel { get { return LevelEntity != null; } }
 
-	public GameEntity SetLevel(LevelData newLevelData)
+	public LevelEntity SetLevel(LevelData newLevelData)
 	{
 		if (HasLevel)
 		{
@@ -60,14 +60,14 @@ public partial class GameContext {
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class GameEntity
+public partial class LevelEntity
 {
-	public LevelComponent Level { get { return (LevelComponent)GetComponent(GameComponentsLookup.Level); } }
-	public bool HasLevel { get { return HasComponent(GameComponentsLookup.Level); } }
+	public LevelComponent Level { get { return (LevelComponent)GetComponent(LevelComponentsLookup.Level); } }
+	public bool HasLevel { get { return HasComponent(LevelComponentsLookup.Level); } }
 
 	public void AddLevel(LevelData newLevelData)
 	{
-		var index = GameComponentsLookup.Level;
+		var index = LevelComponentsLookup.Level;
 		var component = (LevelComponent)CreateComponent(index, typeof(LevelComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.LevelData = newLevelData;
@@ -77,7 +77,7 @@ public partial class GameEntity
 
 	public void ReplaceLevel(LevelData newLevelData)
 	{
-		var index = GameComponentsLookup.Level;
+		var index = LevelComponentsLookup.Level;
 		var component = (LevelComponent)CreateComponent(index, typeof(LevelComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.LevelData = newLevelData;
@@ -87,7 +87,7 @@ public partial class GameEntity
 
 	public void CopyLevelTo(LevelComponent copyComponent)
 	{
-		var index = GameComponentsLookup.Level;
+		var index = LevelComponentsLookup.Level;
 		var component = (LevelComponent)CreateComponent(index, typeof(LevelComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.LevelData = copyComponent.LevelData;
@@ -97,7 +97,7 @@ public partial class GameEntity
 
 	public void RemoveLevel()
 	{
-		RemoveComponent(GameComponentsLookup.Level);
+		RemoveComponent(LevelComponentsLookup.Level);
 	}
 }
 
@@ -110,18 +110,18 @@ public partial class GameEntity
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class GameMatcher
+public sealed partial class LevelMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<GameEntity> _matcherLevel;
+	static JCMG.EntitasRedux.IMatcher<LevelEntity> _matcherLevel;
 
-	public static JCMG.EntitasRedux.IMatcher<GameEntity> Level
+	public static JCMG.EntitasRedux.IMatcher<LevelEntity> Level
 	{
 		get
 		{
 			if (_matcherLevel == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<GameEntity>)JCMG.EntitasRedux.Matcher<GameEntity>.AllOf(GameComponentsLookup.Level);
-				matcher.ComponentNames = GameComponentsLookup.ComponentNames;
+				var matcher = (JCMG.EntitasRedux.Matcher<LevelEntity>)JCMG.EntitasRedux.Matcher<LevelEntity>.AllOf(LevelComponentsLookup.Level);
+				matcher.ComponentNames = LevelComponentsLookup.ComponentNames;
 				_matcherLevel = matcher;
 			}
 

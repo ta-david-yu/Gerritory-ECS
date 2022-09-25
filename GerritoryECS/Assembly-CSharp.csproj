@@ -70,7 +70,6 @@
     <Compile Include="Assets\Sources\Components\OnTileElement\CanBeRespawnedOnComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectOnTileElementEffectComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigDebugMessageComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameLevelComponent.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\CreateWaitingForRespawnStateOnDeathSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileEndAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\IPlayerStateBlueprint.cs" />
@@ -272,7 +271,6 @@
     <Compile Include="Assets\Sources\Generated\Contexts.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\TileComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Features\OnGUIDebugFeature.cs" />
-    <Compile Include="Assets\Sources\Features\LevelFeature.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MoveOnTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileEndComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigEntity.cs" />
@@ -316,9 +314,9 @@
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Scripts\View\BlueprintEntityCreationEventController.cs" />
-    <Compile Include="Assets\Scripts\View\BlueprintEntityCreationUnityEvent.cs" />
-    <Compile Include="Assets\Scripts\View\BlueprintEntityCreationEventListenerBase.cs" />
+    <Compile Include="Assets\Scripts\View\EntityCreationEventController.cs" />
+    <Compile Include="Assets\Scripts\View\EntityCreationUnityEvent.cs" />
+    <Compile Include="Assets\Scripts\View\EntityCreationEventListenerBase.cs" />
     <Compile Include="Assets\Scripts\Tile\TileSinkOnEnterAnimationController.cs" />
     <Compile Include="Assets\Sources\Components\Tile\EnteredByOnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\LeftByOnTileElementComponent.cs" />
@@ -353,6 +351,34 @@
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnterableRemovedEventSystem.cs" />
     <Compile Include="Assets\Scripts\GameData\LevelData.cs" />
     <Compile Include="Assets\Scripts\GameData\TileData.cs" />
+    <Compile Include="Assets\Sources\Components\Config\PlayerGameConfig.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\ConstructPlayerSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Level\UniqueIdCounter.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\ILevelBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\LevelAttribute.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\LevelBlueprintBehaviour.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\LevelMatcher.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\LevelComponentsLookup.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelEntity_CopyTo.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\LevelContext.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\CreateEntityFromLevelBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\LevelEntity.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\LevelBlueprint.cs" />
+    <Compile Include="Assets\Sources\Features\LevelFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Systems\LevelCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelLevelComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelOnTileElementIdCounterComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Features\LevelCleanupFeature.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\UniqueIdCounterSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelStateHolderIdCounterComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Components\StateHolderIdCounterComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelItemEaterIdCounterComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTileOwnerIdCounterComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Components\TileOwnerIdCounterComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Components\ItemEaterIdCounterComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Components\OnTileElementIdCounterComponent.cs" />
+    <Compile Include="Assets\Scripts\View\IEntityCreationEventController.cs" />
+    <Compile Include="Assets\Scripts\GameData\ITileTypeTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

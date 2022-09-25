@@ -6,7 +6,13 @@ public sealed class LevelFeature : Feature
 {
 	public LevelFeature(Contexts contexts)
 	{
+		// Id counter initialize systems
+		Add(new UniqueIdCounterSystem(contexts));
+
 		// Level construction systems
 		Add(new ConstructLevelSystem(contexts));
+
+		// Player construction systems
+		Add(new ConstructPlayerSystem(contexts));
 	}
 }

@@ -170,4 +170,32 @@ public static class GameHelper
 
 		return new TryKillResult { Success = true };
 	}
+
+	public static int GetNewOnTileElementId(this LevelContext context)
+	{
+		int id = context.OnTileElementIdCounter.value.Value;
+		context.SetOnTileElementIdCounter(new UniqueIdCounter { Value = id + 1 });
+		return id;
+	}
+
+	public static int GetNewTileOwnerId(this LevelContext context)
+	{
+		int id = context.TileOwnerIdCounter.value.Value;
+		context.SetTileOwnerIdCounter(new UniqueIdCounter { Value = id + 1 });
+		return id;
+	}
+
+	public static int GetNewItemEaterId(this LevelContext context)
+	{
+		int id = context.ItemEaterIdCounter.value.Value;
+		context.SetItemEaterIdCounter(new UniqueIdCounter { Value = id + 1 });
+		return id;
+	}
+
+	public static int GetNewStateHolderId(this LevelContext context)
+	{
+		int id = context.StateHolderIdCounter.value.Value;
+		context.SetStateHolderIdCounter(new UniqueIdCounter { Value = id + 1 });
+		return id;
+	}
 }

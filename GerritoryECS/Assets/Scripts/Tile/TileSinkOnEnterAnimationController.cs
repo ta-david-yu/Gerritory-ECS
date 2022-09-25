@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileSinkOnEnterAnimationController : BlueprintEntityCreationEventListenerBase, IEnteredByOnTileElementAddedListener, ILeftByOnTileElementAddedListener
+public class TileSinkOnEnterAnimationController : EntityCreationEventListenerBase, IEnteredByOnTileElementAddedListener, ILeftByOnTileElementAddedListener
 {
 	[SerializeField]
 	private Transform m_Appearance;
@@ -15,7 +15,7 @@ public class TileSinkOnEnterAnimationController : BlueprintEntityCreationEventLi
 		tileEntity.AddLeftByOnTileElementAddedListener(this);
 	}
 
-	public override void HandleOnBlueprintApplied(IEntity entity)
+	public override void HandleOnComponentsAdded(IEntity entity)
 	{
 	}
 

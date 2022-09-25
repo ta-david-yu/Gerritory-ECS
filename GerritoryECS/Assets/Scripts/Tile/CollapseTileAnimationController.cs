@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollapseTileAnimationController : BlueprintEntityCreationEventListenerBase, IEnterableAddedListener, IEnterableRemovedListener
+public class CollapseTileAnimationController : EntityCreationEventListenerBase, IEnterableAddedListener, IEnterableRemovedListener
 {
 	[SerializeField]
 	private Transform m_Appearance;
@@ -15,7 +15,7 @@ public class CollapseTileAnimationController : BlueprintEntityCreationEventListe
 		tileEntity.AddEnterableRemovedListener(this);
 	}
 
-	public override void HandleOnBlueprintApplied(IEntity entity)
+	public override void HandleOnComponentsAdded(IEntity entity)
 	{
 	}
 

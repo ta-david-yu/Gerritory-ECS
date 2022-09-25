@@ -14,3 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TileTypeTable: {fileID: 11400000, guid: aa95a57f7e8081e49b06e1f3bd8c3ae0, type: 2}
   m_LevelData: {fileID: 11400000, guid: 56a53a42f5162074ea5a0fc52fc4e41e, type: 2}
+  m_PlayerGameConfigs:
+  - PlayerId: 0
+    PlayerName: Player 1
+    ColorId: 0
+    SkinId: 0
+    IsAI: 0
+  - PlayerId: 1
+    PlayerName: Player 2
+    ColorId: 1
+    SkinId: 0
+    IsAI: 0
+  - PlayerId: 2
+    PlayerName: Player 3
+    ColorId: 2
+    SkinId: 0
+    IsAI: 1
+  - PlayerId: 3
+    PlayerName: Player 4
+    ColorId: 3
+    SkinId: 0
+    IsAI: 1

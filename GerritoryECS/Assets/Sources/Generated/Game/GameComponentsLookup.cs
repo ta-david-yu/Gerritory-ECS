@@ -20,25 +20,24 @@ public static class GameComponentsLookup
 	public const int DebugMessage = 4;
 	public const int IComponentRef = 5;
 	public const int ItemEater = 6;
-	public const int Level = 7;
-	public const int MovementInputAction = 8;
-	public const int MoveOnTileAddedListener = 9;
-	public const int MoveOnTileBeginAddedListener = 10;
-	public const int MoveOnTileBegin = 11;
-	public const int MoveOnTile = 12;
-	public const int MoveOnTileEndAddedListener = 13;
-	public const int MoveOnTileEnd = 14;
-	public const int OnTileElement = 15;
-	public const int OnTileElementKiller = 16;
-	public const int OnTilePositionAddedListener = 17;
-	public const int OnTilePosition = 18;
-	public const int Player = 19;
-	public const int SpeedChangeable = 20;
-	public const int StateHolder = 21;
-	public const int TileCollapser = 22;
-	public const int TileOwner = 23;
+	public const int MovementInputAction = 7;
+	public const int MoveOnTileAddedListener = 8;
+	public const int MoveOnTileBeginAddedListener = 9;
+	public const int MoveOnTileBegin = 10;
+	public const int MoveOnTile = 11;
+	public const int MoveOnTileEndAddedListener = 12;
+	public const int MoveOnTileEnd = 13;
+	public const int OnTileElement = 14;
+	public const int OnTileElementKiller = 15;
+	public const int OnTilePositionAddedListener = 16;
+	public const int OnTilePosition = 17;
+	public const int Player = 18;
+	public const int SpeedChangeable = 19;
+	public const int StateHolder = 20;
+	public const int TileCollapser = 21;
+	public const int TileOwner = 22;
 
-	public const int TotalComponents = 24;
+	public const int TotalComponents = 23;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -49,7 +48,6 @@ public static class GameComponentsLookup
 		"DebugMessage",
 		"IComponentRef",
 		"ItemEater",
-		"Level",
 		"MovementInputAction",
 		"MoveOnTileAddedListener",
 		"MoveOnTileBeginAddedListener",
@@ -77,7 +75,6 @@ public static class GameComponentsLookup
 		typeof(DebugMessageComponent),
 		typeof(IComponentRefComponent),
 		typeof(ItemEaterComponent),
-		typeof(LevelComponent),
 		typeof(MovementInputActionComponent),
 		typeof(MoveOnTileAddedListenerComponent),
 		typeof(MoveOnTileBeginAddedListenerComponent),
@@ -105,23 +102,22 @@ public static class GameComponentsLookup
 		{ typeof(DebugMessageComponent), 4 },
 		{ typeof(IComponentRefComponent), 5 },
 		{ typeof(ItemEaterComponent), 6 },
-		{ typeof(LevelComponent), 7 },
-		{ typeof(MovementInputActionComponent), 8 },
-		{ typeof(MoveOnTileAddedListenerComponent), 9 },
-		{ typeof(MoveOnTileBeginAddedListenerComponent), 10 },
-		{ typeof(MoveOnTileBeginComponent), 11 },
-		{ typeof(MoveOnTileComponent), 12 },
-		{ typeof(MoveOnTileEndAddedListenerComponent), 13 },
-		{ typeof(MoveOnTileEndComponent), 14 },
-		{ typeof(OnTileElementComponent), 15 },
-		{ typeof(OnTileElementKillerComponent), 16 },
-		{ typeof(OnTilePositionAddedListenerComponent), 17 },
-		{ typeof(OnTilePositionComponent), 18 },
-		{ typeof(PlayerComponent), 19 },
-		{ typeof(SpeedChangeableComponent), 20 },
-		{ typeof(StateHolderComponent), 21 },
-		{ typeof(TileCollapserComponent), 22 },
-		{ typeof(TileOwnerComponent), 23 }
+		{ typeof(MovementInputActionComponent), 7 },
+		{ typeof(MoveOnTileAddedListenerComponent), 8 },
+		{ typeof(MoveOnTileBeginAddedListenerComponent), 9 },
+		{ typeof(MoveOnTileBeginComponent), 10 },
+		{ typeof(MoveOnTileComponent), 11 },
+		{ typeof(MoveOnTileEndAddedListenerComponent), 12 },
+		{ typeof(MoveOnTileEndComponent), 13 },
+		{ typeof(OnTileElementComponent), 14 },
+		{ typeof(OnTileElementKillerComponent), 15 },
+		{ typeof(OnTilePositionAddedListenerComponent), 16 },
+		{ typeof(OnTilePositionComponent), 17 },
+		{ typeof(PlayerComponent), 18 },
+		{ typeof(SpeedChangeableComponent), 19 },
+		{ typeof(StateHolderComponent), 20 },
+		{ typeof(TileCollapserComponent), 21 },
+		{ typeof(TileOwnerComponent), 22 }
 	};
 
 	/// <summary>

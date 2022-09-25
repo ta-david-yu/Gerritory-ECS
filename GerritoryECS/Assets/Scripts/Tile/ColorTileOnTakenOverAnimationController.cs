@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorTileOnTakenOverAnimationController : BlueprintEntityCreationEventListenerBase, IOwnableAddedListener
+public class ColorTileOnTakenOverAnimationController : EntityCreationEventListenerBase, IOwnableAddedListener
 {
 	[SerializeField]
 	private Renderer m_Renderer;
@@ -14,7 +14,7 @@ public class ColorTileOnTakenOverAnimationController : BlueprintEntityCreationEv
 		tileEntity.AddOwnableAddedListener(this);
 	}
 
-	public override void HandleOnBlueprintApplied(IEntity entity)
+	public override void HandleOnComponentsAdded(IEntity entity)
 	{
 	}
 

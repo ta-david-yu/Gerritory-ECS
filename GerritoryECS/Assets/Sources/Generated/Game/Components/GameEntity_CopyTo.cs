@@ -78,10 +78,6 @@ public partial class GameEntity
 		{
 			CopyItemEaterTo(ItemEater);
 		}
-		else if (component is LevelComponent Level)
-		{
-			CopyLevelTo(Level);
-		}
 		else if (component is MoveOnTileBeginComponent MoveOnTileBegin)
 		{
 			CopyMoveOnTileBeginTo(MoveOnTileBegin);

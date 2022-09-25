@@ -14,6 +14,10 @@ public class LevelData : ScriptableObject
 
 	public List<TilePair> TileDataPairs = new List<TilePair>();
 
+	[Header("Debug Section")]
+	[SerializeField]
+	private int m_RandomSeed = 20;
+
 	[ContextMenu("Generate Level Randomly")]
 	private void randomlyGenerateLevelTileData()
 	{
@@ -22,7 +26,7 @@ public class LevelData : ScriptableObject
 		TileDataPairs.Clear();
 
 		Vector2Int levelSize = new Vector2Int(10, 10);
-		Random.InitState(20);
+		Random.InitState(m_RandomSeed);
 
 		for (int x = 0; x < levelSize.x; x++)
 		{
@@ -31,11 +35,11 @@ public class LevelData : ScriptableObject
 				Vector2Int position = new Vector2Int(x, y);
 				string tileId = "normal";
 				float random = Random.Range(0.0f, 1.0f);
-				if (random > 0.9f)
+				if (random > 0.65f)
 				{
 					tileId = "collapse";
 				}
-				else if (random > 0.3f)
+				else if (random > 0.2f)
 				{
 					tileId = "normal";
 				}

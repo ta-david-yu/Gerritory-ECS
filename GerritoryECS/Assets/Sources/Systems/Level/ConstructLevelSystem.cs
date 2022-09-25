@@ -8,6 +8,7 @@ using UnityEngine;
 /// </summary>
 public sealed class ConstructLevelSystem : IInitializeSystem
 {
+	private readonly LevelContext m_LevelContext;
 	private readonly GameContext m_GameContext;
 	private readonly TileContext m_TileContext;
 	private readonly ItemContext m_ItemContext;
@@ -15,6 +16,7 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 
 	public ConstructLevelSystem(Contexts contexts)
 	{
+		m_LevelContext = contexts.Level;
 		m_GameContext = contexts.Game;
 		m_TileContext = contexts.Tile;
 		m_ItemContext = contexts.Item;
@@ -23,10 +25,9 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 
 	public void Initialize()
 	{
-		TileTypeTable tileTypeTable = m_ConfigContext.GameConfig.value.TileTypeTable;
-
+		ITileTypeTable tileTypeTable = m_ConfigContext.GameConfig.value.TileTypeTable;
 		LevelData levelData = m_ConfigContext.GameConfig.value.LevelData;
-		m_GameContext.SetLevel(levelData);
+		m_LevelContext.SetLevel(levelData);
 
 		GameObject tileUnityViewRoot = new GameObject("TileUnityViewRoot");
 
@@ -35,62 +36,19 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 			Vector2Int tilePosition = tileDataPair.Key;
 			string tileId = tileDataPair.Value.TileId;
 
-			if (!tileTypeTable.TileTypes.TryGetValue(tileId, out TileType tileType))
-			{
-				// Use fallback tile type if the given tile id is legal.
-				tileType = tileTypeTable.FallbackTileType;
-			}
-
+			// Create entity and its view controller
 			var tileEntity = m_TileContext.CreateEntity();
-			var tileUnityView = GameObject.Instantiate(tileType.Prefab, GameConstants.TilePositionToWorldPosition(tilePosition), Quaternion.identity, tileUnityViewRoot.transform);
-			if (tileUnityView.TryGetComponent<BlueprintEntityCreationEventController>(out BlueprintEntityCreationEventController blueprintEntityCreationEventController))
-			{
-				// Call OnEntityCreated callback if EventController is presented.
-				blueprintEntityCreationEventController.OnEntityCreated(tileEntity);
-			}
+			IEntityCreationEventController viewController = tileTypeTable.CreateViewForTileEntity(tileId, tileEntity, tilePosition);
+			viewController.OnEntityCreated(tileEntity);
 
-			tileType.Blueprint.ApplyToEntity(tileEntity);
-
-			// Remember to set tile position!
+			// Apply blueprint and components
+			var blueprint = tileTypeTable.GetTileBlueprint(tileId);
+			blueprint.ApplyToEntity(tileEntity);
 			tileEntity.AddTilePosition(tilePosition);
-			if (blueprintEntityCreationEventController != null)
-			{
-				// Call OnBlueprintApplied callback if EventController is presented.
-				blueprintEntityCreationEventController.OnBlueprintApplied(tileEntity);
-			}
+			viewController.OnComponentsAdded(tileEntity);
 
-			tileUnityView.Link(tileEntity);
+			// Link view controller with entity
+			viewController.Link(tileEntity);
 		}
-		/*
-		for (int x = 0; x < levelSize.x; x++)
-		{
-			for (int y = 0; y < levelSize.y; y++)
-			{
-				Vector2Int position = new Vector2Int(x, y);
-
-				var tileEntity = m_TileContext.CreateEntity();
-				tileEntity.AddTilePosition(position);
-				tileEntity.IsEnterable = true;
-				tileEntity.IsItemHolder = true;
-
-				if (Random.Range(0.0f, 1.0f) > 0.4f)
-				{
-					tileEntity.AddCollapseOnStepped(1);
-				}
-				else
-				{
-					tileEntity.AddOwnable(false, -1);
-				}
-
-				if (Random.Range(0.0f, 1.0f) > 0.8f)
-				{
-					var itemEntity = m_ItemContext.CreateEntity();
-					itemEntity.AddOnTileItem(position);
-					itemEntity.AddApplySpeedChangeStateForEaterOnEaten(3.0f, 2.0f);
-				}
-
-				tileEntity.AddCanBeRespawnedOn(newRespawnAreaId: 0);
-			}
-		}*/
 	}
 }

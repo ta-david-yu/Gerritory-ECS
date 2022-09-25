@@ -13,5 +13,5 @@ public class TileType
 	/// <summary>
 	/// The view prefab
 	/// </summary>
-	public GameObject Prefab;
+	public EntityCreationEventController Prefab;
 }

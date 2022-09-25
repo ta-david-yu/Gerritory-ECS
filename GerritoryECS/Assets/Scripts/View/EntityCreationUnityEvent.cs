@@ -2,7 +2,7 @@ using JCMG.EntitasRedux;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BlueprintEntityCreationUnityEvent : BlueprintEntityCreationEventListenerBase
+public class EntityCreationUnityEvent : EntityCreationEventListenerBase
 {
 	[System.Serializable]
 	public class ExecuteEvents
@@ -10,8 +10,8 @@ public class BlueprintEntityCreationUnityEvent : BlueprintEntityCreationEventLis
 		[Tooltip("Invoked when the entity is created")]
 		public UnityEvent<IEntity> OnEntityCreated;
 
-		[Tooltip("Invoked when the given blueprint is applied to the created entity")]
-		public UnityEvent<IEntity> OnBlueprintApplied;
+		[Tooltip("Invoked when initial components are applied to the created entity")]
+		public UnityEvent<IEntity> OnComponentsAdded;
 	}
 
 	public ExecuteEvents Events = new ExecuteEvents();
@@ -21,8 +21,8 @@ public class BlueprintEntityCreationUnityEvent : BlueprintEntityCreationEventLis
 		Events.OnEntityCreated?.Invoke(entity);
 	}
 
-	public override void HandleOnBlueprintApplied(IEntity entity)
+	public override void HandleOnComponentsAdded(IEntity entity)
 	{
-		Events.OnBlueprintApplied?.Invoke(entity);
+		Events.OnComponentsAdded?.Invoke(entity);
 	}
 }
