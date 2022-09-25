@@ -6,6 +6,7 @@ using UnityEngine;
 [Message]
 public sealed class OnTileElementEnterTileComponent : IComponent
 {
+	[PrimaryEntityIndex]
 	public int OnTileElementId;
 
 	/// <summary>

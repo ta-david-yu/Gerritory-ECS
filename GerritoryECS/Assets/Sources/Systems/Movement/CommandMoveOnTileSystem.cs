@@ -64,7 +64,6 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 
 				// If entity is OnTileElementKiller, could possibly kill the occupier to take over the position.
 				// For now, we assume there will only be at most 1 occupier on a tile.
-				// TODO: do extra logic check if the entity is moving away.
 				List<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTilePosition(toPosition).ToList();
 				if (onTileEntities.Count > 0)
 				{
@@ -101,7 +100,28 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 				List<GameEntity> movingInEntities = m_GameContext.GetEntitiesWithMoveOnTile(toPosition).ToList();
 				if (movingInEntities.Count > 0)
 				{
-					// TODO: extra logic that deals with entity that was in the move to this tile. Delay killed might be needed.
+					GameEntity movingInEntity = movingInEntities.First();
+					if (!movingInEntity.IsCanBeDead)
+					{
+						// The moving-in entity cannot be dead.
+						continue;
+					}
+
+					int challengerPriority = entity.GetOnTileElementKillPriority();
+					int occupierPriority = movingInEntity.GetOnTileElementKillPriority();
+					if (challengerPriority >= occupierPriority)
+					{
+						// The moving-in entity is stronger / has higher priority, cannot be killed.
+						continue;
+					}
+
+					// Kill the moving-in entity!
+					TryKillResult killResult = m_Contexts.TryKill(movingInEntity);
+					if (!killResult.Success)
+					{
+						// The kill action is not successful.
+						continue;
+					}
 				}
 			}
 

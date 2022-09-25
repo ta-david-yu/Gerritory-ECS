@@ -119,6 +119,8 @@ public partial class Contexts
 	public const string MoveOnTile = "MoveOnTile";
 	public const string OnTileElement = "OnTileElement";
 	public const string OnTileElementEffect = "OnTileElementEffect";
+	public const string OnTileElementEnterTile = "OnTileElementEnterTile";
+	public const string OnTileElementLeaveTile = "OnTileElementLeaveTile";
 	public const string OnTileItem = "OnTileItem";
 	public const string OnTilePosition = "OnTilePosition";
 	public const string Player = "Player";
@@ -160,6 +162,16 @@ public partial class Contexts
 			OnTileElementEffect,
 			Effect.GetGroup(EffectMatcher.OnTileElementEffect),
 			(e, c) => ((OnTileElementEffectComponent)c).OnTileElementId));
+
+		Message.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<MessageEntity, int>(
+			OnTileElementEnterTile,
+			Message.GetGroup(MessageMatcher.OnTileElementEnterTile),
+			(e, c) => ((OnTileElementEnterTileComponent)c).OnTileElementId));
+
+		Message.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<MessageEntity, int>(
+			OnTileElementLeaveTile,
+			Message.GetGroup(MessageMatcher.OnTileElementLeaveTile),
+			(e, c) => ((OnTileElementLeaveTileComponent)c).OnTileElementId));
 
 		Item.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<ItemEntity, UnityEngine.Vector2Int>(
 			OnTileItem,
@@ -233,6 +245,16 @@ public static class ContextsExtensions
 	public static System.Collections.Generic.HashSet<EffectEntity> GetEntitiesWithOnTileElementEffect(this EffectContext context, int OnTileElementId)
 	{
 		return ((JCMG.EntitasRedux.EntityIndex<EffectEntity, int>)context.GetEntityIndex(Contexts.OnTileElementEffect)).GetEntities(OnTileElementId);
+	}
+
+	public static MessageEntity GetEntityWithOnTileElementEnterTile(this MessageContext context, int OnTileElementId)
+	{
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<MessageEntity, int>)context.GetEntityIndex(Contexts.OnTileElementEnterTile)).GetEntity(OnTileElementId);
+	}
+
+	public static MessageEntity GetEntityWithOnTileElementLeaveTile(this MessageContext context, int OnTileElementId)
+	{
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<MessageEntity, int>)context.GetEntityIndex(Contexts.OnTileElementLeaveTile)).GetEntity(OnTileElementId);
 	}
 
 	public static ItemEntity GetEntityWithOnTileItem(this ItemContext context, UnityEngine.Vector2Int Position)

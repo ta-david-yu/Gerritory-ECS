@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Add <see cref="EnteredByOnTileElementComponent"/> to tiles that are entered by OnTileElements, by observing <see cref="OnTileElementEnterTile"/> message entity.
 /// </summary>
-public sealed class CreateEnteredByOnTileElementSystem : IFixedUpdateSystem
+public sealed class CreateEnteredByOnTileElementSystem : IUpdateSystem
 {
 	private readonly TileContext m_TileContext;
 	private readonly MessageContext m_MessageContext;
@@ -18,12 +18,12 @@ public sealed class CreateEnteredByOnTileElementSystem : IFixedUpdateSystem
 		m_TileContext = contexts.Tile;
 		m_MessageContext = contexts.Message;
 
+		// Here we don't really care if the message entity consumed in FixedUpdate because we do our logic on Update.
 		m_EnterTileMessageGroup = m_MessageContext.GetGroup(MessageMatcher.
-			AllOf(MessageMatcher.OnTileElementEnterTile).
-			NoneOf(MessageMatcher.Consumed));
+			AllOf(MessageMatcher.OnTileElementEnterTile));
 	}
 
-	public void FixedUpdate()
+	public void Update()
 	{
 		foreach (MessageEntity enterMessageEntity in m_EnterTileMessageGroup.GetEntities())
 		{

@@ -157,15 +157,25 @@ public static class GameHelper
 		if (onTileEntity.HasOnTilePosition)
 		{
 			// If the OnTileEntity is occupying a tile, be sure to remove it from the tile.
-
-			// Remove OnTilePosition
 			Vector2Int position = onTileEntity.OnTilePosition.Value;
 			onTileEntity.RemoveOnTilePosition();
 
-			// Emit global LeaveTile message.
-			var leaveTileMessageEntity = contexts.Message.CreateFixedUpdateMessageEntity();
-			leaveTileMessageEntity.ReplaceOnTileElementLeaveTile(onTileEntity.OnTileElement.Id, position);
-			leaveTileMessageEntity.IsLeaveBecauseOfDeath = true;
+			if (!onTileEntity.HasMoveOnTile)
+			{
+				// Emit global LeaveTile message if the killed entity was not moving away from its tile.
+				var leaveTileMessageEntity = contexts.Message.CreateFixedUpdateMessageEntity();
+				leaveTileMessageEntity.ReplaceOnTileElementLeaveTile(onTileEntity.OnTileElement.Id, position);
+				leaveTileMessageEntity.IsLeaveBecauseOfDeath = true;
+			}
+		}
+
+		if (onTileEntity.HasMoveOnTile)
+		{
+			// If the OnTileEntity is moving, be sure to cancel the movement.
+			Vector2Int fromPosition = onTileEntity.MoveOnTile.FromPosition;
+			Vector2Int toPosition = onTileEntity.MoveOnTile.ToPosition;
+			onTileEntity.RemoveMoveOnTile();
+			onTileEntity.AddMoveOnTileEnd(fromPosition, toPosition);
 		}
 
 		return new TryKillResult { Success = true };

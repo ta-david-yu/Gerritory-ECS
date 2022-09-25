@@ -18,15 +18,7 @@ public partial class TileEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is LeftByOnTileElementComponent LeftByOnTileElement)
-		{
-			CopyLeftByOnTileElementTo(LeftByOnTileElement);
-		}
-		else if (component is EnteredByOnTileElementComponent EnteredByOnTileElement)
-		{
-			CopyEnteredByOnTileElementTo(EnteredByOnTileElement);
-		}
-		else if (component is ItemHolderComponent ItemHolder)
+		if (component is ItemHolderComponent ItemHolder)
 		{
 			IsItemHolder = true;
 		}
@@ -38,6 +30,10 @@ public partial class TileEntity
 		{
 			IsEnterable = true;
 		}
+		else if (component is LeftByOnTileElementComponent LeftByOnTileElement)
+		{
+			CopyLeftByOnTileElementTo(LeftByOnTileElement);
+		}
 		else if (component is TilePositionComponent TilePosition)
 		{
 			CopyTilePositionTo(TilePosition);
@@ -46,6 +42,10 @@ public partial class TileEntity
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
+		else if (component is EnteredByOnTileElementComponent EnteredByOnTileElement)
+		{
+			CopyEnteredByOnTileElementTo(EnteredByOnTileElement);
+		}
 		else if (component is CanBeRespawnedOnComponent CanBeRespawnedOn)
 		{
 			CopyCanBeRespawnedOnTo(CanBeRespawnedOn);
@@ -53,14 +53,6 @@ public partial class TileEntity
 		else if (component is CollapseOnSteppedComponent CollapseOnStepped)
 		{
 			CopyCollapseOnSteppedTo(CollapseOnStepped);
-		}
-		else if (component is LeftByOnTileElementAddedListenerComponent LeftByOnTileElementAddedListener)
-		{
-			CopyLeftByOnTileElementAddedListenerTo(LeftByOnTileElementAddedListener);
-		}
-		else if (component is EnteredByOnTileElementAddedListenerComponent EnteredByOnTileElementAddedListener)
-		{
-			CopyEnteredByOnTileElementAddedListenerTo(EnteredByOnTileElementAddedListener);
 		}
 		else if (component is OwnableAddedListenerComponent OwnableAddedListener)
 		{
@@ -73,6 +65,14 @@ public partial class TileEntity
 		else if (component is EnterableAddedListenerComponent EnterableAddedListener)
 		{
 			CopyEnterableAddedListenerTo(EnterableAddedListener);
+		}
+		else if (component is LeftByOnTileElementAddedListenerComponent LeftByOnTileElementAddedListener)
+		{
+			CopyLeftByOnTileElementAddedListenerTo(LeftByOnTileElementAddedListener);
+		}
+		else if (component is EnteredByOnTileElementAddedListenerComponent EnteredByOnTileElementAddedListener)
+		{
+			CopyEnteredByOnTileElementAddedListenerTo(EnteredByOnTileElementAddedListener);
 		}
 		#endif
 	}

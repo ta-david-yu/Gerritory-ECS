@@ -7,6 +7,7 @@ public sealed class RespawnOnWaitingForRespawnStateRemovedSystem : IInitializeSy
 {
 	private readonly Contexts m_Contexts;
 	private readonly GameContext m_GameContext;
+	private readonly MessageContext m_MessageContext;
 	private readonly PlayerStateContext m_PlayerStateContext;
 	private readonly IGroup<PlayerStateEntity> m_WaitingForRespawnStateGroup;
 
@@ -16,6 +17,7 @@ public sealed class RespawnOnWaitingForRespawnStateRemovedSystem : IInitializeSy
 	{
 		m_Contexts = contexts;
 		m_GameContext = contexts.Game;
+		m_MessageContext = contexts.Message;
 		m_PlayerStateContext = contexts.PlayerState;
 
 		m_WaitingForRespawnStateGroup = m_PlayerStateContext.GetGroup(PlayerStateMatcher.AllOf(PlayerStateMatcher.State, PlayerStateMatcher.WaitingForRespawnState));
@@ -74,11 +76,21 @@ public sealed class RespawnOnWaitingForRespawnStateRemovedSystem : IInitializeSy
 		{
 			stateHolderEntity.IsDead = false;
 			stateHolderEntity.ReplaceOnTilePosition(respawnPositionQueryResult.TilePosition);
+
+			if (stateHolderEntity.HasOnTileElement)
+			{
+				m_MessageContext.EmitOnTileElementEnterTileMessage(stateHolderEntity.OnTileElement.Id, respawnPositionQueryResult.TilePosition);
+			}
+			else
+			{
+				Debug.LogWarning($"The respawned state holder is not an OnTileElement. EnterTile message is not emitted.");
+			}
 		}
 		else
 		{
 			Debug.LogWarning($"Cannot find a proper respawn position!");
 			// TODO: respawn later
+			// ...
 		}
 
 		Debug.Log($"State holder {stateHolderId} respawned on {respawnPositionQueryResult.TilePosition}, OnTileElementId {stateHolderEntity.OnTileElement.Id}");
