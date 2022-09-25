@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDeathAnimationController : MonoBehaviour, IDeadAddedListener, IDeadRemovedListener
+public class PlayerDeathAnimationController : EntityCreationEventListenerBase, IDeadAddedListener, IDeadRemovedListener
 {
 	[SerializeField]
 	private GameObject m_Appearance;
@@ -13,7 +13,7 @@ public class PlayerDeathAnimationController : MonoBehaviour, IDeadAddedListener,
 	/// </summary>
 	private GameEntity m_CahcedGameEntity;
 
-	public void HandleOnEntityCreated(IEntity entity)
+	public override void HandleOnEntityCreated(IEntity entity)
 	{
 		GameEntity gameEntity = entity as GameEntity;
 
@@ -24,7 +24,7 @@ public class PlayerDeathAnimationController : MonoBehaviour, IDeadAddedListener,
 		m_CahcedGameEntity = gameEntity;
 	}
 
-	public void HandleOnBlueprintApplied(IEntity entity)
+	public override void HandleOnComponentsAdded(IEntity entity)
 	{
 		GameEntity gameEntity = entity as GameEntity;
 		m_Appearance.SetActive(!gameEntity.IsDead);

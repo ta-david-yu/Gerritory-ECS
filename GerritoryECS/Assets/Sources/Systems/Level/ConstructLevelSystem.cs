@@ -25,7 +25,7 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 
 	public void Initialize()
 	{
-		ITileFactory tileTypeTable = m_ConfigContext.GameConfig.value.TileTypeTable;
+		ITileFactory tileFactory = m_ConfigContext.GameConfig.value.TileFactory;
 		LevelData levelData = m_ConfigContext.GameConfig.value.LevelData;
 		m_LevelContext.SetLevel(levelData);
 
@@ -38,17 +38,26 @@ public sealed class ConstructLevelSystem : IInitializeSystem
 
 			// Create entity and its view controller
 			var tileEntity = m_TileContext.CreateEntity();
-			IEntityCreationEventController viewController = tileTypeTable.CreateTileView(tileId);
+			IEntityCreationEventController viewController = tileFactory.CreateTileView(tileId);
 			viewController.OnEntityCreated(tileEntity);
 
 			// Apply blueprint and components
-			var blueprint = tileTypeTable.GetTileBlueprint(tileId);
+			var blueprint = tileFactory.GetTileBlueprint(tileId);
 			blueprint.ApplyToEntity(tileEntity);
 			tileEntity.AddTilePosition(tilePosition);
 			viewController.OnComponentsAdded(tileEntity);
 
 			// Link view controller with entity
 			viewController.Link(tileEntity);
+
+
+			if (Random.Range(0.0f, 1.0f) > 0.8f)
+			{
+				var itemEntity = m_ItemContext.CreateEntity();
+				itemEntity.AddOnTileItem(tilePosition);
+				itemEntity.AddApplySpeedChangeStateForEaterOnEaten(3.0f, 2.0f);
+			}
 		}
+
 	}
 }

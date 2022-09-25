@@ -7,8 +7,16 @@ using UnityEngine;
 public class ScriptableGameConfig : ScriptableObject, IGameConfig
 {
 	[SerializeField]
-	private TileFactory m_TileTypeTable;
-	public ITileFactory TileTypeTable => m_TileTypeTable;
+	private int m_InitialRandomSeed;
+	public int InitialRandomSeed => m_InitialRandomSeed;
+
+	[SerializeField]
+	private TileFactory m_TileFactory;
+	public ITileFactory TileFactory => m_TileFactory;
+
+	[SerializeField]
+	private PlayerFactory m_PlayerFactory;
+	public IPlayerFactory PlayerFactory => m_PlayerFactory;
 
 	[SerializeField]
 	private LevelData m_LevelData;

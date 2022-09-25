@@ -6,6 +6,6 @@ public sealed class OnDrawGizmosDebugFeature : Feature
 {
 	public OnDrawGizmosDebugFeature(Contexts contexts)
 	{
-		Add(new OnDrawGizmosTileSystem(contexts));
+		Add(new OnDrawGizmosItemSystem(contexts));
 	}
 }

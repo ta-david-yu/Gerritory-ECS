@@ -6,6 +6,9 @@ public sealed class LevelFeature : Feature
 {
 	public LevelFeature(Contexts contexts)
 	{
+		// Init systems
+		Add(new InitializeRandomSeedSystem(contexts));
+
 		// Id counter initialize systems
 		Add(new UniqueIdCounterSystem(contexts));
 

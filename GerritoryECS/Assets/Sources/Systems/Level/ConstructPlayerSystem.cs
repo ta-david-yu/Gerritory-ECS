@@ -23,10 +23,9 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 	public void Initialize()
 	{
 		var playerConfigs = m_ConfigContext.GameConfig.value.PlayerGameConfigs;
-		return;
 		foreach (var playerConfig in playerConfigs)
 		{
-			GameEntity playerEntity = createPlayerEntity(playerConfig.PlayerId);
+			GameEntity playerEntity = createPlayerEntity(playerConfig);
 
 			InputEntity inputEntity = m_InputContext.CreateEntity();
 			if (playerConfig.IsAI)
@@ -40,14 +39,17 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 		}
 	}
 
-	private GameEntity createPlayerEntity(int playerId)
+	private GameEntity createPlayerEntity(PlayerGameConfig playerConfig)
 	{
+		IPlayerFactory playerFactory = m_ConfigContext.GameConfig.value.PlayerFactory;
+
+		// Create player entity and its view controller
 		GameEntity playerEntity = m_GameContext.CreateEntity();
+		IEntityCreationEventController viewController = playerFactory.CreatePlayerView(playerConfig.PlayerId, playerConfig.ColorId, playerConfig.SkinId);
+		viewController.OnEntityCreated(playerEntity);
 
-		// TODO: instantiate player prefab and call OnEntityCreated callback
-		// ...
-
-		playerEntity.AddPlayer(playerId);
+		// Add needed componenets
+		playerEntity.AddPlayer(playerConfig.PlayerId);
 		playerEntity.AddOnTileElement(m_LevelContext.GetNewOnTileElementId());
 		playerEntity.AddTileOwner(m_LevelContext.GetNewTileOwnerId(), 0);
 		playerEntity.AddItemEater(m_LevelContext.GetNewItemEaterId());
@@ -68,10 +70,10 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 			playerEntity.AddOnTilePosition(Vector2Int.zero);
 		}
 
-		// TODO: call OnComponentsAdded callback
-		// ...
+		viewController.OnComponentsAdded(playerEntity);
 
-		// TODO: place the player at tile world position
+		// Link view controller with entity
+		viewController.Link(playerEntity);
 
 		return playerEntity;
 	}

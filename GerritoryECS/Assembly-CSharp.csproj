@@ -295,7 +295,7 @@
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigContext.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageEntity.cs" />
-    <Compile Include="Assets\Sources\Systems\Debug\OnDrawGizmosTileSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Debug\OnDrawGizmosItemSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Message\IMessageBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Message\Features\MessageCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemEntity_CopyTo.cs" />
@@ -381,6 +381,9 @@
     <Compile Include="Assets\Scripts\GameData\ITileFactory.cs" />
     <Compile Include="Assets\Scripts\Tile\SetTileWorldPositionOnComponentsAdded.cs" />
     <Compile Include="Assets\Scripts\GameData\IPlayerFactory.cs" />
+    <Compile Include="Assets\Scripts\GameData\PlayerFactory.cs" />
+    <Compile Include="Assets\Scripts\OnTileElement\SetOnTileElementWorldPositionOnCompnentsAdded.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\InitializeRandomSeedSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

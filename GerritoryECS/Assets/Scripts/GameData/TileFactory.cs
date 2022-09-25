@@ -22,17 +22,17 @@ public sealed class TileFactory : ScriptableObject, ITileFactory, ISerialization
 	[SerializeField]
 	private List<TileTypePair> m_TileTypePairs = new List<TileTypePair>();
 
-	private GameObject m_CreatedTileRoot;
-	public GameObject CreatedTileRoot
+	private GameObject m_CreatedViewRoot;
+	public GameObject CreatedViewRoot
 	{
 		get
 		{
-			if (m_CreatedTileRoot == null)
+			if (m_CreatedViewRoot == null)
 			{
-				m_CreatedTileRoot = new GameObject("TileViewsRoot");
+				m_CreatedViewRoot = new GameObject("TileViewsRoot");
 			}
 
-			return m_CreatedTileRoot;
+			return m_CreatedViewRoot;
 		}
 	}
 
@@ -55,7 +55,7 @@ public sealed class TileFactory : ScriptableObject, ITileFactory, ISerialization
 			tileType = m_FallbackTileType;
 		}
 
-		var tileUnityView = GameObject.Instantiate(tileType.Prefab, CreatedTileRoot.transform);
+		var tileUnityView = GameObject.Instantiate(tileType.Prefab, CreatedViewRoot.transform);
 		return tileUnityView;
 	}
 

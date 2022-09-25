@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityCreationEventController : MonoBehaviour, IEntityCreationEventController
+public sealed class EntityCreationEventController : MonoBehaviour, IEntityCreationEventController
 {
 	[SerializeField]
 	private List<EntityCreationEventListenerBase> m_Listeners = new List<EntityCreationEventListenerBase>();
