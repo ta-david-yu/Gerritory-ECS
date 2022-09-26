@@ -47,11 +47,12 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 
 		// Create player entity and its view controller
 		GameEntity playerEntity = m_GameContext.CreateEntity();
-		IEntityCreationEventController viewController = playerFactory.CreatePlayerView(playerConfig.PlayerId, playerConfig.ColorId, playerConfig.SkinId);
+		IEntityCreationEventController viewController = playerFactory.CreatePlayerView(playerConfig.PlayerId, playerConfig.TeamId, playerConfig.SkinId);
 		viewController.OnEntityCreated(playerEntity);
 
 		// Add needed componenets
 		playerEntity.AddPlayer(playerConfig.PlayerId);
+		playerEntity.AddTeam(playerConfig.TeamId);
 		playerEntity.AddOnTileElement(m_LevelContext.GetNewOnTileElementId());
 		playerEntity.AddTileOwner(m_LevelContext.GetNewTileOwnerId(), 0);
 		playerEntity.AddItemEater(m_LevelContext.GetNewItemEaterId());

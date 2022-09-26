@@ -80,11 +80,8 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 						continue;
 					}
 
-					int challengerPriority = entity.GetOnTileElementKillPriority();
-					int occupierPriority = occupierEntity.GetOnTileElementKillPriority();
-					if (challengerPriority >= occupierPriority)
+					if (!entity.CanStepOnVictim(occupierEntity))
 					{
-						// The occupier is stronger / has higher priority, cannot be killed.
 						continue;
 					}
 
@@ -107,11 +104,8 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 						continue;
 					}
 
-					int challengerPriority = entity.GetOnTileElementKillPriority();
-					int occupierPriority = movingInEntity.GetOnTileElementKillPriority();
-					if (challengerPriority >= occupierPriority)
+					if (!entity.CanStepOnVictim(movingInEntity))
 					{
-						// The moving-in entity is stronger / has higher priority, cannot be killed.
 						continue;
 					}
 

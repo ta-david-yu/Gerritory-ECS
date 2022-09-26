@@ -7,7 +7,9 @@ public sealed class PlayerGameConfig
 {
 	public int PlayerId;
 	public string PlayerName;
-	public int ColorId;
+
+	[Tooltip("TeamId is tied to ColorId")]
+	public int TeamId;
 	public int SkinId;
 
 	public bool IsAI = false;

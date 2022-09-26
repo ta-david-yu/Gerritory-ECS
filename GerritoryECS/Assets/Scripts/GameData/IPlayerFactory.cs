@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPlayerFactory
 {
-	public IEntityCreationEventController CreatePlayerView(int playerId, int colorId, int skinId);
+	public IEntityCreationEventController CreatePlayerView(int playerId, int teamId, int skinId);
 }

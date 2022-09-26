@@ -22,7 +22,7 @@ public class PlayerFactory : ScriptableObject, IPlayerFactory
 		}
 	}
 
-	public IEntityCreationEventController CreatePlayerView(int playerId, int colorId, int skinId)
+	public IEntityCreationEventController CreatePlayerView(int playerId, int teamId, int skinId)
 	{
 		var playerUnityView = GameObject.Instantiate(m_PlayerPrefab, CreatedViewRoot.transform);
 		return playerUnityView;

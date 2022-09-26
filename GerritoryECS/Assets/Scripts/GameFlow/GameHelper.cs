@@ -181,6 +181,25 @@ public static class GameHelper
 		return new TryKillResult { Success = true };
 	}
 
+	public static bool CanStepOnVictim(this GameEntity stepperEntity, GameEntity victimEntity)
+	{
+		if (stepperEntity.HasTeam && victimEntity.HasTeam && stepperEntity.Team.Id == victimEntity.Team.Id)
+		{
+			// Both entities are on the same team, cannot be killed.
+			return false;
+		}
+
+		int stepperPriority = stepperEntity.GetOnTileElementKillPriority();
+		int victimPriority = victimEntity.GetOnTileElementKillPriority();
+		if (stepperPriority >= victimPriority)
+		{
+			// The victim entity is stronger / has higher priority, cannot be killed.
+			return false;
+		}
+
+		return true;
+	}
+
 	public static int GetNewOnTileElementId(this LevelContext context)
 	{
 		int id = context.OnTileElementIdCounter.value.Value;

@@ -18,7 +18,11 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is DeadComponent Dead)
+		if (component is TeamComponent Team)
+		{
+			CopyTeamTo(Team);
+		}
+		else if (component is DeadComponent Dead)
 		{
 			IsDead = true;
 		}

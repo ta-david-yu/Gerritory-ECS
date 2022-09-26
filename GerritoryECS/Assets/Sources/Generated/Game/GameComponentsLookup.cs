@@ -34,10 +34,11 @@ public static class GameComponentsLookup
 	public const int Player = 18;
 	public const int SpeedChangeable = 19;
 	public const int StateHolder = 20;
-	public const int TileCollapser = 21;
-	public const int TileOwner = 22;
+	public const int Team = 21;
+	public const int TileCollapser = 22;
+	public const int TileOwner = 23;
 
-	public const int TotalComponents = 23;
+	public const int TotalComponents = 24;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -62,6 +63,7 @@ public static class GameComponentsLookup
 		"Player",
 		"SpeedChangeable",
 		"StateHolder",
+		"Team",
 		"TileCollapser",
 		"TileOwner"
 	};
@@ -89,6 +91,7 @@ public static class GameComponentsLookup
 		typeof(PlayerComponent),
 		typeof(SpeedChangeableComponent),
 		typeof(StateHolderComponent),
+		typeof(TeamComponent),
 		typeof(TileCollapserComponent),
 		typeof(TileOwnerComponent)
 	};
@@ -116,8 +119,9 @@ public static class GameComponentsLookup
 		{ typeof(PlayerComponent), 18 },
 		{ typeof(SpeedChangeableComponent), 19 },
 		{ typeof(StateHolderComponent), 20 },
-		{ typeof(TileCollapserComponent), 21 },
-		{ typeof(TileOwnerComponent), 22 }
+		{ typeof(TeamComponent), 21 },
+		{ typeof(TileCollapserComponent), 22 },
+		{ typeof(TileOwnerComponent), 23 }
 	};
 
 	/// <summary>

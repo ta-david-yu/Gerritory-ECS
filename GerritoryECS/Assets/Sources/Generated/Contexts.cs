@@ -126,6 +126,7 @@ public partial class Contexts
 	public const string Player = "Player";
 	public const string State = "State";
 	public const string StateHolder = "StateHolder";
+	public const string Team = "Team";
 	public const string TileOwner = "TileOwner";
 	public const string TilePosition = "TilePosition";
 	public const string UserInput = "UserInput";
@@ -197,6 +198,11 @@ public partial class Contexts
 			StateHolder,
 			Game.GetGroup(GameMatcher.StateHolder),
 			(e, c) => ((StateHolderComponent)c).Id));
+
+		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, int>(
+			Team,
+			Game.GetGroup(GameMatcher.Team),
+			(e, c) => ((TeamComponent)c).Id));
 
 		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
 			TileOwner,
@@ -280,6 +286,11 @@ public static class ContextsExtensions
 	public static GameEntity GetEntityWithStateHolder(this GameContext context, int Id)
 	{
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.StateHolder)).GetEntity(Id);
+	}
+
+	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithTeam(this GameContext context, int Id)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.Team)).GetEntities(Id);
 	}
 
 	public static GameEntity GetEntityWithTileOwner(this GameContext context, int Id)

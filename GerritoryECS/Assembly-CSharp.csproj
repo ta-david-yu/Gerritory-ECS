@@ -384,6 +384,10 @@
     <Compile Include="Assets\Scripts\Tile\CollapseTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
+    <Compile Include="Assets\Scripts\GameData\ColorPalette.cs" />
+    <Compile Include="Assets\Scripts\OnTileElement\SetPlayerTeamColorOnComponentsAdded.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\TeamComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameTeamComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -6,7 +6,12 @@ using UnityEngine;
 public class ColorTileOnTakenOverAnimationController : EntityCreationEventListenerBase, IOwnableAddedListener
 {
 	[SerializeField]
-	private Renderer m_Renderer;
+	private ColorPalette m_ColorPalette;
+
+	[Space]
+
+	[SerializeField]
+	private List<Renderer> m_Renderers;
 
 	public override void HandleOnEntityCreated(IEntity entity)
 	{
@@ -20,9 +25,27 @@ public class ColorTileOnTakenOverAnimationController : EntityCreationEventListen
 
 	public void OnOwnableAdded(TileEntity entity, bool hasOwner, int ownerId)
 	{
-		if (hasOwner)
+		if (!hasOwner)
 		{
-			Debug.Log($"{ownerId} took over {entity.TilePosition.Value}!");
+			changeRenderersColor(Color.white);
+			return;
+		}
+
+		GameEntity ownerEntity = Contexts.SharedInstance.Game.GetEntityWithTileOwner(ownerId);
+		if (!ownerEntity.HasTeam)
+		{
+			changeRenderersColor(Color.white);
+			return;
+		}
+
+		changeRenderersColor(m_ColorPalette.GetTileBodyColorForTeam(ownerEntity.Team.Id));
+	}
+
+	private void changeRenderersColor(Color color)
+	{
+		foreach (Renderer renderer in m_Renderers)
+		{
+			renderer.material.SetColor("_BaseColor", color);
 		}
 	}
 }
