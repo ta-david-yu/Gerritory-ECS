@@ -247,6 +247,7 @@
     <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemDebugMessageComponent.cs" />
+    <Compile Include="Assets\Scripts\OnTileElement\SetPlayerTeamColorOnComponentsAdded.cs" />
     <Compile Include="Assets\Sources\Components\PlayerState\SpeedChangeState.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\TileBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelLevelComponent.cs" />
@@ -294,6 +295,7 @@
     <Compile Include="Assets\Sources\Generated\Effect\EffectAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\ILeftByOnTileElementAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\EffectBlueprint.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\TeamComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Components\GameConfigComponent.cs" />
     <Compile Include="Assets\Scripts\Tile\SetTileWorldPositionOnComponentsAdded.cs" />
     <Compile Include="Assets\Sources\Components\Item\ItemComponent.cs" />
@@ -309,6 +311,7 @@
     <Compile Include="Assets\Sources\Generated\Item\ItemBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileEndAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Item\CreateSpeedChangeStateForEaterOnItemEatenSystem.cs" />
+    <Compile Include="Assets\Scripts\GameData\ColorPalette.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileItemHolderComponent.cs" />
     <Compile Include="Assets\Scripts\View\EntityCreationUnityEvent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\EnterableRemovedListenerComponent.cs" />
@@ -334,6 +337,7 @@
     <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Systems\Message\ConsumeMessageSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\OwnableAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameTeamComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\EnterableComponent.cs" />
@@ -384,10 +388,7 @@
     <Compile Include="Assets\Scripts\Tile\CollapseTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Scripts\GameData\ColorPalette.cs" />
-    <Compile Include="Assets\Scripts\OnTileElement\SetPlayerTeamColorOnComponentsAdded.cs" />
-    <Compile Include="Assets\Sources\Components\OnTileElement\TeamComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameTeamComponent.cs" />
+    <Compile Include="Assets\Scripts\Utility\EasingFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

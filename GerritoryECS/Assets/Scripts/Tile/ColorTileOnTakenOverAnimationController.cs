@@ -27,14 +27,14 @@ public class ColorTileOnTakenOverAnimationController : EntityCreationEventListen
 	{
 		if (!hasOwner)
 		{
-			changeRenderersColor(Color.white);
+			changeRenderersColor(m_ColorPalette.GetDefaultTileBodyColor());
 			return;
 		}
 
 		GameEntity ownerEntity = Contexts.SharedInstance.Game.GetEntityWithTileOwner(ownerId);
 		if (!ownerEntity.HasTeam)
 		{
-			changeRenderersColor(Color.white);
+			changeRenderersColor(m_ColorPalette.GetDefaultTileBodyColor());
 			return;
 		}
 

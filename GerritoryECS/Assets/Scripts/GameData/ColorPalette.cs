@@ -14,9 +14,27 @@ public sealed class ColorPalette : ScriptableObject
 	}
 
 	[SerializeField]
+	private ColorSet m_DefaultColorSet = new ColorSet();
+
+	[SerializeField]
 	private List<ColorSet> m_ColorSets = new List<ColorSet>();
 
 	public int NumberOfColorSets => m_ColorSets.Count;
+
+	public Color GetDefaultPlayerColor()
+	{
+		return m_DefaultColorSet.PlayerBodyColor;
+	}
+
+	public Color GetDefaultTileBodyColor()
+	{
+		return m_DefaultColorSet.TileBodyColor;
+	}
+
+	public Color GetDefaultFogColor()
+	{
+		return m_DefaultColorSet.FogColor;
+	}
 
 	public Color GetPlayerBodyColorForTeam(int teamId)
 	{
