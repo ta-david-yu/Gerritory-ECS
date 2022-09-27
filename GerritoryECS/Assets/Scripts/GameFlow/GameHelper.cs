@@ -127,7 +127,7 @@ public static class GameHelper
 		if (onTileEntity.IsTileOwner && onTileEntity.HasTeam)
 		{
 			LevelEntity teamEntity = contexts.Level.GetEntityWithTeamInfo(onTileEntity.Team.Id);
-			priority += teamEntity.TeamInfo.NumberOfOwnedTile;
+			priority += teamEntity.TeamScore.Value;
 		}
 
 		// TODO: if invinicible, set priority to k_InivinciblePriority
@@ -205,13 +205,6 @@ public static class GameHelper
 	{
 		int id = context.OnTileElementIdCounter.value.Value;
 		context.ReplaceOnTileElementIdCounter(new UniqueIdCounter { Value = id + 1 });
-		return id;
-	}
-
-	public static int GetNewTileOwnerId(this LevelContext context)
-	{
-		int id = context.TileOwnerIdCounter.value.Value;
-		context.ReplaceTileOwnerIdCounter(new UniqueIdCounter { Value = id + 1 });
 		return id;
 	}
 

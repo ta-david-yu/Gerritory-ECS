@@ -7,6 +7,5 @@ using UnityEngine;
 [Level, Unique]
 public sealed class GameInfoComponent : IComponent
 {
-	public int CurrentWinningTeamId;
 	public int CurrentHighestTeamScore;
 }

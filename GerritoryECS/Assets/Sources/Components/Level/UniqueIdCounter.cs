@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Level, Unique]
-[ComponentName("OnTileElementIdCounter", "TileOwnerIdCounter", "StateHolderIdCounter", "ItemEaterIdCounter")]
+[ComponentName("OnTileElementIdCounter", "StateHolderIdCounter", "ItemEaterIdCounter")]
 public struct UniqueIdCounter
 {
 	public int Value;

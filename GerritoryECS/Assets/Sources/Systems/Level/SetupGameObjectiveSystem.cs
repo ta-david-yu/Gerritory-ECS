@@ -16,5 +16,7 @@ public sealed class SetupGameObjectiveSystem : IInitializeSystem
 
 	public void Initialize()
 	{
+		// TODO: setup game objective, create nessesary components such as GameTimer, GoalMode...etc on GameInfo entity
+		//m_LevelContext.SetGameInfo()
 	}
 }

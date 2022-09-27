@@ -30,13 +30,6 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 			// Create player entity.
 			GameEntity playerEntity = createPlayerEntity(playerConfig);
 
-			// Create team entity if there isn't one with the given id.
-			if (m_LevelContext.GetEntityWithTeamInfo(playerConfig.TeamId) == null)
-			{
-				LevelEntity teamEntity = m_LevelContext.CreateEntity();
-				teamEntity.AddTeamInfo(playerConfig.TeamId, 0);
-			}
-
 			// Create input entity.
 			InputEntity inputEntity = m_InputContext.CreateEntity();
 			if (playerConfig.IsAI)

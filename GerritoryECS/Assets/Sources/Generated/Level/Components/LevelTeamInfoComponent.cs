@@ -12,24 +12,22 @@ public partial class LevelEntity
 	public TeamInfoComponent TeamInfo { get { return (TeamInfoComponent)GetComponent(LevelComponentsLookup.TeamInfo); } }
 	public bool HasTeamInfo { get { return HasComponent(LevelComponentsLookup.TeamInfo); } }
 
-	public void AddTeamInfo(int newId, int newNumberOfOwnedTile)
+	public void AddTeamInfo(int newId)
 	{
 		var index = LevelComponentsLookup.TeamInfo;
 		var component = (TeamInfoComponent)CreateComponent(index, typeof(TeamInfoComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Id = newId;
-		component.NumberOfOwnedTile = newNumberOfOwnedTile;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceTeamInfo(int newId, int newNumberOfOwnedTile)
+	public void ReplaceTeamInfo(int newId)
 	{
 		var index = LevelComponentsLookup.TeamInfo;
 		var component = (TeamInfoComponent)CreateComponent(index, typeof(TeamInfoComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Id = newId;
-		component.NumberOfOwnedTile = newNumberOfOwnedTile;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -39,8 +37,7 @@ public partial class LevelEntity
 		var index = LevelComponentsLookup.TeamInfo;
 		var component = (TeamInfoComponent)CreateComponent(index, typeof(TeamInfoComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.Id = copyComponent.Id;
-		component.NumberOfOwnedTile = copyComponent.NumberOfOwnedTile;
+		component.Id = copyComponent.Id;
 		#endif
 		ReplaceComponent(index, component);
 	}

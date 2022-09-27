@@ -60,7 +60,7 @@ public sealed class TakeOverOwnableOnEnterTileSystem : IFixedUpdateSystem
 				// Decrement previous owner team number of owned tiles.
 				int previousTeamId = enterTileEntity.Ownable.OwnerTeamId;
 				LevelEntity previousTeamEntity = m_LevelContext.GetEntityWithTeamInfo(previousTeamId);
-				previousTeamEntity.ReplaceTeamInfo(previousTeamId, previousTeamEntity.TeamInfo.NumberOfOwnedTile - 1);
+				previousTeamEntity.ReplaceTeamScore(previousTeamEntity.TeamScore.Value - 1);
 			}
 
 			// Take over the tile.
@@ -69,7 +69,7 @@ public sealed class TakeOverOwnableOnEnterTileSystem : IFixedUpdateSystem
 
 			// Increment new owner team's number of owned tiles.
 			LevelEntity newTeamEntity = m_LevelContext.GetEntityWithTeamInfo(newTeamId);
-			newTeamEntity.ReplaceTeamInfo(newTeamId, newTeamEntity.TeamInfo.NumberOfOwnedTile + 1);
+			newTeamEntity.ReplaceTeamScore(newTeamEntity.TeamScore.Value + 1);
 		}
 	}
 }

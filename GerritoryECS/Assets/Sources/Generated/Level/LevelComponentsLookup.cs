@@ -22,10 +22,11 @@ public static class LevelComponentsLookup
 	public const int OnTileElementIdCounter = 6;
 	public const int StateHolderIdCounter = 7;
 	public const int SurvivalMode = 8;
-	public const int TeamInfo = 9;
-	public const int TileOwnerIdCounter = 10;
+	public const int TeamGameRanking = 9;
+	public const int TeamInfo = 10;
+	public const int TeamScore = 11;
 
-	public const int TotalComponents = 11;
+	public const int TotalComponents = 12;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -38,8 +39,9 @@ public static class LevelComponentsLookup
 		"OnTileElementIdCounter",
 		"StateHolderIdCounter",
 		"SurvivalMode",
+		"TeamGameRanking",
 		"TeamInfo",
-		"TileOwnerIdCounter"
+		"TeamScore"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
@@ -53,8 +55,9 @@ public static class LevelComponentsLookup
 		typeof(OnTileElementIdCounterComponent),
 		typeof(StateHolderIdCounterComponent),
 		typeof(SurvivalModeComponent),
+		typeof(TeamGameRankingComponent),
 		typeof(TeamInfoComponent),
-		typeof(TileOwnerIdCounterComponent)
+		typeof(TeamScoreComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
@@ -68,8 +71,9 @@ public static class LevelComponentsLookup
 		{ typeof(OnTileElementIdCounterComponent), 6 },
 		{ typeof(StateHolderIdCounterComponent), 7 },
 		{ typeof(SurvivalModeComponent), 8 },
-		{ typeof(TeamInfoComponent), 9 },
-		{ typeof(TileOwnerIdCounterComponent), 10 }
+		{ typeof(TeamGameRankingComponent), 9 },
+		{ typeof(TeamInfoComponent), 10 },
+		{ typeof(TeamScoreComponent), 11 }
 	};
 
 	/// <summary>

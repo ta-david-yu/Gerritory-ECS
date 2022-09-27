@@ -209,7 +209,6 @@
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileBeginComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Features\PlayerStateCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileAddedListener.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTileOwnerIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileBeginAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\IEffectBlueprint.cs" />
@@ -358,13 +357,12 @@
     <Compile Include="Assets\Sources\Generated\Effect\Features\EffectCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprintBehaviour.cs" />
-    <Compile Include="Assets\Sources\Generated\Components\TileOwnerIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigContext.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageEntity.cs" />
     <Compile Include="Assets\Sources\Systems\Debug\OnDrawGizmosItemSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\OwnableAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Message\IMessageBlueprint.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\UniqueIdCounterSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\InitializeUniqueIdCounterSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Components\StateHolderIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Message\Features\MessageCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemEntity_CopyTo.cs" />
@@ -402,6 +400,12 @@
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelGoalScoreComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelGoalModeComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelGameInfoComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\SetupGameInfoSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\UpdateGameInfoSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Level\TeamGameRankingComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamGameRankingComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\TeamScoreComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamScoreComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

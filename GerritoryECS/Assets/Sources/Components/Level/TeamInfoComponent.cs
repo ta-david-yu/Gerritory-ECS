@@ -8,6 +8,4 @@ public sealed class TeamInfoComponent : IComponent
 {
 	[PrimaryEntityIndex]
 	public int Id;
-
-	public int NumberOfOwnedTile;
 }

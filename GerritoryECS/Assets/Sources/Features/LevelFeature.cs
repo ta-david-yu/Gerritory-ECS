@@ -6,16 +6,28 @@ public sealed class LevelFeature : Feature
 {
 	public LevelFeature(Contexts contexts)
 	{
-		// Init systems
-		Add(new InitializeRandomSeedSystem(contexts));
+		// Initialization systems
+		{
+			// Init random generator system
+			Add(new InitializeRandomSeedSystem(contexts));
 
-		// Id counter initialize systems
-		Add(new UniqueIdCounterSystem(contexts));
+			// Id counter initialize systems
+			Add(new InitializeUniqueIdCounterSystem(contexts));
 
-		// Level construction systems
-		Add(new ConstructLevelSystem(contexts));
+			// Setup game info related systems
+			Add(new SetupGameInfoSystem(contexts));
+			Add(new SetupGameObjectiveSystem(contexts));
 
-		// Player construction systems
-		Add(new ConstructPlayerSystem(contexts));
+			// Level construction systems
+			Add(new ConstructLevelSystem(contexts));
+
+			// Player construction systems
+			Add(new ConstructPlayerSystem(contexts));
+		}
+
+		// FixedUpdate systems
+		{
+			// TODO: GameInfoUpdateSystems
+		}
 	}
 }

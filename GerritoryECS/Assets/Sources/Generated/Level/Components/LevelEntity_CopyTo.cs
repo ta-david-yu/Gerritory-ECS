@@ -18,7 +18,15 @@ public partial class LevelEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is GoalScoreComponent GoalScore)
+		if (component is TeamScoreComponent TeamScore)
+		{
+			CopyTeamScoreTo(TeamScore);
+		}
+		else if (component is TeamGameRankingComponent TeamGameRanking)
+		{
+			CopyTeamGameRankingTo(TeamGameRanking);
+		}
+		else if (component is GoalScoreComponent GoalScore)
 		{
 			CopyGoalScoreTo(GoalScore);
 		}
@@ -49,10 +57,6 @@ public partial class LevelEntity
 		else if (component is OnTileElementIdCounterComponent OnTileElementIdCounter)
 		{
 			CopyOnTileElementIdCounterTo(OnTileElementIdCounter);
-		}
-		else if (component is TileOwnerIdCounterComponent TileOwnerIdCounter)
-		{
-			CopyTileOwnerIdCounterTo(TileOwnerIdCounter);
 		}
 		else if (component is StateHolderIdCounterComponent StateHolderIdCounter)
 		{
