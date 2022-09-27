@@ -23,7 +23,7 @@ public class ColorTileOnTakenOverAnimationController : EntityCreationEventListen
 	{
 	}
 
-	public void OnOwnableAdded(TileEntity entity, bool hasOwner, int ownerId)
+	public void OnOwnableAdded(TileEntity entity, bool hasOwner, int ownerTeamId)
 	{
 		if (!hasOwner)
 		{
@@ -31,15 +31,7 @@ public class ColorTileOnTakenOverAnimationController : EntityCreationEventListen
 			return;
 		}
 
-		GameEntity ownerEntity = Contexts.SharedInstance.Game.GetEntityWithTileOwner(ownerId);
-		if (!ownerEntity.HasTeam)
-		{
-			Debug.LogWarning($"The owner {ownerId} doesn't have a team, therefore default color will be assigned to the owned tile.");
-			changeRenderersColor(m_ColorPalette.GetDefaultTileBodyColor());
-			return;
-		}
-
-		changeRenderersColor(m_ColorPalette.GetTileBodyColorForTeam(ownerEntity.Team.Id));
+		changeRenderersColor(m_ColorPalette.GetTileBodyColorForTeam(ownerTeamId));
 	}
 
 	private void changeRenderersColor(Color color)

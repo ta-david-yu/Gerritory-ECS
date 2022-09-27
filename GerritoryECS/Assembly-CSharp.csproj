@@ -396,6 +396,12 @@
     <Compile Include="Assets\Sources\Components\Level\SurvivalModeComponent.cs" />
     <Compile Include="Assets\Sources\Components\Level\GoalModeComponent.cs" />
     <Compile Include="Assets\Sources\Components\Level\GoalScoreComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\SetupGameObjectiveSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGameTimerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelSurvivalModeComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGoalScoreComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGoalModeComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGameInfoComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

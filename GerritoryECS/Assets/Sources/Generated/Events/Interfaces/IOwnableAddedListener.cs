@@ -9,5 +9,5 @@
 //------------------------------------------------------------------------------
 public interface IOwnableAddedListener
 {
-	void OnOwnableAdded(TileEntity entity, bool hasOwner, int ownerId);
+	void OnOwnableAdded(TileEntity entity, bool hasOwner, int ownerTeamId);
 }

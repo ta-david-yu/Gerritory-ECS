@@ -64,7 +64,7 @@ public partial class GameEntity
 		}
 		else if (component is TileOwnerComponent TileOwner)
 		{
-			CopyTileOwnerTo(TileOwner);
+			IsTileOwner = true;
 		}
 		else if (component is StateHolderComponent StateHolder)
 		{

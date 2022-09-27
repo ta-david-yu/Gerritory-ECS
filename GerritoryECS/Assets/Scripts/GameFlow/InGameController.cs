@@ -73,8 +73,8 @@ public class InGameController : MonoBehaviour
 			.Add(new GameEventSystems(contexts))
 			.Add(new TileEventSystems(contexts))
 
-			.Add(new GameCleanupSystems())
-			.Add(new TileCleanupSystems());
+			.Add(new GameCleanupSystems(contexts.Game))
+			.Add(new TileCleanupSystems(contexts.Tile));
 	}
 
 	private static Systems createOnGUIDebugSystems(Contexts contexts)

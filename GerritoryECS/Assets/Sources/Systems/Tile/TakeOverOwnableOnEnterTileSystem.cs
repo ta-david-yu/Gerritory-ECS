@@ -32,7 +32,7 @@ public sealed class TakeOverOwnableOnEnterTileSystem : IFixedUpdateSystem
 		{
 			int onTileElementId = enterMessageEntity.OnTileElementEnterTile.OnTileElementId;
 			GameEntity entererEntity = m_GameContext.GetEntityWithOnTileElement(onTileElementId);
-			if (!entererEntity.HasTileOwner)
+			if (!entererEntity.IsTileOwner)
 			{
 				// The entering OnTileElement is not a TileOwner, do nothing.
 				continue;
@@ -58,18 +58,16 @@ public sealed class TakeOverOwnableOnEnterTileSystem : IFixedUpdateSystem
 			if (enterTileEntity.Ownable.HasOwner)
 			{
 				// Decrement previous owner team number of owned tiles.
-				GameEntity previousOwnerEntity = m_GameContext.GetEntityWithTileOwner(enterTileEntity.Ownable.OwnerId);
-
-				int previousTeamId = previousOwnerEntity.Team.Id;
+				int previousTeamId = enterTileEntity.Ownable.OwnerTeamId;
 				LevelEntity previousTeamEntity = m_LevelContext.GetEntityWithTeamInfo(previousTeamId);
 				previousTeamEntity.ReplaceTeamInfo(previousTeamId, previousTeamEntity.TeamInfo.NumberOfOwnedTile - 1);
 			}
 
 			// Take over the tile.
-			enterTileEntity.ReplaceOwnable(true, entererEntity.TileOwner.Id);
+			int newTeamId = entererEntity.Team.Id;
+			enterTileEntity.ReplaceOwnable(true, newTeamId);
 
 			// Increment new owner team's number of owned tiles.
-			int newTeamId = entererEntity.Team.Id;
 			LevelEntity newTeamEntity = m_LevelContext.GetEntityWithTeamInfo(newTeamId);
 			newTeamEntity.ReplaceTeamInfo(newTeamId, newTeamEntity.TeamInfo.NumberOfOwnedTile + 1);
 		}

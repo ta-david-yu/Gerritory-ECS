@@ -124,7 +124,7 @@ public static class GameHelper
 	public static int GetOnTileElementKillPriority(this Contexts contexts, GameEntity onTileEntity)
 	{
 		int priority = 0;
-		if (onTileEntity.HasTileOwner && onTileEntity.HasTeam)
+		if (onTileEntity.IsTileOwner && onTileEntity.HasTeam)
 		{
 			LevelEntity teamEntity = contexts.Level.GetEntityWithTeamInfo(onTileEntity.Team.Id);
 			priority += teamEntity.TeamInfo.NumberOfOwnedTile;

@@ -7,24 +7,24 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class GameEntity
+public partial class LevelEntity
 {
-	static readonly TileOwnerComponent TileOwnerComponent = new TileOwnerComponent();
+	static readonly GoalModeComponent GoalModeComponent = new GoalModeComponent();
 
-	public bool IsTileOwner
+	public bool IsGoalMode
 	{
-		get { return HasComponent(GameComponentsLookup.TileOwner); }
+		get { return HasComponent(LevelComponentsLookup.GoalMode); }
 		set
 		{
-			if (value != IsTileOwner)
+			if (value != IsGoalMode)
 			{
-				var index = GameComponentsLookup.TileOwner;
+				var index = LevelComponentsLookup.GoalMode;
 				if (value)
 				{
 					var componentPool = GetComponentPool(index);
 					var component = componentPool.Count > 0
 							? componentPool.Pop()
-							: TileOwnerComponent;
+							: GoalModeComponent;
 
 					AddComponent(index, component);
 				}
@@ -46,22 +46,22 @@ public partial class GameEntity
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class GameMatcher
+public sealed partial class LevelMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<GameEntity> _matcherTileOwner;
+	static JCMG.EntitasRedux.IMatcher<LevelEntity> _matcherGoalMode;
 
-	public static JCMG.EntitasRedux.IMatcher<GameEntity> TileOwner
+	public static JCMG.EntitasRedux.IMatcher<LevelEntity> GoalMode
 	{
 		get
 		{
-			if (_matcherTileOwner == null)
+			if (_matcherGoalMode == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<GameEntity>)JCMG.EntitasRedux.Matcher<GameEntity>.AllOf(GameComponentsLookup.TileOwner);
-				matcher.ComponentNames = GameComponentsLookup.ComponentNames;
-				_matcherTileOwner = matcher;
+				var matcher = (JCMG.EntitasRedux.Matcher<LevelEntity>)JCMG.EntitasRedux.Matcher<LevelEntity>.AllOf(LevelComponentsLookup.GoalMode);
+				matcher.ComponentNames = LevelComponentsLookup.ComponentNames;
+				_matcherGoalMode = matcher;
 			}
 
-			return _matcherTileOwner;
+			return _matcherGoalMode;
 		}
 	}
 }

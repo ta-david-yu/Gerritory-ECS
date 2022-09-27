@@ -13,43 +13,63 @@ using JCMG.EntitasRedux;
 
 public static class LevelComponentsLookup
 {
-	public const int ItemEaterIdCounter = 0;
-	public const int Level = 1;
-	public const int OnTileElementIdCounter = 2;
-	public const int StateHolderIdCounter = 3;
-	public const int TeamInfo = 4;
-	public const int TileOwnerIdCounter = 5;
+	public const int GameInfo = 0;
+	public const int GameTimer = 1;
+	public const int GoalMode = 2;
+	public const int GoalScore = 3;
+	public const int ItemEaterIdCounter = 4;
+	public const int Level = 5;
+	public const int OnTileElementIdCounter = 6;
+	public const int StateHolderIdCounter = 7;
+	public const int SurvivalMode = 8;
+	public const int TeamInfo = 9;
+	public const int TileOwnerIdCounter = 10;
 
-	public const int TotalComponents = 6;
+	public const int TotalComponents = 11;
 
 	public static readonly string[] ComponentNames =
 	{
+		"GameInfo",
+		"GameTimer",
+		"GoalMode",
+		"GoalScore",
 		"ItemEaterIdCounter",
 		"Level",
 		"OnTileElementIdCounter",
 		"StateHolderIdCounter",
+		"SurvivalMode",
 		"TeamInfo",
 		"TileOwnerIdCounter"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
+		typeof(GameInfoComponent),
+		typeof(GameTimerComponent),
+		typeof(GoalModeComponent),
+		typeof(GoalScoreComponent),
 		typeof(ItemEaterIdCounterComponent),
 		typeof(LevelComponent),
 		typeof(OnTileElementIdCounterComponent),
 		typeof(StateHolderIdCounterComponent),
+		typeof(SurvivalModeComponent),
 		typeof(TeamInfoComponent),
 		typeof(TileOwnerIdCounterComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(ItemEaterIdCounterComponent), 0 },
-		{ typeof(LevelComponent), 1 },
-		{ typeof(OnTileElementIdCounterComponent), 2 },
-		{ typeof(StateHolderIdCounterComponent), 3 },
-		{ typeof(TeamInfoComponent), 4 },
-		{ typeof(TileOwnerIdCounterComponent), 5 }
+		{ typeof(GameInfoComponent), 0 },
+		{ typeof(GameTimerComponent), 1 },
+		{ typeof(GoalModeComponent), 2 },
+		{ typeof(GoalScoreComponent), 3 },
+		{ typeof(ItemEaterIdCounterComponent), 4 },
+		{ typeof(LevelComponent), 5 },
+		{ typeof(OnTileElementIdCounterComponent), 6 },
+		{ typeof(StateHolderIdCounterComponent), 7 },
+		{ typeof(SurvivalModeComponent), 8 },
+		{ typeof(TeamInfoComponent), 9 },
+		{ typeof(TileOwnerIdCounterComponent), 10 }
 	};
 
 	/// <summary>

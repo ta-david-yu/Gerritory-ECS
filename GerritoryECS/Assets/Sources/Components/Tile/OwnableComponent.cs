@@ -9,5 +9,5 @@ using UnityEngine;
 public sealed class OwnableComponent : IComponent
 {
 	public bool HasOwner;
-	public int OwnerId;
+	public int OwnerTeamId;
 }

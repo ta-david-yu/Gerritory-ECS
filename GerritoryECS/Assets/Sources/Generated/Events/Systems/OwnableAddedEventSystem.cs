@@ -38,7 +38,7 @@ public sealed class OwnableAddedEventSystem : JCMG.EntitasRedux.ReactiveSystem<T
 			_listenerBuffer.AddRange(e.OwnableAddedListener.value);
 			foreach (var listener in _listenerBuffer)
 			{
-				listener.OnOwnableAdded(e, component.HasOwner, component.OwnerId);
+				listener.OnOwnableAdded(e, component.HasOwner, component.OwnerTeamId);
 			}
 		}
 	}

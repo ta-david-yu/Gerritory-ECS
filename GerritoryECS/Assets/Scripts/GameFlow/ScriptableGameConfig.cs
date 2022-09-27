@@ -19,10 +19,14 @@ public class ScriptableGameConfig : ScriptableObject, IGameConfig
 	public IPlayerFactory PlayerFactory => m_PlayerFactory;
 
 	[SerializeField]
+	private List<PlayerGameConfig> m_PlayerGameConfigs = new List<PlayerGameConfig>();
+	public ReadOnlyCollection<PlayerGameConfig> PlayerGameConfigs => m_PlayerGameConfigs.AsReadOnly();
+
+	[SerializeField]
 	private LevelData m_LevelData;
 	public LevelData LevelData => m_LevelData;
 
 	[SerializeField]
-	private List<PlayerGameConfig> m_PlayerGameConfigs = new List<PlayerGameConfig>();
-	public ReadOnlyCollection<PlayerGameConfig> PlayerGameConfigs => m_PlayerGameConfigs.AsReadOnly();
+	private IGameConfig.GameObjective m_Objective = IGameConfig.GameObjective.Survival;
+	public IGameConfig.GameObjective Objective => m_Objective;
 }

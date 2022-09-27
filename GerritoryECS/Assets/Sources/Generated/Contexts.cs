@@ -128,7 +128,6 @@ public partial class Contexts
 	public const string StateHolder = "StateHolder";
 	public const string Team = "Team";
 	public const string TeamInfo = "TeamInfo";
-	public const string TileOwner = "TileOwner";
 	public const string TilePosition = "TilePosition";
 	public const string UserInput = "UserInput";
 
@@ -209,11 +208,6 @@ public partial class Contexts
 			TeamInfo,
 			Level.GetGroup(LevelMatcher.TeamInfo),
 			(e, c) => ((TeamInfoComponent)c).Id));
-
-		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
-			TileOwner,
-			Game.GetGroup(GameMatcher.TileOwner),
-			(e, c) => ((TileOwnerComponent)c).Id));
 
 		Tile.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<TileEntity, UnityEngine.Vector2Int>(
 			TilePosition,
@@ -302,11 +296,6 @@ public static class ContextsExtensions
 	public static LevelEntity GetEntityWithTeamInfo(this LevelContext context, int Id)
 	{
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<LevelEntity, int>)context.GetEntityIndex(Contexts.TeamInfo)).GetEntity(Id);
-	}
-
-	public static GameEntity GetEntityWithTileOwner(this GameContext context, int Id)
-	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.TileOwner)).GetEntity(Id);
 	}
 
 	public static TileEntity GetEntityWithTilePosition(this TileContext context, UnityEngine.Vector2Int Value)

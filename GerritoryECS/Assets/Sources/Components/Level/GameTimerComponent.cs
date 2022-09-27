@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Game]
-[System.Serializable]
-public sealed class TileOwnerComponent : IComponent
+[Level]
+public sealed class GameTimerComponent : IComponent
 {
+	public float Value;
 }

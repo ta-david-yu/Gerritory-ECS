@@ -18,7 +18,27 @@ public partial class LevelEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is TeamInfoComponent TeamInfo)
+		if (component is GoalScoreComponent GoalScore)
+		{
+			CopyGoalScoreTo(GoalScore);
+		}
+		else if (component is GoalModeComponent GoalMode)
+		{
+			IsGoalMode = true;
+		}
+		else if (component is SurvivalModeComponent SurvivalMode)
+		{
+			IsSurvivalMode = true;
+		}
+		else if (component is GameTimerComponent GameTimer)
+		{
+			CopyGameTimerTo(GameTimer);
+		}
+		else if (component is GameInfoComponent GameInfo)
+		{
+			CopyGameInfoTo(GameInfo);
+		}
+		else if (component is TeamInfoComponent TeamInfo)
 		{
 			CopyTeamInfoTo(TeamInfo);
 		}

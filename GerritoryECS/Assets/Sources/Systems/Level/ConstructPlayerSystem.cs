@@ -63,10 +63,10 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 		playerEntity.AddPlayer(playerConfig.PlayerId);
 		playerEntity.AddTeam(playerConfig.TeamId);
 		playerEntity.AddOnTileElement(m_LevelContext.GetNewOnTileElementId());
-		playerEntity.AddTileOwner(m_LevelContext.GetNewTileOwnerId());
 		playerEntity.AddItemEater(m_LevelContext.GetNewItemEaterId());
 		playerEntity.AddStateHolder(m_LevelContext.GetNewStateHolderId());
 		playerEntity.AddSpeedChangeable(1, 1);
+		playerEntity.IsTileOwner = true;
 		playerEntity.IsTileCollapser = true;
 		playerEntity.IsCanBeDead = true;
 		playerEntity.IsOnTileElementKiller = true;

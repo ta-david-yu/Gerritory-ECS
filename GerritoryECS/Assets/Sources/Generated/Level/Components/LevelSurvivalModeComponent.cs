@@ -7,24 +7,24 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class GameEntity
+public partial class LevelEntity
 {
-	static readonly TileOwnerComponent TileOwnerComponent = new TileOwnerComponent();
+	static readonly SurvivalModeComponent SurvivalModeComponent = new SurvivalModeComponent();
 
-	public bool IsTileOwner
+	public bool IsSurvivalMode
 	{
-		get { return HasComponent(GameComponentsLookup.TileOwner); }
+		get { return HasComponent(LevelComponentsLookup.SurvivalMode); }
 		set
 		{
-			if (value != IsTileOwner)
+			if (value != IsSurvivalMode)
 			{
-				var index = GameComponentsLookup.TileOwner;
+				var index = LevelComponentsLookup.SurvivalMode;
 				if (value)
 				{
 					var componentPool = GetComponentPool(index);
 					var component = componentPool.Count > 0
 							? componentPool.Pop()
-							: TileOwnerComponent;
+							: SurvivalModeComponent;
 
 					AddComponent(index, component);
 				}
@@ -46,22 +46,22 @@ public partial class GameEntity
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class GameMatcher
+public sealed partial class LevelMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<GameEntity> _matcherTileOwner;
+	static JCMG.EntitasRedux.IMatcher<LevelEntity> _matcherSurvivalMode;
 
-	public static JCMG.EntitasRedux.IMatcher<GameEntity> TileOwner
+	public static JCMG.EntitasRedux.IMatcher<LevelEntity> SurvivalMode
 	{
 		get
 		{
-			if (_matcherTileOwner == null)
+			if (_matcherSurvivalMode == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<GameEntity>)JCMG.EntitasRedux.Matcher<GameEntity>.AllOf(GameComponentsLookup.TileOwner);
-				matcher.ComponentNames = GameComponentsLookup.ComponentNames;
-				_matcherTileOwner = matcher;
+				var matcher = (JCMG.EntitasRedux.Matcher<LevelEntity>)JCMG.EntitasRedux.Matcher<LevelEntity>.AllOf(LevelComponentsLookup.SurvivalMode);
+				matcher.ComponentNames = LevelComponentsLookup.ComponentNames;
+				_matcherSurvivalMode = matcher;
 			}
 
-			return _matcherTileOwner;
+			return _matcherSurvivalMode;
 		}
 	}
 }
