@@ -27,7 +27,7 @@ public sealed class LevelFeature : Feature
 
 		// FixedUpdate systems
 		{
-			// TODO: GameInfoUpdateSystems
+			Add(new UpdateGameInfoSystem(contexts));
 		}
 	}
 }

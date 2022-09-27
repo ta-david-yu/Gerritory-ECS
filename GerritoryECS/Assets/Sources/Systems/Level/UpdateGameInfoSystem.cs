@@ -10,7 +10,7 @@ public sealed class UpdateGameInfoSystem : IFixedUpdateSystem
 	private readonly LevelContext m_LevelContext;
 	private readonly MessageContext m_MessageContext;
 
-	private readonly IGroup<LevelEntity> m_TeamGroup;
+	private readonly IGroup<LevelEntity> m_TeamInfoGroup;
 
 	public UpdateGameInfoSystem(Contexts contexts)
 	{
@@ -18,14 +18,14 @@ public sealed class UpdateGameInfoSystem : IFixedUpdateSystem
 		m_LevelContext = contexts.Level;
 		m_MessageContext = contexts.Message;
 
-		m_TeamGroup = m_LevelContext.GetGroup(LevelMatcher.TeamInfo);
+		m_TeamInfoGroup = m_LevelContext.GetGroup(LevelMatcher.TeamInfo);
 	}
 
 	public void FixedUpdate()
 	{
 		int highestTeamScore = -1;
 		// Update highest team score.
-		foreach (var teamEntity in m_TeamGroup)
+		foreach (var teamEntity in m_TeamInfoGroup)
 		{
 			if (teamEntity.TeamScore.Value >= highestTeamScore)
 			{
@@ -35,7 +35,7 @@ public sealed class UpdateGameInfoSystem : IFixedUpdateSystem
 		m_LevelContext.ReplaceGameInfo(newCurrentHighestTeamScore: highestTeamScore);
 
 		// Update team game rankings.
-		var teamEntitiesOrderedByScore = m_TeamGroup.GetEntities().OrderBy(teamEntity => teamEntity.TeamScore.Value).ToArray();
+		var teamEntitiesOrderedByScore = m_TeamInfoGroup.GetEntities().OrderBy(teamEntity => -teamEntity.TeamScore.Value).ToArray();
 		int previousTeamTileCount = -1;
 		for (int teamOrder = 0; teamOrder < teamEntitiesOrderedByScore.Length; teamOrder++)
 		{

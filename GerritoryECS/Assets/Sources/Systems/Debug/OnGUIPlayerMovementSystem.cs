@@ -6,10 +6,12 @@ using UnityEngine;
 public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 {
 	private readonly IGroup<GameEntity> m_PlayerGroup;
+	private readonly IGroup<LevelEntity> m_TeamInfoGroup;
 
 	public OnGUIPlayerMovementSystem(Contexts contexts)
 	{
 		m_PlayerGroup = contexts.Game.GetGroup(GameMatcher.AllOf(GameMatcher.Player, GameMatcher.OnTileElement));
+		m_TeamInfoGroup = contexts.Level.GetGroup(LevelMatcher.TeamInfo);
 	}
 
 	public void Update()
@@ -30,6 +32,11 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 					GUILayout.Label($"Position: not on any position!");
 				}
 
+				if (entity.HasTeam)
+				{
+					GUILayout.Label($"Team: {entity.Team.Id}");
+				}
+
 				if (entity.HasMoveOnTile)
 				{
 					GUILayout.Label($"ToPosition: {entity.MoveOnTile.ToPosition}, Progress: {entity.MoveOnTile.Progress}");
@@ -38,6 +45,16 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 				{
 					GUILayout.Label("Idle");
 				}
+			}
+		}
+
+		foreach (var teamEntity in m_TeamInfoGroup.GetEntities())
+		{
+			using (new GUILayout.VerticalScope(areaStyle, GUILayout.Width(200)))
+			{
+				GUILayout.Label($"Team Id: {teamEntity.TeamInfo.Id}");
+				GUILayout.Label($"Score: {teamEntity.TeamScore.Value}");
+				GUILayout.Label($"Ranking: {teamEntity.TeamGameRanking.Number}");
 			}
 		}
 	}
