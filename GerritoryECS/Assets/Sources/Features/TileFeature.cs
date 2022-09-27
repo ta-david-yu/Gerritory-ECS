@@ -7,7 +7,7 @@ public sealed class TileFeature : Feature
 	public TileFeature(Contexts contexts)
 	{
 		// Tile systems
-		Add(new TakeOverOwnableOnMoveEndSystem(contexts));
+		Add(new TakeOverOwnableOnEnterTileSystem(contexts));
 		Add(new CollapseTileOnLeaveTileSystem(contexts));
 
 		// Tile related event component systems

@@ -121,12 +121,13 @@ public static class GameHelper
 	private const int k_InivinciblePriority = -1;
 	private const int k_GhsotPriority = -1;
 	
-	public static int GetOnTileElementKillPriority(this GameEntity onTileEntity)
+	public static int GetOnTileElementKillPriority(this Contexts contexts, GameEntity onTileEntity)
 	{
 		int priority = 0;
-		if (onTileEntity.HasTileOwner)
+		if (onTileEntity.HasTileOwner && onTileEntity.HasTeam)
 		{
-			priority += onTileEntity.TileOwner.NumberOfOwnedTiles;
+			LevelEntity teamEntity = contexts.Level.GetEntityWithTeamInfo(onTileEntity.Team.Id);
+			priority += teamEntity.TeamInfo.NumberOfOwnedTile;
 		}
 
 		// TODO: if invinicible, set priority to k_InivinciblePriority
@@ -181,7 +182,7 @@ public static class GameHelper
 		return new TryKillResult { Success = true };
 	}
 
-	public static bool CanStepOnVictim(this GameEntity stepperEntity, GameEntity victimEntity)
+	public static bool CanStepOnVictim(this Contexts contexts, GameEntity stepperEntity, GameEntity victimEntity)
 	{
 		if (stepperEntity.HasTeam && victimEntity.HasTeam && stepperEntity.Team.Id == victimEntity.Team.Id)
 		{
@@ -189,8 +190,8 @@ public static class GameHelper
 			return false;
 		}
 
-		int stepperPriority = stepperEntity.GetOnTileElementKillPriority();
-		int victimPriority = victimEntity.GetOnTileElementKillPriority();
+		int stepperPriority = contexts.GetOnTileElementKillPriority(stepperEntity);
+		int victimPriority = contexts.GetOnTileElementKillPriority(victimEntity);
 		if (stepperPriority >= victimPriority)
 		{
 			// The victim entity is stronger / has higher priority, cannot be killed.

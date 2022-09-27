@@ -79,7 +79,7 @@
     <Compile Include="Assets\Sources\Generated\PlayerState\IPlayerStateBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Level\LevelBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameIComponentRefComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Tile\TakeOverOwnableOnMoveEndSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Tile\TakeOverOwnableOnEnterTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelItemEaterIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTilePositionComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Input\EmitUserInputSystem.cs" />
@@ -389,6 +389,8 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
     <Compile Include="Assets\Scripts\Utility\EasingFunction.cs" />
+    <Compile Include="Assets\Sources\Components\Level\TeamInfoComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamInfoComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -18,7 +18,11 @@ public partial class LevelEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is LevelComponent Level)
+		if (component is TeamInfoComponent TeamInfo)
+		{
+			CopyTeamInfoTo(TeamInfo);
+		}
+		else if (component is LevelComponent Level)
 		{
 			CopyLevelTo(Level);
 		}

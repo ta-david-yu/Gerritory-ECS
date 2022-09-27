@@ -30,11 +30,6 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 					GUILayout.Label($"Position: not on any position!");
 				}
 
-				if (entity.HasTileOwner)
-				{
-					GUILayout.Label($"Tiles: {entity.TileOwner.NumberOfOwnedTiles}");
-				}
-
 				if (entity.HasMoveOnTile)
 				{
 					GUILayout.Label($"ToPosition: {entity.MoveOnTile.ToPosition}, Progress: {entity.MoveOnTile.Progress}");

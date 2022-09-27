@@ -17,9 +17,10 @@ public static class LevelComponentsLookup
 	public const int Level = 1;
 	public const int OnTileElementIdCounter = 2;
 	public const int StateHolderIdCounter = 3;
-	public const int TileOwnerIdCounter = 4;
+	public const int TeamInfo = 4;
+	public const int TileOwnerIdCounter = 5;
 
-	public const int TotalComponents = 5;
+	public const int TotalComponents = 6;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -27,6 +28,7 @@ public static class LevelComponentsLookup
 		"Level",
 		"OnTileElementIdCounter",
 		"StateHolderIdCounter",
+		"TeamInfo",
 		"TileOwnerIdCounter"
 	};
 
@@ -36,6 +38,7 @@ public static class LevelComponentsLookup
 		typeof(LevelComponent),
 		typeof(OnTileElementIdCounterComponent),
 		typeof(StateHolderIdCounterComponent),
+		typeof(TeamInfoComponent),
 		typeof(TileOwnerIdCounterComponent)
 	};
 
@@ -45,7 +48,8 @@ public static class LevelComponentsLookup
 		{ typeof(LevelComponent), 1 },
 		{ typeof(OnTileElementIdCounterComponent), 2 },
 		{ typeof(StateHolderIdCounterComponent), 3 },
-		{ typeof(TileOwnerIdCounterComponent), 4 }
+		{ typeof(TeamInfoComponent), 4 },
+		{ typeof(TileOwnerIdCounterComponent), 5 }
 	};
 
 	/// <summary>

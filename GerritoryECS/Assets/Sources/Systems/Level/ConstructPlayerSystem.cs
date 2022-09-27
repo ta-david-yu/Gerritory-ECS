@@ -27,8 +27,17 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 		var playerConfigs = m_ConfigContext.GameConfig.value.PlayerGameConfigs;
 		foreach (var playerConfig in playerConfigs)
 		{
+			// Create player entity.
 			GameEntity playerEntity = createPlayerEntity(playerConfig);
 
+			// Create team entity if there isn't one with the given id.
+			if (m_LevelContext.GetEntityWithTeamInfo(playerConfig.TeamId) == null)
+			{
+				LevelEntity teamEntity = m_LevelContext.CreateEntity();
+				teamEntity.AddTeamInfo(playerConfig.TeamId, 0);
+			}
+
+			// Create input entity.
 			InputEntity inputEntity = m_InputContext.CreateEntity();
 			if (playerConfig.IsAI)
 			{
@@ -49,12 +58,12 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 		GameEntity playerEntity = m_GameContext.CreateEntity();
 		IEntityCreationEventController viewController = playerFactory.CreatePlayerView(playerConfig.PlayerId, playerConfig.TeamId, playerConfig.SkinId);
 		viewController.OnEntityCreated(playerEntity);
-
+		
 		// Add needed componenets
 		playerEntity.AddPlayer(playerConfig.PlayerId);
 		playerEntity.AddTeam(playerConfig.TeamId);
 		playerEntity.AddOnTileElement(m_LevelContext.GetNewOnTileElementId());
-		playerEntity.AddTileOwner(m_LevelContext.GetNewTileOwnerId(), 0);
+		playerEntity.AddTileOwner(m_LevelContext.GetNewTileOwnerId());
 		playerEntity.AddItemEater(m_LevelContext.GetNewItemEaterId());
 		playerEntity.AddStateHolder(m_LevelContext.GetNewStateHolderId());
 		playerEntity.AddSpeedChangeable(1, 1);

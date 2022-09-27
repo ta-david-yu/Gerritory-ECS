@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Game]
-[System.Serializable]
-public sealed class TileOwnerComponent : IComponent
+[Level]
+public sealed class TeamInfoComponent : IComponent
 {
 	[PrimaryEntityIndex]
 	public int Id;
+
+	public int NumberOfOwnedTile;
 }

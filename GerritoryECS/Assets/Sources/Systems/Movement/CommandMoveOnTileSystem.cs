@@ -80,7 +80,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 						continue;
 					}
 
-					if (!entity.CanStepOnVictim(occupierEntity))
+					if (!m_Contexts.CanStepOnVictim(entity, occupierEntity))
 					{
 						continue;
 					}
@@ -104,7 +104,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 						continue;
 					}
 
-					if (!entity.CanStepOnVictim(movingInEntity))
+					if (!m_Contexts.CanStepOnVictim(entity, movingInEntity))
 					{
 						continue;
 					}
