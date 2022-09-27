@@ -70,7 +70,7 @@
     <Compile Include="Assets\Sources\Generated\Tile\CreateEntityFromTileBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectSpeedEffectComponent.cs" />
-    <Compile Include="Assets\Sources\Components\OnTileElement\CanBeRespawnedOnComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Tile\CanBeRespawnedOnComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectOnTileElementEffectComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigDebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\CreateWaitingForRespawnStateOnDeathSystem.cs" />
@@ -391,6 +391,11 @@
     <Compile Include="Assets\Scripts\Utility\EasingFunction.cs" />
     <Compile Include="Assets\Sources\Components\Level\TeamInfoComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamInfoComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\GameInfoComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\GameTimerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\SurvivalModeComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\GoalModeComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\GoalScoreComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
