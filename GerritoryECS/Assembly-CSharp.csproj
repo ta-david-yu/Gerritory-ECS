@@ -246,7 +246,7 @@
     <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemDebugMessageComponent.cs" />
-    <Compile Include="Assets\Scripts\OnTileElement\SetPlayerTeamColorOnComponentsAdded.cs" />
+    <Compile Include="Assets\Scripts\OnTileElement\PlayerTeamColorViewController.cs" />
     <Compile Include="Assets\Sources\Components\PlayerState\SpeedChangeState.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\TileBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelLevelComponent.cs" />
@@ -406,6 +406,10 @@
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamGameRankingComponent.cs" />
     <Compile Include="Assets\Sources\Components\Level\TeamScoreComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamScoreComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\ITeamAddedListener.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameTeamAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\TeamAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\TeamAddedEventSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

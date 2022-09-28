@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Game]
+[Event(EventTarget.Self)]
 [System.Serializable]
 public sealed class TeamComponent : IComponent
 {

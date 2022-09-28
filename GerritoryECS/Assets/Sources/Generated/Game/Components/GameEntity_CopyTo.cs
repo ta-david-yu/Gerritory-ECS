@@ -102,6 +102,10 @@ public partial class GameEntity
 		{
 			CopyMoveOnTileAddedListenerTo(MoveOnTileAddedListener);
 		}
+		else if (component is TeamAddedListenerComponent TeamAddedListener)
+		{
+			CopyTeamAddedListenerTo(TeamAddedListener);
+		}
 		else if (component is OnTilePositionAddedListenerComponent OnTilePositionAddedListener)
 		{
 			CopyOnTilePositionAddedListenerTo(OnTilePositionAddedListener);
