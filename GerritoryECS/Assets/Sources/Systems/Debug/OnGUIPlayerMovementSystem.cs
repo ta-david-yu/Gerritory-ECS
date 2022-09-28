@@ -5,11 +5,14 @@ using UnityEngine;
 
 public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 {
+	private GameContext m_GameContext;
+
 	private readonly IGroup<GameEntity> m_PlayerGroup;
 	private readonly IGroup<LevelEntity> m_TeamInfoGroup;
 
 	public OnGUIPlayerMovementSystem(Contexts contexts)
 	{
+		m_GameContext = contexts.Game;
 		m_PlayerGroup = contexts.Game.GetGroup(GameMatcher.AllOf(GameMatcher.Player, GameMatcher.OnTileElement));
 		m_TeamInfoGroup = contexts.Level.GetGroup(LevelMatcher.TeamInfo);
 	}
@@ -50,9 +53,12 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 
 		foreach (var teamEntity in m_TeamInfoGroup.GetEntities())
 		{
+			int numberOfTeamMembers = m_GameContext.GetEntitiesWithTeam(teamEntity.TeamInfo.Id).Count;
+
 			using (new GUILayout.VerticalScope(areaStyle, GUILayout.Width(200)))
 			{
 				GUILayout.Label($"Team Id: {teamEntity.TeamInfo.Id}");
+				GUILayout.Label($"Members#: {numberOfTeamMembers}");
 				GUILayout.Label($"Score: {teamEntity.TeamScore.Value}");
 				GUILayout.Label($"Ranking: {teamEntity.TeamGameRanking.Number}");
 			}
