@@ -60,9 +60,10 @@ public class InGameController : MonoBehaviour
 	private static Systems createSystems(Contexts contexts)
 	{
 		return new Feature("Systems")
+			.Add(new LevelInitializationFeature(contexts))
 			.Add(new InputFeature(contexts))
 
-			.Add(new LevelFeature(contexts))
+			.Add(new GameFlowFeature(contexts))
 			.Add(new MovementFeature(contexts))
 			.Add(new TileFeature(contexts))
 			.Add(new ItemFeature(contexts))

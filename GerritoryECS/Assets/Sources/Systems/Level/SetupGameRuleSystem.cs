@@ -31,8 +31,7 @@ public sealed class SetupGameRuleSystem : IInitializeSystem
 
 		if ((int) endingCondition == 0)
 		{
-			Debug.LogWarning($"The ending condition is not set to any of the given conditions. Set to Timeout 30 as default.");
-			m_LevelContext.GameInfoEntity.AddEndOnTimeout(30);
+			Debug.LogWarning($"The ending condition is not set to any of the given conditions. The game won't be over unless GameOverComponent is added manually.");
 		}
 
 		if (endingCondition.HasFlag(GameEndingCondition.Timeout))

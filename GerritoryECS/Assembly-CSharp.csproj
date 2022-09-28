@@ -90,7 +90,7 @@
     <Compile Include="Assets\Sources\Components\OnTileElement\PlayerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\HelloWorldSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemContext.cs" />
-    <Compile Include="Assets\Sources\Features\LevelFeature.cs" />
+    <Compile Include="Assets\Sources\Features\GameFlowFeature.cs" />
     <Compile Include="Assets\Scripts\Input\InputActionManager.cs" />
     <Compile Include="Assets\Sources\Generated\Input\IInputBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameAttribute.cs" />
@@ -431,6 +431,7 @@
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelEndOnGoalReachedComponent.cs" />
     <Compile Include="Assets\Sources\Components\Level\GameOverComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelGameOverComponent.cs" />
+    <Compile Include="Assets\Sources\Features\LevelInitializationFeature.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

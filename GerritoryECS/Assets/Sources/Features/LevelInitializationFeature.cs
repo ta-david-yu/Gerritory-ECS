@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class LevelFeature : Feature
+public sealed class LevelInitializationFeature : Feature
 {
-	public LevelFeature(Contexts contexts)
+	public LevelInitializationFeature(Contexts contexts)
 	{
 		// Initialization systems
 		{
@@ -23,17 +23,6 @@ public sealed class LevelFeature : Feature
 
 			// Player construction systems
 			Add(new ConstructPlayerSystem(contexts));
-		}
-
-		// FixedUpdate systems
-		{
-			Add(new UpdateGameInfoSystem(contexts));
-			Add(new UpdateTeamGameRankingSystem(contexts));
-
-			// End game check systems
-			Add(new CheckEliminationConditionSystem(contexts));
-			Add(new CheckGoalConditionSystem(contexts));
-			Add(new CheckTimeoutConditionSystem(contexts));
 		}
 	}
 }
