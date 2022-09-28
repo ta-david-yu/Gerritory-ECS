@@ -62,6 +62,7 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 		playerEntity.IsTileOwner = true;
 		playerEntity.IsTileCollapser = true;
 		playerEntity.IsCanBeDead = true;
+		playerEntity.IsCanRespawnAfterDeath = true;
 		playerEntity.IsOnTileElementKiller = true;
 
 		TryGetValidRespawnPositionResult result = m_Contexts.TryGetValidRespawnPositionOfAreaIdFor(playerEntity, 0);

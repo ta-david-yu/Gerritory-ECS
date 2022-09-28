@@ -67,8 +67,11 @@
     <Compile Include="Assets\Sources\Generated\Config\ConfigAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\TileBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\RemoveLeftByOnTileElementFromTileEntitiesSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Level\GameInfoComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\CreateEntityFromTileBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGoalScoreComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameTeamAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectSpeedEffectComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\CanBeRespawnedOnComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectOnTileElementEffectComponent.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Assets\Sources\Generated\Level\LevelBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameIComponentRefComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Tile\TakeOverOwnableOnEnterTileSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGameTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelItemEaterIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameOnTilePositionComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Input\EmitUserInputSystem.cs" />
@@ -100,6 +104,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IDeadRemovedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\LevelMatcher.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\TeamAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputAttribute.cs" />
     <Compile Include="Assets\Sources\Systems\Tile\CollapseTileOnLeaveTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageBlueprint.cs" />
@@ -113,6 +118,7 @@
     <Compile Include="Assets\Sources\Components\OnTileElement\ItemEaterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\ITileBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IEnteredByOnTileElementAddedListener.cs" />
+    <Compile Include="Assets\Sources\Components\Level\TeamInfoComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Systems\ConfigCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Message\Components\MessageConsumedComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileEnterableComponent.cs" />
@@ -124,6 +130,7 @@
     <Compile Include="Assets\Sources\Components\Config\IMatchConfig.cs" />
     <Compile Include="Assets\Sources\Generated\Item\CreateEntityFromItemBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\GameEventSystems.cs" />
+    <Compile Include="Assets\Sources\Components\Level\GoalScoreComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemEatenComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Systems\PlayerStateCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Features\PlayerStateFeature.cs" />
@@ -154,6 +161,7 @@
     <Compile Include="Assets\Sources\Components\Input\UserInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMovementInputActionComponent.cs" />
     <Compile Include="Assets\Scripts\OnTileElement\PlayerDeathAnimationController.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamInfoComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\TileAttribute.cs" />
     <Compile Include="Assets\Scripts\GameData\TileType.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameEntity.cs" />
@@ -166,6 +174,7 @@
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateDebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\CleanupDebugMessageSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\TileEntity.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamGameRankingComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputEntity.cs" />
     <Compile Include="Assets\Sources\Components\Message\ConsumeInFixedUpdateComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\OnTilePositionAddedEventSystem.cs" />
@@ -188,6 +197,7 @@
     <Compile Include="Assets\Sources\Generated\Message\CreateEntityFromMessageBlueprint.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\RespawnOnRespawnStateRemovedSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameDebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnedPointsComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigGameConfigComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameMatcher.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\StateHolderComponent.cs" />
@@ -206,6 +216,7 @@
     <Compile Include="Assets\Sources\Components\OnTileElement\TileCollapserComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Components\OnTileElementIdCounterComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\ITeamAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileBeginComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Features\PlayerStateCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileAddedListener.cs" />
@@ -226,11 +237,14 @@
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigMatchConfigComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\LevelEntity.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateSpeedChangeStateComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\SurvivalModeComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameItemEaterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelStateHolderIdCounterComponent.cs" />
     <Compile Include="Assets\Scripts\OnTileElement\RollOnTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MoveOnTileEndComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\GameTimerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Tile\CreateEnteredByOnTileElementSystem.cs" />
+    <Compile Include="Assets\Scripts\Utility\EasingFunction.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileAddedEventSystem.cs" />
     <Compile Include="Assets\Scripts\GameData\ITileFactory.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileBeginAddedListenerComponent.cs" />
@@ -257,6 +271,9 @@
     <Compile Include="Assets\Sources\Generated\Input\CreateEntityFromInputBlueprint.cs" />
     <Compile Include="Assets\Sources\Components\Movement\Message\OnTileElementLeaveTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Features\LevelCleanupFeature.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\SetupGameObjectiveSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\SetupGameInfoSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGameInfoComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileEndAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Tile\CreateLeftByOnTileElementSystem.cs" />
     <Compile Include="Assets\Scripts\GameFlow\GameConstants.cs" />
@@ -277,6 +294,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnterableAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\OnTileElementKillerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateContext.cs" />
+    <Compile Include="Assets\Sources\Components\Tile\OwnedPointsComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\TilePositionComponent.cs" />
     <Compile Include="Assets\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Systems\EffectCleanupSystem.cs" />
@@ -297,14 +315,17 @@
     <Compile Include="Assets\Sources\Components\OnTileElement\TeamComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Components\GameConfigComponent.cs" />
     <Compile Include="Assets\Scripts\Tile\SetTileWorldPositionOnComponentsAdded.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamScoreComponent.cs" />
     <Compile Include="Assets\Sources\Components\Item\ItemComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileEnteredByOnTileElementAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Systems\ItemCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameCanBeDeadComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\UpdateGameInfoSystem.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameDeadAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\LevelComponentsLookup.cs" />
+    <Compile Include="Assets\Sources\Components\Level\TeamGameRankingComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\EffectComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GamePlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemBlueprint.cs" />
@@ -340,6 +361,7 @@
     <Compile Include="Assets\Sources\Generated\Item\ItemAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\EnterableComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGoalModeComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Feature.cs" />
     <Compile Include="Assets\Sources\Generated\Events\TileEventSystems.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameSpeedChangeableComponent.cs" />
@@ -353,8 +375,10 @@
     <Compile Include="Assets\Sources\Generated\Input\InputComponentsLookup.cs" />
     <Compile Include="Assets\Scripts\OnTileElement\SetOnTileElementWorldPositionOnCompnentsAdded.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IEnterableRemovedListener.cs" />
+    <Compile Include="Assets\Sources\Components\Level\GoalModeComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\OwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Features\EffectCleanupFeature.cs" />
+    <Compile Include="Assets\Sources\Components\Level\TeamScoreComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigContext.cs" />
@@ -375,9 +399,11 @@
     <Compile Include="Assets\Sources\Components\OnTileElement\DeadComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Components\Interfaces\IDebugMessageEntity.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Systems\GameCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\TeamAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Components\Tile\ItemHolderComponent.cs" />
     <Compile Include="Assets\Sources\Components\Level\UniqueIdCounter.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Features\ConfigCleanupFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelSurvivalModeComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\EnterableAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemMatcher.cs" />
     <Compile Include="Assets\Sources\Components\Effect\SpeedEffectComponent.cs" />
@@ -386,32 +412,8 @@
     <Compile Include="Assets\Scripts\Tile\CollapseTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Scripts\Utility\EasingFunction.cs" />
-    <Compile Include="Assets\Sources\Components\Level\TeamInfoComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamInfoComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Level\GameInfoComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Level\GameTimerComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Level\SurvivalModeComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Level\GoalModeComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Level\GoalScoreComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\SetupGameObjectiveSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGameTimerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelSurvivalModeComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGoalScoreComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGoalModeComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGameInfoComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\SetupGameInfoSystem.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\UpdateGameInfoSystem.cs" />
-    <Compile Include="Assets\Sources\Components\Level\TeamGameRankingComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamGameRankingComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Level\TeamScoreComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamScoreComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Interfaces\ITeamAddedListener.cs" />
-    <Compile Include="Assets\Sources\Generated\Game\Components\GameTeamAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Components\TeamAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Systems\TeamAddedEventSystem.cs" />
-    <Compile Include="Assets\Sources\Components\Tile\OwnedPointsComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnedPointsComponent.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\CanRespawnAfterDeathComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Game\Components\GameCanRespawnAfterDeathComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

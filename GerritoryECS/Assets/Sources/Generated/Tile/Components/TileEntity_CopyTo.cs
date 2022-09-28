@@ -18,11 +18,7 @@ public partial class TileEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is OwnedPointsComponent OwnedPoints)
-		{
-			CopyOwnedPointsTo(OwnedPoints);
-		}
-		else if (component is ItemHolderComponent ItemHolder)
+		if (component is ItemHolderComponent ItemHolder)
 		{
 			IsItemHolder = true;
 		}
@@ -41,6 +37,10 @@ public partial class TileEntity
 		else if (component is TilePositionComponent TilePosition)
 		{
 			CopyTilePositionTo(TilePosition);
+		}
+		else if (component is OwnedPointsComponent OwnedPoints)
+		{
+			CopyOwnedPointsTo(OwnedPoints);
 		}
 		else if (component is DebugMessageComponent DebugMessage)
 		{

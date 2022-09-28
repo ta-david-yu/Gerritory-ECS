@@ -22,29 +22,25 @@ public partial class LevelEntity
 		{
 			CopyTeamScoreTo(TeamScore);
 		}
-		else if (component is TeamGameRankingComponent TeamGameRanking)
-		{
-			CopyTeamGameRankingTo(TeamGameRanking);
-		}
-		else if (component is GoalScoreComponent GoalScore)
-		{
-			CopyGoalScoreTo(GoalScore);
-		}
 		else if (component is GoalModeComponent GoalMode)
 		{
 			IsGoalMode = true;
 		}
-		else if (component is SurvivalModeComponent SurvivalMode)
+		else if (component is TeamGameRankingComponent TeamGameRanking)
 		{
-			IsSurvivalMode = true;
+			CopyTeamGameRankingTo(TeamGameRanking);
 		}
 		else if (component is GameTimerComponent GameTimer)
 		{
 			CopyGameTimerTo(GameTimer);
 		}
-		else if (component is GameInfoComponent GameInfo)
+		else if (component is SurvivalModeComponent SurvivalMode)
 		{
-			CopyGameInfoTo(GameInfo);
+			IsSurvivalMode = true;
+		}
+		else if (component is GoalScoreComponent GoalScore)
+		{
+			CopyGoalScoreTo(GoalScore);
 		}
 		else if (component is TeamInfoComponent TeamInfo)
 		{
@@ -53,6 +49,10 @@ public partial class LevelEntity
 		else if (component is LevelComponent Level)
 		{
 			CopyLevelTo(Level);
+		}
+		else if (component is GameInfoComponent GameInfo)
+		{
+			CopyGameInfoTo(GameInfo);
 		}
 		else if (component is OnTileElementIdCounterComponent OnTileElementIdCounter)
 		{

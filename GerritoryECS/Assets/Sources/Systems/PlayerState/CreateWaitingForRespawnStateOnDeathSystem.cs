@@ -21,7 +21,7 @@ public sealed class CreateWaitingForRespawnStateOnDeathSystem : ReactiveSystem<G
 
 	protected override bool Filter(GameEntity entity)
 	{
-		return entity.IsDead;
+		return entity.IsDead && entity.IsCanRespawnAfterDeath;
 	}
 
 	protected override void Execute(List<GameEntity> entities)
