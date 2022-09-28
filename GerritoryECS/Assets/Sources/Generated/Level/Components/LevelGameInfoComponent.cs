@@ -13,7 +13,7 @@ public partial class LevelContext {
 	public GameInfoComponent GameInfo { get { return GameInfoEntity.GameInfo; } }
 	public bool HasGameInfo { get { return GameInfoEntity != null; } }
 
-	public LevelEntity SetGameInfo(int newCurrentHighestTeamScore)
+	public LevelEntity SetGameInfo(int newCurrentHighestTeamScore, int newCurrentHighestTeamMemberCount)
 	{
 		if (HasGameInfo)
 		{
@@ -25,22 +25,22 @@ public partial class LevelContext {
 		}
 		var entity = CreateEntity();
 		#if !ENTITAS_REDUX_NO_IMPL
-		entity.AddGameInfo(newCurrentHighestTeamScore);
+		entity.AddGameInfo(newCurrentHighestTeamScore, newCurrentHighestTeamMemberCount);
 		#endif
 		return entity;
 	}
 
-	public void ReplaceGameInfo(int newCurrentHighestTeamScore)
+	public void ReplaceGameInfo(int newCurrentHighestTeamScore, int newCurrentHighestTeamMemberCount)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
 		var entity = GameInfoEntity;
 		if (entity == null)
 		{
-			entity = SetGameInfo(newCurrentHighestTeamScore);
+			entity = SetGameInfo(newCurrentHighestTeamScore, newCurrentHighestTeamMemberCount);
 		}
 		else
 		{
-			entity.ReplaceGameInfo(newCurrentHighestTeamScore);
+			entity.ReplaceGameInfo(newCurrentHighestTeamScore, newCurrentHighestTeamMemberCount);
 		}
 		#endif
 	}
@@ -65,22 +65,24 @@ public partial class LevelEntity
 	public GameInfoComponent GameInfo { get { return (GameInfoComponent)GetComponent(LevelComponentsLookup.GameInfo); } }
 	public bool HasGameInfo { get { return HasComponent(LevelComponentsLookup.GameInfo); } }
 
-	public void AddGameInfo(int newCurrentHighestTeamScore)
+	public void AddGameInfo(int newCurrentHighestTeamScore, int newCurrentHighestTeamMemberCount)
 	{
 		var index = LevelComponentsLookup.GameInfo;
 		var component = (GameInfoComponent)CreateComponent(index, typeof(GameInfoComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.CurrentHighestTeamScore = newCurrentHighestTeamScore;
+		component.CurrentHighestTeamMemberCount = newCurrentHighestTeamMemberCount;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceGameInfo(int newCurrentHighestTeamScore)
+	public void ReplaceGameInfo(int newCurrentHighestTeamScore, int newCurrentHighestTeamMemberCount)
 	{
 		var index = LevelComponentsLookup.GameInfo;
 		var component = (GameInfoComponent)CreateComponent(index, typeof(GameInfoComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.CurrentHighestTeamScore = newCurrentHighestTeamScore;
+		component.CurrentHighestTeamMemberCount = newCurrentHighestTeamMemberCount;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -90,7 +92,8 @@ public partial class LevelEntity
 		var index = LevelComponentsLookup.GameInfo;
 		var component = (GameInfoComponent)CreateComponent(index, typeof(GameInfoComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.CurrentHighestTeamScore = copyComponent.CurrentHighestTeamScore;
+		component.CurrentHighestTeamScore = copyComponent.CurrentHighestTeamScore;
+		component.CurrentHighestTeamMemberCount = copyComponent.CurrentHighestTeamMemberCount;
 		#endif
 		ReplaceComponent(index, component);
 	}

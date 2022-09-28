@@ -22,7 +22,7 @@ MonoBehaviour:
     - rid: 1863425398241755140
       type: {class: CollapseOnSteppedComponent, ns: , asm: Assembly-CSharp}
       data:
-        NumberOfStepsLeft: 0
+        NumberOfStepsLeft: 1
     - rid: 1863425398241755141
       type: {class: EnterableComponent, ns: , asm: Assembly-CSharp}
     - rid: 1863425453290160130

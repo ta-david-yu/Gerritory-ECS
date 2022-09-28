@@ -70,7 +70,6 @@
     <Compile Include="Assets\Sources\Components\Level\GameInfoComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\CreateEntityFromTileBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGoalScoreComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameTeamAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectSpeedEffectComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\CanBeRespawnedOnComponent.cs" />
@@ -129,7 +128,6 @@
     <Compile Include="Assets\Sources\Components\Config\IMatchConfig.cs" />
     <Compile Include="Assets\Sources\Generated\Item\CreateEntityFromItemBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\GameEventSystems.cs" />
-    <Compile Include="Assets\Sources\Components\Level\GoalScoreComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemEatenComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Systems\PlayerStateCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Features\PlayerStateFeature.cs" />
@@ -235,7 +233,7 @@
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigMatchConfigComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\LevelEntity.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateSpeedChangeStateComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Level\SurvivalModeComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\SurvivalObjectiveComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameItemEaterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelStateHolderIdCounterComponent.cs" />
     <Compile Include="Assets\Scripts\OnTileElement\RollOnTileAnimationController.cs" />
@@ -269,7 +267,7 @@
     <Compile Include="Assets\Sources\Generated\Input\CreateEntityFromInputBlueprint.cs" />
     <Compile Include="Assets\Sources\Components\Movement\Message\OnTileElementLeaveTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Features\LevelCleanupFeature.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\SetupGameObjectiveSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\SetupGameRuleSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Level\SetupGameInfoSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelGameInfoComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileEndAddedEventSystem.cs" />
@@ -357,7 +355,6 @@
     <Compile Include="Assets\Sources\Generated\Item\ItemAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\EnterableComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGoalModeComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Feature.cs" />
     <Compile Include="Assets\Sources\Generated\Events\TileEventSystems.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameSpeedChangeableComponent.cs" />
@@ -370,7 +367,6 @@
     <Compile Include="Assets\Sources\Generated\Input\InputComponentsLookup.cs" />
     <Compile Include="Assets\Scripts\OnTileElement\SetOnTileElementWorldPositionOnCompnentsAdded.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IEnterableRemovedListener.cs" />
-    <Compile Include="Assets\Sources\Components\Level\GoalModeComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\OwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Features\EffectCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Components\Level\TeamScoreComponent.cs" />
@@ -397,7 +393,6 @@
     <Compile Include="Assets\Sources\Components\Tile\ItemHolderComponent.cs" />
     <Compile Include="Assets\Sources\Components\Level\UniqueIdCounter.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Features\ConfigCleanupFeature.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelSurvivalModeComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\EnterableAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemMatcher.cs" />
     <Compile Include="Assets\Sources\Components\Effect\SpeedEffectComponent.cs" />
@@ -418,6 +413,24 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOwnerRemovedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\OwnerRemovedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\OwnerRemovedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Config\GameObjective.cs" />
+    <Compile Include="Assets\Sources\Components\Config\GameEndingCondition.cs" />
+    <Compile Include="Assets\Sources\Components\Level\ScoreObjectiveComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelSurvivalObjectiveComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelScoreObjectiveComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\UpdateTeamGameRankingSystem.cs" />
+    <Compile Include="Assets\Scripts\Utility\EnumFlagsAttribute.cs" />
+    <Compile Include="Assets\Sources\Components\Level\EndOnTimeoutComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\EndOnGoalReachedComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\EndOnEliminatedComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelEndOnEliminatedComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelEndOnTimeoutComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\CheckEliminationConditionSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\CheckTimeoutConditionSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\CheckGoalConditionSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelEndOnGoalReachedComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\GameOverComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelGameOverComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

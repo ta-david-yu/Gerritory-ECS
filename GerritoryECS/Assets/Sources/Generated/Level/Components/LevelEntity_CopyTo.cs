@@ -18,13 +18,29 @@ public partial class LevelEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is TeamScoreComponent TeamScore)
+		if (component is GameOverComponent GameOver)
+		{
+			IsGameOver = true;
+		}
+		else if (component is EndOnEliminatedComponent EndOnEliminated)
+		{
+			CopyEndOnEliminatedTo(EndOnEliminated);
+		}
+		else if (component is EndOnGoalReachedComponent EndOnGoalReached)
+		{
+			CopyEndOnGoalReachedTo(EndOnGoalReached);
+		}
+		else if (component is EndOnTimeoutComponent EndOnTimeout)
+		{
+			CopyEndOnTimeoutTo(EndOnTimeout);
+		}
+		else if (component is ScoreObjectiveComponent ScoreObjective)
+		{
+			IsScoreObjective = true;
+		}
+		else if (component is TeamScoreComponent TeamScore)
 		{
 			CopyTeamScoreTo(TeamScore);
-		}
-		else if (component is GoalModeComponent GoalMode)
-		{
-			IsGoalMode = true;
 		}
 		else if (component is TeamGameRankingComponent TeamGameRanking)
 		{
@@ -34,13 +50,9 @@ public partial class LevelEntity
 		{
 			CopyGameTimerTo(GameTimer);
 		}
-		else if (component is SurvivalModeComponent SurvivalMode)
+		else if (component is SurvivalObjectiveComponent SurvivalObjective)
 		{
-			IsSurvivalMode = true;
-		}
-		else if (component is GoalScoreComponent GoalScore)
-		{
-			CopyGoalScoreTo(GoalScore);
+			IsSurvivalObjective = true;
 		}
 		else if (component is TeamInfoComponent TeamInfo)
 		{

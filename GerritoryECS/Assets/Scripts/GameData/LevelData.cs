@@ -18,6 +18,9 @@ public class LevelData : ScriptableObject
 	[SerializeField]
 	private int m_RandomSeed = 20;
 
+	[SerializeField]
+	private int m_Size = 10;
+
 	[ContextMenu("Generate Level Randomly")]
 	private void randomlyGenerateLevelTileData()
 	{
@@ -25,7 +28,7 @@ public class LevelData : ScriptableObject
 		UnityEditor.Undo.RecordObject(this, "Generate Level Data Randomly");
 		TileDataPairs.Clear();
 
-		Vector2Int levelSize = new Vector2Int(10, 10);
+		Vector2Int levelSize = new Vector2Int(m_Size, m_Size);
 		Random.InitState(m_RandomSeed);
 
 		for (int x = 0; x < levelSize.x; x++)
@@ -35,11 +38,11 @@ public class LevelData : ScriptableObject
 				Vector2Int position = new Vector2Int(x, y);
 				string tileId = "normal";
 				float random = Random.Range(0.0f, 1.0f);
-				if (random > 0.65f)
+				if (random > 0.8f)
 				{
 					tileId = "collapse";
 				}
-				else if (random > 0.2f)
+				else if (random > 0.1f)
 				{
 					tileId = "normal";
 				}

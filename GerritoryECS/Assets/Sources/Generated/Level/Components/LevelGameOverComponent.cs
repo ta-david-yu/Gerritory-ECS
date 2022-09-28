@@ -9,22 +9,22 @@
 //------------------------------------------------------------------------------
 public partial class LevelEntity
 {
-	static readonly SurvivalModeComponent SurvivalModeComponent = new SurvivalModeComponent();
+	static readonly GameOverComponent GameOverComponent = new GameOverComponent();
 
-	public bool IsSurvivalMode
+	public bool IsGameOver
 	{
-		get { return HasComponent(LevelComponentsLookup.SurvivalMode); }
+		get { return HasComponent(LevelComponentsLookup.GameOver); }
 		set
 		{
-			if (value != IsSurvivalMode)
+			if (value != IsGameOver)
 			{
-				var index = LevelComponentsLookup.SurvivalMode;
+				var index = LevelComponentsLookup.GameOver;
 				if (value)
 				{
 					var componentPool = GetComponentPool(index);
 					var component = componentPool.Count > 0
 							? componentPool.Pop()
-							: SurvivalModeComponent;
+							: GameOverComponent;
 
 					AddComponent(index, component);
 				}
@@ -48,20 +48,20 @@ public partial class LevelEntity
 //------------------------------------------------------------------------------
 public sealed partial class LevelMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<LevelEntity> _matcherSurvivalMode;
+	static JCMG.EntitasRedux.IMatcher<LevelEntity> _matcherGameOver;
 
-	public static JCMG.EntitasRedux.IMatcher<LevelEntity> SurvivalMode
+	public static JCMG.EntitasRedux.IMatcher<LevelEntity> GameOver
 	{
 		get
 		{
-			if (_matcherSurvivalMode == null)
+			if (_matcherGameOver == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<LevelEntity>)JCMG.EntitasRedux.Matcher<LevelEntity>.AllOf(LevelComponentsLookup.SurvivalMode);
+				var matcher = (JCMG.EntitasRedux.Matcher<LevelEntity>)JCMG.EntitasRedux.Matcher<LevelEntity>.AllOf(LevelComponentsLookup.GameOver);
 				matcher.ComponentNames = LevelComponentsLookup.ComponentNames;
-				_matcherSurvivalMode = matcher;
+				_matcherGameOver = matcher;
 			}
 
-			return _matcherSurvivalMode;
+			return _matcherGameOver;
 		}
 	}
 }

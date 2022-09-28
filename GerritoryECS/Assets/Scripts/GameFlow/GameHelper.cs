@@ -139,6 +139,11 @@ public static class GameHelper
 		return priority;
 	}
 
+	public static int GetNumberOfTeamPlayersAlive(this GameContext context, int teamId)
+	{
+		return context.GetEntitiesWithTeam(teamId).Where(gameEntity => gameEntity.HasPlayer && !gameEntity.IsDead).Count();
+	}
+
 	public static TryKillResult TryKill(this Contexts contexts, GameEntity onTileEntity)
 	{
 		if (!onTileEntity.IsCanBeDead)

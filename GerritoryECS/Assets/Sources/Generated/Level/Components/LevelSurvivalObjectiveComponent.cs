@@ -9,22 +9,22 @@
 //------------------------------------------------------------------------------
 public partial class LevelEntity
 {
-	static readonly GoalModeComponent GoalModeComponent = new GoalModeComponent();
+	static readonly SurvivalObjectiveComponent SurvivalObjectiveComponent = new SurvivalObjectiveComponent();
 
-	public bool IsGoalMode
+	public bool IsSurvivalObjective
 	{
-		get { return HasComponent(LevelComponentsLookup.GoalMode); }
+		get { return HasComponent(LevelComponentsLookup.SurvivalObjective); }
 		set
 		{
-			if (value != IsGoalMode)
+			if (value != IsSurvivalObjective)
 			{
-				var index = LevelComponentsLookup.GoalMode;
+				var index = LevelComponentsLookup.SurvivalObjective;
 				if (value)
 				{
 					var componentPool = GetComponentPool(index);
 					var component = componentPool.Count > 0
 							? componentPool.Pop()
-							: GoalModeComponent;
+							: SurvivalObjectiveComponent;
 
 					AddComponent(index, component);
 				}
@@ -48,20 +48,20 @@ public partial class LevelEntity
 //------------------------------------------------------------------------------
 public sealed partial class LevelMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<LevelEntity> _matcherGoalMode;
+	static JCMG.EntitasRedux.IMatcher<LevelEntity> _matcherSurvivalObjective;
 
-	public static JCMG.EntitasRedux.IMatcher<LevelEntity> GoalMode
+	public static JCMG.EntitasRedux.IMatcher<LevelEntity> SurvivalObjective
 	{
 		get
 		{
-			if (_matcherGoalMode == null)
+			if (_matcherSurvivalObjective == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<LevelEntity>)JCMG.EntitasRedux.Matcher<LevelEntity>.AllOf(LevelComponentsLookup.GoalMode);
+				var matcher = (JCMG.EntitasRedux.Matcher<LevelEntity>)JCMG.EntitasRedux.Matcher<LevelEntity>.AllOf(LevelComponentsLookup.SurvivalObjective);
 				matcher.ComponentNames = LevelComponentsLookup.ComponentNames;
-				_matcherGoalMode = matcher;
+				_matcherSurvivalObjective = matcher;
 			}
 
-			return _matcherGoalMode;
+			return _matcherSurvivalObjective;
 		}
 	}
 }

@@ -23,42 +23,27 @@ public sealed class UpdateGameInfoSystem : IFixedUpdateSystem
 
 	public void FixedUpdate()
 	{
+		if (m_LevelContext.GameInfoEntity.IsGameOver)
+		{
+			return;
+		}
+
 		int highestTeamScore = -1;
-		// Update highest team score.
+		int highestTeamMemberCount = -1;
 		foreach (var teamEntity in m_TeamInfoGroup)
 		{
 			if (teamEntity.TeamScore.Value >= highestTeamScore)
 			{
 				highestTeamScore = teamEntity.TeamScore.Value;
 			}
+
+			int teamMemberCount = m_GameContext.GetNumberOfTeamPlayersAlive(teamEntity.TeamInfo.Id);
+			if (teamMemberCount >= highestTeamMemberCount)
+			{
+				highestTeamMemberCount = teamMemberCount;
+			}
 		}
-		m_LevelContext.ReplaceGameInfo(newCurrentHighestTeamScore: highestTeamScore);
-
-		// Update team game rankings.
-		var teamEntitiesOrderedByScore = m_TeamInfoGroup.GetEntities().OrderBy(teamEntity => -teamEntity.TeamScore.Value).ToArray();
-		int previousTeamTileCount = -1;
-		for (int teamOrder = 0; teamOrder < teamEntitiesOrderedByScore.Length; teamOrder++)
-		{
-			var teamEntity = teamEntitiesOrderedByScore[teamOrder];
-			int oldTeamGameRanking = teamEntity.TeamGameRanking.Number;
-			int newTeamGameRanking = oldTeamGameRanking;
-			if (teamEntity.TeamScore.Value == previousTeamTileCount)
-			{
-				// The same ranking as the last team.
-				newTeamGameRanking = teamEntitiesOrderedByScore[teamOrder - 1].TeamGameRanking.Number;
-			}
-			else
-			{
-				newTeamGameRanking = teamOrder + 1;
-			}
-
-			if (newTeamGameRanking != oldTeamGameRanking)
-			{
-				// The team has a new ranking, update it!
-				teamEntity.ReplaceTeamGameRanking(newTeamGameRanking);
-			}
-
-			previousTeamTileCount = teamEntity.TeamScore.Value;
-		}
+		m_LevelContext.ReplaceGameInfo(newCurrentHighestTeamScore: highestTeamScore, newCurrentHighestTeamMemberCount: highestTeamMemberCount);
+		m_LevelContext.GameInfoEntity.ReplaceGameTimer(m_LevelContext.GameInfoEntity.GameTimer.Value + Time.fixedDeltaTime);
 	}
 }

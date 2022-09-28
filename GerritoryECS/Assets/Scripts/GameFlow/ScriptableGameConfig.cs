@@ -27,6 +27,23 @@ public class ScriptableGameConfig : ScriptableObject, IGameConfig
 	public LevelData LevelData => m_LevelData;
 
 	[SerializeField]
-	private IGameConfig.GameObjective m_Objective = IGameConfig.GameObjective.Survival;
-	public IGameConfig.GameObjective Objective => m_Objective;
+	private GameObjective m_Objective = GameObjective.Score;
+	public GameObjective Objective => m_Objective;
+
+	[SerializeField]
+	[EnumFlags]
+	private GameEndingCondition m_EndingCondition = GameEndingCondition.Timeout;
+	public GameEndingCondition EndingCondition => m_EndingCondition;
+
+	[SerializeField]
+	private float m_Timeout = 30;
+	public float Timeout => m_Timeout;
+
+	[SerializeField]
+	private int m_GoalScore = 1;
+	public int GoalScore => m_GoalScore;
+
+	[SerializeField]
+	private int m_NumberOfTeamsShouldBeLeft = 1;
+	public int NumberOfTeamsShouldBeLeft => m_NumberOfTeamsShouldBeLeft;
 }

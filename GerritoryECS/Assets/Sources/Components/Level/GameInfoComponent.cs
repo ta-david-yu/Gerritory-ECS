@@ -8,4 +8,5 @@ using UnityEngine;
 public sealed class GameInfoComponent : IComponent
 {
 	public int CurrentHighestTeamScore;
+	public int CurrentHighestTeamMemberCount;
 }
