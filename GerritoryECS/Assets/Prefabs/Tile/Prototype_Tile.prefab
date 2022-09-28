@@ -47,6 +47,8 @@ MonoBehaviour:
   m_ColorPalette: {fileID: 11400000, guid: c2ff8f9092ad312459d097f6a8b5969b, type: 2}
   m_Renderers:
   - {fileID: 2423865082483706182}
+  m_FadeToColorDuration: 0.4
+  m_InitialColorOnTakenOver: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &969221466180236338
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,8 +170,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4136649737228220530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -11.6508, z: 0}
-  m_LocalScale: {x: 0.95, y: 23.302189, z: 0.95}
+  m_LocalPosition: {x: 0, y: -15, z: 0}
+  m_LocalScale: {x: 0.95, y: 30, z: 0.95}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1500963981772225911}

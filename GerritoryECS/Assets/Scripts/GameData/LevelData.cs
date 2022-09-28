@@ -38,7 +38,7 @@ public class LevelData : ScriptableObject
 				Vector2Int position = new Vector2Int(x, y);
 				string tileId = "normal";
 				float random = Random.Range(0.0f, 1.0f);
-				if (random > 0.8f)
+				if (random > 1.0f)
 				{
 					tileId = "collapse";
 				}

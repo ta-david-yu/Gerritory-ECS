@@ -52,6 +52,12 @@ public sealed class TakeOverOwnableOnEnterTileSystem : IFixedUpdateSystem
 				continue;
 			}
 
+			if (enterTileEntity.HasOwner && enterTileEntity.Owner.OwnerTeamId == entererEntity.Team.Id)
+			{
+				// The tile has already been occupied by the team, do nothing.
+				continue;
+			}
+
 			// TODO: take-overable check logic
 			// ...
 
