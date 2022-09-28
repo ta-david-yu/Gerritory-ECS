@@ -410,6 +410,8 @@
     <Compile Include="Assets\Sources\Generated\Game\Components\GameTeamAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\TeamAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\TeamAddedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Tile\OwnedPointsComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnedPointsComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

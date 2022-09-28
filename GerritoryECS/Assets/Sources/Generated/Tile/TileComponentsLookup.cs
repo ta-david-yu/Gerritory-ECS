@@ -26,9 +26,10 @@ public static class TileComponentsLookup
 	public const int LeftByOnTileElement = 10;
 	public const int OwnableAddedListener = 11;
 	public const int Ownable = 12;
-	public const int TilePosition = 13;
+	public const int OwnedPoints = 13;
+	public const int TilePosition = 14;
 
-	public const int TotalComponents = 14;
+	public const int TotalComponents = 15;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -45,6 +46,7 @@ public static class TileComponentsLookup
 		"LeftByOnTileElement",
 		"OwnableAddedListener",
 		"Ownable",
+		"OwnedPoints",
 		"TilePosition"
 	};
 
@@ -63,6 +65,7 @@ public static class TileComponentsLookup
 		typeof(LeftByOnTileElementComponent),
 		typeof(OwnableAddedListenerComponent),
 		typeof(OwnableComponent),
+		typeof(OwnedPointsComponent),
 		typeof(TilePositionComponent)
 	};
 
@@ -81,7 +84,8 @@ public static class TileComponentsLookup
 		{ typeof(LeftByOnTileElementComponent), 10 },
 		{ typeof(OwnableAddedListenerComponent), 11 },
 		{ typeof(OwnableComponent), 12 },
-		{ typeof(TilePositionComponent), 13 }
+		{ typeof(OwnedPointsComponent), 13 },
+		{ typeof(TilePositionComponent), 14 }
 	};
 
 	/// <summary>

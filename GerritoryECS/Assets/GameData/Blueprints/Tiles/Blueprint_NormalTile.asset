@@ -16,6 +16,7 @@ MonoBehaviour:
   - rid: 1863425398241755137
   - rid: 1863425398241755138
   - rid: 1863425398241755142
+  - rid: 1863425453290160129
   references:
     version: 2
     RefIds:
@@ -23,8 +24,12 @@ MonoBehaviour:
       type: {class: OwnableComponent, ns: , asm: Assembly-CSharp}
       data:
         HasOwner: 0
-        OwnerId: 0
+        OwnerTeamId: 0
     - rid: 1863425398241755138
       type: {class: ItemHolderComponent, ns: , asm: Assembly-CSharp}
     - rid: 1863425398241755142
       type: {class: EnterableComponent, ns: , asm: Assembly-CSharp}
+    - rid: 1863425453290160129
+      type: {class: OwnedPointsComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Value: 1
