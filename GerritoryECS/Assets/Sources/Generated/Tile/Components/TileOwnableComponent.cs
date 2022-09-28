@@ -12,24 +12,22 @@ public partial class TileEntity
 	public OwnableComponent Ownable { get { return (OwnableComponent)GetComponent(TileComponentsLookup.Ownable); } }
 	public bool HasOwnable { get { return HasComponent(TileComponentsLookup.Ownable); } }
 
-	public void AddOwnable(bool newHasOwner, int newOwnerTeamId)
+	public void AddOwnable(int newWorthPoints)
 	{
 		var index = TileComponentsLookup.Ownable;
 		var component = (OwnableComponent)CreateComponent(index, typeof(OwnableComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.HasOwner = newHasOwner;
-		component.OwnerTeamId = newOwnerTeamId;
+		component.WorthPoints = newWorthPoints;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceOwnable(bool newHasOwner, int newOwnerTeamId)
+	public void ReplaceOwnable(int newWorthPoints)
 	{
 		var index = TileComponentsLookup.Ownable;
 		var component = (OwnableComponent)CreateComponent(index, typeof(OwnableComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.HasOwner = newHasOwner;
-		component.OwnerTeamId = newOwnerTeamId;
+		component.WorthPoints = newWorthPoints;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -39,8 +37,7 @@ public partial class TileEntity
 		var index = TileComponentsLookup.Ownable;
 		var component = (OwnableComponent)CreateComponent(index, typeof(OwnableComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.HasOwner = copyComponent.HasOwner;
-		component.OwnerTeamId = copyComponent.OwnerTeamId;
+		component.WorthPoints = copyComponent.WorthPoints;
 		#endif
 		ReplaceComponent(index, component);
 	}

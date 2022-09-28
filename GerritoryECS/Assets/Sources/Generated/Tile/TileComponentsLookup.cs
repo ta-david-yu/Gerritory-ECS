@@ -24,12 +24,13 @@ public static class TileComponentsLookup
 	public const int ItemHolder = 8;
 	public const int LeftByOnTileElementAddedListener = 9;
 	public const int LeftByOnTileElement = 10;
-	public const int OwnableAddedListener = 11;
-	public const int Ownable = 12;
-	public const int OwnedPoints = 13;
-	public const int TilePosition = 14;
+	public const int Ownable = 11;
+	public const int OwnerAddedListener = 12;
+	public const int Owner = 13;
+	public const int OwnerRemovedListener = 14;
+	public const int TilePosition = 15;
 
-	public const int TotalComponents = 15;
+	public const int TotalComponents = 16;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -44,9 +45,10 @@ public static class TileComponentsLookup
 		"ItemHolder",
 		"LeftByOnTileElementAddedListener",
 		"LeftByOnTileElement",
-		"OwnableAddedListener",
 		"Ownable",
-		"OwnedPoints",
+		"OwnerAddedListener",
+		"Owner",
+		"OwnerRemovedListener",
 		"TilePosition"
 	};
 
@@ -63,9 +65,10 @@ public static class TileComponentsLookup
 		typeof(ItemHolderComponent),
 		typeof(LeftByOnTileElementAddedListenerComponent),
 		typeof(LeftByOnTileElementComponent),
-		typeof(OwnableAddedListenerComponent),
 		typeof(OwnableComponent),
-		typeof(OwnedPointsComponent),
+		typeof(OwnerAddedListenerComponent),
+		typeof(OwnerComponent),
+		typeof(OwnerRemovedListenerComponent),
 		typeof(TilePositionComponent)
 	};
 
@@ -82,10 +85,11 @@ public static class TileComponentsLookup
 		{ typeof(ItemHolderComponent), 8 },
 		{ typeof(LeftByOnTileElementAddedListenerComponent), 9 },
 		{ typeof(LeftByOnTileElementComponent), 10 },
-		{ typeof(OwnableAddedListenerComponent), 11 },
-		{ typeof(OwnableComponent), 12 },
-		{ typeof(OwnedPointsComponent), 13 },
-		{ typeof(TilePositionComponent), 14 }
+		{ typeof(OwnableComponent), 11 },
+		{ typeof(OwnerAddedListenerComponent), 12 },
+		{ typeof(OwnerComponent), 13 },
+		{ typeof(OwnerRemovedListenerComponent), 14 },
+		{ typeof(TilePositionComponent), 15 }
 	};
 
 	/// <summary>

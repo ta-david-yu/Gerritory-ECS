@@ -7,38 +7,38 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class OwnableAddedEventSystem : JCMG.EntitasRedux.ReactiveSystem<TileEntity>
+public sealed class OwnerRemovedEventSystem : JCMG.EntitasRedux.ReactiveSystem<TileEntity>
 {
-	readonly System.Collections.Generic.List<IOwnableAddedListener> _listenerBuffer;
+	readonly System.Collections.Generic.List<IOwnerRemovedListener> _listenerBuffer;
 
-	public OwnableAddedEventSystem(Contexts contexts) : base(contexts.Tile)
+	public OwnerRemovedEventSystem(Contexts contexts) : base(contexts.Tile)
 	{
-		_listenerBuffer = new System.Collections.Generic.List<IOwnableAddedListener>();
+		_listenerBuffer = new System.Collections.Generic.List<IOwnerRemovedListener>();
 	}
 
 	protected override JCMG.EntitasRedux.ICollector<TileEntity> GetTrigger(JCMG.EntitasRedux.IContext<TileEntity> context)
 	{
 		return JCMG.EntitasRedux.CollectorContextExtension.CreateCollector(
 			context,
-			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Added(TileMatcher.Ownable)
+			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Removed(TileMatcher.Owner)
 		);
 	}
 
 	protected override bool Filter(TileEntity entity)
 	{
-		return entity.HasOwnable && entity.HasOwnableAddedListener;
+		return !entity.HasOwner && entity.HasOwnerRemovedListener;
 	}
 
 	protected override void Execute(System.Collections.Generic.List<TileEntity> entities)
 	{
 		foreach (var e in entities)
 		{
-			var component = e.Ownable;
+			
 			_listenerBuffer.Clear();
-			_listenerBuffer.AddRange(e.OwnableAddedListener.value);
+			_listenerBuffer.AddRange(e.OwnerRemovedListener.value);
 			foreach (var listener in _listenerBuffer)
 			{
-				listener.OnOwnableAdded(e, component.HasOwner, component.OwnerTeamId);
+				listener.OnOwnerRemoved(e);
 			}
 		}
 	}

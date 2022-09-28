@@ -15,6 +15,7 @@ public sealed class TileEventSystems : Feature
 		Add(new EnterableAddedEventSystem(contexts)); // priority: 0
 		Add(new EnteredByOnTileElementAddedEventSystem(contexts)); // priority: 0
 		Add(new LeftByOnTileElementAddedEventSystem(contexts)); // priority: 0
-		Add(new OwnableAddedEventSystem(contexts)); // priority: 0
+		Add(new OwnerAddedEventSystem(contexts)); // priority: 0
+		Add(new OwnerRemovedEventSystem(contexts)); // priority: 0
 	}
 }

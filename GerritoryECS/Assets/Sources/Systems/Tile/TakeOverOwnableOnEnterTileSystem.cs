@@ -55,19 +55,19 @@ public sealed class TakeOverOwnableOnEnterTileSystem : IFixedUpdateSystem
 			// TODO: take-overable check logic
 			// ...
 
-			int tileWorthPoints = enterTileEntity.HasOwnedPoints ? enterTileEntity.OwnedPoints.Value : 0;
+			int tileWorthPoints = enterTileEntity.Ownable.WorthPoints;
 
-			if (enterTileEntity.Ownable.HasOwner)
+			if (enterTileEntity.HasOwner) 
 			{
 				// Decrement previous owner team number of owned tiles.
-				int previousTeamId = enterTileEntity.Ownable.OwnerTeamId;
+				int previousTeamId = enterTileEntity.Owner.OwnerTeamId;
 				LevelEntity previousTeamEntity = m_LevelContext.GetEntityWithTeamInfo(previousTeamId);
 				previousTeamEntity.ReplaceTeamScore(previousTeamEntity.TeamScore.Value - tileWorthPoints);
 			}
 
 			// Take over the tile.
 			int newTeamId = entererEntity.Team.Id;
-			enterTileEntity.ReplaceOwnable(true, newTeamId);
+			enterTileEntity.ReplaceOwner(newTeamId);
 
 			// Increment new owner team's number of owned tiles.
 			LevelEntity newTeamEntity = m_LevelContext.GetEntityWithTeamInfo(newTeamId);

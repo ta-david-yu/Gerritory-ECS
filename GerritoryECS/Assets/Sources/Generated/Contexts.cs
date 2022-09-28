@@ -123,6 +123,7 @@ public partial class Contexts
 	public const string OnTileElementLeaveTile = "OnTileElementLeaveTile";
 	public const string OnTileItem = "OnTileItem";
 	public const string OnTilePosition = "OnTilePosition";
+	public const string Owner = "Owner";
 	public const string Player = "Player";
 	public const string State = "State";
 	public const string StateHolder = "StateHolder";
@@ -183,6 +184,11 @@ public partial class Contexts
 			OnTilePosition,
 			Game.GetGroup(GameMatcher.OnTilePosition),
 			(e, c) => ((OnTilePositionComponent)c).Value));
+
+		Tile.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<TileEntity, int>(
+			Owner,
+			Tile.GetGroup(TileMatcher.Owner),
+			(e, c) => ((OwnerComponent)c).OwnerTeamId));
 
 		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
 			Player,
@@ -271,6 +277,11 @@ public static class ContextsExtensions
 	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithOnTilePosition(this GameContext context, UnityEngine.Vector2Int Value)
 	{
 		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTilePosition)).GetEntities(Value);
+	}
+
+	public static System.Collections.Generic.HashSet<TileEntity> GetEntitiesWithOwner(this TileContext context, int OwnerTeamId)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<TileEntity, int>)context.GetEntityIndex(Contexts.Owner)).GetEntities(OwnerTeamId);
 	}
 
 	public static GameEntity GetEntityWithPlayer(this GameContext context, int Id)

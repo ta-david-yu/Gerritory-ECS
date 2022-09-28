@@ -102,7 +102,6 @@
     <Compile Include="Assets\Sources\Generated\Game\Systems\RemoveMoveOnTileEndFromGameEntitiesSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnteredByOnTileElementAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IDeadRemovedListener.cs" />
-    <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\LevelMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\TeamAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputAttribute.cs" />
@@ -197,7 +196,6 @@
     <Compile Include="Assets\Sources\Generated\Message\CreateEntityFromMessageBlueprint.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\RespawnOnRespawnStateRemovedSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameDebugMessageComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnedPointsComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigGameConfigComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\GameMatcher.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\StateHolderComponent.cs" />
@@ -294,7 +292,6 @@
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnterableAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\OnTileElementKillerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateContext.cs" />
-    <Compile Include="Assets\Sources\Components\Tile\OwnedPointsComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\TilePositionComponent.cs" />
     <Compile Include="Assets\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Systems\EffectCleanupSystem.cs" />
@@ -356,7 +353,6 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Systems\Message\ConsumeMessageSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Components\OwnableAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameTeamComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileAddedListenerComponent.cs" />
@@ -367,7 +363,6 @@
     <Compile Include="Assets\Sources\Generated\Game\Components\GameSpeedChangeableComponent.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\UpdateStateTimerSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\DeadRemovedEventSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOwnableAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MovementInputActionComponent.cs" />
@@ -384,7 +379,6 @@
     <Compile Include="Assets\Sources\Generated\Config\ConfigContext.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageEntity.cs" />
     <Compile Include="Assets\Sources\Systems\Debug\OnDrawGizmosItemSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Systems\OwnableAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Message\IMessageBlueprint.cs" />
     <Compile Include="Assets\Sources\Systems\Level\InitializeUniqueIdCounterSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Components\StateHolderIdCounterComponent.cs" />
@@ -414,6 +408,16 @@
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\CanRespawnAfterDeathComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameCanRespawnAfterDeathComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Tile\OwnerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\OwnerAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\OwnerAddedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOwnerAddedListener.cs" />
+    <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnerAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnerRemovedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOwnerRemovedListener.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\OwnerRemovedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\OwnerRemovedEventSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

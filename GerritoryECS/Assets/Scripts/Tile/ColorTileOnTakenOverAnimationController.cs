@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorTileOnTakenOverAnimationController : EntityCreationEventListenerBase, IOwnableAddedListener
+public class ColorTileOnTakenOverAnimationController : EntityCreationEventListenerBase, IOwnerAddedListener, IOwnerRemovedListener
 {
 	[SerializeField]
 	private ColorPalette m_ColorPalette;
@@ -16,22 +16,22 @@ public class ColorTileOnTakenOverAnimationController : EntityCreationEventListen
 	public override void HandleOnEntityCreated(IEntity entity)
 	{
 		TileEntity tileEntity = entity as TileEntity;
-		tileEntity.AddOwnableAddedListener(this);
+		tileEntity.AddOwnerAddedListener(this);
+		tileEntity.AddOwnerRemovedListener(this);
 	}
 
 	public override void HandleOnComponentsAdded(IEntity entity)
 	{
 	}
 
-	public void OnOwnableAdded(TileEntity entity, bool hasOwner, int ownerTeamId)
+	public void OnOwnerAdded(TileEntity entity, int ownerTeamId)
 	{
-		if (!hasOwner)
-		{
-			changeRenderersColor(m_ColorPalette.GetDefaultTileBodyColor());
-			return;
-		}
-
 		changeRenderersColor(m_ColorPalette.GetTileBodyColorForTeam(ownerTeamId));
+	}
+
+	public void OnOwnerRemoved(TileEntity entity)
+	{
+		changeRenderersColor(m_ColorPalette.GetDefaultTileBodyColor());
 	}
 
 	private void changeRenderersColor(Color color)

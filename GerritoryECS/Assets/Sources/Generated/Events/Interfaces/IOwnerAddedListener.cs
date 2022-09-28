@@ -7,7 +7,7 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public interface IOwnableAddedListener
+public interface IOwnerAddedListener
 {
-	void OnOwnableAdded(TileEntity entity, bool hasOwner, int ownerTeamId);
+	void OnOwnerAdded(TileEntity entity, int ownerTeamId);
 }

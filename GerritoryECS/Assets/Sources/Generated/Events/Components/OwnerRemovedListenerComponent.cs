@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 [JCMG.EntitasRedux.DontGenerate(false)]
-public sealed class OwnableAddedListenerComponent : JCMG.EntitasRedux.IComponent
+public sealed class OwnerRemovedListenerComponent : JCMG.EntitasRedux.IComponent
 {
-	public System.Collections.Generic.List<IOwnableAddedListener> value;
+	public System.Collections.Generic.List<IOwnerRemovedListener> value;
 }
