@@ -13,26 +13,30 @@ using JCMG.EntitasRedux;
 
 public static class LevelComponentsLookup
 {
-	public const int EndOnEliminated = 0;
-	public const int EndOnGoalReached = 1;
-	public const int EndOnTimeout = 2;
-	public const int GameInfo = 3;
-	public const int GameOver = 4;
-	public const int GameTimer = 5;
-	public const int ItemEaterIdCounter = 6;
-	public const int Level = 7;
-	public const int OnTileElementIdCounter = 8;
-	public const int ScoreObjective = 9;
-	public const int StateHolderIdCounter = 10;
-	public const int SurvivalObjective = 11;
-	public const int TeamGameRanking = 12;
-	public const int TeamInfo = 13;
-	public const int TeamScore = 14;
+	public const int ConstructPlayer = 0;
+	public const int ConstructTile = 1;
+	public const int EndOnEliminated = 2;
+	public const int EndOnGoalReached = 3;
+	public const int EndOnTimeout = 4;
+	public const int GameInfo = 5;
+	public const int GameOver = 6;
+	public const int GameTimer = 7;
+	public const int ItemEaterIdCounter = 8;
+	public const int Level = 9;
+	public const int OnTileElementIdCounter = 10;
+	public const int ScoreObjective = 11;
+	public const int StateHolderIdCounter = 12;
+	public const int SurvivalObjective = 13;
+	public const int TeamGameRanking = 14;
+	public const int TeamInfo = 15;
+	public const int TeamScore = 16;
 
-	public const int TotalComponents = 15;
+	public const int TotalComponents = 17;
 
 	public static readonly string[] ComponentNames =
 	{
+		"ConstructPlayer",
+		"ConstructTile",
 		"EndOnEliminated",
 		"EndOnGoalReached",
 		"EndOnTimeout",
@@ -52,6 +56,8 @@ public static class LevelComponentsLookup
 
 	public static readonly System.Type[] ComponentTypes =
 	{
+		typeof(ConstructPlayerComponent),
+		typeof(ConstructTileComponent),
 		typeof(EndOnEliminatedComponent),
 		typeof(EndOnGoalReachedComponent),
 		typeof(EndOnTimeoutComponent),
@@ -71,21 +77,23 @@ public static class LevelComponentsLookup
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(EndOnEliminatedComponent), 0 },
-		{ typeof(EndOnGoalReachedComponent), 1 },
-		{ typeof(EndOnTimeoutComponent), 2 },
-		{ typeof(GameInfoComponent), 3 },
-		{ typeof(GameOverComponent), 4 },
-		{ typeof(GameTimerComponent), 5 },
-		{ typeof(ItemEaterIdCounterComponent), 6 },
-		{ typeof(LevelComponent), 7 },
-		{ typeof(OnTileElementIdCounterComponent), 8 },
-		{ typeof(ScoreObjectiveComponent), 9 },
-		{ typeof(StateHolderIdCounterComponent), 10 },
-		{ typeof(SurvivalObjectiveComponent), 11 },
-		{ typeof(TeamGameRankingComponent), 12 },
-		{ typeof(TeamInfoComponent), 13 },
-		{ typeof(TeamScoreComponent), 14 }
+		{ typeof(ConstructPlayerComponent), 0 },
+		{ typeof(ConstructTileComponent), 1 },
+		{ typeof(EndOnEliminatedComponent), 2 },
+		{ typeof(EndOnGoalReachedComponent), 3 },
+		{ typeof(EndOnTimeoutComponent), 4 },
+		{ typeof(GameInfoComponent), 5 },
+		{ typeof(GameOverComponent), 6 },
+		{ typeof(GameTimerComponent), 7 },
+		{ typeof(ItemEaterIdCounterComponent), 8 },
+		{ typeof(LevelComponent), 9 },
+		{ typeof(OnTileElementIdCounterComponent), 10 },
+		{ typeof(ScoreObjectiveComponent), 11 },
+		{ typeof(StateHolderIdCounterComponent), 12 },
+		{ typeof(SurvivalObjectiveComponent), 13 },
+		{ typeof(TeamGameRankingComponent), 14 },
+		{ typeof(TeamInfoComponent), 15 },
+		{ typeof(TeamScoreComponent), 16 }
 	};
 
 	/// <summary>

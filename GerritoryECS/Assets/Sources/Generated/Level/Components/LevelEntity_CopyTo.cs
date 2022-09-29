@@ -18,21 +18,13 @@ public partial class LevelEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is GameOverComponent GameOver)
+		if (component is ConstructTileComponent ConstructTile)
 		{
-			IsGameOver = true;
+			CopyConstructTileTo(ConstructTile);
 		}
-		else if (component is EndOnEliminatedComponent EndOnEliminated)
+		else if (component is ConstructPlayerComponent ConstructPlayer)
 		{
-			CopyEndOnEliminatedTo(EndOnEliminated);
-		}
-		else if (component is EndOnGoalReachedComponent EndOnGoalReached)
-		{
-			CopyEndOnGoalReachedTo(EndOnGoalReached);
-		}
-		else if (component is EndOnTimeoutComponent EndOnTimeout)
-		{
-			CopyEndOnTimeoutTo(EndOnTimeout);
+			CopyConstructPlayerTo(ConstructPlayer);
 		}
 		else if (component is ScoreObjectiveComponent ScoreObjective)
 		{
@@ -42,9 +34,21 @@ public partial class LevelEntity
 		{
 			CopyTeamScoreTo(TeamScore);
 		}
+		else if (component is GameOverComponent GameOver)
+		{
+			IsGameOver = true;
+		}
 		else if (component is TeamGameRankingComponent TeamGameRanking)
 		{
 			CopyTeamGameRankingTo(TeamGameRanking);
+		}
+		else if (component is EndOnTimeoutComponent EndOnTimeout)
+		{
+			CopyEndOnTimeoutTo(EndOnTimeout);
+		}
+		else if (component is EndOnGoalReachedComponent EndOnGoalReached)
+		{
+			CopyEndOnGoalReachedTo(EndOnGoalReached);
 		}
 		else if (component is GameTimerComponent GameTimer)
 		{
@@ -61,6 +65,10 @@ public partial class LevelEntity
 		else if (component is LevelComponent Level)
 		{
 			CopyLevelTo(Level);
+		}
+		else if (component is EndOnEliminatedComponent EndOnEliminated)
+		{
+			CopyEndOnEliminatedTo(EndOnEliminated);
 		}
 		else if (component is GameInfoComponent GameInfo)
 		{

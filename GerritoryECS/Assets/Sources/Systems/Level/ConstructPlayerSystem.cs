@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class ConstructPlayerSystem : IInitializeSystem
+/// <summary>
+/// Build player entity on request.
+/// </summary>
+public sealed class ConstructPlayerSystem : IFixedUpdateSystem
 {
 	private readonly LevelContext m_LevelContext;
 	private readonly GameContext m_GameContext;
@@ -11,6 +14,8 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 	private readonly ConfigContext m_ConfigContext;
 	private readonly MessageContext m_MessageContext;
 	private readonly Contexts m_Contexts;
+
+	private readonly IGroup<LevelEntity> m_ConstructPlayerRequestGroup;
 
 	public ConstructPlayerSystem(Contexts contexts)
 	{
@@ -20,41 +25,42 @@ public sealed class ConstructPlayerSystem : IInitializeSystem
 		m_ConfigContext = contexts.Config;
 		m_MessageContext = contexts.Message;
 		m_Contexts = contexts;
+
+		m_ConstructPlayerRequestGroup = m_LevelContext.GetGroup(LevelMatcher.ConstructPlayer);
 	}
 
-	public void Initialize()
+	public void FixedUpdate()
 	{
-		var playerConfigs = m_ConfigContext.GameConfig.value.PlayerGameConfigs;
-		foreach (var playerConfig in playerConfigs)
+		foreach (var constructPlayerRequest in m_ConstructPlayerRequestGroup.GetEntities())
 		{
-			// Create player entity.
-			GameEntity playerEntity = createPlayerEntity(playerConfig);
-
-			// Create input entity.
+			ConstructPlayerComponent constructPlayerComponent = constructPlayerRequest.ConstructPlayer;
+			GameEntity playerEntity = createPlayerEntity(constructPlayerComponent);
 			InputEntity inputEntity = m_InputContext.CreateEntity();
-			if (playerConfig.IsAI)
+			if (constructPlayerComponent.IsAI)
 			{
-				inputEntity.AddAIInput(Movement.Type.Right, playerConfig.PlayerId);
+				inputEntity.AddAIInput(Movement.Type.Right, constructPlayerComponent.PlayerId);
 			}
 			else
 			{
-				inputEntity.AddUserInput(playerConfig.PlayerId, playerConfig.PlayerId);
+				inputEntity.AddUserInput(constructPlayerComponent.PlayerId, constructPlayerComponent.PlayerId);
 			}
+
+			constructPlayerRequest.Destroy();
 		}
 	}
 
-	private GameEntity createPlayerEntity(PlayerGameConfig playerConfig)
+	private GameEntity createPlayerEntity(ConstructPlayerComponent constructPlayerRequest)
 	{
 		IPlayerFactory playerFactory = m_ConfigContext.GameConfig.value.PlayerFactory;
 
 		// Create player entity and its view controller
 		GameEntity playerEntity = m_GameContext.CreateEntity();
-		IEntityCreationEventController viewController = playerFactory.CreatePlayerView(playerConfig.PlayerId, playerConfig.TeamId, playerConfig.SkinId);
+		IEntityCreationEventController viewController = playerFactory.CreatePlayerView(constructPlayerRequest.PlayerId, constructPlayerRequest.TeamId, constructPlayerRequest.SkinId);
 		viewController.OnEntityCreated(playerEntity);
 		
 		// Add needed componenets
-		playerEntity.AddPlayer(playerConfig.PlayerId);
-		playerEntity.AddTeam(playerConfig.TeamId);
+		playerEntity.AddPlayer(constructPlayerRequest.PlayerId);
+		playerEntity.AddTeam(constructPlayerRequest.TeamId);
 		playerEntity.AddOnTileElement(m_LevelContext.GetNewOnTileElementId());
 		playerEntity.AddItemEater(m_LevelContext.GetNewItemEaterId());
 		playerEntity.AddStateHolder(m_LevelContext.GetNewStateHolderId());

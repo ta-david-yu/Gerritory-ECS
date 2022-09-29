@@ -18,11 +18,7 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is CanRespawnAfterDeathComponent CanRespawnAfterDeath)
-		{
-			IsCanRespawnAfterDeath = true;
-		}
-		else if (component is DeadComponent Dead)
+		if (component is DeadComponent Dead)
 		{
 			IsDead = true;
 		}
@@ -53,6 +49,10 @@ public partial class GameEntity
 		else if (component is OnTilePositionComponent OnTilePosition)
 		{
 			CopyOnTilePositionTo(OnTilePosition);
+		}
+		else if (component is CanRespawnAfterDeathComponent CanRespawnAfterDeath)
+		{
+			IsCanRespawnAfterDeath = true;
 		}
 		else if (component is MoveOnTileEndComponent MoveOnTileEnd)
 		{

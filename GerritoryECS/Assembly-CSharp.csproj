@@ -95,7 +95,7 @@
     <Compile Include="Assets\Sources\Components\OnTileElement\PlayerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\HelloWorldSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemContext.cs" />
-    <Compile Include="Assets\Sources\Features\GameFlowFeature.cs" />
+    <Compile Include="Assets\Sources\Features\InGameFlowFeature.cs" />
     <Compile Include="Assets\Scripts\Input\InputActionManager.cs" />
     <Compile Include="Assets\Sources\Generated\Input\IInputBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOwnerAddedListener.cs" />
@@ -199,7 +199,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Components\DeadRemovedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Message\Components\MessageLeaveBecauseOfDeathComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Level\ConstructPlayerSystem.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\ConstructLevelSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\ConstructTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Generated\Message\CreateEntityFromMessageBlueprint.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\RespawnOnRespawnStateRemovedSystem.cs" />
@@ -432,6 +432,12 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelEndOnTimeoutComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\InGameStateMachineSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Level\ConstructPlayerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\ConstructTileComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructPlayerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructTileComponent.cs" />
+    <Compile Include="Assets\Sources\Features\PlayerFeature.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

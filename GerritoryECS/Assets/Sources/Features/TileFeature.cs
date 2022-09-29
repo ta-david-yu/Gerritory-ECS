@@ -6,6 +6,9 @@ public sealed class TileFeature : Feature
 {
 	public TileFeature(Contexts contexts)
 	{
+		// Construct tile systems
+		Add(new ConstructTileSystem(contexts));
+
 		// Tile systems
 		Add(new TakeOverOwnableOnEnterTileSystem(contexts));
 		Add(new CollapseTileOnLeaveTileSystem(contexts));

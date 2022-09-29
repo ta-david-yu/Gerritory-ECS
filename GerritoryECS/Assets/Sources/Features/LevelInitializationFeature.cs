@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class LevelInitializationFeature : Feature
+public sealed class InitializationFeature : Feature
 {
-	public LevelInitializationFeature(Contexts contexts)
+	public InitializationFeature(Contexts contexts)
 	{
 		// Initialization systems
 		{
@@ -13,16 +13,6 @@ public sealed class LevelInitializationFeature : Feature
 
 			// Id counter initialize systems
 			Add(new InitializeUniqueIdCounterSystem(contexts));
-
-			// Setup game info related systems
-			Add(new SetupGameInfoSystem(contexts));
-			Add(new SetupGameRuleSystem(contexts));
-
-			// Level construction systems
-			Add(new ConstructLevelSystem(contexts));
-
-			// Player construction systems
-			Add(new ConstructPlayerSystem(contexts));
 		}
 	}
 }
