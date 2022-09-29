@@ -37,9 +37,17 @@ public sealed class InGameStateMachineSystem : IInitializeSystem
 				playerConfig.PlayerId, 
 				playerConfig.PlayerName, 
 				playerConfig.TeamId, 
-				playerConfig.SkinId, 
-				playerConfig.IsAI
+				playerConfig.SkinId
 			);
+
+			if (!playerConfig.IsAI)
+			{
+				m_LevelContext.CreateEntity().AddConstructUserInput(playerConfig.PlayerId, playerConfig.PlayerId);
+			}
+			else
+			{
+				m_LevelContext.CreateEntity().AddConstructAIInput(Movement.Type.Right, playerConfig.PlayerId);
+			}
 		}
 
 		LevelData levelData = m_ConfigContext.GameConfig.value.LevelData;

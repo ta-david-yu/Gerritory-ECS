@@ -35,15 +35,6 @@ public sealed class ConstructPlayerSystem : IFixedUpdateSystem
 		{
 			ConstructPlayerComponent constructPlayerComponent = constructPlayerRequest.ConstructPlayer;
 			ElementEntity playerEntity = createPlayerEntity(constructPlayerComponent);
-			InputEntity inputEntity = m_InputContext.CreateEntity();
-			if (constructPlayerComponent.IsAI)
-			{
-				inputEntity.AddAIInput(Movement.Type.Right, constructPlayerComponent.PlayerId);
-			}
-			else
-			{
-				inputEntity.AddUserInput(constructPlayerComponent.PlayerId, constructPlayerComponent.PlayerId);
-			}
 
 			constructPlayerRequest.Destroy();
 		}

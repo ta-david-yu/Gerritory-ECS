@@ -12,7 +12,7 @@ public partial class LevelEntity
 	public ConstructPlayerComponent ConstructPlayer { get { return (ConstructPlayerComponent)GetComponent(LevelComponentsLookup.ConstructPlayer); } }
 	public bool HasConstructPlayer { get { return HasComponent(LevelComponentsLookup.ConstructPlayer); } }
 
-	public void AddConstructPlayer(int newPlayerId, string newPlayerName, int newTeamId, int newSkinId, bool newIsAI)
+	public void AddConstructPlayer(int newPlayerId, string newPlayerName, int newTeamId, int newSkinId)
 	{
 		var index = LevelComponentsLookup.ConstructPlayer;
 		var component = (ConstructPlayerComponent)CreateComponent(index, typeof(ConstructPlayerComponent));
@@ -21,12 +21,11 @@ public partial class LevelEntity
 		component.PlayerName = newPlayerName;
 		component.TeamId = newTeamId;
 		component.SkinId = newSkinId;
-		component.IsAI = newIsAI;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceConstructPlayer(int newPlayerId, string newPlayerName, int newTeamId, int newSkinId, bool newIsAI)
+	public void ReplaceConstructPlayer(int newPlayerId, string newPlayerName, int newTeamId, int newSkinId)
 	{
 		var index = LevelComponentsLookup.ConstructPlayer;
 		var component = (ConstructPlayerComponent)CreateComponent(index, typeof(ConstructPlayerComponent));
@@ -35,7 +34,6 @@ public partial class LevelEntity
 		component.PlayerName = newPlayerName;
 		component.TeamId = newTeamId;
 		component.SkinId = newSkinId;
-		component.IsAI = newIsAI;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -48,8 +46,7 @@ public partial class LevelEntity
 		component.PlayerId = copyComponent.PlayerId;
 		component.PlayerName = copyComponent.PlayerName;
 		component.TeamId = copyComponent.TeamId;
-		component.SkinId = copyComponent.SkinId;
-		component.IsAI = copyComponent.IsAI;
+		component.SkinId = copyComponent.SkinId;
 		#endif
 		ReplaceComponent(index, component);
 	}
