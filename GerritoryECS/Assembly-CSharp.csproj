@@ -75,7 +75,7 @@
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectSpeedEffectComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\CanBeRespawnedOnComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectOnTileElementEffectComponent.cs" />
-    <Compile Include="Assets\Sources\Features\LevelInitializationFeature.cs" />
+    <Compile Include="Assets\Sources\Features\InitializationFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigDebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\CreateWaitingForRespawnStateOnDeathSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Game\Components\GameMoveOnTileEndAddedListenerComponent.cs" />
@@ -438,6 +438,9 @@
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructPlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructTileComponent.cs" />
     <Compile Include="Assets\Sources\Features\PlayerFeature.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\ConstructInputEntitySystem.cs" />
+    <Compile Include="Assets\Sources\Components\Level\ConstructInputEntityComponent.cs" />
+    <Compile Include="Assets\Sources\Features\GameInfoFeature.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

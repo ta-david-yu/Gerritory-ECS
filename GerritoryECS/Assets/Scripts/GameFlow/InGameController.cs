@@ -60,7 +60,11 @@ public class InGameController : MonoBehaviour
 	private static Systems createSystems(Contexts contexts)
 	{
 		return new Feature("Systems")
-			// In-game-scene-only features
+			
+			// Core game info feature
+			.Add(new GameInfoFeature(contexts))
+
+			// In-game-scene state machine feature, this can be removed
 			.Add(new InGameFlowFeature(contexts))
 
 			// Core gameplay features
