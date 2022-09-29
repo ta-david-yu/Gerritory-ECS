@@ -18,9 +18,13 @@ public partial class LevelEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is ConstructInputEntityComponent ConstructInputEntity)
+		if (component is ConstructAIInputComponent ConstructAIInput)
 		{
-			IsConstructInputEntity = true;
+			CopyConstructAIInputTo(ConstructAIInput);
+		}
+		else if (component is ConstructUserInputComponent ConstructUserInput)
+		{
+			CopyConstructUserInputTo(ConstructUserInput);
 		}
 		else if (component is ConstructTileComponent ConstructTile)
 		{

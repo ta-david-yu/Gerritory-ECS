@@ -13,25 +13,27 @@ using JCMG.EntitasRedux;
 
 public static class LevelComponentsLookup
 {
-	public const int ConstructInputEntity = 0;
+	public const int ConstructAIInput = 0;
 	public const int ConstructPlayer = 1;
 	public const int ConstructTile = 2;
-	public const int GameInfo = 3;
-	public const int GameTimer = 4;
-	public const int ItemEaterIdCounter = 5;
-	public const int OnTileElementIdCounter = 6;
-	public const int StateHolderIdCounter = 7;
-	public const int TeamGameRanking = 8;
-	public const int TeamInfo = 9;
-	public const int TeamScore = 10;
+	public const int ConstructUserInput = 3;
+	public const int GameInfo = 4;
+	public const int GameTimer = 5;
+	public const int ItemEaterIdCounter = 6;
+	public const int OnTileElementIdCounter = 7;
+	public const int StateHolderIdCounter = 8;
+	public const int TeamGameRanking = 9;
+	public const int TeamInfo = 10;
+	public const int TeamScore = 11;
 
-	public const int TotalComponents = 11;
+	public const int TotalComponents = 12;
 
 	public static readonly string[] ComponentNames =
 	{
-		"ConstructInputEntity",
+		"ConstructAIInput",
 		"ConstructPlayer",
 		"ConstructTile",
+		"ConstructUserInput",
 		"GameInfo",
 		"GameTimer",
 		"ItemEaterIdCounter",
@@ -44,9 +46,10 @@ public static class LevelComponentsLookup
 
 	public static readonly System.Type[] ComponentTypes =
 	{
-		typeof(ConstructInputEntityComponent),
+		typeof(ConstructAIInputComponent),
 		typeof(ConstructPlayerComponent),
 		typeof(ConstructTileComponent),
+		typeof(ConstructUserInputComponent),
 		typeof(GameInfoComponent),
 		typeof(GameTimerComponent),
 		typeof(ItemEaterIdCounterComponent),
@@ -59,17 +62,18 @@ public static class LevelComponentsLookup
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(ConstructInputEntityComponent), 0 },
+		{ typeof(ConstructAIInputComponent), 0 },
 		{ typeof(ConstructPlayerComponent), 1 },
 		{ typeof(ConstructTileComponent), 2 },
-		{ typeof(GameInfoComponent), 3 },
-		{ typeof(GameTimerComponent), 4 },
-		{ typeof(ItemEaterIdCounterComponent), 5 },
-		{ typeof(OnTileElementIdCounterComponent), 6 },
-		{ typeof(StateHolderIdCounterComponent), 7 },
-		{ typeof(TeamGameRankingComponent), 8 },
-		{ typeof(TeamInfoComponent), 9 },
-		{ typeof(TeamScoreComponent), 10 }
+		{ typeof(ConstructUserInputComponent), 3 },
+		{ typeof(GameInfoComponent), 4 },
+		{ typeof(GameTimerComponent), 5 },
+		{ typeof(ItemEaterIdCounterComponent), 6 },
+		{ typeof(OnTileElementIdCounterComponent), 7 },
+		{ typeof(StateHolderIdCounterComponent), 8 },
+		{ typeof(TeamGameRankingComponent), 9 },
+		{ typeof(TeamInfoComponent), 10 },
+		{ typeof(TeamScoreComponent), 11 }
 	};
 
 	/// <summary>

@@ -390,7 +390,6 @@
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructTileComponent.cs" />
     <Compile Include="Assets\Sources\Features\PlayerFeature.cs" />
     <Compile Include="Assets\Sources\Systems\Level\ConstructInputEntitySystem.cs" />
-    <Compile Include="Assets\Sources\Components\Level\ConstructInputEntityComponent.cs" />
     <Compile Include="Assets\Sources\Features\GameInfoFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementIComponentRefComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\ElementEntity.cs" />
@@ -422,7 +421,6 @@
     <Compile Include="Assets\Sources\Generated\Events\ElementEventSystems.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementDeadComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementEntity_CopyTo.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructInputEntityComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementCanRespawnAfterDeathComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMoveOnTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementCanBeDeadComponent.cs" />
@@ -454,6 +452,10 @@
     <Compile Include="Assets\Sources\Generated\GameFlow\Systems\GameFlowCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Components\GameFlow\GameFlowComponent.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowGameFlowComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\ConstructUserInputComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\ConstructAIInputComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructUserInputComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructAIInputComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

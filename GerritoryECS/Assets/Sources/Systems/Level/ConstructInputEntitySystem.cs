@@ -9,28 +9,36 @@ using UnityEngine;
 public class ConstructInputEntitySystem : IFixedUpdateSystem
 {
 	private readonly LevelContext m_LevelContext;
-	private readonly ElementContext m_ElementContext;
 	private readonly InputContext m_InputContext;
-	private readonly ConfigContext m_ConfigContext;
-	private readonly MessageContext m_MessageContext;
-	private readonly Contexts m_Contexts;
 
-	private readonly IGroup<LevelEntity> m_ConstructInputRequestGroup;
+	private readonly IGroup<LevelEntity> m_ConstructUserInputGroup;
+	private readonly IGroup<LevelEntity> m_ConstructAIInputGroup;
 
 	public ConstructInputEntitySystem(Contexts contexts)
 	{
 		m_LevelContext = contexts.Level;
-		m_ElementContext = contexts.Element;
 		m_InputContext = contexts.Input;
-		m_ConfigContext = contexts.Config;
-		m_MessageContext = contexts.Message;
-		m_Contexts = contexts;
 
-		m_ConstructInputRequestGroup = m_LevelContext.GetGroup(LevelMatcher.ConstructPlayer);
+		m_ConstructUserInputGroup = m_LevelContext.GetGroup(LevelMatcher.ConstructUserInput);
+		m_ConstructAIInputGroup = m_LevelContext.GetGroup(LevelMatcher.ConstructAIInput);
 	}
 
 	public void FixedUpdate()
 	{
-		throw new System.NotImplementedException();
+		foreach (var constructUserInputEntity in m_ConstructUserInputGroup.GetEntities())
+		{
+			InputEntity inputEntity = m_InputContext.CreateEntity();
+			inputEntity.AddUserInput(constructUserInputEntity.ConstructUserInput.TargetPlayerId, constructUserInputEntity.ConstructUserInput.TargetPlayerId);
+
+			constructUserInputEntity.Destroy();
+		}
+
+		foreach (var constructAIInputEntity in m_ConstructAIInputGroup.GetEntities())
+		{
+			InputEntity inputEntity = m_InputContext.CreateEntity();
+			inputEntity.AddAIInput(constructAIInputEntity.ConstructAIInput.Movement, constructAIInputEntity.ConstructAIInput.TargetPlayerId);
+
+			constructAIInputEntity.Destroy();
+		}
 	}
 }

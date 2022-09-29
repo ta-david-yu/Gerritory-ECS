@@ -30,7 +30,7 @@ MonoBehaviour:
     PlayerName: Player 3
     TeamId: 1
     SkinId: 0
-    IsAI: 0
+    IsAI: 1
   - PlayerId: 3
     PlayerName: Player 4
     TeamId: 2

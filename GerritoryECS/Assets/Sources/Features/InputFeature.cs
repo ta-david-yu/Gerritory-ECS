@@ -7,6 +7,9 @@ public sealed class InputFeature : Feature
 {
 	public InputFeature(Contexts contexts)
 	{
+		// Construct input systems
+		Add(new ConstructInputEntitySystem(contexts));
+
 		// Read/emit Input from Users or AI
 		Add(new EmitUserInputSystem(contexts));
 		Add(new EmitAIInputSystem(contexts));
