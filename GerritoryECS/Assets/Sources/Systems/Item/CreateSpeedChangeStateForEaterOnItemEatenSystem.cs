@@ -6,7 +6,7 @@ using UnityEngine;
 
 public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpdateSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly ItemContext m_ItemContext;
 	private readonly PlayerStateContext m_PlayerStateContext;
 
@@ -16,7 +16,7 @@ public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpda
 
 	public CreateSpeedChangeStateForEaterOnItemEatenSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_ItemContext = contexts.Item;
 		m_PlayerStateContext = contexts.PlayerState;
 		m_EatenSpeedChangePowerupGroup = m_ItemContext.GetGroup(ItemMatcher.AllOf(ItemMatcher.OnTileItem, ItemMatcher.ApplySpeedChangeStateForEaterOnEaten, ItemMatcher.Eaten));
@@ -26,7 +26,7 @@ public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpda
 	{
 		foreach (var powerupEntity in m_EatenSpeedChangePowerupGroup.GetEntities())
 		{
-			GameEntity eaterEntity = m_GameContext.GetEntityWithItemEater(powerupEntity.Eaten.EaterId);
+			ElementEntity eaterEntity = m_ElementContext.GetEntityWithItemEater(powerupEntity.Eaten.EaterId);
 			if (!eaterEntity.HasStateHolder)
 			{
 				// The eater cannot hold a state, skip it.

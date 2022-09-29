@@ -6,7 +6,7 @@ using UnityEngine;
 public sealed class RespawnOnWaitingForRespawnStateRemovedSystem : IInitializeSystem, ITearDownSystem
 {
 	private readonly Contexts m_Contexts;
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly MessageContext m_MessageContext;
 	private readonly PlayerStateContext m_PlayerStateContext;
 	private readonly IGroup<PlayerStateEntity> m_WaitingForRespawnStateGroup;
@@ -16,7 +16,7 @@ public sealed class RespawnOnWaitingForRespawnStateRemovedSystem : IInitializeSy
 	public RespawnOnWaitingForRespawnStateRemovedSystem(Contexts contexts)
 	{
 		m_Contexts = contexts;
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_MessageContext = contexts.Message;
 		m_PlayerStateContext = contexts.PlayerState;
 
@@ -70,7 +70,7 @@ public sealed class RespawnOnWaitingForRespawnStateRemovedSystem : IInitializeSy
 		}
 
 		// Find a valid position for respawn and revive the state holder entity.
-		var stateHolderEntity = m_GameContext.GetEntityWithStateHolder(stateHolderId);
+		var stateHolderEntity = m_ElementContext.GetEntityWithStateHolder(stateHolderId);
 		TryGetValidRespawnPositionResult respawnPositionQueryResult = m_Contexts.TryGetValidRespawnPositionOfAreaIdFor(stateHolderEntity, targetRespawnAreaId);
 		if (respawnPositionQueryResult.Success)
 		{

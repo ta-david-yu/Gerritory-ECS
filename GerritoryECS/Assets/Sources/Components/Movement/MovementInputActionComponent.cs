@@ -17,7 +17,7 @@ public static class Movement
 	public static readonly Vector2Int[] TypeToOffset = new Vector2Int[4] { Vector2Int.right, Vector2Int.down, Vector2Int.left, Vector2Int.up };
 }
 
-[Game]
+[Element]
 public sealed class MovementInputActionComponent : IComponent
 {
 	public Movement.Type Type;

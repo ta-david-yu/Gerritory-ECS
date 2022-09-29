@@ -39,7 +39,7 @@ public static class GameHelper
 
 	public static bool IsTileAtPositionOccupied(this Contexts contexts, Vector2Int position)
 	{
-		HashSet<GameEntity> onTileEntities = contexts.Game.GetEntitiesWithOnTilePosition(position);
+		HashSet<ElementEntity> onTileEntities = contexts.Element.GetEntitiesWithOnTilePosition(position);
 		bool isEntityOccupyingTheGiveTile = onTileEntities.Any(entity => !entity.HasMoveOnTile || entity.HasMoveOnTileBegin);
 		if (isEntityOccupyingTheGiveTile)
 		{
@@ -47,7 +47,7 @@ public static class GameHelper
 			return true;
 		}
 
-		HashSet<GameEntity> movingToTargetPositionEntities = contexts.Game.GetEntitiesWithMoveOnTile(position);
+		HashSet<ElementEntity> movingToTargetPositionEntities = contexts.Element.GetEntitiesWithMoveOnTile(position);
 		if (movingToTargetPositionEntities.Count > 0)
 		{
 			// This position has already been reserved by another MoveOnTile entity.
@@ -58,7 +58,7 @@ public static class GameHelper
 	}
 
 	private static IGroup<TileEntity> s_RespawnableTileGroup = null;
-	private static TryGetValidRespawnPositionResult tryGetValidRespawnPositionFor(this Contexts contexts, GameEntity entity)
+	private static TryGetValidRespawnPositionResult tryGetValidRespawnPositionFor(this Contexts contexts, ElementEntity entity)
 	{
 		if (s_RespawnableTileGroup == null)
 		{
@@ -87,7 +87,7 @@ public static class GameHelper
 		TileEntity randomlyPickedTileEntity = validTileEntities.ElementAt(UnityEngine.Random.Range(0, validTileEntities.Count()));
 		return new TryGetValidRespawnPositionResult() { Success = true, TilePosition = randomlyPickedTileEntity.TilePosition.Value };
 	}
-	public static TryGetValidRespawnPositionResult TryGetValidRespawnPositionOfAreaIdFor(this Contexts contexts, GameEntity entity, int respawnAreaId)
+	public static TryGetValidRespawnPositionResult TryGetValidRespawnPositionOfAreaIdFor(this Contexts contexts, ElementEntity entity, int respawnAreaId)
 	{
 		// TODO: Add respawn area id search filter
 		// ...
@@ -121,7 +121,7 @@ public static class GameHelper
 	private const int k_InivinciblePriority = -1;
 	private const int k_GhsotPriority = -1;
 	
-	public static int GetOnTileElementKillPriority(this Contexts contexts, GameEntity onTileEntity)
+	public static int GetOnTileElementKillPriority(this Contexts contexts, ElementEntity onTileEntity)
 	{
 		int priority = 0;
 		if (onTileEntity.IsTileOwner && onTileEntity.HasTeam)
@@ -139,12 +139,12 @@ public static class GameHelper
 		return priority;
 	}
 
-	public static int GetNumberOfTeamPlayersAlive(this GameContext context, int teamId)
+	public static int GetNumberOfTeamPlayersAlive(this ElementContext context, int teamId)
 	{
 		return context.GetEntitiesWithTeam(teamId).Where(gameEntity => gameEntity.HasPlayer && !gameEntity.IsDead).Count();
 	}
 
-	public static TryKillResult TryKill(this Contexts contexts, GameEntity onTileEntity)
+	public static TryKillResult TryKill(this Contexts contexts, ElementEntity onTileEntity)
 	{
 		if (!onTileEntity.IsCanBeDead)
 		{
@@ -187,7 +187,7 @@ public static class GameHelper
 		return new TryKillResult { Success = true };
 	}
 
-	public static bool CanStepOnVictim(this Contexts contexts, GameEntity stepperEntity, GameEntity victimEntity)
+	public static bool CanStepOnVictim(this Contexts contexts, ElementEntity stepperEntity, ElementEntity victimEntity)
 	{
 		if (stepperEntity.HasTeam && victimEntity.HasTeam && stepperEntity.Team.Id == victimEntity.Team.Id)
 		{

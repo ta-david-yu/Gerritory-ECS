@@ -7,29 +7,29 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class TeamAddedEventSystem : JCMG.EntitasRedux.ReactiveSystem<GameEntity>
+public sealed class TeamAddedEventSystem : JCMG.EntitasRedux.ReactiveSystem<ElementEntity>
 {
 	readonly System.Collections.Generic.List<ITeamAddedListener> _listenerBuffer;
 
-	public TeamAddedEventSystem(Contexts contexts) : base(contexts.Game)
+	public TeamAddedEventSystem(Contexts contexts) : base(contexts.Element)
 	{
 		_listenerBuffer = new System.Collections.Generic.List<ITeamAddedListener>();
 	}
 
-	protected override JCMG.EntitasRedux.ICollector<GameEntity> GetTrigger(JCMG.EntitasRedux.IContext<GameEntity> context)
+	protected override JCMG.EntitasRedux.ICollector<ElementEntity> GetTrigger(JCMG.EntitasRedux.IContext<ElementEntity> context)
 	{
 		return JCMG.EntitasRedux.CollectorContextExtension.CreateCollector(
 			context,
-			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Added(GameMatcher.Team)
+			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Added(ElementMatcher.Team)
 		);
 	}
 
-	protected override bool Filter(GameEntity entity)
+	protected override bool Filter(ElementEntity entity)
 	{
 		return entity.HasTeam && entity.HasTeamAddedListener;
 	}
 
-	protected override void Execute(System.Collections.Generic.List<GameEntity> entities)
+	protected override void Execute(System.Collections.Generic.List<ElementEntity> entities)
 	{
 		foreach (var e in entities)
 		{

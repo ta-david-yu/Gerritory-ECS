@@ -1,7 +1,7 @@
 using JCMG.EntitasRedux;
 using UnityEngine;
 
-[Game]
+[Element]
 [Cleanup(CleanupMode.RemoveComponent)]
 [Event(EventTarget.Self)]
 public sealed class MoveOnTileEndComponent : IComponent

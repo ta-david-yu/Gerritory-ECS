@@ -11,11 +11,11 @@ public class PlayerDeathAnimationController : EntityCreationEventListenerBase, I
 	/// <summary>
 	/// For debug purpose
 	/// </summary>
-	private GameEntity m_CahcedGameEntity;
+	private ElementEntity m_CahcedGameEntity;
 
 	public override void HandleOnEntityCreated(IEntity entity)
 	{
-		GameEntity gameEntity = entity as GameEntity;
+		ElementEntity gameEntity = entity as ElementEntity;
 
 		// Register listener to relevant components
 		gameEntity.AddDeadAddedListener(this);
@@ -26,16 +26,16 @@ public class PlayerDeathAnimationController : EntityCreationEventListenerBase, I
 
 	public override void HandleOnComponentsAdded(IEntity entity)
 	{
-		GameEntity gameEntity = entity as GameEntity;
+		ElementEntity gameEntity = entity as ElementEntity;
 		m_Appearance.SetActive(!gameEntity.IsDead);
 	}
 
-	public void OnDeadAdded(GameEntity entity)
+	public void OnDeadAdded(ElementEntity entity)
 	{
 		m_Appearance.SetActive(false);
 	}
 
-	public void OnDeadRemoved(GameEntity entity)
+	public void OnDeadRemoved(ElementEntity entity)
 	{
 		m_Appearance.SetActive(true);
 	}

@@ -9,5 +9,5 @@
 //------------------------------------------------------------------------------
 public interface ITeamAddedListener
 {
-	void OnTeamAdded(GameEntity entity, int id);
+	void OnTeamAdded(ElementEntity entity, int id);
 }

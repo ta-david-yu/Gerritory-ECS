@@ -5,7 +5,7 @@ using UnityEngine;
 
 public sealed class UpdateStateTimerSystem : IFixedUpdateSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly ItemContext m_ItemContex;
 	private readonly PlayerStateContext m_PlayerStateContext;
 
@@ -13,7 +13,7 @@ public sealed class UpdateStateTimerSystem : IFixedUpdateSystem
 
 	public UpdateStateTimerSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_ItemContex = contexts.Item;
 		m_PlayerStateContext = contexts.PlayerState;
 

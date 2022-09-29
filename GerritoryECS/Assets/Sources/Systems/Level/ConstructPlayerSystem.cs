@@ -9,7 +9,7 @@ using UnityEngine;
 public sealed class ConstructPlayerSystem : IFixedUpdateSystem
 {
 	private readonly LevelContext m_LevelContext;
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly InputContext m_InputContext;
 	private readonly ConfigContext m_ConfigContext;
 	private readonly MessageContext m_MessageContext;
@@ -20,7 +20,7 @@ public sealed class ConstructPlayerSystem : IFixedUpdateSystem
 	public ConstructPlayerSystem(Contexts contexts)
 	{
 		m_LevelContext = contexts.Level;
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_InputContext = contexts.Input;
 		m_ConfigContext = contexts.Config;
 		m_MessageContext = contexts.Message;
@@ -34,7 +34,7 @@ public sealed class ConstructPlayerSystem : IFixedUpdateSystem
 		foreach (var constructPlayerRequest in m_ConstructPlayerRequestGroup.GetEntities())
 		{
 			ConstructPlayerComponent constructPlayerComponent = constructPlayerRequest.ConstructPlayer;
-			GameEntity playerEntity = createPlayerEntity(constructPlayerComponent);
+			ElementEntity playerEntity = createPlayerEntity(constructPlayerComponent);
 			InputEntity inputEntity = m_InputContext.CreateEntity();
 			if (constructPlayerComponent.IsAI)
 			{
@@ -49,12 +49,12 @@ public sealed class ConstructPlayerSystem : IFixedUpdateSystem
 		}
 	}
 
-	private GameEntity createPlayerEntity(ConstructPlayerComponent constructPlayerRequest)
+	private ElementEntity createPlayerEntity(ConstructPlayerComponent constructPlayerRequest)
 	{
 		IPlayerFactory playerFactory = m_ConfigContext.GameConfig.value.PlayerFactory;
 
 		// Create player entity and its view controller
-		GameEntity playerEntity = m_GameContext.CreateEntity();
+		ElementEntity playerEntity = m_ElementContext.CreateEntity();
 		IEntityCreationEventController viewController = playerFactory.CreatePlayerView(constructPlayerRequest.PlayerId, constructPlayerRequest.TeamId, constructPlayerRequest.SkinId);
 		viewController.OnEntityCreated(playerEntity);
 		

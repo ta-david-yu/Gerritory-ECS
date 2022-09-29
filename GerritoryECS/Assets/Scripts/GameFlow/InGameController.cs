@@ -74,15 +74,15 @@ public class InGameController : MonoBehaviour
 			.Add(new MovementFeature(contexts))
 			.Add(new TileFeature(contexts))
 			.Add(new ItemFeature(contexts))
-			.Add(new PlayerFeature(contexts))
+			.Add(new ElementFeature(contexts))
 			.Add(new PlayerStateFeature(contexts))
 
 			.Add(new MessageFeature(contexts))
 
-			.Add(new GameEventSystems(contexts))
+			.Add(new ElementEventSystems(contexts))
 			.Add(new TileEventSystems(contexts))
 
-			.Add(new GameCleanupSystems(contexts.Game))
+			.Add(new ElementCleanupSystems(contexts.Element))
 			.Add(new TileCleanupSystems(contexts.Tile));
 	}
 

@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly PlayerStateContext m_PlayerStateContext;
 	private readonly IGroup<PlayerStateEntity> m_SpeedChangeStateGroup;
 
@@ -18,7 +18,7 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 
 	public SpeedChangeStateSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_PlayerStateContext = contexts.PlayerState;
 
 		m_SpeedChangeStateGroup = m_PlayerStateContext.GetGroup(PlayerStateMatcher.AllOf(PlayerStateMatcher.State, PlayerStateMatcher.SpeedChangeState));
@@ -46,7 +46,7 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 		int stateHolderId = entity.State.HolderId;
 		float speedMultiplier = entity.SpeedChangeState.SpeedMultiplier;
 
-		var stateHolderEntity = m_GameContext.GetEntityWithOnTileElement(stateHolderId);
+		var stateHolderEntity = m_ElementContext.GetEntityWithOnTileElement(stateHolderId);
 		if (stateHolderEntity.HasSpeedChangeable)
 		{
 			stateHolderEntity.ReplaceSpeedChangeable(
@@ -95,7 +95,7 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 		}
 
 		// Recover the speed of the state holder based on the speed multiplier.
-		var stateHolderEntity = m_GameContext.GetEntityWithStateHolder(stateHolderId);
+		var stateHolderEntity = m_ElementContext.GetEntityWithStateHolder(stateHolderId);
 		if (stateHolderEntity.HasSpeedChangeable)
 		{
 			stateHolderEntity.ReplaceSpeedChangeable(

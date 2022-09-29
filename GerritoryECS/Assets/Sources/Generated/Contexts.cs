@@ -59,7 +59,8 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 
 	public ConfigContext Config { get; set; }
 	public EffectContext Effect { get; set; }
-	public GameContext Game { get; set; }
+	public ElementContext Element { get; set; }
+	public GameFlowContext GameFlow { get; set; }
 	public InputContext Input { get; set; }
 	public ItemContext Item { get; set; }
 	public LevelContext Level { get; set; }
@@ -67,13 +68,14 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 	public PlayerStateContext PlayerState { get; set; }
 	public TileContext Tile { get; set; }
 
-	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Config, Effect, Game, Input, Item, Level, Message, PlayerState, Tile }; } }
+	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Config, Effect, Element, GameFlow, Input, Item, Level, Message, PlayerState, Tile }; } }
 
 	public Contexts()
 	{
 		Config = new ConfigContext();
 		Effect = new EffectContext();
-		Game = new GameContext();
+		Element = new ElementContext();
+		GameFlow = new GameFlowContext();
 		Input = new InputContext();
 		Item = new ItemContext();
 		Level = new LevelContext();
@@ -145,19 +147,19 @@ public partial class Contexts
 			Item.GetGroup(ItemMatcher.Eaten),
 			(e, c) => ((EatenComponent)c).EaterId));
 
-		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
+		Element.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>(
 			ItemEater,
-			Game.GetGroup(GameMatcher.ItemEater),
+			Element.GetGroup(ElementMatcher.ItemEater),
 			(e, c) => ((ItemEaterComponent)c).Id));
 
-		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>(
+		Element.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<ElementEntity, UnityEngine.Vector2Int>(
 			MoveOnTile,
-			Game.GetGroup(GameMatcher.MoveOnTile),
+			Element.GetGroup(ElementMatcher.MoveOnTile),
 			(e, c) => ((MoveOnTileComponent)c).ToPosition));
 
-		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
+		Element.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>(
 			OnTileElement,
-			Game.GetGroup(GameMatcher.OnTileElement),
+			Element.GetGroup(ElementMatcher.OnTileElement),
 			(e, c) => ((OnTileElementComponent)c).Id));
 
 		Effect.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<EffectEntity, int>(
@@ -180,9 +182,9 @@ public partial class Contexts
 			Item.GetGroup(ItemMatcher.OnTileItem),
 			(e, c) => ((OnTileItemComponent)c).Position));
 
-		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>(
+		Element.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<ElementEntity, UnityEngine.Vector2Int>(
 			OnTilePosition,
-			Game.GetGroup(GameMatcher.OnTilePosition),
+			Element.GetGroup(ElementMatcher.OnTilePosition),
 			(e, c) => ((OnTilePositionComponent)c).Value));
 
 		Tile.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<TileEntity, int>(
@@ -190,9 +192,9 @@ public partial class Contexts
 			Tile.GetGroup(TileMatcher.Owner),
 			(e, c) => ((OwnerComponent)c).OwnerTeamId));
 
-		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
+		Element.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>(
 			Player,
-			Game.GetGroup(GameMatcher.Player),
+			Element.GetGroup(ElementMatcher.Player),
 			(e, c) => ((PlayerComponent)c).Id));
 
 		PlayerState.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<PlayerStateEntity, int>(
@@ -200,14 +202,14 @@ public partial class Contexts
 			PlayerState.GetGroup(PlayerStateMatcher.State),
 			(e, c) => ((StateComponent)c).HolderId));
 
-		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
+		Element.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>(
 			StateHolder,
-			Game.GetGroup(GameMatcher.StateHolder),
+			Element.GetGroup(ElementMatcher.StateHolder),
 			(e, c) => ((StateHolderComponent)c).Id));
 
-		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, int>(
+		Element.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<ElementEntity, int>(
 			Team,
-			Game.GetGroup(GameMatcher.Team),
+			Element.GetGroup(ElementMatcher.Team),
 			(e, c) => ((TeamComponent)c).Id));
 
 		Level.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<LevelEntity, int>(
@@ -239,19 +241,19 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.EntityIndex<ItemEntity, int>)context.GetEntityIndex(Contexts.Eaten)).GetEntities(EaterId);
 	}
 
-	public static GameEntity GetEntityWithItemEater(this GameContext context, int Id)
+	public static ElementEntity GetEntityWithItemEater(this ElementContext context, int Id)
 	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.ItemEater)).GetEntity(Id);
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>)context.GetEntityIndex(Contexts.ItemEater)).GetEntity(Id);
 	}
 
-	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithMoveOnTile(this GameContext context, UnityEngine.Vector2Int ToPosition)
+	public static System.Collections.Generic.HashSet<ElementEntity> GetEntitiesWithMoveOnTile(this ElementContext context, UnityEngine.Vector2Int ToPosition)
 	{
-		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.MoveOnTile)).GetEntities(ToPosition);
+		return ((JCMG.EntitasRedux.EntityIndex<ElementEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.MoveOnTile)).GetEntities(ToPosition);
 	}
 
-	public static GameEntity GetEntityWithOnTileElement(this GameContext context, int Id)
+	public static ElementEntity GetEntityWithOnTileElement(this ElementContext context, int Id)
 	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.OnTileElement)).GetEntity(Id);
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>)context.GetEntityIndex(Contexts.OnTileElement)).GetEntity(Id);
 	}
 
 	public static System.Collections.Generic.HashSet<EffectEntity> GetEntitiesWithOnTileElementEffect(this EffectContext context, int OnTileElementId)
@@ -274,9 +276,9 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ItemEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTileItem)).GetEntity(Position);
 	}
 
-	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithOnTilePosition(this GameContext context, UnityEngine.Vector2Int Value)
+	public static System.Collections.Generic.HashSet<ElementEntity> GetEntitiesWithOnTilePosition(this ElementContext context, UnityEngine.Vector2Int Value)
 	{
-		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTilePosition)).GetEntities(Value);
+		return ((JCMG.EntitasRedux.EntityIndex<ElementEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.OnTilePosition)).GetEntities(Value);
 	}
 
 	public static System.Collections.Generic.HashSet<TileEntity> GetEntitiesWithOwner(this TileContext context, int OwnerTeamId)
@@ -284,9 +286,9 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.EntityIndex<TileEntity, int>)context.GetEntityIndex(Contexts.Owner)).GetEntities(OwnerTeamId);
 	}
 
-	public static GameEntity GetEntityWithPlayer(this GameContext context, int Id)
+	public static ElementEntity GetEntityWithPlayer(this ElementContext context, int Id)
 	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.Player)).GetEntity(Id);
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>)context.GetEntityIndex(Contexts.Player)).GetEntity(Id);
 	}
 
 	public static System.Collections.Generic.HashSet<PlayerStateEntity> GetEntitiesWithState(this PlayerStateContext context, int HolderId)
@@ -294,14 +296,14 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.EntityIndex<PlayerStateEntity, int>)context.GetEntityIndex(Contexts.State)).GetEntities(HolderId);
 	}
 
-	public static GameEntity GetEntityWithStateHolder(this GameContext context, int Id)
+	public static ElementEntity GetEntityWithStateHolder(this ElementContext context, int Id)
 	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.StateHolder)).GetEntity(Id);
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>)context.GetEntityIndex(Contexts.StateHolder)).GetEntity(Id);
 	}
 
-	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithTeam(this GameContext context, int Id)
+	public static System.Collections.Generic.HashSet<ElementEntity> GetEntitiesWithTeam(this ElementContext context, int Id)
 	{
-		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.Team)).GetEntities(Id);
+		return ((JCMG.EntitasRedux.EntityIndex<ElementEntity, int>)context.GetEntityIndex(Contexts.Team)).GetEntities(Id);
 	}
 
 	public static LevelEntity GetEntityWithTeamInfo(this LevelContext context, int Id)
@@ -337,7 +339,8 @@ public partial class Contexts {
 		try {
 			CreateContextObserver(Config);
 			CreateContextObserver(Effect);
-			CreateContextObserver(Game);
+			CreateContextObserver(Element);
+			CreateContextObserver(GameFlow);
 			CreateContextObserver(Input);
 			CreateContextObserver(Item);
 			CreateContextObserver(Level);

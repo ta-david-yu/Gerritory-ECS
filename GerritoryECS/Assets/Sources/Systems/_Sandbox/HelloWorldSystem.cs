@@ -5,11 +5,11 @@ using JCMG.EntitasRedux;
 
 public sealed class HelloWorldSystem : IInitializeSystem
 {
-	private readonly GameContext m_Context;
+	private readonly ElementContext m_Context;
 
 	public HelloWorldSystem(Contexts contexts)
 	{
-		m_Context = contexts.Game;
+		m_Context = contexts.Element;
 	}
 
 	public void Initialize()

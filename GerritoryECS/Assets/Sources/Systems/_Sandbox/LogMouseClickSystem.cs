@@ -5,11 +5,11 @@ using JCMG.EntitasRedux;
 
 public class LogMouseClickSystem : IUpdateSystem
 {
-	private readonly GameContext m_Context;
+	private readonly ElementContext m_Context;
 
 	public LogMouseClickSystem(Contexts contexts)
 	{
-		m_Context = contexts.Game;
+		m_Context = contexts.Element;
 	}
 
 	public void Update()

@@ -13,42 +13,30 @@ using JCMG.EntitasRedux;
 
 public static class LevelComponentsLookup
 {
-	public const int ConstructPlayer = 0;
-	public const int ConstructTile = 1;
-	public const int EndOnEliminated = 2;
-	public const int EndOnGoalReached = 3;
-	public const int EndOnTimeout = 4;
-	public const int GameInfo = 5;
-	public const int GameOver = 6;
-	public const int GameTimer = 7;
-	public const int ItemEaterIdCounter = 8;
-	public const int Level = 9;
-	public const int OnTileElementIdCounter = 10;
-	public const int ScoreObjective = 11;
-	public const int StateHolderIdCounter = 12;
-	public const int SurvivalObjective = 13;
-	public const int TeamGameRanking = 14;
-	public const int TeamInfo = 15;
-	public const int TeamScore = 16;
+	public const int ConstructInputEntity = 0;
+	public const int ConstructPlayer = 1;
+	public const int ConstructTile = 2;
+	public const int GameInfo = 3;
+	public const int GameTimer = 4;
+	public const int ItemEaterIdCounter = 5;
+	public const int OnTileElementIdCounter = 6;
+	public const int StateHolderIdCounter = 7;
+	public const int TeamGameRanking = 8;
+	public const int TeamInfo = 9;
+	public const int TeamScore = 10;
 
-	public const int TotalComponents = 17;
+	public const int TotalComponents = 11;
 
 	public static readonly string[] ComponentNames =
 	{
+		"ConstructInputEntity",
 		"ConstructPlayer",
 		"ConstructTile",
-		"EndOnEliminated",
-		"EndOnGoalReached",
-		"EndOnTimeout",
 		"GameInfo",
-		"GameOver",
 		"GameTimer",
 		"ItemEaterIdCounter",
-		"Level",
 		"OnTileElementIdCounter",
-		"ScoreObjective",
 		"StateHolderIdCounter",
-		"SurvivalObjective",
 		"TeamGameRanking",
 		"TeamInfo",
 		"TeamScore"
@@ -56,20 +44,14 @@ public static class LevelComponentsLookup
 
 	public static readonly System.Type[] ComponentTypes =
 	{
+		typeof(ConstructInputEntityComponent),
 		typeof(ConstructPlayerComponent),
 		typeof(ConstructTileComponent),
-		typeof(EndOnEliminatedComponent),
-		typeof(EndOnGoalReachedComponent),
-		typeof(EndOnTimeoutComponent),
 		typeof(GameInfoComponent),
-		typeof(GameOverComponent),
 		typeof(GameTimerComponent),
 		typeof(ItemEaterIdCounterComponent),
-		typeof(LevelComponent),
 		typeof(OnTileElementIdCounterComponent),
-		typeof(ScoreObjectiveComponent),
 		typeof(StateHolderIdCounterComponent),
-		typeof(SurvivalObjectiveComponent),
 		typeof(TeamGameRankingComponent),
 		typeof(TeamInfoComponent),
 		typeof(TeamScoreComponent)
@@ -77,23 +59,17 @@ public static class LevelComponentsLookup
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(ConstructPlayerComponent), 0 },
-		{ typeof(ConstructTileComponent), 1 },
-		{ typeof(EndOnEliminatedComponent), 2 },
-		{ typeof(EndOnGoalReachedComponent), 3 },
-		{ typeof(EndOnTimeoutComponent), 4 },
-		{ typeof(GameInfoComponent), 5 },
-		{ typeof(GameOverComponent), 6 },
-		{ typeof(GameTimerComponent), 7 },
-		{ typeof(ItemEaterIdCounterComponent), 8 },
-		{ typeof(LevelComponent), 9 },
-		{ typeof(OnTileElementIdCounterComponent), 10 },
-		{ typeof(ScoreObjectiveComponent), 11 },
-		{ typeof(StateHolderIdCounterComponent), 12 },
-		{ typeof(SurvivalObjectiveComponent), 13 },
-		{ typeof(TeamGameRankingComponent), 14 },
-		{ typeof(TeamInfoComponent), 15 },
-		{ typeof(TeamScoreComponent), 16 }
+		{ typeof(ConstructInputEntityComponent), 0 },
+		{ typeof(ConstructPlayerComponent), 1 },
+		{ typeof(ConstructTileComponent), 2 },
+		{ typeof(GameInfoComponent), 3 },
+		{ typeof(GameTimerComponent), 4 },
+		{ typeof(ItemEaterIdCounterComponent), 5 },
+		{ typeof(OnTileElementIdCounterComponent), 6 },
+		{ typeof(StateHolderIdCounterComponent), 7 },
+		{ typeof(TeamGameRankingComponent), 8 },
+		{ typeof(TeamInfoComponent), 9 },
+		{ typeof(TeamScoreComponent), 10 }
 	};
 
 	/// <summary>

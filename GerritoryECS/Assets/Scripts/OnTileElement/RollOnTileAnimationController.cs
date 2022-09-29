@@ -15,7 +15,7 @@ public class RollOnTileAnimationController : EntityCreationEventListenerBase, IM
 
 	public override void HandleOnEntityCreated(IEntity entity)
 	{
-		GameEntity gameEntity = entity as GameEntity;
+		ElementEntity gameEntity = entity as ElementEntity;
 
 		// Register listener to relevant components
 		gameEntity.AddMoveOnTileAddedListener(this);
@@ -27,7 +27,7 @@ public class RollOnTileAnimationController : EntityCreationEventListenerBase, IM
 	{
 	}
 
-	public void OnMoveOnTileAdded(GameEntity entity, float progress, Vector2Int fromPosition, Vector2Int toPosition)
+	public void OnMoveOnTileAdded(ElementEntity entity, float progress, Vector2Int fromPosition, Vector2Int toPosition)
 	{
 		Vector3 fromWorldPosition = GameConstants.TilePositionToWorldPosition(fromPosition);
 		Vector3 toWorldPosition = GameConstants.TilePositionToWorldPosition(toPosition);
@@ -42,7 +42,7 @@ public class RollOnTileAnimationController : EntityCreationEventListenerBase, IM
 		m_PreviousProgress = progress;
 	}
 
-	public void OnMoveOnTileEndAdded(GameEntity gameEntity, Vector2Int fromPosition, Vector2Int toPosition)
+	public void OnMoveOnTileEndAdded(ElementEntity gameEntity, Vector2Int fromPosition, Vector2Int toPosition)
 	{
 		Vector3 fromWorldPosition = GameConstants.TilePositionToWorldPosition(fromPosition);
 		Vector3 toWorldPosition = GameConstants.TilePositionToWorldPosition(toPosition);
@@ -57,7 +57,7 @@ public class RollOnTileAnimationController : EntityCreationEventListenerBase, IM
 		m_PreviousProgress = 0.0f;
 	}
 
-	public void OnOnTilePositionAdded(GameEntity entity, Vector2Int value)
+	public void OnOnTilePositionAdded(ElementEntity entity, Vector2Int value)
 	{
 		m_TransformToMove.localPosition = GameConstants.TilePositionToWorldPosition(value) + Vector3.up * GameConstants.TileOffset * 0.5f;
 	}

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Game]
+[Element]
 [System.Serializable]
 public sealed class ItemEaterComponent : IComponent
 {

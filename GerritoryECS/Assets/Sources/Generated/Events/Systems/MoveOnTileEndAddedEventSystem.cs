@@ -7,29 +7,29 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class MoveOnTileEndAddedEventSystem : JCMG.EntitasRedux.ReactiveSystem<GameEntity>
+public sealed class MoveOnTileEndAddedEventSystem : JCMG.EntitasRedux.ReactiveSystem<ElementEntity>
 {
 	readonly System.Collections.Generic.List<IMoveOnTileEndAddedListener> _listenerBuffer;
 
-	public MoveOnTileEndAddedEventSystem(Contexts contexts) : base(contexts.Game)
+	public MoveOnTileEndAddedEventSystem(Contexts contexts) : base(contexts.Element)
 	{
 		_listenerBuffer = new System.Collections.Generic.List<IMoveOnTileEndAddedListener>();
 	}
 
-	protected override JCMG.EntitasRedux.ICollector<GameEntity> GetTrigger(JCMG.EntitasRedux.IContext<GameEntity> context)
+	protected override JCMG.EntitasRedux.ICollector<ElementEntity> GetTrigger(JCMG.EntitasRedux.IContext<ElementEntity> context)
 	{
 		return JCMG.EntitasRedux.CollectorContextExtension.CreateCollector(
 			context,
-			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Added(GameMatcher.MoveOnTileEnd)
+			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Added(ElementMatcher.MoveOnTileEnd)
 		);
 	}
 
-	protected override bool Filter(GameEntity entity)
+	protected override bool Filter(ElementEntity entity)
 	{
 		return entity.HasMoveOnTileEnd && entity.HasMoveOnTileEndAddedListener;
 	}
 
-	protected override void Execute(System.Collections.Generic.List<GameEntity> entities)
+	protected override void Execute(System.Collections.Generic.List<ElementEntity> entities)
 	{
 		foreach (var e in entities)
 		{

@@ -15,14 +15,14 @@ public class PlayerTeamColorViewController : EntityCreationEventListenerBase, IT
 
 	public override void HandleOnEntityCreated(IEntity entity)
 	{
-		GameEntity gameEntity = entity as GameEntity;
+		ElementEntity gameEntity = entity as ElementEntity;
 
 		gameEntity.AddTeamAddedListener(this);
 	}
 
 	public override void HandleOnComponentsAdded(IEntity entity)
 	{
-		GameEntity gameEntity = entity as GameEntity;
+		ElementEntity gameEntity = entity as ElementEntity;
 
 		if (gameEntity.HasTeam)
 		{
@@ -31,7 +31,7 @@ public class PlayerTeamColorViewController : EntityCreationEventListenerBase, IT
 		}
 	}
 
-	public void OnTeamAdded(GameEntity entity, int id)
+	public void OnTeamAdded(ElementEntity entity, int id)
 	{
 		Color playerColor = m_ColorPalette.GetPlayerBodyColorForTeam(id);
 		changeRenderersColor(playerColor);

@@ -6,11 +6,11 @@ public sealed class InGameFlowFeature : Feature
 {
 	public InGameFlowFeature(Contexts contexts)
 	{
-		// Setup game rule related systems
-		Add(new SetupGameRuleSystem(contexts));
-
 		// In-game state machine system
 		Add(new InGameStateMachineSystem(contexts));
+
+		// Setup game rule related systems
+		Add(new SetupGameRuleSystem(contexts));
 
 		// Update general game info systems
 		Add(new UpdateTeamGameRankingSystem(contexts));

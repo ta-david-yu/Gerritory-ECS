@@ -9,7 +9,7 @@ using UnityEngine;
 public class ConstructInputEntitySystem : IFixedUpdateSystem
 {
 	private readonly LevelContext m_LevelContext;
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly InputContext m_InputContext;
 	private readonly ConfigContext m_ConfigContext;
 	private readonly MessageContext m_MessageContext;
@@ -20,7 +20,7 @@ public class ConstructInputEntitySystem : IFixedUpdateSystem
 	public ConstructInputEntitySystem(Contexts contexts)
 	{
 		m_LevelContext = contexts.Level;
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_InputContext = contexts.Input;
 		m_ConfigContext = contexts.Config;
 		m_MessageContext = contexts.Message;

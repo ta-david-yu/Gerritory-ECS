@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using JCMG.EntitasRedux;
 
-[Game]
+[Element]
 [Event(EventTarget.Self)]
 public sealed class MoveOnTileComponent : IComponent
 {

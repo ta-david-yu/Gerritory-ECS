@@ -5,7 +5,7 @@ using UnityEngine;
 
 public sealed class EatItemOnMoveEndSystem : IFixedUpdateSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly TileContext m_TileContext;
 	private readonly ItemContext m_ItemContext;
 	private readonly MessageContext m_MessageContext;
@@ -14,7 +14,7 @@ public sealed class EatItemOnMoveEndSystem : IFixedUpdateSystem
 
 	public EatItemOnMoveEndSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_TileContext = contexts.Tile;
 		m_ItemContext = contexts.Item;
 		m_MessageContext = contexts.Message;
@@ -27,7 +27,7 @@ public sealed class EatItemOnMoveEndSystem : IFixedUpdateSystem
 		foreach (MessageEntity enterMessageEntity in m_EnterTileMessageGroup)
 		{
 			int onTileElementId = enterMessageEntity.OnTileElementEnterTile.OnTileElementId;
-			GameEntity entererEntity = m_GameContext.GetEntityWithOnTileElement(onTileElementId);
+			ElementEntity entererEntity = m_ElementContext.GetEntityWithOnTileElement(onTileElementId);
 			if (!entererEntity.HasItemEater)
 			{
 				// The entering OnTileElement is not an ItemEater, do nothing.

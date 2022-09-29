@@ -6,7 +6,8 @@ using UnityEngine;
 
 public sealed class UpdateTeamGameRankingSystem : IFixedUpdateSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly GameFlowContext m_GameFlowContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly LevelContext m_LevelContext;
 	private readonly MessageContext m_MessageContext;
 
@@ -14,7 +15,8 @@ public sealed class UpdateTeamGameRankingSystem : IFixedUpdateSystem
 
 	public UpdateTeamGameRankingSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_GameFlowContext = contexts.GameFlow;
+		m_ElementContext = contexts.Element;
 		m_LevelContext = contexts.Level;
 		m_MessageContext = contexts.Message;
 
@@ -23,13 +25,13 @@ public sealed class UpdateTeamGameRankingSystem : IFixedUpdateSystem
 
 	public void FixedUpdate()
 	{
-		if (m_LevelContext.GameInfoEntity.IsGameOver)
+		if (m_GameFlowContext.GameFlowEntity.IsGameOver)
 		{
 			return;
 		}
 
 		// Update team game rankings.
-		if (m_LevelContext.GameInfoEntity.IsScoreObjective)
+		if (m_GameFlowContext.GameFlowEntity.IsScoreObjective)
 		{
 			var teamEntitiesOrderedByScore = m_TeamInfoGroup.GetEntities().
 				OrderBy(teamEntity => -teamEntity.TeamScore.Value).ToArray();
@@ -59,10 +61,10 @@ public sealed class UpdateTeamGameRankingSystem : IFixedUpdateSystem
 				previousTeamTileCount = teamEntity.TeamScore.Value;
 			}
 		}
-		else if (m_LevelContext.GameInfoEntity.IsSurvivalObjective)
+		else if (m_GameFlowContext.GameFlowEntity.IsSurvivalObjective)
 		{
 			var teamEntitiesOrderedByMemberCount = m_TeamInfoGroup.GetEntities().
-				OrderBy(teamEntity => -m_GameContext.GetNumberOfTeamPlayersAlive(teamEntity.TeamInfo.Id)).ToArray();
+				OrderBy(teamEntity => -m_ElementContext.GetNumberOfTeamPlayersAlive(teamEntity.TeamInfo.Id)).ToArray();
 
 			int previousTeamMemberCount = -1;
 			for (int teamOrder = 0; teamOrder < teamEntitiesOrderedByMemberCount.Length; teamOrder++)
@@ -70,7 +72,7 @@ public sealed class UpdateTeamGameRankingSystem : IFixedUpdateSystem
 				var teamEntity = teamEntitiesOrderedByMemberCount[teamOrder];
 				int oldTeamGameRanking = teamEntity.TeamGameRanking.Number;
 				int newTeamGameRanking = oldTeamGameRanking;
-				int teamMemeberCount = m_GameContext.GetEntitiesWithTeam(teamEntity.TeamInfo.Id).Count;
+				int teamMemeberCount = m_ElementContext.GetEntitiesWithTeam(teamEntity.TeamInfo.Id).Count;
 				if (teamMemeberCount == previousTeamMemberCount)
 				{
 					// The same ranking as the last team.

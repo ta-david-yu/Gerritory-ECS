@@ -9,7 +9,7 @@ using JCMG.EntitasRedux;
 /// </summary>
 public class CollapseTileOnLeaveTileSystem : IFixedUpdateSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly TileContext m_TileContext;
 	private readonly MessageContext m_MessageContext;
 
@@ -17,7 +17,7 @@ public class CollapseTileOnLeaveTileSystem : IFixedUpdateSystem
 
 	public CollapseTileOnLeaveTileSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_TileContext = contexts.Tile;
 		m_MessageContext = contexts.Message;
 
@@ -31,7 +31,7 @@ public class CollapseTileOnLeaveTileSystem : IFixedUpdateSystem
 		foreach (MessageEntity leaveMessageEntity in m_LeaveTileMessageGroup.GetEntities())
 		{
 			int onTileElementId = leaveMessageEntity.OnTileElementLeaveTile.OnTileElementId;
-			GameEntity leaverEntity = m_GameContext.GetEntityWithOnTileElement(onTileElementId);
+			ElementEntity leaverEntity = m_ElementContext.GetEntityWithOnTileElement(onTileElementId);
 			if (!leaverEntity.IsTileCollapser)
 			{
 				// The leaving OnTileElement is not a TileCollapser, do nothing.

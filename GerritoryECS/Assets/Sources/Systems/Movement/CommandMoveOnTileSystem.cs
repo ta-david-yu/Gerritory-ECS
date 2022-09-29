@@ -11,25 +11,25 @@ using UnityEngine;
 public class CommandMoveOnTileSystem : IFixedUpdateSystem
 {
 	private Contexts m_Contexts;
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly TileContext m_TileContext;
 	private readonly MessageContext m_MessageContext;
 
-	private readonly IGroup<GameEntity> m_OnTileElementGroup;
-	private readonly IGroup<GameEntity> m_PlayerGroup;
+	private readonly IGroup<ElementEntity> m_OnTileElementGroup;
+	private readonly IGroup<ElementEntity> m_PlayerGroup;
 
 	public CommandMoveOnTileSystem(Contexts contexts)
 	{
 		m_Contexts = contexts;
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_TileContext = contexts.Tile;
 		m_MessageContext = contexts.Message;
 
 		// Get entities that
 		// 1. Are on tile
 		// 2. Have movement input action
-		m_OnTileElementGroup = m_GameContext.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.OnTilePosition, GameMatcher.MovementInputAction));
-		m_PlayerGroup = m_GameContext.GetGroup(GameMatcher.Player);
+		m_OnTileElementGroup = m_ElementContext.GetGroup(ElementMatcher.AllOf(ElementMatcher.OnTileElement, ElementMatcher.OnTilePosition, ElementMatcher.MovementInputAction));
+		m_PlayerGroup = m_ElementContext.GetGroup(ElementMatcher.Player);
 	}
 
 	public void FixedUpdate()
@@ -64,10 +64,10 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 
 				// If entity is OnTileElementKiller, could possibly kill the occupier to take over the position.
 				// For now, we assume there will only be at most 1 occupier on a tile.
-				List<GameEntity> onTileEntities = m_GameContext.GetEntitiesWithOnTilePosition(toPosition).ToList();
+				List<ElementEntity> onTileEntities = m_ElementContext.GetEntitiesWithOnTilePosition(toPosition).ToList();
 				if (onTileEntities.Count > 0)
 				{
-					GameEntity occupierEntity = onTileEntities.First();
+					ElementEntity occupierEntity = onTileEntities.First();
 					if (!occupierEntity.IsCanBeDead)
 					{
 						// The occupier cannot be dead.
@@ -94,10 +94,10 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 					}
 				}
 
-				List<GameEntity> movingInEntities = m_GameContext.GetEntitiesWithMoveOnTile(toPosition).ToList();
+				List<ElementEntity> movingInEntities = m_ElementContext.GetEntitiesWithMoveOnTile(toPosition).ToList();
 				if (movingInEntities.Count > 0)
 				{
-					GameEntity movingInEntity = movingInEntities.First();
+					ElementEntity movingInEntity = movingInEntities.First();
 					if (!movingInEntity.IsCanBeDead)
 					{
 						// The moving-in entity cannot be dead.

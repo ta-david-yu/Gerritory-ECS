@@ -9,5 +9,5 @@
 //------------------------------------------------------------------------------
 public interface IDeadRemovedListener
 {
-	void OnDeadRemoved(GameEntity entity);
+	void OnDeadRemoved(ElementEntity entity);
 }

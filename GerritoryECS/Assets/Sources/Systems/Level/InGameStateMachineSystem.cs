@@ -5,8 +5,9 @@ using UnityEngine;
 
 public sealed class InGameStateMachineSystem : IInitializeSystem
 {
+	private readonly GameFlowContext m_GameFlowContext;
 	private readonly LevelContext m_LevelContext;
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_GameContext;
 	private readonly InputContext m_InputContext;
 	private readonly ConfigContext m_ConfigContext;
 	private readonly MessageContext m_MessageContext;
@@ -14,8 +15,9 @@ public sealed class InGameStateMachineSystem : IInitializeSystem
 
 	public InGameStateMachineSystem(Contexts contexts)
 	{
+		m_GameFlowContext = contexts.GameFlow;
 		m_LevelContext = contexts.Level;
-		m_GameContext = contexts.Game;
+		m_GameContext = contexts.Element;
 		m_InputContext = contexts.Input;
 		m_ConfigContext = contexts.Config;
 		m_MessageContext = contexts.Message;
@@ -24,6 +26,8 @@ public sealed class InGameStateMachineSystem : IInitializeSystem
 
 	public void Initialize()
 	{
+		m_GameFlowContext.IsGameFlow = true;
+
 		var playerConfigs = m_ConfigContext.GameConfig.value.PlayerGameConfigs;
 		foreach (var playerConfig in playerConfigs)
 		{
@@ -48,5 +52,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem
 				tileDataPair.Value
 			);
 		}
+
+		// TODO: add more state in the flow / state machine.
 	}
 }

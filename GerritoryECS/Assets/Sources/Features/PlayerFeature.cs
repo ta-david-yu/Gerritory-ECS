@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using JCMG.EntitasRedux;
 
-public sealed class PlayerFeature : Feature
+public sealed class ElementFeature : Feature
 {
-	public PlayerFeature(Contexts contexts)
+	public ElementFeature(Contexts contexts)
 	{
 		Add(new ConstructPlayerSystem(contexts));
 	}

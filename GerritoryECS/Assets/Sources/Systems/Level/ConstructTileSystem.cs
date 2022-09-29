@@ -9,7 +9,7 @@ using UnityEngine;
 public sealed class ConstructTileSystem : IFixedUpdateSystem
 {
 	private readonly LevelContext m_LevelContext;
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly TileContext m_TileContext;
 	private readonly ItemContext m_ItemContext;
 	private readonly ConfigContext m_ConfigContext;
@@ -19,7 +19,7 @@ public sealed class ConstructTileSystem : IFixedUpdateSystem
 	public ConstructTileSystem(Contexts contexts)
 	{
 		m_LevelContext = contexts.Level;
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_TileContext = contexts.Tile;
 		m_ItemContext = contexts.Item;
 		m_ConfigContext = contexts.Config;

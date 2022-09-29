@@ -9,5 +9,5 @@
 //------------------------------------------------------------------------------
 public interface IMoveOnTileEndAddedListener
 {
-	void OnMoveOnTileEndAdded(GameEntity entity, UnityEngine.Vector2Int fromPosition, UnityEngine.Vector2Int toPosition);
+	void OnMoveOnTileEndAdded(ElementEntity entity, UnityEngine.Vector2Int fromPosition, UnityEngine.Vector2Int toPosition);
 }

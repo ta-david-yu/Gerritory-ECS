@@ -6,28 +6,21 @@ using UnityEngine;
 
 public sealed class UpdateGameInfoSystem : IFixedUpdateSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly LevelContext m_LevelContext;
-	private readonly MessageContext m_MessageContext;
 
 	private readonly IGroup<LevelEntity> m_TeamInfoGroup;
 
 	public UpdateGameInfoSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_LevelContext = contexts.Level;
-		m_MessageContext = contexts.Message;
 
 		m_TeamInfoGroup = m_LevelContext.GetGroup(LevelMatcher.TeamInfo);
 	}
 
 	public void FixedUpdate()
 	{
-		if (m_LevelContext.GameInfoEntity.IsGameOver)
-		{
-			return;
-		}
-
 		int highestTeamScore = -1;
 		int highestTeamMemberCount = -1;
 		foreach (var teamEntity in m_TeamInfoGroup)
@@ -37,7 +30,7 @@ public sealed class UpdateGameInfoSystem : IFixedUpdateSystem
 				highestTeamScore = teamEntity.TeamScore.Value;
 			}
 
-			int teamMemberCount = m_GameContext.GetNumberOfTeamPlayersAlive(teamEntity.TeamInfo.Id);
+			int teamMemberCount = m_ElementContext.GetNumberOfTeamPlayersAlive(teamEntity.TeamInfo.Id);
 			if (teamMemberCount >= highestTeamMemberCount)
 			{
 				highestTeamMemberCount = teamMemberCount;

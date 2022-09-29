@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Game]
+[Element]
 [Event(EventTarget.Self)]
 [System.Serializable]
 public sealed class OnTilePositionComponent : IComponent

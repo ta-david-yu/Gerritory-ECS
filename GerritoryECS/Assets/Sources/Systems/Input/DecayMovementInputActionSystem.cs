@@ -5,17 +5,17 @@ using UnityEngine;
 
 public sealed class DecayMovementInputActionSystem : IFixedUpdateSystem
 {
-	private readonly GameContext m_GameContext;
-	private readonly IGroup<GameEntity> m_InputActionGroup;
+	private readonly ElementContext m_ElementContext;
+	private readonly IGroup<ElementEntity> m_InputActionGroup;
 
 	public DecayMovementInputActionSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 
 		// Get entities that
 		// 1. Are on tile
 		// 2. Have movement input action
-		m_InputActionGroup = m_GameContext.GetGroup(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.MovementInputAction));
+		m_InputActionGroup = m_ElementContext.GetGroup(ElementMatcher.AllOf(ElementMatcher.OnTileElement, ElementMatcher.MovementInputAction));
 	}
 
 	public void FixedUpdate()

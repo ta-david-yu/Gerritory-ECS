@@ -3,28 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class CreateWaitingForRespawnStateOnDeathSystem : ReactiveSystem<GameEntity>
+public sealed class CreateWaitingForRespawnStateOnDeathSystem : ReactiveSystem<ElementEntity>
 {
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly PlayerStateContext m_PlayerStateContext;
 
-	public CreateWaitingForRespawnStateOnDeathSystem(Contexts contexts) : base(contexts.Game)
+	public CreateWaitingForRespawnStateOnDeathSystem(Contexts contexts) : base(contexts.Element)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_PlayerStateContext = contexts.PlayerState;
 	}
 
-	protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
+	protected override ICollector<ElementEntity> GetTrigger(IContext<ElementEntity> context)
 	{
-		return context.CreateCollector(GameMatcher.AllOf(GameMatcher.OnTileElement, GameMatcher.CanBeDead, GameMatcher.Dead));
+		return context.CreateCollector(ElementMatcher.AllOf(ElementMatcher.OnTileElement, ElementMatcher.CanBeDead, ElementMatcher.Dead));
 	}
 
-	protected override bool Filter(GameEntity entity)
+	protected override bool Filter(ElementEntity entity)
 	{
 		return entity.IsDead && entity.IsCanRespawnAfterDeath;
 	}
 
-	protected override void Execute(List<GameEntity> entities)
+	protected override void Execute(List<ElementEntity> entities)
 	{
 		foreach (var deadEntity in entities)
 		{

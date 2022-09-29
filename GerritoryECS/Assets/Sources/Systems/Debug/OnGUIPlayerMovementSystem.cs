@@ -5,15 +5,15 @@ using UnityEngine;
 
 public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 {
-	private GameContext m_GameContext;
+	private ElementContext m_ElementContext;
 
-	private readonly IGroup<GameEntity> m_PlayerGroup;
+	private readonly IGroup<ElementEntity> m_PlayerGroup;
 	private readonly IGroup<LevelEntity> m_TeamInfoGroup;
 
 	public OnGUIPlayerMovementSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
-		m_PlayerGroup = contexts.Game.GetGroup(GameMatcher.AllOf(GameMatcher.Player, GameMatcher.OnTileElement));
+		m_ElementContext = contexts.Element;
+		m_PlayerGroup = contexts.Element.GetGroup(ElementMatcher.AllOf(ElementMatcher.Player, ElementMatcher.OnTileElement));
 		m_TeamInfoGroup = contexts.Level.GetGroup(LevelMatcher.TeamInfo);
 	}
 
@@ -53,7 +53,7 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 
 		foreach (var teamEntity in m_TeamInfoGroup.GetEntities())
 		{
-			int numberOfTeamMembers = m_GameContext.GetEntitiesWithTeam(teamEntity.TeamInfo.Id).Count;
+			int numberOfTeamMembers = m_ElementContext.GetEntitiesWithTeam(teamEntity.TeamInfo.Id).Count;
 
 			using (new GUILayout.VerticalScope(areaStyle, GUILayout.Width(200)))
 			{

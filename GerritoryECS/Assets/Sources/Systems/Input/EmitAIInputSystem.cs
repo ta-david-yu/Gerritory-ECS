@@ -5,12 +5,12 @@ using UnityEngine;
 
 public sealed class EmitAIInputSystem : IUpdateSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly IGroup<InputEntity> m_AIInputGroup;
 
 	public EmitAIInputSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_AIInputGroup = contexts.Input.GetGroup(InputMatcher.AIInput);
 	}
 
@@ -19,7 +19,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 		foreach (var entity in m_AIInputGroup.GetEntities())
 		{
 			int targetPlayerId = entity.AIInput.TargetPlayerId;
-			var playerEntity = m_GameContext.GetEntityWithPlayer(targetPlayerId);
+			var playerEntity = m_ElementContext.GetEntityWithPlayer(targetPlayerId);
 			var movement = entity.AIInput.Movement;
 
 			if (playerEntity.HasMoveOnTile)

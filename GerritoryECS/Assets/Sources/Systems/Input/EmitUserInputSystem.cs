@@ -12,14 +12,14 @@ using UnityEngine.InputSystem;
 /// </summary>
 public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITearDownSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly InputContext m_InputContext;
 	private readonly IGroup<InputEntity> m_UserInputGroup;
 	private const float k_DecayTime = 0.15f;
 
 	public EmitUserInputSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_InputContext = contexts.Input;
 
 		m_UserInputGroup = m_InputContext.GetGroup(InputMatcher.AllOf(InputMatcher.UserInput));
@@ -36,7 +36,7 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 		{
 			int userIndex = entity.UserInput.UserId;
 			int targetPlayerId = entity.UserInput.TargetPlayerId;
-			GameEntity playerEntity = m_GameContext.GetEntityWithPlayer(targetPlayerId);
+			ElementEntity playerEntity = m_ElementContext.GetEntityWithPlayer(targetPlayerId);
 
 			InputActionManager userInputActions = InputManager.Instance.GetOrCreateUserInputWithIndex(userIndex);
 			Vector2 axis = userInputActions.Player.Move.ReadValue<Vector2>();

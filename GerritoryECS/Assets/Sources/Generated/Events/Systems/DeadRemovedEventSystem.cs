@@ -7,29 +7,29 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class DeadRemovedEventSystem : JCMG.EntitasRedux.ReactiveSystem<GameEntity>
+public sealed class DeadRemovedEventSystem : JCMG.EntitasRedux.ReactiveSystem<ElementEntity>
 {
 	readonly System.Collections.Generic.List<IDeadRemovedListener> _listenerBuffer;
 
-	public DeadRemovedEventSystem(Contexts contexts) : base(contexts.Game)
+	public DeadRemovedEventSystem(Contexts contexts) : base(contexts.Element)
 	{
 		_listenerBuffer = new System.Collections.Generic.List<IDeadRemovedListener>();
 	}
 
-	protected override JCMG.EntitasRedux.ICollector<GameEntity> GetTrigger(JCMG.EntitasRedux.IContext<GameEntity> context)
+	protected override JCMG.EntitasRedux.ICollector<ElementEntity> GetTrigger(JCMG.EntitasRedux.IContext<ElementEntity> context)
 	{
 		return JCMG.EntitasRedux.CollectorContextExtension.CreateCollector(
 			context,
-			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Removed(GameMatcher.Dead)
+			JCMG.EntitasRedux.TriggerOnEventMatcherExtension.Removed(ElementMatcher.Dead)
 		);
 	}
 
-	protected override bool Filter(GameEntity entity)
+	protected override bool Filter(ElementEntity entity)
 	{
 		return !entity.IsDead && entity.HasDeadRemovedListener;
 	}
 
-	protected override void Execute(System.Collections.Generic.List<GameEntity> entities)
+	protected override void Execute(System.Collections.Generic.List<ElementEntity> entities)
 	{
 		foreach (var e in entities)
 		{

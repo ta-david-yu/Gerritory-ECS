@@ -5,7 +5,8 @@ using UnityEngine;
 
 public sealed class CheckEliminationConditionSystem : IFixedUpdateSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly GameFlowContext m_GameFlowContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly LevelContext m_LevelContext;
 	private readonly MessageContext m_MessageContext;
 
@@ -13,7 +14,8 @@ public sealed class CheckEliminationConditionSystem : IFixedUpdateSystem
 
 	public CheckEliminationConditionSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_GameFlowContext = contexts.GameFlow;
+		m_ElementContext = contexts.Element;
 		m_LevelContext = contexts.Level;
 		m_MessageContext = contexts.Message;
 
@@ -22,21 +24,21 @@ public sealed class CheckEliminationConditionSystem : IFixedUpdateSystem
 
 	public void FixedUpdate()
 	{
-		if (m_LevelContext.GameInfoEntity.IsGameOver)
+		if (m_GameFlowContext.GameFlowEntity.IsGameOver)
 		{
 			return;
 		}
 
-		if (!m_LevelContext.GameInfoEntity.HasEndOnEliminated)
+		if (!m_GameFlowContext.GameFlowEntity.HasEndOnEliminated)
 		{
 			return;
 		}
 
-		int numberOfTeamsShouldBeLeft = m_LevelContext.GameInfoEntity.EndOnEliminated.NumberOfTeamsShouldBeLeft;
+		int numberOfTeamsShouldBeLeft = m_GameFlowContext.GameFlowEntity.EndOnEliminated.NumberOfTeamsShouldBeLeft;
 		int numberOfAliveTeams = 0;
 		foreach (LevelEntity teamEntity in m_TeamInfoGroup)
 		{
-			int aliveTeamMemberCount = m_GameContext.GetNumberOfTeamPlayersAlive(teamEntity.TeamInfo.Id);
+			int aliveTeamMemberCount = m_ElementContext.GetNumberOfTeamPlayersAlive(teamEntity.TeamInfo.Id);
 			if (aliveTeamMemberCount > 0)
 			{
 				numberOfAliveTeams += 1;
@@ -52,6 +54,6 @@ public sealed class CheckEliminationConditionSystem : IFixedUpdateSystem
 		// TODO: Send out a message to indicate game over
 		// ...
 		Debug.Log("Game Over: Elimination");
-		m_LevelContext.GameInfoEntity.IsGameOver = true;
+		m_GameFlowContext.GameFlowEntity.IsGameOver = true;
 	}
 }

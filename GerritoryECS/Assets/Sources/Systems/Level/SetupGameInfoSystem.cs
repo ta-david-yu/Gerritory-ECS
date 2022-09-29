@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class SetupGameInfoSystem : IInitializeSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly LevelContext m_LevelContext;
 	private readonly ConfigContext m_ConfigContext;
 	private readonly IGroup<LevelEntity> m_TeamInfoGroup;
 
 	public SetupGameInfoSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_LevelContext = contexts.Level;
 		m_ConfigContext = contexts.Config;
 

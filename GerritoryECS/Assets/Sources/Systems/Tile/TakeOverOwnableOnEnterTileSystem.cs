@@ -9,7 +9,7 @@ using System;
 /// </summary>
 public sealed class TakeOverOwnableOnEnterTileSystem : IFixedUpdateSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly TileContext m_TileContext;
 	private readonly LevelContext m_LevelContext;
 	private readonly MessageContext m_MessageContext;
@@ -18,7 +18,7 @@ public sealed class TakeOverOwnableOnEnterTileSystem : IFixedUpdateSystem
 
 	public TakeOverOwnableOnEnterTileSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_ElementContext = contexts.Element;
 		m_TileContext = contexts.Tile;
 		m_LevelContext = contexts.Level;
 		m_MessageContext = contexts.Message;
@@ -31,7 +31,7 @@ public sealed class TakeOverOwnableOnEnterTileSystem : IFixedUpdateSystem
 		foreach (MessageEntity enterMessageEntity in m_EnterTileMessageGroup)
 		{
 			int onTileElementId = enterMessageEntity.OnTileElementEnterTile.OnTileElementId;
-			GameEntity entererEntity = m_GameContext.GetEntityWithOnTileElement(onTileElementId);
+			ElementEntity entererEntity = m_ElementContext.GetEntityWithOnTileElement(onTileElementId);
 			if (!entererEntity.IsTileOwner)
 			{
 				// The entering OnTileElement is not a TileOwner, do nothing.

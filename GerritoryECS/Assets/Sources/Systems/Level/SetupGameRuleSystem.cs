@@ -5,11 +5,13 @@ using UnityEngine;
 
 public sealed class SetupGameRuleSystem : IInitializeSystem
 {
+	private readonly GameFlowContext m_GameFlowContext;
 	private readonly LevelContext m_LevelContext;
 	private readonly ConfigContext m_ConfigContext;
 
 	public SetupGameRuleSystem(Contexts contexts)
 	{
+		m_GameFlowContext = contexts.GameFlow;
 		m_LevelContext = contexts.Level;
 		m_ConfigContext = contexts.Config;
 	}
@@ -20,10 +22,10 @@ public sealed class SetupGameRuleSystem : IInitializeSystem
 		switch (gameObjective)
 		{
 			case GameObjective.Survival:
-				m_LevelContext.GameInfoEntity.IsSurvivalObjective = true;
+				m_GameFlowContext.GameFlowEntity.IsSurvivalObjective = true;
 				break;
 			case GameObjective.Score:
-				m_LevelContext.GameInfoEntity.IsScoreObjective = true;
+				m_GameFlowContext.GameFlowEntity.IsScoreObjective = true;
 				break;
 		}
 
@@ -36,17 +38,17 @@ public sealed class SetupGameRuleSystem : IInitializeSystem
 
 		if (endingCondition.HasFlag(GameEndingCondition.Timeout))
 		{
-			m_LevelContext.GameInfoEntity.AddEndOnTimeout(m_ConfigContext.GameConfig.value.Timeout);
+			m_GameFlowContext.GameFlowEntity.AddEndOnTimeout(m_ConfigContext.GameConfig.value.Timeout);
 		}
 
 		if (endingCondition.HasFlag(GameEndingCondition.Goal))
 		{
-			m_LevelContext.GameInfoEntity.AddEndOnGoalReached(m_ConfigContext.GameConfig.value.GoalScore);
+			m_GameFlowContext.GameFlowEntity.AddEndOnGoalReached(m_ConfigContext.GameConfig.value.GoalScore);
 		}
 
 		if (endingCondition.HasFlag(GameEndingCondition.Elimination))
 		{
-			m_LevelContext.GameInfoEntity.AddEndOnEliminated(m_ConfigContext.GameConfig.value.NumberOfTeamsShouldBeLeft);
+			m_GameFlowContext.GameFlowEntity.AddEndOnEliminated(m_ConfigContext.GameConfig.value.NumberOfTeamsShouldBeLeft);
 		}
 	}
 }

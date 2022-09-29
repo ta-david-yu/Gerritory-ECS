@@ -5,7 +5,8 @@ using UnityEngine;
 
 public sealed class CheckGoalConditionSystem : IFixedUpdateSystem
 {
-	private readonly GameContext m_GameContext;
+	private readonly GameFlowContext m_GameFlowContext;
+	private readonly ElementContext m_ElementContext;
 	private readonly LevelContext m_LevelContext;
 	private readonly MessageContext m_MessageContext;
 
@@ -13,7 +14,8 @@ public sealed class CheckGoalConditionSystem : IFixedUpdateSystem
 
 	public CheckGoalConditionSystem(Contexts contexts)
 	{
-		m_GameContext = contexts.Game;
+		m_GameFlowContext = contexts.GameFlow;
+		m_ElementContext = contexts.Element;
 		m_LevelContext = contexts.Level;
 		m_MessageContext = contexts.Message;
 
@@ -22,17 +24,17 @@ public sealed class CheckGoalConditionSystem : IFixedUpdateSystem
 
 	public void FixedUpdate()
 	{
-		if (m_LevelContext.GameInfoEntity.IsGameOver)
+		if (m_GameFlowContext.GameFlowEntity.IsGameOver)
 		{
 			return;
 		}
 
-		if (!m_LevelContext.GameInfoEntity.HasEndOnGoalReached)
+		if (!m_GameFlowContext.GameFlowEntity.HasEndOnGoalReached)
 		{
 			return;
 		}
 
-		if (m_LevelContext.GameInfo.CurrentHighestTeamScore < m_LevelContext.GameInfoEntity.EndOnGoalReached.GoalScore)
+		if (m_LevelContext.GameInfo.CurrentHighestTeamScore < m_GameFlowContext.GameFlowEntity.EndOnGoalReached.GoalScore)
 		{
 			// The highest team hasn't reached the goal score yet, don't end the game yet.
 			return;
@@ -40,7 +42,7 @@ public sealed class CheckGoalConditionSystem : IFixedUpdateSystem
 
 		// TODO: Send out a message to indicate game over
 		// ...
-		Debug.Log("Game Over: Goal Reached");
-		m_LevelContext.GameInfoEntity.IsGameOver = true;
+		Debug.Log($"Game Over: Goal Reached");
+		m_GameFlowContext.GameFlowEntity.IsGameOver = true;
 	}
 }

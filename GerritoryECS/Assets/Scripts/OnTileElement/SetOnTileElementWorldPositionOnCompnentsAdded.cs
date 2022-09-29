@@ -9,7 +9,7 @@ public class SetOnTileElementWorldPositionOnCompnentsAdded : EntityCreationEvent
 
 	public override void HandleOnComponentsAdded(IEntity entity)
 	{
-		GameEntity gameEntity = entity as GameEntity;
+		ElementEntity gameEntity = entity as ElementEntity;
 
 		if (!gameEntity.HasOnTilePosition)
 		{

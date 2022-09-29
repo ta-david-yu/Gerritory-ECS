@@ -4,13 +4,13 @@ using JCMG.EntitasRedux;
 
 public class CleanupDebugMessageSystem : ICleanupSystem
 {
-	private readonly GameContext m_Context;
-	private readonly IGroup<GameEntity> m_EntitiesWithDebugMessage;
+	private readonly ElementContext m_Context;
+	private readonly IGroup<ElementEntity> m_EntitiesWithDebugMessage;
 
 	public CleanupDebugMessageSystem(Contexts contexts)
 	{
-		m_Context = contexts.Game;
-		m_EntitiesWithDebugMessage = m_Context.GetGroup(GameMatcher.DebugMessage);
+		m_Context = contexts.Element;
+		m_EntitiesWithDebugMessage = m_Context.GetGroup(ElementMatcher.DebugMessage);
 	}
 
 	public void Cleanup()
