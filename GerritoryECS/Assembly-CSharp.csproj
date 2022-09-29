@@ -97,7 +97,7 @@
     <Compile Include="Assets\Sources\Systems\Input\DecayMovementInputActionSystem.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MoveOnTileBeginComponent.cs" />
     <Compile Include="Assets\Sources\Components\Message\ConsumedComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\CheckGoalConditionSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\GameFlow\CheckGoalConditionSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnteredByOnTileElementAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IDeadRemovedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Level\LevelMatcher.cs" />
@@ -122,7 +122,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileEndAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateComponentsLookup.cs" />
     <Compile Include="Assets\Scripts\GameData\TileFactory.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\CheckTimeoutConditionSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\GameFlow\CheckTimeoutConditionSystem.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateStateComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileEnterableAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\Config\IMatchConfig.cs" />
@@ -240,7 +240,7 @@
     <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileBeginAddedEventSystem.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\UpdateTeamGameRankingSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\GameFlow\UpdateTeamGameRankingSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemDebugMessageComponent.cs" />
     <Compile Include="Assets\Scripts\OnTileElement\PlayerTeamColorViewController.cs" />
@@ -253,7 +253,7 @@
     <Compile Include="Assets\Sources\Generated\Input\CreateEntityFromInputBlueprint.cs" />
     <Compile Include="Assets\Sources\Components\Movement\Message\OnTileElementLeaveTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Features\LevelCleanupFeature.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\SetupGameRuleSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\GameFlow\SetupGameRuleSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Level\SetupGameInfoSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelGameInfoComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileEndAddedEventSystem.cs" />
@@ -339,7 +339,7 @@
     <Compile Include="Assets\Sources\Generated\Events\TileEventSystems.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\UpdateStateTimerSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\DeadRemovedEventSystem.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\CheckEliminationConditionSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\GameFlow\CheckEliminationConditionSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MovementInputActionComponent.cs" />
@@ -383,7 +383,7 @@
     <Compile Include="Assets\Scripts\Tile\CollapseTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\InGameStateMachineSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\GameFlow\InGameStateMachineSystem.cs" />
     <Compile Include="Assets\Sources\Components\Level\ConstructPlayerComponent.cs" />
     <Compile Include="Assets\Sources\Components\Level\ConstructTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructPlayerComponent.cs" />
