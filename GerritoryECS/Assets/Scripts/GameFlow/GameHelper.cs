@@ -92,7 +92,7 @@ public static class GameHelper
 		if (!validTileEntities.Any())
 		{
 			// No valid tiles available.
-			Debug.LogWarning($"Cannot find valid tiles for the OnTileElement entity {entity.OnTileElement.Id} to be spawned on.");
+			Debug.LogError($"Cannot find valid tiles for the OnTileElement entity {entity.OnTileElement.Id} to be spawned on.");
 			return new TryGetValidRespawnPositionResult() { Success = false, TilePosition = Vector2Int.zero };
 		}
 
@@ -247,7 +247,7 @@ public static class GameHelper
 		}
 		else
 		{
-			Debug.LogWarning("Cannot find a valid position to spawn the player, place the player at (0, 0)");
+			Debug.LogError("Cannot find a valid position to spawn the player, place the player at (0, 0)");
 			playerEntity.AddOnTilePosition(Vector2Int.zero);
 		}
 

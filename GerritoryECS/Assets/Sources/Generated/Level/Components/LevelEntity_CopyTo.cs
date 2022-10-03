@@ -18,25 +18,17 @@ public partial class LevelEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is ConstructAIInputComponent ConstructAIInput)
+		if (component is TeamScoreComponent TeamScore)
 		{
-			CopyConstructAIInputTo(ConstructAIInput);
-		}
-		else if (component is ConstructUserInputComponent ConstructUserInput)
-		{
-			CopyConstructUserInputTo(ConstructUserInput);
+			CopyTeamScoreTo(TeamScore);
 		}
 		else if (component is ConstructTileComponent ConstructTile)
 		{
 			CopyConstructTileTo(ConstructTile);
 		}
-		else if (component is ConstructPlayerComponent ConstructPlayer)
+		else if (component is ConstructAIInputComponent ConstructAIInput)
 		{
-			CopyConstructPlayerTo(ConstructPlayer);
-		}
-		else if (component is TeamScoreComponent TeamScore)
-		{
-			CopyTeamScoreTo(TeamScore);
+			CopyConstructAIInputTo(ConstructAIInput);
 		}
 		else if (component is TeamGameRankingComponent TeamGameRanking)
 		{
@@ -45,6 +37,14 @@ public partial class LevelEntity
 		else if (component is GameTimerComponent GameTimer)
 		{
 			CopyGameTimerTo(GameTimer);
+		}
+		else if (component is ConstructUserInputComponent ConstructUserInput)
+		{
+			CopyConstructUserInputTo(ConstructUserInput);
+		}
+		else if (component is ConstructPlayerComponent ConstructPlayer)
+		{
+			CopyConstructPlayerTo(ConstructPlayer);
 		}
 		else if (component is TeamInfoComponent TeamInfo)
 		{

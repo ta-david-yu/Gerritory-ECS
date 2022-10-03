@@ -37,6 +37,5 @@ public sealed class UpdateGameInfoSystem : IFixedUpdateSystem
 			}
 		}
 		m_LevelContext.ReplaceGameInfo(newCurrentHighestTeamScore: highestTeamScore, newCurrentHighestTeamMemberCount: highestTeamMemberCount);
-		m_LevelContext.GameInfoEntity.ReplaceGameTimer(m_LevelContext.GameInfoEntity.GameTimer.Value + Time.fixedDeltaTime);
 	}
 }

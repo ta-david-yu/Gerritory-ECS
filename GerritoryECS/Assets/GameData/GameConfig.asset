@@ -30,7 +30,7 @@ MonoBehaviour:
     PlayerName: Player 3
     TeamId: 1
     SkinId: 0
-    IsAI: 1
+    IsAI: 0
   - PlayerId: 3
     PlayerName: Player 4
     TeamId: 2
@@ -38,7 +38,7 @@ MonoBehaviour:
     IsAI: 0
   m_LevelData: {fileID: 11400000, guid: 56a53a42f5162074ea5a0fc52fc4e41e, type: 2}
   m_Objective: 1
-  m_EndingCondition: 3
+  m_EndingCondition: -1
   m_Timeout: 30
   m_GoalScore: 1
   m_NumberOfTeamsShouldBeLeft: 1

@@ -36,7 +36,7 @@ public sealed class CheckGoalConditionSystem : IFixedUpdateSystem
 
 		if (m_LevelContext.GameInfo.CurrentHighestTeamScore < m_GameFlowContext.GameFlowEntity.EndOnGoalReached.GoalScore)
 		{
-			// The highest team hasn't reached the goal score yet, don't end the game yet.
+			// The highest team hasn't reached the goal score yet, don't end the game.
 			return;
 		}
 

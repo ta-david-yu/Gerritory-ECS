@@ -61,14 +61,14 @@ public class InGameController : MonoBehaviour
 	{
 		return new Feature("Systems")
 			
-			// Core game info feature
+			// Core gameplay initialization feature
 			.Add(new GameInfoFeature(contexts))
+			.Add(new InitializationFeature(contexts))
 
 			// In-game-scene state machine feature, this can be removed
 			.Add(new InGameFlowFeature(contexts))
 
 			// Core gameplay features
-			.Add(new InitializationFeature(contexts))
 			.Add(new InputFeature(contexts))
 
 			.Add(new MovementFeature(contexts))
@@ -79,9 +79,11 @@ public class InGameController : MonoBehaviour
 
 			.Add(new MessageFeature(contexts))
 
+			// Generated event systems
 			.Add(new ElementEventSystems(contexts))
 			.Add(new TileEventSystems(contexts))
 
+			// Generated cleanup systems
 			.Add(new ElementCleanupSystems(contexts.Element))
 			.Add(new TileCleanupSystems(contexts.Tile));
 	}

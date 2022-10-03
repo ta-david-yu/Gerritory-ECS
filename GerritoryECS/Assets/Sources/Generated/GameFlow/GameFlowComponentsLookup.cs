@@ -13,47 +13,55 @@ using JCMG.EntitasRedux;
 
 public static class GameFlowComponentsLookup
 {
-	public const int EndOnEliminated = 0;
-	public const int EndOnGoalReached = 1;
-	public const int EndOnTimeout = 2;
-	public const int GameFlow = 3;
-	public const int GameOver = 4;
-	public const int ScoreObjective = 5;
-	public const int SurvivalObjective = 6;
+	public const int CountdownTimer = 0;
+	public const int EndOnEliminated = 1;
+	public const int EndOnGoalReached = 2;
+	public const int EndOnTimeout = 3;
+	public const int GameFlow = 4;
+	public const int GameOver = 5;
+	public const int InGameState = 6;
+	public const int ScoreObjective = 7;
+	public const int SurvivalObjective = 8;
 
-	public const int TotalComponents = 7;
+	public const int TotalComponents = 9;
 
 	public static readonly string[] ComponentNames =
 	{
+		"CountdownTimer",
 		"EndOnEliminated",
 		"EndOnGoalReached",
 		"EndOnTimeout",
 		"GameFlow",
 		"GameOver",
+		"InGameState",
 		"ScoreObjective",
 		"SurvivalObjective"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
+		typeof(CountdownTimerComponent),
 		typeof(EndOnEliminatedComponent),
 		typeof(EndOnGoalReachedComponent),
 		typeof(EndOnTimeoutComponent),
 		typeof(GameFlowComponent),
 		typeof(GameOverComponent),
+		typeof(InGameStateComponent),
 		typeof(ScoreObjectiveComponent),
 		typeof(SurvivalObjectiveComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(EndOnEliminatedComponent), 0 },
-		{ typeof(EndOnGoalReachedComponent), 1 },
-		{ typeof(EndOnTimeoutComponent), 2 },
-		{ typeof(GameFlowComponent), 3 },
-		{ typeof(GameOverComponent), 4 },
-		{ typeof(ScoreObjectiveComponent), 5 },
-		{ typeof(SurvivalObjectiveComponent), 6 }
+		{ typeof(CountdownTimerComponent), 0 },
+		{ typeof(EndOnEliminatedComponent), 1 },
+		{ typeof(EndOnGoalReachedComponent), 2 },
+		{ typeof(EndOnTimeoutComponent), 3 },
+		{ typeof(GameFlowComponent), 4 },
+		{ typeof(GameOverComponent), 5 },
+		{ typeof(InGameStateComponent), 6 },
+		{ typeof(ScoreObjectiveComponent), 7 },
+		{ typeof(SurvivalObjectiveComponent), 8 }
 	};
 
 	/// <summary>

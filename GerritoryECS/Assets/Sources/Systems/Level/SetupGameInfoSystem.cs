@@ -54,7 +54,5 @@ public class SetupGameInfoSystem : IInitializeSystem
 
 		// Calculate highest objective value
 		m_LevelContext.SetGameInfo(newCurrentHighestTeamScore: 0, newCurrentHighestTeamMemberCount: currentHighestNumberOfTeamMemebers);
-
-		m_LevelContext.GameInfoEntity.AddGameTimer(0);
 	}
 }

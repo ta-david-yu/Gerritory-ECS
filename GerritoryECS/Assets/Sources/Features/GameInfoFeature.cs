@@ -9,5 +9,6 @@ public sealed class GameInfoFeature : Feature
 	{
 		Add(new SetupGameInfoSystem(contexts));
 		Add(new UpdateGameInfoSystem(contexts));
+		Add(new UpdateGameTimerSystem(contexts));
 	}
 }

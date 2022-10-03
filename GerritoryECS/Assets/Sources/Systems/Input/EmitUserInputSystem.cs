@@ -38,6 +38,13 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 			int targetPlayerId = entity.UserInput.TargetPlayerId;
 			ElementEntity playerEntity = m_ElementContext.GetEntityWithPlayer(targetPlayerId);
 
+			if (playerEntity == null)
+			{
+				// Couldn't find a player entity with the given id. Skip the input.
+				Debug.LogWarning($"Couldn't find a player entity with the given id - {targetPlayerId}. The input is ignored.");
+				continue;
+			}
+
 			InputActionManager userInputActions = InputManager.Instance.GetOrCreateUserInputWithIndex(userIndex);
 			Vector2 axis = userInputActions.Player.Move.ReadValue<Vector2>();
 

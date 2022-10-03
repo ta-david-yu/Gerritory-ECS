@@ -19,5 +19,8 @@ public sealed class InGameFlowFeature : Feature
 		Add(new CheckEliminationConditionSystem(contexts));
 		Add(new CheckGoalConditionSystem(contexts));
 		Add(new CheckTimeoutConditionSystem(contexts));
+
+		// Elimination setup system
+		Add(new DisableRespawnForPlayerInEliminationConditionSystem(contexts));
 	}
 }
