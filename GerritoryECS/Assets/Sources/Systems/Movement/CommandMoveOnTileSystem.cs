@@ -42,6 +42,13 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 				continue;
 			}
 
+			if (!entity.HasOnTilePosition)
+			{
+				// Although the looping group already uses OnTilePosition as the entity matcher, OnTilePosition might be removed during this iteration (i.e. in TryKill function)
+				// Therefore we want to make sure the current entity actually has OnTilePosition on them, otherwise they are not allowed to move.
+				continue;
+			}
+
 			// Calculate next move position based on the movement input action
 			Vector2Int moveOffset = Movement.TypeToOffset[(int)entity.MovementInputAction.Type];
 			Vector2Int fromPosition = entity.OnTilePosition.Value;
