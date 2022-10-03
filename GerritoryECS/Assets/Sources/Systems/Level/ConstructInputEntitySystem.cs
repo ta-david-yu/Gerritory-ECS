@@ -36,7 +36,7 @@ public class ConstructInputEntitySystem : IFixedUpdateSystem
 		foreach (var constructAIInputEntity in m_ConstructAIInputGroup.GetEntities())
 		{
 			InputEntity inputEntity = m_InputContext.CreateEntity();
-			inputEntity.AddAIInput(constructAIInputEntity.ConstructAIInput.Movement, constructAIInputEntity.ConstructAIInput.TargetPlayerId);
+			inputEntity.AddAIInput(constructAIInputEntity.ConstructAIInput.TargetPlayerId);
 
 			constructAIInputEntity.Destroy();
 		}

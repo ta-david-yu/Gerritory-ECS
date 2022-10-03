@@ -12,23 +12,21 @@ public partial class InputEntity
 	public AIInputComponent AIInput { get { return (AIInputComponent)GetComponent(InputComponentsLookup.AIInput); } }
 	public bool HasAIInput { get { return HasComponent(InputComponentsLookup.AIInput); } }
 
-	public void AddAIInput(Movement.Type newMovement, int newTargetPlayerId)
+	public void AddAIInput(int newTargetPlayerId)
 	{
 		var index = InputComponentsLookup.AIInput;
 		var component = (AIInputComponent)CreateComponent(index, typeof(AIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.Movement = newMovement;
 		component.TargetPlayerId = newTargetPlayerId;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceAIInput(Movement.Type newMovement, int newTargetPlayerId)
+	public void ReplaceAIInput(int newTargetPlayerId)
 	{
 		var index = InputComponentsLookup.AIInput;
 		var component = (AIInputComponent)CreateComponent(index, typeof(AIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.Movement = newMovement;
 		component.TargetPlayerId = newTargetPlayerId;
 		#endif
 		ReplaceComponent(index, component);
@@ -39,7 +37,6 @@ public partial class InputEntity
 		var index = InputComponentsLookup.AIInput;
 		var component = (AIInputComponent)CreateComponent(index, typeof(AIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.Movement = copyComponent.Movement;
 		component.TargetPlayerId = copyComponent.TargetPlayerId;
 		#endif
 		ReplaceComponent(index, component);

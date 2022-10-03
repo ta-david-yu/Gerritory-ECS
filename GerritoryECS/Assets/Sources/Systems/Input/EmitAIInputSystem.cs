@@ -20,7 +20,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 		{
 			int targetPlayerId = entity.AIInput.TargetPlayerId;
 			var playerEntity = m_ElementContext.GetEntityWithPlayer(targetPlayerId);
-			var movement = entity.AIInput.Movement;
+			var movement = (Movement.Type) UnityEngine.Random.Range(0, 4);
 
 			if (playerEntity.HasMoveOnTile)
 			{
