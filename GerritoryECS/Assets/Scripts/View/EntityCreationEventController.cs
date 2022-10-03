@@ -38,4 +38,19 @@ public sealed class EntityCreationEventController : MonoBehaviour, IEntityCreati
 		m_Listeners.AddRange(GetComponentsInChildren<EntityCreationEventListenerBase>());
 #endif
 	}
+
+	[ContextMenu("Destroy & Unlink Entity")]
+	private void destroyAndUnlinkEntity()
+	{
+		EntityLink entityLink = gameObject.GetEntityLink();
+		if (entityLink == null)
+		{
+			Debug.LogWarning($"The gameObject {this.gameObject.name} was not linked to any entity!");
+			return;
+		}
+
+		IEntity entity = entityLink.Entity;
+		gameObject.Unlink();
+		entity.Destroy();
+	}
 }

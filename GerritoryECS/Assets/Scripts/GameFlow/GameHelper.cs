@@ -19,6 +19,12 @@ public struct TryKillResult
 
 public static class GameHelper
 {
+	/// <summary>
+	/// Check if the tile itself is moveable to or not. <see cref="OnTileElementComponent"/> is not taken into consideration.
+	/// </summary>
+	/// <param name="contexts"></param>
+	/// <param name="position"></param>
+	/// <returns></returns>
 	public static bool IsTileAtPositionMoveableTo(this Contexts contexts, Vector2Int position)
 	{
 		TileEntity tileEntity = contexts.Tile.GetEntityWithTilePosition(position);
@@ -37,6 +43,12 @@ public static class GameHelper
 		return true;
 	}
 
+	/// <summary>
+	/// Check if the tile at the given position is occupied by any <see cref="OnTileElementComponent"/>.
+	/// </summary>
+	/// <param name="contexts"></param>
+	/// <param name="position"></param>
+	/// <returns></returns>
 	public static bool IsTileAtPositionOccupied(this Contexts contexts, Vector2Int position)
 	{
 		HashSet<ElementEntity> onTileEntities = contexts.Element.GetEntitiesWithOnTilePosition(position);
@@ -206,6 +218,49 @@ public static class GameHelper
 		return true;
 	}
 
+	public static ElementEntity ConstructPlayerEntity(this Contexts contexts, int playerId, int teamId, int skinId)
+	{
+		IPlayerFactory playerFactory = contexts.Config.GameConfig.value.PlayerFactory;
+
+		// Create player entity and its view controller
+		ElementEntity playerEntity = contexts.Element.CreateEntity();
+		IEntityCreationEventController viewController = playerFactory.CreatePlayerView(playerId, teamId, skinId);
+		viewController.OnEntityCreated(playerEntity);
+
+		// Add needed componenets
+		playerEntity.AddPlayer(playerId);
+		playerEntity.AddTeam(teamId);
+		playerEntity.AddOnTileElement(contexts.Level.GetNewOnTileElementId());
+		playerEntity.AddItemEater(contexts.Level.GetNewItemEaterId());
+		playerEntity.AddStateHolder(contexts.Level.GetNewStateHolderId());
+		playerEntity.AddSpeedChangeable(1, 1);
+		playerEntity.IsTileOwner = true;
+		playerEntity.IsTileCollapser = true;
+		playerEntity.IsCanBeDead = true;
+		playerEntity.IsCanRespawnAfterDeath = true;
+		playerEntity.IsOnTileElementKiller = true;
+
+		TryGetValidRespawnPositionResult result = contexts.TryGetValidRespawnPositionOfAreaIdFor(playerEntity, 0);
+		if (result.Success)
+		{
+			playerEntity.AddOnTilePosition(result.TilePosition);
+		}
+		else
+		{
+			Debug.LogWarning("Cannot find a valid position to spawn the player, place the player at (0, 0)");
+			playerEntity.AddOnTilePosition(Vector2Int.zero);
+		}
+
+		contexts.Message.EmitOnTileElementEnterTileMessage(playerEntity.OnTileElement.Id, playerEntity.OnTilePosition.Value);
+
+		viewController.OnComponentsAdded(playerEntity);
+
+		// Link view controller with entity
+		viewController.Link(playerEntity);
+
+		return playerEntity;
+	}
+
 	public static int GetNewOnTileElementId(this LevelContext context)
 	{
 		int id = context.OnTileElementIdCounter.value.Value;
@@ -225,5 +280,36 @@ public static class GameHelper
 		int id = context.StateHolderIdCounter.value.Value;
 		context.ReplaceStateHolderIdCounter(new UniqueIdCounter { Value = id + 1 });
 		return id;
+	}
+
+	public static TileEntity ConstructTileEntityAtPosition(this Contexts contexts, TileData tileData, Vector2Int tilePosition)
+	{
+		ITileFactory tileFactory = contexts.Config.GameConfig.value.TileFactory;
+
+		string tileId = tileData.TileId;
+
+		// Create entity and its view controller
+		var tileEntity = contexts.Tile.CreateEntity();
+		IEntityCreationEventController viewController = tileFactory.CreateTileView(tileId);
+		viewController.OnEntityCreated(tileEntity);
+
+		// Apply blueprint and components
+		var blueprint = tileFactory.GetTileBlueprint(tileId);
+		blueprint.ApplyToEntity(tileEntity);
+		tileEntity.AddTilePosition(tilePosition);
+		viewController.OnComponentsAdded(tileEntity);
+
+		// Link view controller with entity
+		viewController.Link(tileEntity);
+
+		// TODO: remove this!
+		if (Random.Range(0.0f, 1.0f) > 0.8f)
+		{
+			var itemEntity = contexts.Item.CreateEntity();
+			itemEntity.AddOnTileItem(tilePosition);
+			itemEntity.AddApplySpeedChangeStateForEaterOnEaten(3.0f, 2.0f);
+		}
+
+		return tileEntity;
 	}
 }
