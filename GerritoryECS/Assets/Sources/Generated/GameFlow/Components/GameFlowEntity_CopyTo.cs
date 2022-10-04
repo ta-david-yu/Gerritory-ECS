@@ -18,17 +18,13 @@ public partial class GameFlowEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is CountdownTimerComponent CountdownTimer)
-		{
-			CopyCountdownTimerTo(CountdownTimer);
-		}
-		else if (component is InGameStateComponent InGameState)
-		{
-			CopyInGameStateTo(InGameState);
-		}
-		else if (component is ScoreObjectiveComponent ScoreObjective)
+		if (component is ScoreObjectiveComponent ScoreObjective)
 		{
 			IsScoreObjective = true;
+		}
+		else if (component is CountdownTimerComponent CountdownTimer)
+		{
+			CopyCountdownTimerTo(CountdownTimer);
 		}
 		else if (component is GameOverComponent GameOver)
 		{
@@ -45,6 +41,10 @@ public partial class GameFlowEntity
 		else if (component is GameFlowComponent GameFlow)
 		{
 			IsGameFlow = true;
+		}
+		else if (component is InGameStateComponent InGameState)
+		{
+			CopyInGameStateTo(InGameState);
 		}
 		else if (component is SurvivalObjectiveComponent SurvivalObjective)
 		{

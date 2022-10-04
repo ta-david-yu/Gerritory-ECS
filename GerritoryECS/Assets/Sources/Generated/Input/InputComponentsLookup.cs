@@ -15,14 +15,16 @@ public static class InputComponentsLookup
 {
 	public const int AIInput = 0;
 	public const int DebugMessage = 1;
-	public const int UserInput = 2;
+	public const int EvaluatingForMovementInput = 2;
+	public const int UserInput = 3;
 
-	public const int TotalComponents = 3;
+	public const int TotalComponents = 4;
 
 	public static readonly string[] ComponentNames =
 	{
 		"AIInput",
 		"DebugMessage",
+		"EvaluatingForMovementInput",
 		"UserInput"
 	};
 
@@ -30,6 +32,7 @@ public static class InputComponentsLookup
 	{
 		typeof(AIInputComponent),
 		typeof(DebugMessageComponent),
+		typeof(EvaluatingForMovementInputComponent),
 		typeof(UserInputComponent)
 	};
 
@@ -37,7 +40,8 @@ public static class InputComponentsLookup
 	{
 		{ typeof(AIInputComponent), 0 },
 		{ typeof(DebugMessageComponent), 1 },
-		{ typeof(UserInputComponent), 2 }
+		{ typeof(EvaluatingForMovementInputComponent), 2 },
+		{ typeof(UserInputComponent), 3 }
 	};
 
 	/// <summary>

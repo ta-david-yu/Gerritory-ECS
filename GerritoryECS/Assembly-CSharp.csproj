@@ -77,6 +77,7 @@
     <Compile Include="Assets\Sources\Generated\Element\ElementBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigDebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\CreateWaitingForRespawnStateOnDeathSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowInGameStateComponent.cs" />
     <Compile Include="Assets\Scripts\GameData\TileData.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\IPlayerStateBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMoveOnTileEndAddedListenerComponent.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Assets\Sources\Systems\GameFlow\CheckGoalConditionSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnteredByOnTileElementAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IDeadRemovedListener.cs" />
+    <Compile Include="Assets\Sources\Systems\GameFlow\DisableRespawnForPlayerInEliminationConditionSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Level\LevelMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\TeamAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Systems\RemoveMoveOnTileBeginFromElementEntitiesSystem.cs" />
@@ -261,6 +263,7 @@
     <Compile Include="Assets\Sources\Generated\Level\LevelEntity.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateSpeedChangeStateComponent.cs" />
     <Compile Include="Assets\Sources\Components\GameFlow\SurvivalObjectiveComponent.cs" />
+    <Compile Include="Assets\Sources\Components\GameFlow\InGameStateComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelStateHolderIdCounterComponent.cs" />
     <Compile Include="Assets\Scripts\OnTileElement\RollOnTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowSurvivalObjectiveComponent.cs" />
@@ -281,6 +284,7 @@
     <Compile Include="Assets\Sources\Features\PlayerFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelEntity_CopyTo.cs" />
+    <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowCountdownTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileBeginAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMovementInputActionComponent.cs" />
     <Compile Include="Assets\Sources\Systems\GameFlow\UpdateTeamGameRankingSystem.cs" />
@@ -395,6 +399,7 @@
     <Compile Include="Assets\Sources\Components\Tile\EnterableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Feature.cs" />
     <Compile Include="Assets\Sources\Generated\Events\TileEventSystems.cs" />
+    <Compile Include="Assets\Sources\Components\GameFlow\CountdownTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\GameFlowEntity.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\UpdateStateTimerSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\DeadRemovedEventSystem.cs" />
@@ -432,6 +437,7 @@
     <Compile Include="Assets\Sources\Components\Movement\Message\LeaveBecauseOfDeathComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Systems\ElementCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigEntity_CopyTo.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\UpdateGameTimerSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Level\InitializeRandomSeedSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileCollapseOnSteppedComponent.cs" />
@@ -456,12 +462,8 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructPlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Components\GameFlow\InGameStateComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowInGameStateComponent.cs" />
-    <Compile Include="Assets\Sources\Components\GameFlow\CountdownTimerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowCountdownTimerComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Level\UpdateGameTimerSystem.cs" />
-    <Compile Include="Assets\Sources\Systems\GameFlow\DisableRespawnForPlayerInEliminationConditionSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Input\EvaluatingForMovementInputComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\Components\InputEvaluatingForMovementInputComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

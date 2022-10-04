@@ -74,7 +74,7 @@ public static class GameHelper
 	{
 		if (s_RespawnableTileGroup == null)
 		{
-			s_RespawnableTileGroup = 
+			s_RespawnableTileGroup =
 				contexts.Tile.GetGroup(TileMatcher.AllOf(TileMatcher.TilePosition, TileMatcher.Enterable, TileMatcher.CanBeRespawnedOn));
 		}
 
@@ -132,7 +132,7 @@ public static class GameHelper
 
 	private const int k_InivinciblePriority = -1;
 	private const int k_GhsotPriority = -1;
-	
+
 	public static int GetOnTileElementKillPriority(this Contexts contexts, ElementEntity onTileEntity)
 	{
 		int priority = 0;
@@ -311,5 +311,17 @@ public static class GameHelper
 		}
 
 		return tileEntity;
+	}
+
+	public static float GetElementEntityMoveOnTileDuration(this ElementEntity elementEntity)
+	{
+		if (elementEntity.HasSpeedChangeable)
+		{
+			return GameConstants.MoveOnTileDuration / (elementEntity.SpeedChangeable.BaseSpeed * elementEntity.SpeedChangeable.SpeedMultiplier);
+		}
+		else
+		{
+			return GameConstants.MoveOnTileDuration;
+		}
 	}
 }
