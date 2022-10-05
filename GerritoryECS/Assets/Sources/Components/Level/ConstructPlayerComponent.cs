@@ -1,6 +1,6 @@
 using JCMG.EntitasRedux;
 
-[Request]
+[Command]
 public sealed class ConstructPlayerComponent : IComponent
 {
 	public int PlayerId;

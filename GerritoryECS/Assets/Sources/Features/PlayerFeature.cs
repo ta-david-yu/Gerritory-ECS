@@ -8,5 +8,6 @@ public sealed class ElementFeature : Feature
 	public ElementFeature(Contexts contexts)
 	{
 		Add(new ConstructPlayerSystem(contexts));
+		Add(new MarkOnTileElementDeadSystem(contexts));
 	}
 }

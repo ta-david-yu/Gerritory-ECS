@@ -52,7 +52,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 			// ...
 
 			var movement = (Movement.Type)UnityEngine.Random.Range(0, 4);
-			playerEntity.ReplaceMovementInputAction(movement, 0.0f);
+			playerEntity.ReplaceMovementInputAction(Movement.Type.Right, 0.0f);
 		}
 	}
 }

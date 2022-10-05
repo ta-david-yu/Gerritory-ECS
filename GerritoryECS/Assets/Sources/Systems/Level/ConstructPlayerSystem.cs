@@ -8,17 +8,17 @@ using UnityEngine;
 /// </summary>
 public sealed class ConstructPlayerSystem : IFixedUpdateSystem
 {
-	private readonly RequestContext m_RequestContext;
+	private readonly CommandContext m_CommandContext;
 	private readonly Contexts m_Contexts;
 
-	private readonly IGroup<RequestEntity> m_ConstructPlayerRequestGroup;
+	private readonly IGroup<CommandEntity> m_ConstructPlayerRequestGroup;
 
 	public ConstructPlayerSystem(Contexts contexts)
 	{
 		m_Contexts = contexts;
-		m_RequestContext = contexts.Request;
+		m_CommandContext = contexts.Command;
 
-		m_ConstructPlayerRequestGroup = m_RequestContext.GetGroup(RequestMatcher.ConstructPlayer);
+		m_ConstructPlayerRequestGroup = m_CommandContext.GetGroup(CommandMatcher.ConstructPlayer);
 	}
 
 	public void FixedUpdate()

@@ -9,7 +9,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 	private readonly LevelContext m_LevelContext;
 	private readonly ElementContext m_ElementContext;
 	private readonly InputContext m_InputContext;
-	private readonly RequestContext m_RequestContext;
+	private readonly CommandContext m_CommandContext;
 	private readonly ConfigContext m_ConfigContext;
 	private readonly MessageContext m_MessageContext;
 	private readonly Contexts m_Contexts;
@@ -22,7 +22,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 		m_LevelContext = contexts.Level;
 		m_ElementContext = contexts.Element;
 		m_InputContext = contexts.Input;
-		m_RequestContext = contexts.Request;
+		m_CommandContext = contexts.Command;
 		m_ConfigContext = contexts.Config;
 		m_MessageContext = contexts.Message;
 		m_Contexts = contexts;
@@ -47,7 +47,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 			foreach (var tileDataPair in levelData.TileDataPairs)
 			{
 				// Create tile construction request entity.
-				m_RequestContext.CreateEntity().AddConstructTile
+				m_CommandContext.CreateEntity().AddConstructTile
 				(
 					tileDataPair.Key,
 					tileDataPair.Value
@@ -59,7 +59,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 			foreach (var playerConfig in playerConfigs)
 			{
 				// Create player construction request entity.
-				m_RequestContext.CreateEntity().AddConstructPlayer
+				m_CommandContext.CreateEntity().AddConstructPlayer
 				(
 					playerConfig.PlayerId,
 					playerConfig.PlayerName,
@@ -91,11 +91,11 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 				{
 					if (!playerConfig.IsAI)
 					{
-						m_RequestContext.CreateEntity().AddConstructUserInput(playerConfig.PlayerId, playerConfig.PlayerId);
+						m_CommandContext.CreateEntity().AddConstructUserInput(playerConfig.PlayerId, playerConfig.PlayerId);
 					}
 					else
 					{
-						m_RequestContext.CreateEntity().AddConstructAIInput(Movement.Type.Right, playerConfig.PlayerId);
+						m_CommandContext.CreateEntity().AddConstructAIInput(Movement.Type.Right, playerConfig.PlayerId);
 					}
 				}
 

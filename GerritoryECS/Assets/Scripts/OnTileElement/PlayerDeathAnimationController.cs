@@ -55,6 +55,6 @@ public class PlayerDeathAnimationController : EntityCreationEventListenerBase, I
 			return;
 		}
 
-		TryKillResult killResult = Contexts.SharedInstance.TryKill(m_CahcedGameEntity);
+		TryCommandKillResult killResult = Contexts.SharedInstance.TryCommandKill(m_CahcedGameEntity);
 	}
 }

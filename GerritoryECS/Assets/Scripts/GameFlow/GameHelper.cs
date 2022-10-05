@@ -12,7 +12,7 @@ public struct TryGetValidRespawnPositionResult
 }
 
 [System.Serializable]
-public struct TryKillResult
+public struct TryCommandKillResult
 {
 	public bool Success;
 }
@@ -156,47 +156,23 @@ public static class GameHelper
 		return context.GetEntitiesWithTeam(teamId).Where(gameEntity => gameEntity.HasPlayer && !gameEntity.IsDead).Count();
 	}
 
-	public static TryKillResult TryKill(this Contexts contexts, ElementEntity onTileEntity)
+	public static TryCommandKillResult TryCommandKill(this Contexts contexts, ElementEntity onTileEntity)
 	{
 		if (!onTileEntity.IsCanBeDead)
 		{
 			Debug.LogWarning("The entity cannot be dead.");
-			return new TryKillResult { Success = false };
+			return new TryCommandKillResult { Success = false };
 		}
 
 		if (onTileEntity.IsDead)
 		{
 			Debug.LogWarning("The entity is already dead. Cannot be killed again.");
-			return new TryKillResult { Success = false };
+			return new TryCommandKillResult { Success = false };
 		}
 
-		onTileEntity.IsDead = true;
-
-		if (onTileEntity.HasOnTilePosition)
-		{
-			// If the OnTileEntity is occupying a tile, be sure to remove it from the tile.
-			Vector2Int position = onTileEntity.OnTilePosition.Value;
-			onTileEntity.RemoveOnTilePosition();
-
-			if (!onTileEntity.HasMoveOnTile)
-			{
-				// Emit global LeaveTile message if the killed entity was not moving away from its tile.
-				var leaveTileMessageEntity = contexts.Message.CreateFixedUpdateMessageEntity();
-				leaveTileMessageEntity.ReplaceOnTileElementLeaveTile(onTileEntity.OnTileElement.Id, position);
-				leaveTileMessageEntity.IsLeaveBecauseOfDeath = true;
-			}
-		}
-
-		if (onTileEntity.HasMoveOnTile)
-		{
-			// If the OnTileEntity is moving, be sure to cancel the movement.
-			Vector2Int fromPosition = onTileEntity.MoveOnTile.FromPosition;
-			Vector2Int toPosition = onTileEntity.MoveOnTile.ToPosition;
-			onTileEntity.RemoveMoveOnTile();
-			onTileEntity.AddMoveOnTileEnd(fromPosition, toPosition);
-		}
-
-		return new TryKillResult { Success = true };
+		// Create mark dead request entity.
+		contexts.Command.CreateEntity().AddMarkOnTileElementDead(onTileEntity.OnTileElement.Id);
+		return new TryCommandKillResult { Success = true };
 	}
 
 	public static bool CanStepOnVictim(this Contexts contexts, ElementEntity stepperEntity, ElementEntity victimEntity)

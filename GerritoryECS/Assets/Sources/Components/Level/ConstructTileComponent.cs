@@ -1,7 +1,7 @@
 using JCMG.EntitasRedux;
 using UnityEngine;
 
-[Request]
+[Command]
 public sealed class ConstructTileComponent : IComponent
 {
 	public Vector2Int TilePosition;

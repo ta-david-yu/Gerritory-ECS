@@ -76,8 +76,8 @@ MonoBehaviour:
     - key: Genesis.TargetDirectory
       value: Assets/Sources/Generated
     - key: EntitasRedux.CodeGeneration.Plugins.Contexts
-      value: Element, Input, Config, Level, Message, Effect, Tile, Item, PlayerState,
-        GameFlow
+      value: Element, Input, Config, Level, Command, Message, Effect, Tile, Item,
+        PlayerState, GameFlow
     - key: EntitasRedux.VisualDebugging.DefaultInstanceCreatorFolderPath
       value: Assets/Editor/DefaultInstanceCreator
     - key: EntitasRedux.VisualDebugging.TypeDrawerFolderPath

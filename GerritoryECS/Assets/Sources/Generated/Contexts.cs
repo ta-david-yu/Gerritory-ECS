@@ -57,6 +57,7 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 	static Contexts _sharedInstance;
 	#endif
 
+	public CommandContext Command { get; set; }
 	public ConfigContext Config { get; set; }
 	public EffectContext Effect { get; set; }
 	public ElementContext Element { get; set; }
@@ -66,13 +67,13 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 	public LevelContext Level { get; set; }
 	public MessageContext Message { get; set; }
 	public PlayerStateContext PlayerState { get; set; }
-	public RequestContext Request { get; set; }
 	public TileContext Tile { get; set; }
 
-	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Config, Effect, Element, GameFlow, Input, Item, Level, Message, PlayerState, Request, Tile }; } }
+	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Command, Config, Effect, Element, GameFlow, Input, Item, Level, Message, PlayerState, Tile }; } }
 
 	public Contexts()
 	{
+		Command = new CommandContext();
 		Config = new ConfigContext();
 		Effect = new EffectContext();
 		Element = new ElementContext();
@@ -82,7 +83,6 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 		Level = new LevelContext();
 		Message = new MessageContext();
 		PlayerState = new PlayerStateContext();
-		Request = new RequestContext();
 		Tile = new TileContext();
 
 		var postConstructors = System.Linq.Enumerable.Where(
@@ -120,6 +120,7 @@ public partial class Contexts
 	public const string CanBeRespawnedOn = "CanBeRespawnedOn";
 	public const string Eaten = "Eaten";
 	public const string ItemEater = "ItemEater";
+	public const string MarkOnTileElementDead = "MarkOnTileElementDead";
 	public const string MoveOnTile = "MoveOnTile";
 	public const string OnTileElement = "OnTileElement";
 	public const string OnTileElementEffect = "OnTileElementEffect";
@@ -153,6 +154,11 @@ public partial class Contexts
 			ItemEater,
 			Element.GetGroup(ElementMatcher.ItemEater),
 			(e, c) => ((ItemEaterComponent)c).Id));
+
+		Command.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<CommandEntity, int>(
+			MarkOnTileElementDead,
+			Command.GetGroup(CommandMatcher.MarkOnTileElementDead),
+			(e, c) => ((MarkOnTileElementDeadComponent)c).TargetOnTileElementId));
 
 		Element.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<ElementEntity, UnityEngine.Vector2Int>(
 			MoveOnTile,
@@ -248,6 +254,11 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>)context.GetEntityIndex(Contexts.ItemEater)).GetEntity(Id);
 	}
 
+	public static System.Collections.Generic.HashSet<CommandEntity> GetEntitiesWithMarkOnTileElementDead(this CommandContext context, int TargetOnTileElementId)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<CommandEntity, int>)context.GetEntityIndex(Contexts.MarkOnTileElementDead)).GetEntities(TargetOnTileElementId);
+	}
+
 	public static System.Collections.Generic.HashSet<ElementEntity> GetEntitiesWithMoveOnTile(this ElementContext context, UnityEngine.Vector2Int ToPosition)
 	{
 		return ((JCMG.EntitasRedux.EntityIndex<ElementEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.MoveOnTile)).GetEntities(ToPosition);
@@ -339,6 +350,7 @@ public partial class Contexts {
 	[JCMG.EntitasRedux.PostConstructor]
 	public void InitializeContextObservers() {
 		try {
+			CreateContextObserver(Command);
 			CreateContextObserver(Config);
 			CreateContextObserver(Effect);
 			CreateContextObserver(Element);
@@ -348,7 +360,6 @@ public partial class Contexts {
 			CreateContextObserver(Level);
 			CreateContextObserver(Message);
 			CreateContextObserver(PlayerState);
-			CreateContextObserver(Request);
 			CreateContextObserver(Tile);
 		} catch(System.Exception) {
 		}
