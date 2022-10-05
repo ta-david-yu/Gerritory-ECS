@@ -13,27 +13,19 @@ using JCMG.EntitasRedux;
 
 public static class LevelComponentsLookup
 {
-	public const int ConstructAIInput = 0;
-	public const int ConstructPlayer = 1;
-	public const int ConstructTile = 2;
-	public const int ConstructUserInput = 3;
-	public const int GameInfo = 4;
-	public const int GameTimer = 5;
-	public const int ItemEaterIdCounter = 6;
-	public const int OnTileElementIdCounter = 7;
-	public const int StateHolderIdCounter = 8;
-	public const int TeamGameRanking = 9;
-	public const int TeamInfo = 10;
-	public const int TeamScore = 11;
+	public const int GameInfo = 0;
+	public const int GameTimer = 1;
+	public const int ItemEaterIdCounter = 2;
+	public const int OnTileElementIdCounter = 3;
+	public const int StateHolderIdCounter = 4;
+	public const int TeamGameRanking = 5;
+	public const int TeamInfo = 6;
+	public const int TeamScore = 7;
 
-	public const int TotalComponents = 12;
+	public const int TotalComponents = 8;
 
 	public static readonly string[] ComponentNames =
 	{
-		"ConstructAIInput",
-		"ConstructPlayer",
-		"ConstructTile",
-		"ConstructUserInput",
 		"GameInfo",
 		"GameTimer",
 		"ItemEaterIdCounter",
@@ -46,10 +38,6 @@ public static class LevelComponentsLookup
 
 	public static readonly System.Type[] ComponentTypes =
 	{
-		typeof(ConstructAIInputComponent),
-		typeof(ConstructPlayerComponent),
-		typeof(ConstructTileComponent),
-		typeof(ConstructUserInputComponent),
 		typeof(GameInfoComponent),
 		typeof(GameTimerComponent),
 		typeof(ItemEaterIdCounterComponent),
@@ -62,18 +50,14 @@ public static class LevelComponentsLookup
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(ConstructAIInputComponent), 0 },
-		{ typeof(ConstructPlayerComponent), 1 },
-		{ typeof(ConstructTileComponent), 2 },
-		{ typeof(ConstructUserInputComponent), 3 },
-		{ typeof(GameInfoComponent), 4 },
-		{ typeof(GameTimerComponent), 5 },
-		{ typeof(ItemEaterIdCounterComponent), 6 },
-		{ typeof(OnTileElementIdCounterComponent), 7 },
-		{ typeof(StateHolderIdCounterComponent), 8 },
-		{ typeof(TeamGameRankingComponent), 9 },
-		{ typeof(TeamInfoComponent), 10 },
-		{ typeof(TeamScoreComponent), 11 }
+		{ typeof(GameInfoComponent), 0 },
+		{ typeof(GameTimerComponent), 1 },
+		{ typeof(ItemEaterIdCounterComponent), 2 },
+		{ typeof(OnTileElementIdCounterComponent), 3 },
+		{ typeof(StateHolderIdCounterComponent), 4 },
+		{ typeof(TeamGameRankingComponent), 5 },
+		{ typeof(TeamInfoComponent), 6 },
+		{ typeof(TeamScoreComponent), 7 }
 	};
 
 	/// <summary>

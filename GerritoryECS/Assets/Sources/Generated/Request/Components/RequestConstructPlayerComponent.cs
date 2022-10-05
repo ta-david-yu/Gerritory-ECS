@@ -7,14 +7,14 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class LevelEntity
+public partial class RequestEntity
 {
-	public ConstructPlayerComponent ConstructPlayer { get { return (ConstructPlayerComponent)GetComponent(LevelComponentsLookup.ConstructPlayer); } }
-	public bool HasConstructPlayer { get { return HasComponent(LevelComponentsLookup.ConstructPlayer); } }
+	public ConstructPlayerComponent ConstructPlayer { get { return (ConstructPlayerComponent)GetComponent(RequestComponentsLookup.ConstructPlayer); } }
+	public bool HasConstructPlayer { get { return HasComponent(RequestComponentsLookup.ConstructPlayer); } }
 
 	public void AddConstructPlayer(int newPlayerId, string newPlayerName, int newTeamId, int newSkinId)
 	{
-		var index = LevelComponentsLookup.ConstructPlayer;
+		var index = RequestComponentsLookup.ConstructPlayer;
 		var component = (ConstructPlayerComponent)CreateComponent(index, typeof(ConstructPlayerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.PlayerId = newPlayerId;
@@ -27,7 +27,7 @@ public partial class LevelEntity
 
 	public void ReplaceConstructPlayer(int newPlayerId, string newPlayerName, int newTeamId, int newSkinId)
 	{
-		var index = LevelComponentsLookup.ConstructPlayer;
+		var index = RequestComponentsLookup.ConstructPlayer;
 		var component = (ConstructPlayerComponent)CreateComponent(index, typeof(ConstructPlayerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.PlayerId = newPlayerId;
@@ -40,7 +40,7 @@ public partial class LevelEntity
 
 	public void CopyConstructPlayerTo(ConstructPlayerComponent copyComponent)
 	{
-		var index = LevelComponentsLookup.ConstructPlayer;
+		var index = RequestComponentsLookup.ConstructPlayer;
 		var component = (ConstructPlayerComponent)CreateComponent(index, typeof(ConstructPlayerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.PlayerId = copyComponent.PlayerId;
@@ -53,7 +53,7 @@ public partial class LevelEntity
 
 	public void RemoveConstructPlayer()
 	{
-		RemoveComponent(LevelComponentsLookup.ConstructPlayer);
+		RemoveComponent(RequestComponentsLookup.ConstructPlayer);
 	}
 }
 
@@ -66,18 +66,18 @@ public partial class LevelEntity
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class LevelMatcher
+public sealed partial class RequestMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<LevelEntity> _matcherConstructPlayer;
+	static JCMG.EntitasRedux.IMatcher<RequestEntity> _matcherConstructPlayer;
 
-	public static JCMG.EntitasRedux.IMatcher<LevelEntity> ConstructPlayer
+	public static JCMG.EntitasRedux.IMatcher<RequestEntity> ConstructPlayer
 	{
 		get
 		{
 			if (_matcherConstructPlayer == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<LevelEntity>)JCMG.EntitasRedux.Matcher<LevelEntity>.AllOf(LevelComponentsLookup.ConstructPlayer);
-				matcher.ComponentNames = LevelComponentsLookup.ComponentNames;
+				var matcher = (JCMG.EntitasRedux.Matcher<RequestEntity>)JCMG.EntitasRedux.Matcher<RequestEntity>.AllOf(RequestComponentsLookup.ConstructPlayer);
+				matcher.ComponentNames = RequestComponentsLookup.ComponentNames;
 				_matcherConstructPlayer = matcher;
 			}
 

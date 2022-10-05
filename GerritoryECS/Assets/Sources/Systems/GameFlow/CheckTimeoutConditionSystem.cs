@@ -18,6 +18,11 @@ public sealed class CheckTimeoutConditionSystem : IFixedUpdateSystem
 
 	public void FixedUpdate()
 	{
+		if (!m_GameFlowContext.GameFlowEntity.IsPlaying)
+		{
+			return;
+		}
+
 		if (m_GameFlowContext.GameFlowEntity.IsGameOver)
 		{
 			return;

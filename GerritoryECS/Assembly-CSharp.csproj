@@ -147,11 +147,9 @@
     <Compile Include="Assets\Sources\Generated\Level\LevelAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateEntity.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowScoreObjectiveComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructUserInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementDebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateBlueprint.cs" />
     <Compile Include="Assets\Sources\Components\Level\ConstructPlayerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructAIInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMoveOnTileBeginAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\TileMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Systems\InputCleanupSystem.cs" />
@@ -213,6 +211,7 @@
     <Compile Include="Assets\Sources\Generated\Message\Components\MessageLeaveBecauseOfDeathComponent.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\CreateEntityFromGameFlowBlueprint.cs" />
     <Compile Include="Assets\Sources\Systems\Level\ConstructPlayerSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Input\EvaluatingForMovementInputComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Level\ConstructTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\GameFlowContext.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageComponentsLookup.cs" />
@@ -267,6 +266,7 @@
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelStateHolderIdCounterComponent.cs" />
     <Compile Include="Assets\Scripts\OnTileElement\RollOnTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowSurvivalObjectiveComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\Components\InputEvaluatingForMovementInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementDeadAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MoveOnTileEndComponent.cs" />
     <Compile Include="Assets\Sources\Components\Level\GameTimerComponent.cs" />
@@ -423,7 +423,6 @@
     <Compile Include="Assets\Sources\Generated\Effect\Features\EffectCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Components\Level\TeamScoreComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputBlueprintBehaviour.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructTileComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigContext.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageEntity.cs" />
     <Compile Include="Assets\Sources\Systems\Debug\OnDrawGizmosItemSystem.cs" />
@@ -460,10 +459,27 @@
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableComponent.cs" />
     <Compile Include="Assets\Scripts\Tile\CollapseTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelConstructPlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Components\Input\EvaluatingForMovementInputComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Input\Components\InputEvaluatingForMovementInputComponent.cs" />
+    <Compile Include="Assets\Sources\Components\GameFlow\PlayingComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowPlayingComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Kill\KillRequestComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\RequestBlueprintBehaviour.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\RequestBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\RequestEntity.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\RequestComponentsLookup.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\RequestContext.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\CreateEntityFromRequestBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\IRequestBlueprint.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\RequestAttribute.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementKillRequestComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\RequestMatcher.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\Components\RequestEntity_CopyTo.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\Systems\RequestCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\Components\RequestConstructTileComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\Features\RequestCleanupFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\Components\RequestConstructUserInputComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\Components\RequestConstructAIInputComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Request\Components\RequestConstructPlayerComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

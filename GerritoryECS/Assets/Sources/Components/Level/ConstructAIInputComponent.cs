@@ -1,6 +1,6 @@
 using JCMG.EntitasRedux;
 
-[Level]
+[Request]
 public sealed class ConstructAIInputComponent : IComponent
 {
 	public Movement.Type Movement;

@@ -7,14 +7,14 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class LevelEntity
+public partial class RequestEntity
 {
-	public ConstructAIInputComponent ConstructAIInput { get { return (ConstructAIInputComponent)GetComponent(LevelComponentsLookup.ConstructAIInput); } }
-	public bool HasConstructAIInput { get { return HasComponent(LevelComponentsLookup.ConstructAIInput); } }
+	public ConstructAIInputComponent ConstructAIInput { get { return (ConstructAIInputComponent)GetComponent(RequestComponentsLookup.ConstructAIInput); } }
+	public bool HasConstructAIInput { get { return HasComponent(RequestComponentsLookup.ConstructAIInput); } }
 
 	public void AddConstructAIInput(Movement.Type newMovement, int newTargetPlayerId)
 	{
-		var index = LevelComponentsLookup.ConstructAIInput;
+		var index = RequestComponentsLookup.ConstructAIInput;
 		var component = (ConstructAIInputComponent)CreateComponent(index, typeof(ConstructAIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Movement = newMovement;
@@ -25,7 +25,7 @@ public partial class LevelEntity
 
 	public void ReplaceConstructAIInput(Movement.Type newMovement, int newTargetPlayerId)
 	{
-		var index = LevelComponentsLookup.ConstructAIInput;
+		var index = RequestComponentsLookup.ConstructAIInput;
 		var component = (ConstructAIInputComponent)CreateComponent(index, typeof(ConstructAIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Movement = newMovement;
@@ -36,7 +36,7 @@ public partial class LevelEntity
 
 	public void CopyConstructAIInputTo(ConstructAIInputComponent copyComponent)
 	{
-		var index = LevelComponentsLookup.ConstructAIInput;
+		var index = RequestComponentsLookup.ConstructAIInput;
 		var component = (ConstructAIInputComponent)CreateComponent(index, typeof(ConstructAIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Movement = copyComponent.Movement;
@@ -47,7 +47,7 @@ public partial class LevelEntity
 
 	public void RemoveConstructAIInput()
 	{
-		RemoveComponent(LevelComponentsLookup.ConstructAIInput);
+		RemoveComponent(RequestComponentsLookup.ConstructAIInput);
 	}
 }
 
@@ -60,18 +60,18 @@ public partial class LevelEntity
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class LevelMatcher
+public sealed partial class RequestMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<LevelEntity> _matcherConstructAIInput;
+	static JCMG.EntitasRedux.IMatcher<RequestEntity> _matcherConstructAIInput;
 
-	public static JCMG.EntitasRedux.IMatcher<LevelEntity> ConstructAIInput
+	public static JCMG.EntitasRedux.IMatcher<RequestEntity> ConstructAIInput
 	{
 		get
 		{
 			if (_matcherConstructAIInput == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<LevelEntity>)JCMG.EntitasRedux.Matcher<LevelEntity>.AllOf(LevelComponentsLookup.ConstructAIInput);
-				matcher.ComponentNames = LevelComponentsLookup.ComponentNames;
+				var matcher = (JCMG.EntitasRedux.Matcher<RequestEntity>)JCMG.EntitasRedux.Matcher<RequestEntity>.AllOf(RequestComponentsLookup.ConstructAIInput);
+				matcher.ComponentNames = RequestComponentsLookup.ComponentNames;
 				_matcherConstructAIInput = matcher;
 			}
 

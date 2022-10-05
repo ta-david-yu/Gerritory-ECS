@@ -7,14 +7,14 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class LevelEntity
+public partial class RequestEntity
 {
-	public ConstructTileComponent ConstructTile { get { return (ConstructTileComponent)GetComponent(LevelComponentsLookup.ConstructTile); } }
-	public bool HasConstructTile { get { return HasComponent(LevelComponentsLookup.ConstructTile); } }
+	public ConstructTileComponent ConstructTile { get { return (ConstructTileComponent)GetComponent(RequestComponentsLookup.ConstructTile); } }
+	public bool HasConstructTile { get { return HasComponent(RequestComponentsLookup.ConstructTile); } }
 
 	public void AddConstructTile(UnityEngine.Vector2Int newTilePosition, TileData newTileData)
 	{
-		var index = LevelComponentsLookup.ConstructTile;
+		var index = RequestComponentsLookup.ConstructTile;
 		var component = (ConstructTileComponent)CreateComponent(index, typeof(ConstructTileComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.TilePosition = newTilePosition;
@@ -25,7 +25,7 @@ public partial class LevelEntity
 
 	public void ReplaceConstructTile(UnityEngine.Vector2Int newTilePosition, TileData newTileData)
 	{
-		var index = LevelComponentsLookup.ConstructTile;
+		var index = RequestComponentsLookup.ConstructTile;
 		var component = (ConstructTileComponent)CreateComponent(index, typeof(ConstructTileComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.TilePosition = newTilePosition;
@@ -36,7 +36,7 @@ public partial class LevelEntity
 
 	public void CopyConstructTileTo(ConstructTileComponent copyComponent)
 	{
-		var index = LevelComponentsLookup.ConstructTile;
+		var index = RequestComponentsLookup.ConstructTile;
 		var component = (ConstructTileComponent)CreateComponent(index, typeof(ConstructTileComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.TilePosition = copyComponent.TilePosition;
@@ -47,7 +47,7 @@ public partial class LevelEntity
 
 	public void RemoveConstructTile()
 	{
-		RemoveComponent(LevelComponentsLookup.ConstructTile);
+		RemoveComponent(RequestComponentsLookup.ConstructTile);
 	}
 }
 
@@ -60,18 +60,18 @@ public partial class LevelEntity
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class LevelMatcher
+public sealed partial class RequestMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<LevelEntity> _matcherConstructTile;
+	static JCMG.EntitasRedux.IMatcher<RequestEntity> _matcherConstructTile;
 
-	public static JCMG.EntitasRedux.IMatcher<LevelEntity> ConstructTile
+	public static JCMG.EntitasRedux.IMatcher<RequestEntity> ConstructTile
 	{
 		get
 		{
 			if (_matcherConstructTile == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<LevelEntity>)JCMG.EntitasRedux.Matcher<LevelEntity>.AllOf(LevelComponentsLookup.ConstructTile);
-				matcher.ComponentNames = LevelComponentsLookup.ComponentNames;
+				var matcher = (JCMG.EntitasRedux.Matcher<RequestEntity>)JCMG.EntitasRedux.Matcher<RequestEntity>.AllOf(RequestComponentsLookup.ConstructTile);
+				matcher.ComponentNames = RequestComponentsLookup.ComponentNames;
 				_matcherConstructTile = matcher;
 			}
 

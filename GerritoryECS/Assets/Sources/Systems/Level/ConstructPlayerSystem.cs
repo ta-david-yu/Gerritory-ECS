@@ -8,25 +8,17 @@ using UnityEngine;
 /// </summary>
 public sealed class ConstructPlayerSystem : IFixedUpdateSystem
 {
-	private readonly LevelContext m_LevelContext;
-	private readonly ElementContext m_ElementContext;
-	private readonly InputContext m_InputContext;
-	private readonly ConfigContext m_ConfigContext;
-	private readonly MessageContext m_MessageContext;
+	private readonly RequestContext m_RequestContext;
 	private readonly Contexts m_Contexts;
 
-	private readonly IGroup<LevelEntity> m_ConstructPlayerRequestGroup;
+	private readonly IGroup<RequestEntity> m_ConstructPlayerRequestGroup;
 
 	public ConstructPlayerSystem(Contexts contexts)
 	{
-		m_LevelContext = contexts.Level;
-		m_ElementContext = contexts.Element;
-		m_InputContext = contexts.Input;
-		m_ConfigContext = contexts.Config;
-		m_MessageContext = contexts.Message;
 		m_Contexts = contexts;
+		m_RequestContext = contexts.Request;
 
-		m_ConstructPlayerRequestGroup = m_LevelContext.GetGroup(LevelMatcher.ConstructPlayer);
+		m_ConstructPlayerRequestGroup = m_RequestContext.GetGroup(RequestMatcher.ConstructPlayer);
 	}
 
 	public void FixedUpdate()

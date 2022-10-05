@@ -1,6 +1,6 @@
 using JCMG.EntitasRedux;
 
-[Level]
+[Request]
 public sealed class ConstructUserInputComponent : IComponent
 {
 	public int UserId;

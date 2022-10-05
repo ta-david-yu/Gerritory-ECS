@@ -11,61 +11,37 @@ using System;
 using System.Collections.Generic;
 using JCMG.EntitasRedux;
 
-public static class GameFlowComponentsLookup
+public static class RequestComponentsLookup
 {
-	public const int CountdownTimer = 0;
-	public const int EndOnEliminated = 1;
-	public const int EndOnGoalReached = 2;
-	public const int EndOnTimeout = 3;
-	public const int GameFlow = 4;
-	public const int GameOver = 5;
-	public const int InGameState = 6;
-	public const int Playing = 7;
-	public const int ScoreObjective = 8;
-	public const int SurvivalObjective = 9;
+	public const int ConstructAIInput = 0;
+	public const int ConstructPlayer = 1;
+	public const int ConstructTile = 2;
+	public const int ConstructUserInput = 3;
 
-	public const int TotalComponents = 10;
+	public const int TotalComponents = 4;
 
 	public static readonly string[] ComponentNames =
 	{
-		"CountdownTimer",
-		"EndOnEliminated",
-		"EndOnGoalReached",
-		"EndOnTimeout",
-		"GameFlow",
-		"GameOver",
-		"InGameState",
-		"Playing",
-		"ScoreObjective",
-		"SurvivalObjective"
+		"ConstructAIInput",
+		"ConstructPlayer",
+		"ConstructTile",
+		"ConstructUserInput"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
 	{
-		typeof(CountdownTimerComponent),
-		typeof(EndOnEliminatedComponent),
-		typeof(EndOnGoalReachedComponent),
-		typeof(EndOnTimeoutComponent),
-		typeof(GameFlowComponent),
-		typeof(GameOverComponent),
-		typeof(InGameStateComponent),
-		typeof(PlayingComponent),
-		typeof(ScoreObjectiveComponent),
-		typeof(SurvivalObjectiveComponent)
+		typeof(ConstructAIInputComponent),
+		typeof(ConstructPlayerComponent),
+		typeof(ConstructTileComponent),
+		typeof(ConstructUserInputComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(CountdownTimerComponent), 0 },
-		{ typeof(EndOnEliminatedComponent), 1 },
-		{ typeof(EndOnGoalReachedComponent), 2 },
-		{ typeof(EndOnTimeoutComponent), 3 },
-		{ typeof(GameFlowComponent), 4 },
-		{ typeof(GameOverComponent), 5 },
-		{ typeof(InGameStateComponent), 6 },
-		{ typeof(PlayingComponent), 7 },
-		{ typeof(ScoreObjectiveComponent), 8 },
-		{ typeof(SurvivalObjectiveComponent), 9 }
+		{ typeof(ConstructAIInputComponent), 0 },
+		{ typeof(ConstructPlayerComponent), 1 },
+		{ typeof(ConstructTileComponent), 2 },
+		{ typeof(ConstructUserInputComponent), 3 }
 	};
 
 	/// <summary>

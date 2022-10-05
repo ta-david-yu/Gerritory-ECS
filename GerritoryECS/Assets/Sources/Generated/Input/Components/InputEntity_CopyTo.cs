@@ -18,17 +18,17 @@ public partial class InputEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is EvaluatingForMovementInputComponent EvaluatingForMovementInput)
-		{
-			IsEvaluatingForMovementInput = true;
-		}
-		else if (component is DebugMessageComponent DebugMessage)
+		if (component is DebugMessageComponent DebugMessage)
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
 		else if (component is AIInputComponent AIInput)
 		{
 			CopyAIInputTo(AIInput);
+		}
+		else if (component is EvaluatingForMovementInputComponent EvaluatingForMovementInput)
+		{
+			IsEvaluatingForMovementInput = true;
 		}
 		else if (component is UserInputComponent UserInput)
 		{

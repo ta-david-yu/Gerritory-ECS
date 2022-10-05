@@ -8,19 +8,19 @@ using UnityEngine;
 /// </summary>
 public class ConstructInputEntitySystem : IFixedUpdateSystem
 {
-	private readonly LevelContext m_LevelContext;
+	private readonly RequestContext m_RequestContext;
 	private readonly InputContext m_InputContext;
 
-	private readonly IGroup<LevelEntity> m_ConstructUserInputGroup;
-	private readonly IGroup<LevelEntity> m_ConstructAIInputGroup;
+	private readonly IGroup<RequestEntity> m_ConstructUserInputGroup;
+	private readonly IGroup<RequestEntity> m_ConstructAIInputGroup;
 
 	public ConstructInputEntitySystem(Contexts contexts)
 	{
-		m_LevelContext = contexts.Level;
 		m_InputContext = contexts.Input;
+		m_RequestContext = contexts.Request;
 
-		m_ConstructUserInputGroup = m_LevelContext.GetGroup(LevelMatcher.ConstructUserInput);
-		m_ConstructAIInputGroup = m_LevelContext.GetGroup(LevelMatcher.ConstructAIInput);
+		m_ConstructUserInputGroup = m_RequestContext.GetGroup(RequestMatcher.ConstructUserInput);
+		m_ConstructAIInputGroup = m_RequestContext.GetGroup(RequestMatcher.ConstructAIInput);
 	}
 
 	public void FixedUpdate()

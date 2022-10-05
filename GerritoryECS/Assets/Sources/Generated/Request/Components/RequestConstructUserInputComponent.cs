@@ -7,14 +7,14 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class LevelEntity
+public partial class RequestEntity
 {
-	public ConstructUserInputComponent ConstructUserInput { get { return (ConstructUserInputComponent)GetComponent(LevelComponentsLookup.ConstructUserInput); } }
-	public bool HasConstructUserInput { get { return HasComponent(LevelComponentsLookup.ConstructUserInput); } }
+	public ConstructUserInputComponent ConstructUserInput { get { return (ConstructUserInputComponent)GetComponent(RequestComponentsLookup.ConstructUserInput); } }
+	public bool HasConstructUserInput { get { return HasComponent(RequestComponentsLookup.ConstructUserInput); } }
 
 	public void AddConstructUserInput(int newUserId, int newTargetPlayerId)
 	{
-		var index = LevelComponentsLookup.ConstructUserInput;
+		var index = RequestComponentsLookup.ConstructUserInput;
 		var component = (ConstructUserInputComponent)CreateComponent(index, typeof(ConstructUserInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.UserId = newUserId;
@@ -25,7 +25,7 @@ public partial class LevelEntity
 
 	public void ReplaceConstructUserInput(int newUserId, int newTargetPlayerId)
 	{
-		var index = LevelComponentsLookup.ConstructUserInput;
+		var index = RequestComponentsLookup.ConstructUserInput;
 		var component = (ConstructUserInputComponent)CreateComponent(index, typeof(ConstructUserInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.UserId = newUserId;
@@ -36,7 +36,7 @@ public partial class LevelEntity
 
 	public void CopyConstructUserInputTo(ConstructUserInputComponent copyComponent)
 	{
-		var index = LevelComponentsLookup.ConstructUserInput;
+		var index = RequestComponentsLookup.ConstructUserInput;
 		var component = (ConstructUserInputComponent)CreateComponent(index, typeof(ConstructUserInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.UserId = copyComponent.UserId;
@@ -47,7 +47,7 @@ public partial class LevelEntity
 
 	public void RemoveConstructUserInput()
 	{
-		RemoveComponent(LevelComponentsLookup.ConstructUserInput);
+		RemoveComponent(RequestComponentsLookup.ConstructUserInput);
 	}
 }
 
@@ -60,18 +60,18 @@ public partial class LevelEntity
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class LevelMatcher
+public sealed partial class RequestMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<LevelEntity> _matcherConstructUserInput;
+	static JCMG.EntitasRedux.IMatcher<RequestEntity> _matcherConstructUserInput;
 
-	public static JCMG.EntitasRedux.IMatcher<LevelEntity> ConstructUserInput
+	public static JCMG.EntitasRedux.IMatcher<RequestEntity> ConstructUserInput
 	{
 		get
 		{
 			if (_matcherConstructUserInput == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<LevelEntity>)JCMG.EntitasRedux.Matcher<LevelEntity>.AllOf(LevelComponentsLookup.ConstructUserInput);
-				matcher.ComponentNames = LevelComponentsLookup.ComponentNames;
+				var matcher = (JCMG.EntitasRedux.Matcher<RequestEntity>)JCMG.EntitasRedux.Matcher<RequestEntity>.AllOf(RequestComponentsLookup.ConstructUserInput);
+				matcher.ComponentNames = RequestComponentsLookup.ComponentNames;
 				_matcherConstructUserInput = matcher;
 			}
 

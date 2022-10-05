@@ -66,9 +66,10 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 	public LevelContext Level { get; set; }
 	public MessageContext Message { get; set; }
 	public PlayerStateContext PlayerState { get; set; }
+	public RequestContext Request { get; set; }
 	public TileContext Tile { get; set; }
 
-	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Config, Effect, Element, GameFlow, Input, Item, Level, Message, PlayerState, Tile }; } }
+	public JCMG.EntitasRedux.IContext[] AllContexts { get { return new JCMG.EntitasRedux.IContext [] { Config, Effect, Element, GameFlow, Input, Item, Level, Message, PlayerState, Request, Tile }; } }
 
 	public Contexts()
 	{
@@ -81,6 +82,7 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 		Level = new LevelContext();
 		Message = new MessageContext();
 		PlayerState = new PlayerStateContext();
+		Request = new RequestContext();
 		Tile = new TileContext();
 
 		var postConstructors = System.Linq.Enumerable.Where(
@@ -346,6 +348,7 @@ public partial class Contexts {
 			CreateContextObserver(Level);
 			CreateContextObserver(Message);
 			CreateContextObserver(PlayerState);
+			CreateContextObserver(Request);
 			CreateContextObserver(Tile);
 		} catch(System.Exception) {
 		}

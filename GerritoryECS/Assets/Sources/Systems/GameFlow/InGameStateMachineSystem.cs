@@ -9,6 +9,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 	private readonly LevelContext m_LevelContext;
 	private readonly ElementContext m_ElementContext;
 	private readonly InputContext m_InputContext;
+	private readonly RequestContext m_RequestContext;
 	private readonly ConfigContext m_ConfigContext;
 	private readonly MessageContext m_MessageContext;
 	private readonly Contexts m_Contexts;
@@ -21,6 +22,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 		m_LevelContext = contexts.Level;
 		m_ElementContext = contexts.Element;
 		m_InputContext = contexts.Input;
+		m_RequestContext = contexts.Request;
 		m_ConfigContext = contexts.Config;
 		m_MessageContext = contexts.Message;
 		m_Contexts = contexts;
@@ -44,30 +46,27 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 			LevelData levelData = m_ConfigContext.GameConfig.value.LevelData;
 			foreach (var tileDataPair in levelData.TileDataPairs)
 			{
-				/*
 				// Create tile construction request entity.
-				m_LevelContext.CreateEntity().AddConstructTile
+				m_RequestContext.CreateEntity().AddConstructTile
 				(
 					tileDataPair.Key,
 					tileDataPair.Value
-				);*/
-				m_Contexts.ConstructTileEntityAtPosition(tileDataPair.Value, tileDataPair.Key);
+				);
+				//m_Contexts.ConstructTileEntityAtPosition(tileDataPair.Value, tileDataPair.Key);
 			}
 
 			var playerConfigs = m_ConfigContext.GameConfig.value.PlayerGameConfigs;
 			foreach (var playerConfig in playerConfigs)
 			{
-				/*
 				// Create player construction request entity.
-				m_LevelContext.CreateEntity().AddConstructPlayer
+				m_RequestContext.CreateEntity().AddConstructPlayer
 				(
 					playerConfig.PlayerId,
 					playerConfig.PlayerName,
 					playerConfig.TeamId,
 					playerConfig.SkinId
 				);
-				*/
-				m_Contexts.ConstructPlayerEntity(playerConfig.PlayerId, playerConfig.TeamId, playerConfig.SkinId);
+				//m_Contexts.ConstructPlayerEntity(playerConfig.PlayerId, playerConfig.TeamId, playerConfig.SkinId);
 			}
 
 			gameFlowEntity.AddCountdownTimer(3);
@@ -92,11 +91,11 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 				{
 					if (!playerConfig.IsAI)
 					{
-						m_LevelContext.CreateEntity().AddConstructUserInput(playerConfig.PlayerId, playerConfig.PlayerId);
+						m_RequestContext.CreateEntity().AddConstructUserInput(playerConfig.PlayerId, playerConfig.PlayerId);
 					}
 					else
 					{
-						m_LevelContext.CreateEntity().AddConstructAIInput(Movement.Type.Right, playerConfig.PlayerId);
+						m_RequestContext.CreateEntity().AddConstructAIInput(Movement.Type.Right, playerConfig.PlayerId);
 					}
 				}
 
@@ -105,6 +104,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 
 				// Go to play after countdown timer is up.
 				gameFlowEntity.ReplaceInGameState(InGameStateComponent.State.Playing);
+				gameFlowEntity.IsPlaying = true;
 			}
 		}
 		else if (state == InGameStateComponent.State.Playing)
@@ -133,6 +133,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 
 			// Go to outro after the game is done.
 			gameFlowEntity.ReplaceInGameState(InGameStateComponent.State.Outro);
+			gameFlowEntity.IsPlaying = false;
 		}
 	}
 }

@@ -10,7 +10,7 @@
 
 using JCMG.EntitasRedux;
 
-public partial class GameFlowEntity
+public partial class RequestEntity
 {
 	/// <summary>
 	/// Copies <paramref name="component"/> to this entity as a new component instance.
@@ -18,45 +18,21 @@ public partial class GameFlowEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is PlayingComponent Playing)
+		if (component is ConstructTileComponent ConstructTile)
 		{
-			IsPlaying = true;
+			CopyConstructTileTo(ConstructTile);
 		}
-		else if (component is ScoreObjectiveComponent ScoreObjective)
+		else if (component is ConstructAIInputComponent ConstructAIInput)
 		{
-			IsScoreObjective = true;
+			CopyConstructAIInputTo(ConstructAIInput);
 		}
-		else if (component is CountdownTimerComponent CountdownTimer)
+		else if (component is ConstructUserInputComponent ConstructUserInput)
 		{
-			CopyCountdownTimerTo(CountdownTimer);
+			CopyConstructUserInputTo(ConstructUserInput);
 		}
-		else if (component is GameOverComponent GameOver)
+		else if (component is ConstructPlayerComponent ConstructPlayer)
 		{
-			IsGameOver = true;
-		}
-		else if (component is EndOnTimeoutComponent EndOnTimeout)
-		{
-			CopyEndOnTimeoutTo(EndOnTimeout);
-		}
-		else if (component is EndOnGoalReachedComponent EndOnGoalReached)
-		{
-			CopyEndOnGoalReachedTo(EndOnGoalReached);
-		}
-		else if (component is GameFlowComponent GameFlow)
-		{
-			IsGameFlow = true;
-		}
-		else if (component is InGameStateComponent InGameState)
-		{
-			CopyInGameStateTo(InGameState);
-		}
-		else if (component is SurvivalObjectiveComponent SurvivalObjective)
-		{
-			IsSurvivalObjective = true;
-		}
-		else if (component is EndOnEliminatedComponent EndOnEliminated)
-		{
-			CopyEndOnEliminatedTo(EndOnEliminated);
+			CopyConstructPlayerTo(ConstructPlayer);
 		}
 		#endif
 	}
@@ -64,9 +40,9 @@ public partial class GameFlowEntity
 	/// <summary>
 	/// Copies all components on this entity to <paramref name="copyToEntity"/>.
 	/// </summary>
-	public void CopyTo(GameFlowEntity copyToEntity)
+	public void CopyTo(RequestEntity copyToEntity)
 	{
-		for (var i = 0; i < GameFlowComponentsLookup.TotalComponents; ++i)
+		for (var i = 0; i < RequestComponentsLookup.TotalComponents; ++i)
 		{
 			if (HasComponent(i))
 			{
@@ -75,7 +51,7 @@ public partial class GameFlowEntity
 					throw new EntityAlreadyHasComponentException(
 						i,
 						"Cannot copy component '" +
-						GameFlowComponentsLookup.ComponentNames[i] +
+						RequestComponentsLookup.ComponentNames[i] +
 						"' to " +
 						this +
 						"!",
@@ -93,9 +69,9 @@ public partial class GameFlowEntity
 	/// is true any of the components that <paramref name="copyToEntity"/> has that this entity has will be replaced,
 	/// otherwise they will be skipped.
 	/// </summary>
-	public void CopyTo(GameFlowEntity copyToEntity, bool replaceExisting)
+	public void CopyTo(RequestEntity copyToEntity, bool replaceExisting)
 	{
-		for (var i = 0; i < GameFlowComponentsLookup.TotalComponents; ++i)
+		for (var i = 0; i < RequestComponentsLookup.TotalComponents; ++i)
 		{
 			if (!HasComponent(i))
 			{
@@ -111,18 +87,18 @@ public partial class GameFlowEntity
 	}
 
 	/// <summary>
-	/// Copies components on this entity at <paramref name="indices"/> in the <see cref="GameFlowComponentsLookup"/> to
+	/// Copies components on this entity at <paramref name="indices"/> in the <see cref="RequestComponentsLookup"/> to
 	/// <paramref name="copyToEntity"/>. If <paramref name="replaceExisting"/> is true any of the components that
 	/// <paramref name="copyToEntity"/> has that this entity has will be replaced, otherwise they will be skipped.
 	/// </summary>
-	public void CopyTo(GameFlowEntity copyToEntity, bool replaceExisting, params int[] indices)
+	public void CopyTo(RequestEntity copyToEntity, bool replaceExisting, params int[] indices)
 	{
 		for (var i = 0; i < indices.Length; ++i)
 		{
 			var index = indices[i];
 
 			// Validate that the index is within range of the component lookup
-			if (index < 0 && index >= GameFlowComponentsLookup.TotalComponents)
+			if (index < 0 && index >= RequestComponentsLookup.TotalComponents)
 			{
 				const string OUT_OF_RANGE_WARNING =
 					"Component Index [{0}] is out of range for [{1}].";
@@ -130,7 +106,7 @@ public partial class GameFlowEntity
 				const string HINT = "Please ensure any CopyTo indices are valid.";
 
 				throw new IndexOutOfLookupRangeException(
-					string.Format(OUT_OF_RANGE_WARNING, index, nameof(GameFlowComponentsLookup)),
+					string.Format(OUT_OF_RANGE_WARNING, index, nameof(RequestComponentsLookup)),
 					HINT);
 			}
 

@@ -22,14 +22,6 @@ public partial class LevelEntity
 		{
 			CopyTeamScoreTo(TeamScore);
 		}
-		else if (component is ConstructTileComponent ConstructTile)
-		{
-			CopyConstructTileTo(ConstructTile);
-		}
-		else if (component is ConstructAIInputComponent ConstructAIInput)
-		{
-			CopyConstructAIInputTo(ConstructAIInput);
-		}
 		else if (component is TeamGameRankingComponent TeamGameRanking)
 		{
 			CopyTeamGameRankingTo(TeamGameRanking);
@@ -37,14 +29,6 @@ public partial class LevelEntity
 		else if (component is GameTimerComponent GameTimer)
 		{
 			CopyGameTimerTo(GameTimer);
-		}
-		else if (component is ConstructUserInputComponent ConstructUserInput)
-		{
-			CopyConstructUserInputTo(ConstructUserInput);
-		}
-		else if (component is ConstructPlayerComponent ConstructPlayer)
-		{
-			CopyConstructPlayerTo(ConstructPlayer);
 		}
 		else if (component is TeamInfoComponent TeamInfo)
 		{
