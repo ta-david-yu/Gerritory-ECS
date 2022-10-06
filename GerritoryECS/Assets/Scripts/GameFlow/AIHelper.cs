@@ -53,6 +53,11 @@ public static class AIHelper
 		/// </summary>
 		public NativeArray<Vector2Int> OnTileElementPositions;
 
+		public const int k_NotOwnableTeamId = -2;
+		public const int k_NoOwnerTeamId = -1;
+		public const int k_NoTile = -1;
+		public const int k_NoElement = -1;
+
 
 		public void InitializeWithContexts(Contexts contexts, Allocator allocator)
 		{
@@ -60,30 +65,40 @@ public static class AIHelper
 
 			// Allocate Tile related states
 			int numberOfTiles = contexts.Config.GameConfig.value.LevelData.TileDataPairs.Count;
-			Vector2Int levelBoundingRectSize = contexts.Config.GameConfig.value.LevelData.LevelBoundingRectSize;
+			LevelBoundingRectSize = contexts.Config.GameConfig.value.LevelData.LevelBoundingRectSize;
 
-			TileIndices = new NativeArray<int>(levelBoundingRectSize.x * levelBoundingRectSize.y, allocator);
+			TileIndices = new NativeArray<int>(LevelBoundingRectSize.x * LevelBoundingRectSize.y, allocator);
 			TileOwnerTeamIds = new NativeArray<int>(numberOfTiles, allocator);
 			TileWorthPoints = new NativeArray<int>(numberOfTiles, allocator);
 			TileItems = new NativeArray<bool>(numberOfTiles, allocator);
 
 			var tilePositions = contexts.Config.GameConfig.value.LevelData.TileDataPairs.
-				OrderBy(tileDataPair => tileDataPair.Key).
+				OrderBy(tileDataPair => tileDataPair.Key.x).
+				ThenBy(tileDataPair => tileDataPair.Key.y).
 				Select(tileDataPair => tileDataPair.Key).
 				ToArray();
 
 			for (int i = 0; i < TileIndices.Length; i++)
 			{
-				TileIndices[i] = -1;
+				TileIndices[i] = k_NoTile;
 			}
 
 			for (int i = 0; i < tilePositions.Length; i++)
 			{
 				var tilePosition = tilePositions[i];
 				TileEntity tile = contexts.Tile.GetEntityWithTilePosition(tilePosition);
-				int oneDimensionIndex = tilePositionTo1DArrayIndex(tilePosition, levelBoundingRectSize);
+				int oneDimensionIndex = tilePositionTo1DArrayIndex(tilePosition, LevelBoundingRectSize);
 				TileIndices[oneDimensionIndex] = i;
-				TileOwnerTeamIds[i] = tile.HasOwnable && tile.HasOwner? tile.Owner.OwnerTeamId : -1;
+				
+				if (!tile.HasOwnable)
+				{
+					TileOwnerTeamIds[i] = k_NotOwnableTeamId;
+				}
+				else
+				{
+					TileOwnerTeamIds[i] = tile.HasOwner ? tile.Owner.OwnerTeamId : k_NoOwnerTeamId;
+				}
+
 				TileWorthPoints[i] = tile.HasOwnable ? tile.Ownable.WorthPoints : 0;
 				TileItems[i] = tile.IsItemHolder && contexts.Item.GetEntityWithOnTileItem(tilePosition) != null;
 			}
@@ -151,6 +166,14 @@ public static class AIHelper
 	/// <returns>The index of the tile position; otherwise return -1 if the position doesn't have a tile.</returns>
 	public static int GetIndexOfTileAt(this GameSimulationState gameSimulationState, Vector2Int targetPosition)
 	{
+		bool outOfBounds = targetPosition.x < 0 || targetPosition.x >= gameSimulationState.LevelBoundingRectSize.x ||
+						   targetPosition.y < 0 || targetPosition.y >= gameSimulationState.LevelBoundingRectSize.y;
+
+		if (outOfBounds)
+		{
+			return GameSimulationState.k_NoTile;
+		}
+
 		int tileArrayIndex = targetPosition.x * gameSimulationState.LevelBoundingRectSize.y + targetPosition.y;
 		return gameSimulationState.TileIndices[tileArrayIndex];
 	}
@@ -172,13 +195,19 @@ public static class AIHelper
 			}
 		}
 
-		return -1;
+		return GameSimulationState.k_NoElement;
 	}
 
 	public static float EvaluateScoreEarnedIfOnTileElementMoveTo(this GameSimulationState gameSimulationState, int onTileElementId, Vector2Int toPosition, int temporalRelevancy)
 	{
 		float scoreEarned = 0;
 		int mappedTileIndex = gameSimulationState.GetIndexOfTileAt(toPosition);
+		if (mappedTileIndex == GameSimulationState.k_NoTile)
+		{
+			// If the given position doesn't have a tile, the score earned is always zero.
+			return 0;
+		}
+
 		int mappedOnTileElementIndex = gameSimulationState.GetIndexOfOnTileElementWithId(onTileElementId);
 		int teamId = gameSimulationState.OnTileElementTeamIds[mappedOnTileElementIndex];
 
@@ -189,7 +218,7 @@ public static class AIHelper
 			int worthPoints = gameSimulationState.TileWorthPoints[mappedTileIndex];
 
 			int ownerTeamId = gameSimulationState.TileOwnerTeamIds[mappedTileIndex];
-			bool tileHasOwner = ownerTeamId != -1;
+			bool tileHasOwner = ownerTeamId != GameSimulationState.k_NoOwnerTeamId && ownerTeamId != GameSimulationState.k_NotOwnableTeamId;
 			if (!tileHasOwner)
 			{
 				// If the tile doesn't have an owner, move to it will reward the agent with points.
@@ -224,6 +253,15 @@ public static class AIHelper
 	/// <param name="toPosition"></param>
 	public static void MoveOnTileElementTo(this GameSimulationState gameSimulationState, int onTileElementId, Vector2Int toPosition)
 	{
+		// TODO: update the game state as if the on tile element moved to the given location
+		int mappedOnTileElementIndex = gameSimulationState.GetIndexOfOnTileElementWithId(onTileElementId);
+		int mappedTileIndex = gameSimulationState.GetIndexOfTileAt(toPosition);
+		int teamId = gameSimulationState.OnTileElementTeamIds[mappedOnTileElementIndex];
+		gameSimulationState.OnTileElementPositions[mappedOnTileElementIndex] = toPosition;
 
+		if (gameSimulationState.TileOwnerTeamIds[mappedTileIndex] != GameSimulationState.k_NotOwnableTeamId)
+		{
+			gameSimulationState.TileOwnerTeamIds[mappedTileIndex] = teamId;
+		}
 	}
 }

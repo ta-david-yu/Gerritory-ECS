@@ -68,6 +68,9 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 			// TODO: Collect job result and apply the result to movement input action
 			// ...
 
+			AIHelper.GameSimulationState gameSimulationState = new AIHelper.GameSimulationState();
+			gameSimulationState.InitializeWithContexts(m_Contexts, Unity.Collections.Allocator.Temp);
+
 			// TODO: remove this, currently the depth level is only 1.
 			float maxScore = float.MinValue;
 			var movements = (Movement.Type[])Enum.GetValues(typeof(Movement.Type));
@@ -75,9 +78,9 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 			foreach (Movement.Type movement in movements)
 			{
 				Vector2Int moveOffset = Movement.TypeToOffset[(int)movement];
-				ElementEntity agentEntity = m_Contexts.Element.GetEntityWithOnTileElement(playerEntity.OnTileElement.Id);
-				Vector2Int currentPosition = agentEntity.OnTilePosition.Value;
-				float reward = evaluateScoreEarnedIfOnTileElementMoveToPosition(playerEntity.OnTileElement.Id, currentPosition + moveOffset, 3);
+				Vector2Int currentPosition = playerEntity.OnTilePosition.Value;
+				float reward = gameSimulationState.EvaluateScoreEarnedIfOnTileElementMoveTo(playerEntity.OnTileElement.Id, currentPosition + moveOffset, 3);
+				//float reward = evaluateScoreEarnedIfOnTileElementMoveToPosition(playerEntity.OnTileElement.Id, currentPosition + moveOffset, 3);
 
 				if (reward > maxScore)
 				{

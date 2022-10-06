@@ -116,6 +116,7 @@
     <Compile Include="Assets\Sources\Generated\Command\Systems\CommandCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Tile\CollapseTileOnLeaveTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageBlueprint.cs" />
+    <Compile Include="Assets\Scripts\GameFlow\AIHelper.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMoveOnTileEndComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Components\Config\PlayerGameConfig.cs" />
@@ -481,7 +482,6 @@
     <Compile Include="Assets\Scripts\Tile\CollapseTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Scripts\GameFlow\AIHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
