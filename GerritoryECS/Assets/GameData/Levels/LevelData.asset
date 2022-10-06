@@ -313,5 +313,6 @@ MonoBehaviour:
   - Key: {x: 9, y: 9}
     Value:
       TileId: normal
+  LevelBoundingRectSize: {x: 10, y: 10}
   m_RandomSeed: 4
   m_Size: 10

@@ -14,6 +14,8 @@ public class LevelData : ScriptableObject
 
 	public List<TilePair> TileDataPairs = new List<TilePair>();
 
+	public Vector2Int LevelBoundingRectSize;
+
 	[Header("Debug Section")]
 	[SerializeField]
 	private int m_RandomSeed = 20;
@@ -54,6 +56,30 @@ public class LevelData : ScriptableObject
 				TileDataPairs.Add(new TilePair() { Key = position, Value = new TileData { TileId = tileId } });
 			}
 		}
+#endif
+	}
+
+	[ContextMenu("Recalculate Level Bounding Rect Size")]
+	private void recalculateBoundingRectSize()
+	{
+#if UNITY_EDITOR
+		int xMax = -1;
+		int yMax = -1;
+		foreach (TilePair pair in TileDataPairs)
+		{
+			if (pair.Key.x > xMax)
+			{
+				xMax = pair.Key.x;
+			}
+
+			if (pair.Key.y > yMax)
+			{
+				yMax = pair.Key.y;
+			}
+		}
+
+		UnityEditor.Undo.RecordObject(this, "Recalculate Level Bounding Rect Size");
+		LevelBoundingRectSize = new Vector2Int(xMax + 1, yMax + 1);
 #endif
 	}
 }
