@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using Unity.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Build;
 using UnityEngine;
 using static AIHelper;
 
@@ -30,6 +31,10 @@ public static class AIHelper
 		/// Indexed with <see cref="TileIndices"/>, indicating which tiles are owned. An element with the value of -1 means it is not owned by any team yet.
 		/// </summary>
 		public NativeArray<int> TileOwnerTeamIds;
+		/// <summary>
+		/// Indexed with <see cref="TileIndices"/>, indicating how many points tiles worth. A value of 0 means it is currently not occupyable.
+		/// </summary>
+		public NativeArray<int> TileWorthPoints;
 		/// <summary>
 		/// Indexed with <see cref="TileIndices"/>, indicating if tiles have items/powerups on them.
 		/// </summary>
@@ -59,6 +64,7 @@ public static class AIHelper
 
 			TileIndices = new NativeArray<int>(levelBoundingRectSize.x * levelBoundingRectSize.y, allocator);
 			TileOwnerTeamIds = new NativeArray<int>(numberOfTiles, allocator);
+			TileWorthPoints = new NativeArray<int>(numberOfTiles, allocator);
 			TileItems = new NativeArray<bool>(numberOfTiles, allocator);
 
 			var tilePositions = contexts.Config.GameConfig.value.LevelData.TileDataPairs.
@@ -78,6 +84,7 @@ public static class AIHelper
 				int oneDimensionIndex = tilePositionTo1DArrayIndex(tilePosition, levelBoundingRectSize);
 				TileIndices[oneDimensionIndex] = i;
 				TileOwnerTeamIds[i] = tile.HasOwnable && tile.HasOwner? tile.Owner.OwnerTeamId : -1;
+				TileWorthPoints[i] = tile.HasOwnable ? tile.Ownable.WorthPoints : 0;
 				TileItems[i] = tile.IsItemHolder && contexts.Item.GetEntityWithOnTileItem(tilePosition) != null;
 			}
 
@@ -168,9 +175,55 @@ public static class AIHelper
 		return -1;
 	}
 
-	public static float EvaluateScoreForOnTileElement(this GameSimulationState gameSimulationState, int onTileElementId, int temporalRelevancy)
+	public static float EvaluateScoreEarnedIfOnTileElementMoveTo(this GameSimulationState gameSimulationState, int onTileElementId, Vector2Int toPosition, int temporalRelevancy)
 	{
-		// TODO:
-		return 0;
+		float scoreEarned = 0;
+		int mappedTileIndex = gameSimulationState.GetIndexOfTileAt(toPosition);
+		int mappedOnTileElementIndex = gameSimulationState.GetIndexOfOnTileElementWithId(onTileElementId);
+		int teamId = gameSimulationState.OnTileElementTeamIds[mappedOnTileElementIndex];
+
+		// Evaluate the tile based on its ownership.
+		bool tileIsOwnable = gameSimulationState.TileWorthPoints[mappedTileIndex] > 0;
+		if (tileIsOwnable)
+		{
+			int worthPoints = gameSimulationState.TileWorthPoints[mappedTileIndex];
+
+			int ownerTeamId = gameSimulationState.TileOwnerTeamIds[mappedTileIndex];
+			bool tileHasOwner = ownerTeamId != -1;
+			if (!tileHasOwner)
+			{
+				// If the tile doesn't have an owner, move to it will reward the agent with points.
+				scoreEarned += (1 + temporalRelevancy * 0.1f) * worthPoints;
+			}
+
+			bool isOwnedByDifferentTeam = tileHasOwner && ownerTeamId != teamId;
+			if (isOwnedByDifferentTeam)
+			{
+				// If the tile is owned by a different team, move to it will greatly reward the agent (increase own score, decrease opponent's score).
+				scoreEarned += (1 + temporalRelevancy * 0.2f) * worthPoints;
+			}
+		}
+
+		// Evaluate the tile based on the item/powerup
+		if (gameSimulationState.TileItems[mappedTileIndex])
+		{
+			scoreEarned += (1 + temporalRelevancy * 0.3f);
+		}
+
+		// TODO: Evaluate potential prey/predator, need more data to achieve this. (i.e. Priority)
+		// ...
+
+		return scoreEarned;
+	}
+
+	/// <summary>
+	/// Update game simulation state as if the given OnTileElement move to the position.
+	/// </summary>
+	/// <param name="gameSimulationState"></param>
+	/// <param name="onTileElementId"></param>
+	/// <param name="toPosition"></param>
+	public static void MoveOnTileElementTo(this GameSimulationState gameSimulationState, int onTileElementId, Vector2Int toPosition)
+	{
+
 	}
 }
