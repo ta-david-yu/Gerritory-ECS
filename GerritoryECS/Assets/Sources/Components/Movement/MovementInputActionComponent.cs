@@ -15,6 +15,8 @@ public static class Movement
 		Stay // Don't move at all
 	}
 
+	public const int k_NumberOfMovements = 5;
+
 	public static readonly Vector2Int[] TypeToOffset = new Vector2Int[5] { Vector2Int.right, Vector2Int.down, Vector2Int.left, Vector2Int.up, Vector2Int.zero };
 }
 

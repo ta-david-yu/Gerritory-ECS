@@ -15,7 +15,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 	private readonly IGroup<InputEntity> m_AIInputGroup;
 
 	private const float k_NextMoveEvaluationTimeOffset = 0.1f;
-	private const int k_SearchDepthLevel = 2;
+	private const int k_SearchDepthLevel = 3;
 
 	public EmitAIInputSystem(Contexts contexts)
 	{
@@ -83,9 +83,10 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 			CurrentTurnOnTileElementId = elementEntity.OnTileElement.Id,			// We start with the agent's turn
 			NumberOfIterationStepsLeft = k_SearchDepthLevel,
 			CurrentScore = 0,
-			PreviousBestAction = Movement.Type.Stay,
+			LastMove = Movement.Type.Stay,
 			Alpha = int.MinValue,
-			Beta = int.MaxValue
+			Beta = int.MaxValue,
+			CallStackCount = 0
 		};
 
 		AIHelper.SearchSimulationState searchSimulationState = new AIHelper.SearchSimulationState();
@@ -103,9 +104,10 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 		public int CurrentTurnOnTileElementId;
 		public int NumberOfIterationStepsLeft;
 		public float CurrentScore;
-		public Movement.Type PreviousBestAction;
+		public Movement.Type LastMove;
 		public float Alpha;
 		public float Beta;
+		public int CallStackCount;
 	}
 	struct MinimaxResult
 	{
@@ -116,7 +118,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 	{
 		if (input.NumberOfIterationStepsLeft == 0)
 		{
-			return new MinimaxResult() { BestActionScore = input.CurrentScore, BestAction = input.PreviousBestAction };
+			return new MinimaxResult() { BestActionScore = input.CurrentScore, BestAction = input.LastMove };
 		}
 
 		int mappedElementIndex = searchSimulationState.GetIndexOfOnTileElementWithId(input.CurrentTurnOnTileElementId);
@@ -127,14 +129,18 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 		bool isInTheSameTeamAsAgent = teamId == input.AgentTeamId;
 		bool isFriendlyTurn = isTheAgent || (teamId != AIHelper.SearchSimulationState.k_NoTeam && isInTheSameTeamAsAgent);
 
-		Dictionary<Movement.Type, float> debugMovementScores = new Dictionary<Movement.Type, float>();
+		float[] movementScores = new float[Movement.k_NumberOfMovements];
+		for (int i = 0; i < movementScores.Length; i++)
+		{
+			movementScores[i] = -100;
+		}
 
 		float bestActionScore = isFriendlyTurn ? float.MinValue : float.MaxValue;
 		Movement.Type bestAction = Movement.Type.Stay;
 
 		// Go through all the possible moves/actions recursively to see which one is the best action.
 		var movements = (Movement.Type[])Enum.GetValues(typeof(Movement.Type));
-		//movements = movements.OrderBy((element) => UnityEngine.Random.Range(0, 100)).ToArray();
+		movements = movements.OrderBy((element) => UnityEngine.Random.Range(0, 100)).ToArray();
 		foreach (Movement.Type movement in movements)
 		{
 			Vector2Int moveOffset = Movement.TypeToOffset[(int)movement];
@@ -151,11 +157,11 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 			(
 				input.CurrentTurnOnTileElementId, 
 				nextPosition,  
-				isFriendlyTurn? AIHelper.EvaluationParameters.GetBasicBehaviourParameters() : AIHelper.EvaluationParameters.GetBasicBehaviourParameters(), 
+				isFriendlyTurn? AIHelper.EvaluationParameters.GetBasicBehaviourParameters() : AIHelper.EvaluationParameters.GetPeacefulBehaviourParameters(), 
 				input.NumberOfIterationStepsLeft
 			);
 
-			// Depending on whose turn it is, the score earned could either be a reward or a punishment
+			// Depending on whose turn it is, the score earned could either be a reward or a penalty
 			float scoreAfterTakingTheAction = input.CurrentScore + (isFriendlyTurn? scoreEarnedWithTheAction : -scoreEarnedWithTheAction);
 
 			// Update the search simulation state as if the action is done.
@@ -171,7 +177,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 			int nextOnTileElementId = searchSimulationState.OnTileElementIds[(mappedElementIndex + 1) % numberOfRelevantOnTileElements];
 
 			int iterationStepsLeft = input.NumberOfIterationStepsLeft;
-			if (isTheAgent)
+			if (nextOnTileElementId == input.AgentOnTileElementId)
 			{
 				// Decrement the search iteration depth because we've circled through all the elements' turns and got back to the main agent (or we have just started).
 				iterationStepsLeft -= 1;
@@ -184,17 +190,17 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 				CurrentTurnOnTileElementId = nextOnTileElementId,
 				NumberOfIterationStepsLeft = iterationStepsLeft,
 				CurrentScore = scoreAfterTakingTheAction,
-				PreviousBestAction = Movement.Type.Stay,
+				LastMove = movement,
 				Alpha = input.Alpha,
-				Beta = input.Beta
+				Beta = input.Beta,
+				CallStackCount = input.CallStackCount + 1
 			};
 
 			// Search the next best move.
 			MinimaxResult minimaxResult = minimax(nextMinimaxInput, ref searchSimulationState);
 
 			float finalScoreAfterTakingTheAction = minimaxResult.BestActionScore;
-
-			debugMovementScores.Add(movement, finalScoreAfterTakingTheAction);
+			movementScores[(int)movement] = finalScoreAfterTakingTheAction;
 
 			if (isFriendlyTurn)
 			{
@@ -238,12 +244,12 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 			}
 		}
 
-		if (input.NumberOfIterationStepsLeft == k_SearchDepthLevel)
+		if (input.CallStackCount == 0)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
-			foreach (var debugScorePair in debugMovementScores)
+			for (int i = 0; i < movementScores.Length; i++)
 			{
-				stringBuilder.Append($"{debugScorePair.Key}: {debugScorePair.Value}\n");
+				stringBuilder.Append($"{(Movement.Type) i}: {movementScores[i]}\n");
 			}
 			Debug.Log(stringBuilder.ToString());
 		}

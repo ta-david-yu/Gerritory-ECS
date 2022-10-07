@@ -64,7 +64,6 @@ public static class AIHelper
 		public const int k_NoTeam = -1;
 		public const float k_NeverDoActionScore = -100;
 
-
 		public void InitializeWithContexts(Contexts contexts, Allocator allocator)
 		{
 			AllocatorType = allocator;
@@ -133,7 +132,19 @@ public static class AIHelper
 				ElementEntity element = relevantElements[i];
 				OnTileElementIds[i] = element.OnTileElement.Id;
 				OnTileElementTeamIds[i] = element.Team.Id;
-				OnTileElementPositions[i] = element.OnTilePosition.Value;
+
+				float aiNoticeMovementDelay = 0.7f;
+				float aiNoticeMovementStagger = 0.25f;
+				aiNoticeMovementDelay += Random.Range(-aiNoticeMovementStagger, aiNoticeMovementStagger);
+				if (element.HasMoveOnTile && element.MoveOnTile.Progress > aiNoticeMovementDelay)
+				{
+					// If the element is moving, take its destination as the position.
+					OnTileElementPositions[i] = element.MoveOnTile.ToPosition;
+				}
+				else
+				{
+					OnTileElementPositions[i] = element.OnTilePosition.Value;
+				}
 				OnTileElementPriorities[i] = contexts.GetOnTileElementKillPriority(element);
 			}
 
@@ -330,8 +341,8 @@ public static class AIHelper
 			{
 				TileOwnershipAffinity = 1,
 				ItemAffinity = 1,
-				Aggressiveness = 0,
-				Cautiousness = 0,
+				Aggressiveness = 0.2f,
+				Cautiousness = 0.2f,
 			};
 		}
 	}
@@ -347,6 +358,14 @@ public static class AIHelper
 
 		int mappedOnTileElementIndex = searchSimulationState.GetIndexOfOnTileElementWithId(onTileElementId);
 		int teamId = searchSimulationState.OnTileElementTeamIds[mappedOnTileElementIndex];
+
+		Vector2Int originalPosition = searchSimulationState.OnTileElementPositions[mappedOnTileElementIndex];
+		if (originalPosition == toPosition)
+		{
+			// Penalty for staying at the same location. 
+			// The value needs to be bigger than the value of taking over a tile (1 + t * 0.1f).
+			scoreEarned -= 1.2f;
+		}
 
 		// Evaluate the tile based on its ownership.
 		bool tileIsOwnable = searchSimulationState.TileWorthPoints[mappedTileIndex] > 0;
@@ -407,7 +426,7 @@ public static class AIHelper
 			{
 				// The agent can kill this opponent, moving to this position rewards with a kill!
 				// We square the temporalRelevancy because we only want to chase the target that is close enough, distant target is more unpredictable.
-				scoreEarned += (1 + temporalRelevancy * 0.5f) * evaluationParams.Aggressiveness;
+				scoreEarned += (1 + temporalRelevancy * temporalRelevancy * 0.5f) * evaluationParams.Aggressiveness;
 			}
 			else
 			{
