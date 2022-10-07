@@ -18,17 +18,17 @@ public partial class CommandEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is MarkOnTileElementDeadComponent MarkOnTileElementDead)
-		{
-			CopyMarkOnTileElementDeadTo(MarkOnTileElementDead);
-		}
-		else if (component is ConstructTileComponent ConstructTile)
+		if (component is ConstructTileComponent ConstructTile)
 		{
 			CopyConstructTileTo(ConstructTile);
 		}
 		else if (component is ConstructAIInputComponent ConstructAIInput)
 		{
 			CopyConstructAIInputTo(ConstructAIInput);
+		}
+		else if (component is MarkOnTileElementDeadComponent MarkOnTileElementDead)
+		{
+			CopyMarkOnTileElementDeadTo(MarkOnTileElementDead);
 		}
 		else if (component is ConstructUserInputComponent ConstructUserInput)
 		{

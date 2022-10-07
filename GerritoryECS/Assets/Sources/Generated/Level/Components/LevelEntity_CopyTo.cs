@@ -18,7 +18,11 @@ public partial class LevelEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is TeamScoreComponent TeamScore)
+		if (component is SearchSimulationGlobalStateComponent SearchSimulationGlobalState)
+		{
+			CopySearchSimulationGlobalStateTo(SearchSimulationGlobalState);
+		}
+		else if (component is TeamScoreComponent TeamScore)
 		{
 			CopyTeamScoreTo(TeamScore);
 		}

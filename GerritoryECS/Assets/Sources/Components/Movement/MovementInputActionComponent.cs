@@ -14,6 +14,7 @@ public static class Movement
 
 		Stay // Don't move at all
 	}
+	public static readonly Movement.Type[] TypeList = new Type[] { Type.Right, Type.Down, Type.Left, Type.Up, Type.Stay };
 
 	public const int k_NumberOfMovements = 5;
 

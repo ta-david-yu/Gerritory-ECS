@@ -148,6 +148,7 @@
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemEatenComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Systems\PlayerStateCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Features\PlayerStateFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelSearchSimulationGlobalStateComponent.cs" />
     <Compile Include="Assets\Sources\Components\PlayerState\TimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementCanBeDeadComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\LevelAttribute.cs" />
@@ -381,6 +382,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Systems\OwnerAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMoveOnTileBeginComponent.cs" />
     <Compile Include="Assets\Scripts\GameData\ColorPalette.cs" />
+    <Compile Include="Assets\Sources\Components\Level\SearchSimulationGlobalStateComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileItemHolderComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnerAddedListenerComponent.cs" />
     <Compile Include="Assets\Scripts\View\EntityCreationUnityEvent.cs" />

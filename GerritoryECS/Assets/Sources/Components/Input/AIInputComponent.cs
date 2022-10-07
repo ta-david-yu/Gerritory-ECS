@@ -11,4 +11,6 @@ public sealed class AIInputComponent : IComponent
 	/// The player id this user input is controlling
 	/// </summary>
 	public int TargetPlayerId;
+
+	public AIHelper.SearchSimulationState SearchSimulationState;
 }

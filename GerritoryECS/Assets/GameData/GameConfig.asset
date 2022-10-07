@@ -20,8 +20,13 @@ MonoBehaviour:
     PlayerName: Player 1
     TeamId: 0
     SkinId: 0
-    IsAI: 0
+    IsAI: 1
   - PlayerId: 1
+    PlayerName: Player 2
+    TeamId: 1
+    SkinId: 0
+    IsAI: 1
+  - PlayerId: 2
     PlayerName: Player 2
     TeamId: 1
     SkinId: 0

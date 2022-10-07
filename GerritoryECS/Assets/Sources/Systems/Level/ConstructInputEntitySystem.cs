@@ -10,6 +10,7 @@ public class ConstructInputEntitySystem : IFixedUpdateSystem
 {
 	private readonly CommandContext m_CommandContext;
 	private readonly InputContext m_InputContext;
+	private readonly Contexts m_Contexts;
 
 	private readonly IGroup<CommandEntity> m_ConstructUserInputGroup;
 	private readonly IGroup<CommandEntity> m_ConstructAIInputGroup;
@@ -18,6 +19,7 @@ public class ConstructInputEntitySystem : IFixedUpdateSystem
 	{
 		m_InputContext = contexts.Input;
 		m_CommandContext = contexts.Command;
+		m_Contexts = contexts;
 
 		m_ConstructUserInputGroup = m_CommandContext.GetGroup(CommandMatcher.ConstructUserInput);
 		m_ConstructAIInputGroup = m_CommandContext.GetGroup(CommandMatcher.ConstructAIInput);
@@ -36,7 +38,11 @@ public class ConstructInputEntitySystem : IFixedUpdateSystem
 		foreach (var constructAIInputEntity in m_ConstructAIInputGroup.GetEntities())
 		{
 			InputEntity inputEntity = m_InputContext.CreateEntity();
-			inputEntity.AddAIInput(constructAIInputEntity.ConstructAIInput.TargetPlayerId);
+			inputEntity.AddAIInput
+			(
+				constructAIInputEntity.ConstructAIInput.TargetPlayerId, 
+				new AIHelper.SearchSimulationState().AllocateWithContexts(m_Contexts, Unity.Collections.Allocator.Persistent)
+			);
 
 			constructAIInputEntity.Destroy();
 		}

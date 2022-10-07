@@ -16,7 +16,7 @@ public static class AIHelper
 	/// </summary>
 	public struct SearchSimulationState
 	{
-		public bool IsInitialized { get; private set; }
+		public bool IsAllocated { get; private set; }
 
 		public Allocator AllocatorType;
 
@@ -56,6 +56,10 @@ public static class AIHelper
 		/// Indexed with <see cref="OnTileElementIds"/>, the priority of OnTileElements. We don't update this regularly.
 		/// </summary>
 		public NativeArray<int> OnTileElementPriorities;
+		/// <summary>
+		/// Indexed with <see cref="OnTileElementIds"/>, indicating if OnTilElements are dead. We don't update his regularly
+		/// </summary>
+		public NativeArray<bool> AreOnTileElementsDead;
 
 		public const int k_NotOwnableTeamId = -2;
 		public const int k_NoOwnerTeamId = -1;
@@ -64,24 +68,66 @@ public static class AIHelper
 		public const int k_NoTeam = -1;
 		public const float k_NeverDoActionScore = -100;
 
-		public void InitializeWithContexts(Contexts contexts, Allocator allocator)
+		public SearchSimulationState AllocateWithContexts(Contexts contexts, Allocator allocator)
 		{
 			AllocatorType = allocator;
 
 			// Allocate Tile related states
 			int numberOfTiles = contexts.Config.GameConfig.value.LevelData.TileDataPairs.Count;
 			LevelBoundingRectSize = contexts.Config.GameConfig.value.LevelData.LevelBoundingRectSize;
-
 			TileIndices = new NativeArray<int>(LevelBoundingRectSize.x * LevelBoundingRectSize.y, allocator);
 			TileOwnerTeamIds = new NativeArray<int>(numberOfTiles, allocator);
 			TileWorthPoints = new NativeArray<int>(numberOfTiles, allocator);
 			TileItems = new NativeArray<bool>(numberOfTiles, allocator);
 
-			var tilePositions = contexts.Config.GameConfig.value.LevelData.TileDataPairs.
-				OrderBy(tileDataPair => tileDataPair.Key.x).
-				ThenBy(tileDataPair => tileDataPair.Key.y).
-				Select(tileDataPair => tileDataPair.Key).
-				ToArray();
+			// Allocate OnTileElement related states
+			ElementEntity[] relevantElements = contexts.Element.GetGroup
+			(
+				ElementMatcher.AllOf
+				(
+					ElementMatcher.OnTileElement,
+					ElementMatcher.TileOwner,
+					ElementMatcher.Team
+				)
+			).GetEntities();
+			int numberOfRelevantOnTileElements = relevantElements.Length;
+			OnTileElementIds = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
+			OnTileElementTeamIds = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
+			OnTileElementPositions = new NativeArray<Vector2Int>(numberOfRelevantOnTileElements, allocator);
+			OnTileElementPriorities = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
+			AreOnTileElementsDead = new NativeArray<bool>(numberOfRelevantOnTileElements, allocator);
+
+			IsAllocated = true;
+
+			return this;
+		}
+
+		public void InitializeWithContexts(Contexts contexts)
+		{
+			if (!IsAllocated)
+			{
+				Debug.LogError($"The SearchSimulationState is not allocated yet, cannot initialize data!");
+				return;
+			}
+
+			// Initialize tile related data
+			int numberOfTiles = contexts.Config.GameConfig.value.LevelData.TileDataPairs.Count;
+			LevelBoundingRectSize = contexts.Config.GameConfig.value.LevelData.LevelBoundingRectSize;
+
+			Vector2Int[] tilePositions;
+			if (contexts.Level.HasSearchSimulationGlobalState)
+			{
+				tilePositions = contexts.Level.SearchSimulationGlobalState.SortedTilePositions;
+			}
+			else
+			{
+				tilePositions = contexts.Config.GameConfig.value.LevelData.TileDataPairs.
+								OrderBy(tileDataPair => tileDataPair.Key.x).
+								ThenBy(tileDataPair => tileDataPair.Key.y).
+								Select(tileDataPair => tileDataPair.Key).
+								ToArray();
+				contexts.Level.SetSearchSimulationGlobalState(tilePositions);
+			}
 
 			for (int i = 0; i < TileIndices.Length; i++)
 			{
@@ -115,17 +161,11 @@ public static class AIHelper
 				ElementMatcher.AllOf
 				(
 					ElementMatcher.OnTileElement, 
-					ElementMatcher.OnTilePosition,
 					ElementMatcher.TileOwner, 
 					ElementMatcher.Team
 				)
 			).GetEntities();
 			int numberOfRelevantOnTileElements = relevantElements.Length;
-
-			OnTileElementIds = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
-			OnTileElementTeamIds = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
-			OnTileElementPositions = new NativeArray<Vector2Int>(numberOfRelevantOnTileElements, allocator);
-			OnTileElementPriorities = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
 
 			for (int i = 0; i < numberOfRelevantOnTileElements; i++)
 			{
@@ -141,19 +181,23 @@ public static class AIHelper
 					// If the element is moving, take its destination as the position.
 					OnTileElementPositions[i] = element.MoveOnTile.ToPosition;
 				}
-				else
+				else if (element.HasOnTilePosition)
 				{
 					OnTileElementPositions[i] = element.OnTilePosition.Value;
 				}
+				else
+				{
+					OnTileElementPositions[i] = Vector2Int.one * -1;
+				}
+
+				AreOnTileElementsDead[i] = element.IsDead;
 				OnTileElementPriorities[i] = contexts.GetOnTileElementKillPriority(element);
 			}
-
-			IsInitialized = true;
 		}
 
 		public void Deallocate()
 		{
-			if (!IsInitialized)
+			if (!IsAllocated)
 			{
 				Debug.LogError("The game simulation state is not initialized, no need to deallocate the data.");
 				return;
@@ -161,13 +205,16 @@ public static class AIHelper
 
 			TileIndices.Dispose();
 			TileOwnerTeamIds.Dispose();
+			TileWorthPoints.Dispose();
 			TileItems.Dispose();
 
 			OnTileElementIds.Dispose();
 			OnTileElementTeamIds.Dispose();
 			OnTileElementPositions.Dispose();
+			OnTileElementPriorities.Dispose();
+			AreOnTileElementsDead.Dispose();
 
-			IsInitialized = false;
+			IsAllocated = false;
 		}
 
 		private int tilePositionTo1DArrayIndex(Vector2Int position, Vector2Int levelSize)

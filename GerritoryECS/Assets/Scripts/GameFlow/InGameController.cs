@@ -69,7 +69,6 @@ public class InGameController : MonoBehaviour
 			.Add(new InGameFlowFeature(contexts))
 
 			// Core gameplay features
-			.Add(new InputFeature(contexts))
 
 			.Add(new MovementFeature(contexts))
 			.Add(new TileFeature(contexts))
@@ -77,6 +76,7 @@ public class InGameController : MonoBehaviour
 			.Add(new ElementFeature(contexts))
 			.Add(new PlayerStateFeature(contexts))
 
+			.Add(new InputFeature(contexts))
 			.Add(new MessageFeature(contexts))
 
 			// Generated event systems

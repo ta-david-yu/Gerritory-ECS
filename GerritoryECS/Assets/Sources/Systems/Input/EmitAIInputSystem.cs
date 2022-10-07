@@ -8,14 +8,14 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Windows;
 
-public sealed class EmitAIInputSystem : IUpdateSystem
+public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 {
 	private readonly ElementContext m_ElementContext;
 	private readonly Contexts m_Contexts;
 	private readonly IGroup<InputEntity> m_AIInputGroup;
 
 	private const float k_NextMoveEvaluationTimeOffset = 0.1f;
-	private const int k_SearchDepthLevel = 3;
+	private const int k_SearchDepthLevel = 2;
 
 	public EmitAIInputSystem(Contexts contexts)
 	{
@@ -63,7 +63,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 				continue;
 			}
 
-			Movement.Type bestMove = getNextBestMoveUsingMinMaxForOnTileElement(playerEntity);
+			Movement.Type bestMove = getNextBestMoveUsingMinMaxForOnTileElement(playerEntity, ref inputEntity.AIInput.SearchSimulationState);
 
 			if (bestMove == Movement.Type.Stay)
 			{
@@ -74,7 +74,16 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 		}
 	}
 
-	private Movement.Type getNextBestMoveUsingMinMaxForOnTileElement(ElementEntity elementEntity)
+
+	public void TearDown()
+	{
+		foreach (var inputEntity in m_AIInputGroup.GetEntities())
+		{
+			inputEntity.AIInput.SearchSimulationState.Deallocate();
+		}
+	}
+
+	private Movement.Type getNextBestMoveUsingMinMaxForOnTileElement(ElementEntity elementEntity, ref AIHelper.SearchSimulationState searchSimulationState)
 	{
 		MinimaxInput minimaxInput = new MinimaxInput()
 		{
@@ -89,8 +98,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 			CallStackCount = 0
 		};
 
-		AIHelper.SearchSimulationState searchSimulationState = new AIHelper.SearchSimulationState();
-		searchSimulationState.InitializeWithContexts(m_Contexts, Unity.Collections.Allocator.Temp);
+		searchSimulationState.InitializeWithContexts(m_Contexts);
 
 		MinimaxResult result = minimax(minimaxInput, ref searchSimulationState);
 
@@ -129,20 +137,16 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 		bool isInTheSameTeamAsAgent = teamId == input.AgentTeamId;
 		bool isFriendlyTurn = isTheAgent || (teamId != AIHelper.SearchSimulationState.k_NoTeam && isInTheSameTeamAsAgent);
 
-		float[] movementScores = new float[Movement.k_NumberOfMovements];
-		for (int i = 0; i < movementScores.Length; i++)
-		{
-			movementScores[i] = -100;
-		}
-
 		float bestActionScore = isFriendlyTurn ? float.MinValue : float.MaxValue;
 		Movement.Type bestAction = Movement.Type.Stay;
 
 		// Go through all the possible moves/actions recursively to see which one is the best action.
-		var movements = (Movement.Type[])Enum.GetValues(typeof(Movement.Type));
-		movements = movements.OrderBy((element) => UnityEngine.Random.Range(0, 100)).ToArray();
-		foreach (Movement.Type movement in movements)
+		var movements = Movement.TypeList;
+		int movementStartIndex = UnityEngine.Random.Range(0, movements.Length);
+		for (int i = 0; i < movements.Length; i++)
 		{
+			var movement = movements[(movementStartIndex + i) % movements.Length];
+
 			Vector2Int moveOffset = Movement.TypeToOffset[(int)movement];
 			Vector2Int nextPosition = currPosition + moveOffset;
 			int tileIndex = searchSimulationState.GetIndexOfTileAt(nextPosition);
@@ -174,6 +178,13 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 
 			// Select the next OnTileElement to do the action simulation.
 			int numberOfRelevantOnTileElements = searchSimulationState.OnTileElementIds.Length;
+			int nextOnTileElementIndex = (mappedElementIndex + 1) % numberOfRelevantOnTileElements;
+			while (searchSimulationState.AreOnTileElementsDead[nextOnTileElementIndex])
+			{
+				// Loop to find an element that is not dead
+				nextOnTileElementIndex = (nextOnTileElementIndex + 1) % numberOfRelevantOnTileElements;
+			}
+
 			int nextOnTileElementId = searchSimulationState.OnTileElementIds[(mappedElementIndex + 1) % numberOfRelevantOnTileElements];
 
 			int iterationStepsLeft = input.NumberOfIterationStepsLeft;
@@ -200,7 +211,6 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 			MinimaxResult minimaxResult = minimax(nextMinimaxInput, ref searchSimulationState);
 
 			float finalScoreAfterTakingTheAction = minimaxResult.BestActionScore;
-			movementScores[(int)movement] = finalScoreAfterTakingTheAction;
 
 			if (isFriendlyTurn)
 			{
@@ -246,12 +256,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 
 		if (input.CallStackCount == 0)
 		{
-			StringBuilder stringBuilder = new StringBuilder();
-			for (int i = 0; i < movementScores.Length; i++)
-			{
-				stringBuilder.Append($"{(Movement.Type) i}: {movementScores[i]}\n");
-			}
-			Debug.Log(stringBuilder.ToString());
+			// TODO: add more randomness
 		}
 
 		return new MinimaxResult() { BestActionScore = bestActionScore, BestAction = bestAction };

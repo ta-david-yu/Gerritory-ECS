@@ -18,11 +18,7 @@ public partial class GameFlowEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is PlayingComponent Playing)
-		{
-			IsPlaying = true;
-		}
-		else if (component is ScoreObjectiveComponent ScoreObjective)
+		if (component is ScoreObjectiveComponent ScoreObjective)
 		{
 			IsScoreObjective = true;
 		}
@@ -53,6 +49,10 @@ public partial class GameFlowEntity
 		else if (component is SurvivalObjectiveComponent SurvivalObjective)
 		{
 			IsSurvivalObjective = true;
+		}
+		else if (component is PlayingComponent Playing)
+		{
+			IsPlaying = true;
 		}
 		else if (component is EndOnEliminatedComponent EndOnEliminated)
 		{
