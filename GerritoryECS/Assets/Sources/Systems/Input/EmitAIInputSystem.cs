@@ -3,10 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Windows;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public sealed class EmitAIInputSystem : IUpdateSystem
 {
@@ -15,7 +15,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 	private readonly IGroup<InputEntity> m_AIInputGroup;
 
 	private const float k_NextMoveEvaluationTimeOffset = 0.1f;
-	private const int k_SearchDepthLevel = 1;
+	private const int k_SearchDepthLevel = 2;
 
 	public EmitAIInputSystem(Contexts contexts)
 	{
@@ -63,38 +63,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 				continue;
 			}
 
-			Movement.Type bestMove = Movement.Type.Stay;
-
-			// TODO: Collect job result and apply the result to movement input action
-			// ...
-
-			AIHelper.SearchSimulationState gameSimulationState = new AIHelper.SearchSimulationState();
-			gameSimulationState.InitializeWithContexts(m_Contexts, Unity.Collections.Allocator.Temp);
-
-			// TODO: remove this, currently the depth level is only 1.
-			float maxScore = float.MinValue;
-			var movements = (Movement.Type[])Enum.GetValues(typeof(Movement.Type));
-			movements = movements.OrderBy((element) => UnityEngine.Random.Range(0, 100)).ToArray();
-			foreach (Movement.Type movement in movements)
-			{
-				Vector2Int moveOffset = Movement.TypeToOffset[(int)movement];
-				Vector2Int currentPosition = playerEntity.OnTilePosition.Value;
-				Vector2Int nextPosition = currentPosition + moveOffset;
-				if (m_Contexts.Tile.GetEntityWithTilePosition(nextPosition) == null)
-				{
-					// There is no tile at the position, skip it.
-					continue;
-				}
-
-				float reward = gameSimulationState.EvaluateScoreEarnedIfOnTileElementMoveTo(playerEntity.OnTileElement.Id, currentPosition + moveOffset, 3);
-				//float reward = evaluateScoreEarnedIfOnTileElementMoveToPosition(playerEntity.OnTileElement.Id, currentPosition + moveOffset, 3);
-
-				if (reward > maxScore)
-				{
-					bestMove = movement;
-					maxScore = reward;
-				}
-			}
+			Movement.Type bestMove = getNextBestMoveUsingMinMaxForOnTileElement(playerEntity);
 
 			if (bestMove == Movement.Type.Stay)
 			{
@@ -105,152 +74,180 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 		}
 	}
 
-	private Movement.Type getNextBestMoveUsingMinMaxForOnTileElement(int onTileElementId)
+	private Movement.Type getNextBestMoveUsingMinMaxForOnTileElement(ElementEntity elementEntity)
 	{
-		MinimaxInput minimaxInput = new MinimaxInput();
-		minimaxInput.AgentOnTileElementId = onTileElementId;
-		minimaxInput.CurrentOnTileElementId = onTileElementId;
-		minimaxInput.NumberOfStepsLeft = k_SearchDepthLevel;
-		minimaxInput.CurrentScore = 0;
-		minimaxInput.Alpha = int.MinValue;
-		minimaxInput.Beta = int.MaxValue;
+		MinimaxInput minimaxInput = new MinimaxInput()
+		{
+			AgentOnTileElementId = elementEntity.OnTileElement.Id,					// The agent
+			AgentTeamId = elementEntity.HasTeam? elementEntity.Team.Id : -1,
+			CurrentTurnOnTileElementId = elementEntity.OnTileElement.Id,			// We start with the agent's turn
+			NumberOfIterationStepsLeft = k_SearchDepthLevel,
+			CurrentScore = 0,
+			PreviousBestAction = Movement.Type.Stay,
+			Alpha = int.MinValue,
+			Beta = int.MaxValue
+		};
 
-		MinimaxResult result = minimax(minimaxInput);
+		AIHelper.SearchSimulationState searchSimulationState = new AIHelper.SearchSimulationState();
+		searchSimulationState.InitializeWithContexts(m_Contexts, Unity.Collections.Allocator.Temp);
+
+		MinimaxResult result = minimax(minimaxInput, ref searchSimulationState);
+
 		return result.BestAction;
 	}
 
 	struct MinimaxInput
 	{
 		public int AgentOnTileElementId;
-		public int CurrentOnTileElementId;
-		public int NumberOfStepsLeft;
+		public int AgentTeamId;
+		public int CurrentTurnOnTileElementId;
+		public int NumberOfIterationStepsLeft;
 		public float CurrentScore;
+		public Movement.Type PreviousBestAction;
 		public float Alpha;
 		public float Beta;
 	}
 	struct MinimaxResult
 	{
-		public float BestMoveScore;
+		public float BestActionScore;
 		public Movement.Type BestAction;
 	}
-	private MinimaxResult minimax(MinimaxInput input)
+	private static MinimaxResult minimax(MinimaxInput input, ref AIHelper.SearchSimulationState searchSimulationState)
 	{
-		if (input.NumberOfStepsLeft == 0)
+		if (input.NumberOfIterationStepsLeft == 0)
 		{
-			return new MinimaxResult() { BestMoveScore = input.CurrentScore, BestAction = Movement.Type.Stay };
+			return new MinimaxResult() { BestActionScore = input.CurrentScore, BestAction = input.PreviousBestAction };
 		}
 
-		// TODO:
-		// Take the state into consideration.
+		int mappedElementIndex = searchSimulationState.GetIndexOfOnTileElementWithId(input.CurrentTurnOnTileElementId);
+		int teamId = searchSimulationState.OnTileElementTeamIds[mappedElementIndex];
+		Vector2Int currPosition = searchSimulationState.OnTileElementPositions[mappedElementIndex];
 
-		if (input.CurrentOnTileElementId == input.AgentOnTileElementId)
+		bool isTheAgent = input.CurrentTurnOnTileElementId == input.AgentOnTileElementId;
+		bool isInTheSameTeamAsAgent = teamId == input.AgentTeamId;
+		bool isFriendlyTurn = isTheAgent || (teamId != AIHelper.SearchSimulationState.k_NoTeam && isInTheSameTeamAsAgent);
+
+		Dictionary<Movement.Type, float> debugMovementScores = new Dictionary<Movement.Type, float>();
+
+		float bestActionScore = isFriendlyTurn ? float.MinValue : float.MaxValue;
+		Movement.Type bestAction = Movement.Type.Stay;
+
+		// Go through all the possible moves/actions recursively to see which one is the best action.
+		var movements = (Movement.Type[])Enum.GetValues(typeof(Movement.Type));
+		//movements = movements.OrderBy((element) => UnityEngine.Random.Range(0, 100)).ToArray();
+		foreach (Movement.Type movement in movements)
 		{
-			// The agent is taking its move now, maximize the score value!
-			float maxScore = float.MinValue;
-			var movements = (Movement.Type[]) Enum.GetValues(typeof(Movement.Type));
-			foreach (Movement.Type movement in movements)
+			Vector2Int moveOffset = Movement.TypeToOffset[(int)movement];
+			Vector2Int nextPosition = currPosition + moveOffset;
+			int tileIndex = searchSimulationState.GetIndexOfTileAt(nextPosition);
+			if (tileIndex == AIHelper.SearchSimulationState.k_NoTile)
 			{
-				Vector2Int moveOffset = Movement.TypeToOffset[(int)movement];
-				ElementEntity agentEntity = m_Contexts.Element.GetEntityWithOnTileElement(input.CurrentOnTileElementId);
-				Vector2Int currentPosition = agentEntity.OnTilePosition.Value;
-				float reward = evaluateScoreEarnedIfOnTileElementMoveToPosition(input.CurrentOnTileElementId, currentPosition + moveOffset, input.NumberOfStepsLeft);
-				maxScore = Mathf.Max(maxScore, reward);
-			}
-		}
-		else
-		{
-			// The other opponent is taking its move now, minimize the score value!
-			// TODO: ...
-		}
-
-		return new MinimaxResult() { BestMoveScore = input.CurrentScore, BestAction = Movement.Type.Stay };
-	}
-
-	/// <summary>
-	/// Evaluate the possible score reward if the OnTileElement moves to the given location.
-	/// This evaluation takes the move as an independent event, therefore possible changes in the game state that could happen during the move are not considered.
-	/// </summary>
-	/// <param name="onTileElementId"></param>
-	/// <param name="toPosition"></param>
-	/// <param name="temporalRelevancy">
-	///		How near/revelant time-wise this move is, the higher the value, the higher the resulting score.
-	///		For instance, if this is the first move in a search, the value will be higher than that of the second move in the search.
-	/// </param>
-	/// <returns></returns>
-	private float evaluateScoreEarnedIfOnTileElementMoveToPosition(int onTileElementId, Vector2Int toPosition, int temporalRelevancy)
-	{
-		float scoreEarnedThroughTheMove = 0;
-
-		ElementEntity agentEntity = m_Contexts.Element.GetEntityWithOnTileElement(onTileElementId);
-		if (!agentEntity.HasOnTilePosition)
-		{
-			// If the element is not on a tile (could be dead), the score earned is always zero.
-			return 0;
-		}
-
-		//Vector2Int currentPosition = agentEntity.OnTilePosition.Value;
-		TileEntity tileToMoveTo = m_Contexts.Tile.GetEntityWithTilePosition(toPosition);
-		if (tileToMoveTo == null)
-		{
-			// If the given position doesn't have a tile, the score earned is always zero.
-			return 0;
-		}
-
-		// Evaluate the tile based on its ownership.
-		if (tileToMoveTo.HasOwnable && agentEntity.IsTileOwner)
-		{
-			int tileWorthPoints = tileToMoveTo.Ownable.WorthPoints;
-
-			if (!tileToMoveTo.HasOwner)
-			{
-				// If the tile doesn't have an owner, move to it will reward the agent with points.
-				scoreEarnedThroughTheMove += (1 + temporalRelevancy * 0.1f) * tileWorthPoints;
+				// There is no tile at the position, skip it.
+				continue;
 			}
 
-			bool isOwnedByDifferenTeam = tileToMoveTo.HasOwner && tileToMoveTo.Owner.OwnerTeamId != agentEntity.Team.Id;
-			if (isOwnedByDifferenTeam)
+			// Evaluate the reward earned from the action.
+			float scoreEarnedWithTheAction = searchSimulationState.EvaluateScoreEarnedIfOnTileElementMoveTo
+			(
+				input.CurrentTurnOnTileElementId, 
+				nextPosition,  
+				isFriendlyTurn? AIHelper.EvaluationParameters.GetBasicBehaviourParameters() : AIHelper.EvaluationParameters.GetBasicBehaviourParameters(), 
+				input.NumberOfIterationStepsLeft
+			);
+
+			// Depending on whose turn it is, the score earned could either be a reward or a punishment
+			float scoreAfterTakingTheAction = input.CurrentScore + (isFriendlyTurn? scoreEarnedWithTheAction : -scoreEarnedWithTheAction);
+
+			// Update the search simulation state as if the action is done.
+			AIHelper.SearchSimulationState.OnTileElementAction simulationAction = new AIHelper.SearchSimulationState.OnTileElementAction()
 			{
-				// If the tile is owned by a different team, move to it will greatly reward the agent (increase own score, decrease opponent's score).
-				scoreEarnedThroughTheMove += (1 + temporalRelevancy * 0.2f) * tileWorthPoints;
+				OnTileElementId = input.CurrentTurnOnTileElementId,
+				MoveToPosition = nextPosition
+			};
+			simulationAction.Apply(ref searchSimulationState);
+
+			// Select the next OnTileElement to do the action simulation.
+			int numberOfRelevantOnTileElements = searchSimulationState.OnTileElementIds.Length;
+			int nextOnTileElementId = searchSimulationState.OnTileElementIds[(mappedElementIndex + 1) % numberOfRelevantOnTileElements];
+
+			int iterationStepsLeft = input.NumberOfIterationStepsLeft;
+			if (isTheAgent)
+			{
+				// Decrement the search iteration depth because we've circled through all the elements' turns and got back to the main agent (or we have just started).
+				iterationStepsLeft -= 1;
 			}
-		}
 
-		// Evaluate the tile based on the item/powerup.
-		if (tileToMoveTo.IsItemHolder)
-		{
-			ItemEntity itemEntity = m_Contexts.Item.GetEntityWithOnTileItem(toPosition);
-			if (itemEntity != null)
+			MinimaxInput nextMinimaxInput = new MinimaxInput()
 			{
-				// Eating item/powerup is very rewarding.
-				scoreEarnedThroughTheMove += (1 + temporalRelevancy * 0.3f);
-			}
-		}
+				AgentOnTileElementId = input.AgentOnTileElementId,
+				AgentTeamId = input.AgentTeamId,
+				CurrentTurnOnTileElementId = nextOnTileElementId,
+				NumberOfIterationStepsLeft = iterationStepsLeft,
+				CurrentScore = scoreAfterTakingTheAction,
+				PreviousBestAction = Movement.Type.Stay,
+				Alpha = input.Alpha,
+				Beta = input.Beta
+			};
 
-		// Evaluate the tile based on the potential prey/predator on it.
-		List<ElementEntity> onTileEntities = m_ElementContext.GetEntitiesWithOnTilePosition(toPosition).ToList();
-		if (onTileEntities.Count > 0)
-		{
-			ElementEntity occupierEntity = onTileEntities.First();
-			bool isInTheSameTeam = occupierEntity.Team.Id == agentEntity.Team.Id;
-			if (!isInTheSameTeam)
+			// Search the next best move.
+			MinimaxResult minimaxResult = minimax(nextMinimaxInput, ref searchSimulationState);
+
+			float finalScoreAfterTakingTheAction = minimaxResult.BestActionScore;
+
+			debugMovementScores.Add(movement, finalScoreAfterTakingTheAction);
+
+			if (isFriendlyTurn)
 			{
-				int opponentPriority = m_Contexts.GetOnTileElementKillPriority(occupierEntity);
-				int agentPriority = m_Contexts.GetOnTileElementKillPriority(agentEntity);
-
-				if (opponentPriority > agentPriority)
+				if (finalScoreAfterTakingTheAction > bestActionScore)
 				{
-					// The agent can kill this opponent, moving to this position rewards with a kill!
-					// We square the temporalRelevancy because we only want to chase the target that is close enough, distant target is more unpredictable.
-					scoreEarnedThroughTheMove += (1 + temporalRelevancy * temporalRelevancy * 0.5f);
+					bestActionScore = finalScoreAfterTakingTheAction;
+					bestAction = movement;
 				}
-				else
+
+				if (finalScoreAfterTakingTheAction > input.Alpha)
 				{
-					// The opponent is possibly dangerous to the agent, moving away from this position to avoid death!
-					scoreEarnedThroughTheMove -= (1 + temporalRelevancy * temporalRelevancy * 0.5f);
+					// If the current turn is the main agent's/friendly turn, it would always try to maximize the score.
+					// Therefore since the best score from the search is better than alpha, it becomes the new alpha.
+					input.Alpha = finalScoreAfterTakingTheAction;
 				}
 			}
+			else
+			{
+				if (finalScoreAfterTakingTheAction < bestActionScore)
+				{
+					bestActionScore = finalScoreAfterTakingTheAction;
+					bestAction = movement;
+				}
+
+				if (finalScoreAfterTakingTheAction < input.Beta)
+				{
+					// If the current turn is the opponent's turn, it would always try to minimize the score.
+					// Therefore since the best score from the search is worse than beta, it becomes the new beta.
+					input.Beta = finalScoreAfterTakingTheAction;
+				}
+			}
+
+			// Returned from the recursive call stack, revert the simulation state.
+			simulationAction.Revert(ref searchSimulationState);
+
+			if (input.Beta <= input.Alpha)
+			{
+				// The beta being less than alpha means there is already a better move for opponents (i.e. minimizes the agent's score more) in other actions;
+				// Therefore there is no need to search more on this level.
+				break;
+			}
 		}
 
-		return scoreEarnedThroughTheMove;
+		if (input.NumberOfIterationStepsLeft == k_SearchDepthLevel)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			foreach (var debugScorePair in debugMovementScores)
+			{
+				stringBuilder.Append($"{debugScorePair.Key}: {debugScorePair.Value}\n");
+			}
+			Debug.Log(stringBuilder.ToString());
+		}
+
+		return new MinimaxResult() { BestActionScore = bestActionScore, BestAction = bestAction };
 	}
 }

@@ -279,12 +279,13 @@ public static class GameHelper
 		viewController.Link(tileEntity);
 
 		// TODO: remove this!
+		/*
 		if (Random.Range(0.0f, 1.0f) > 0.8f)
 		{
 			var itemEntity = contexts.Item.CreateEntity();
 			itemEntity.AddOnTileItem(tilePosition);
 			itemEntity.AddApplySpeedChangeStateForEaterOnEaten(3.0f, 2.0f);
-		}
+		}*/
 
 		return tileEntity;
 	}

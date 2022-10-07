@@ -61,6 +61,8 @@ public static class AIHelper
 		public const int k_NoOwnerTeamId = -1;
 		public const int k_NoTile = -1;
 		public const int k_NoElement = -1;
+		public const int k_NoTeam = -1;
+		public const float k_NeverDoActionScore = -100;
 
 
 		public void InitializeWithContexts(Contexts contexts, Allocator allocator)
@@ -162,39 +164,83 @@ public static class AIHelper
 			int tileArrayIndex = position.x * levelSize.y + position.y;
 			return tileArrayIndex;
 		}
+
+
+		public struct OnTileElementAction
+		{
+			public int OnTileElementId;
+			public Vector2Int MoveToPosition;
+
+			private bool hasBeenApplied;
+			private Vector2Int m_PreviousOnTileElementPosition;
+			private int m_PreviousOwnerTeamIdAtMoveToPosition;
+
+			public void Apply(ref SearchSimulationState searchSimulationState)
+			{
+				int mappedOnTileElementIndex = searchSimulationState.GetIndexOfOnTileElementWithId(OnTileElementId);
+				int mappedTileIndex = searchSimulationState.GetIndexOfTileAt(MoveToPosition);
+
+				m_PreviousOnTileElementPosition = searchSimulationState.OnTileElementPositions[mappedOnTileElementIndex];
+				m_PreviousOwnerTeamIdAtMoveToPosition = searchSimulationState.TileOwnerTeamIds[mappedTileIndex];
+
+				searchSimulationState.OnTileElementPositions[mappedOnTileElementIndex] = MoveToPosition;
+				if (searchSimulationState.TileOwnerTeamIds[mappedTileIndex] != SearchSimulationState.k_NotOwnableTeamId)
+				{
+					int teamId = searchSimulationState.OnTileElementTeamIds[mappedOnTileElementIndex];
+					searchSimulationState.TileOwnerTeamIds[mappedTileIndex] = teamId;
+				}
+
+				hasBeenApplied = true;
+			}
+
+			public void Revert(ref SearchSimulationState searchSimulationState)
+			{
+				if (!hasBeenApplied)
+				{
+					// The action has not been applied, revert will result in faulty state.
+					return;
+				}
+
+				int mappedOnTileElementIndex = searchSimulationState.GetIndexOfOnTileElementWithId(OnTileElementId);
+				int mappedTileIndex = searchSimulationState.GetIndexOfTileAt(MoveToPosition);
+
+				searchSimulationState.OnTileElementPositions[mappedOnTileElementIndex] = m_PreviousOnTileElementPosition;
+				searchSimulationState.TileOwnerTeamIds[mappedTileIndex] = m_PreviousOwnerTeamIdAtMoveToPosition;
+			}
+		}
 	}
 
 	/// <summary>
 	/// Try to get the index of a tile on the given position.
 	/// </summary>
-	/// <param name="gameSimulationState"></param>
+	/// <param name="searchSimulationState"></param>
 	/// <param name="targetPosition"></param>
-	/// <returns>The index of the tile position; otherwise return -1 if the position doesn't have a tile.</returns>
-	public static int GetIndexOfTileAt(this SearchSimulationState gameSimulationState, Vector2Int targetPosition)
+	/// <returns>The index of the tile position; otherwise return -1 (k_NoTile) if the position doesn't have a tile.</returns>
+	public static int GetIndexOfTileAt(this SearchSimulationState searchSimulationState, Vector2Int targetPosition)
 	{
-		bool outOfBounds = targetPosition.x < 0 || targetPosition.x >= gameSimulationState.LevelBoundingRectSize.x ||
-						   targetPosition.y < 0 || targetPosition.y >= gameSimulationState.LevelBoundingRectSize.y;
+		bool outOfBounds = targetPosition.x < 0 || targetPosition.x >= searchSimulationState.LevelBoundingRectSize.x ||
+						   targetPosition.y < 0 || targetPosition.y >= searchSimulationState.LevelBoundingRectSize.y;
 
 		if (outOfBounds)
 		{
 			return SearchSimulationState.k_NoTile;
 		}
 
-		int tileArrayIndex = targetPosition.x * gameSimulationState.LevelBoundingRectSize.y + targetPosition.y;
-		return gameSimulationState.TileIndices[tileArrayIndex];
+		int tileArrayIndex = targetPosition.x * searchSimulationState.LevelBoundingRectSize.y + targetPosition.y;
+		return searchSimulationState.TileIndices[tileArrayIndex];
 	}
 
 	/// <summary>
 	/// Try to get the index of an OnTileElement with the given id.
 	/// </summary>
-	/// <param name="gameSimulationState"></param>
+	/// <param name="searchSimulationState"></param>
 	/// <param name="position"></param>
 	/// <returns>The index of the OnTileElement; otherwise return -1 if the OnTileElement with the id is not in the list.</returns>
-	public static int GetIndexOfOnTileElementWithId(this SearchSimulationState gameSimulationState, int targetOnTileElementId)
+	public static int GetIndexOfOnTileElementWithId(this SearchSimulationState searchSimulationState, int targetOnTileElementId)
 	{
-		for (int i = 0; i < gameSimulationState.OnTileElementIds.Length; i++)
+		for (int i = 0; i < searchSimulationState.OnTileElementIds.Length; i++)
 		{
-			var onTileElementId = gameSimulationState.OnTileElementIds[i];
+			var onTileElementId = searchSimulationState.OnTileElementIds[i];
 			if (onTileElementId == targetOnTileElementId)
 			{
 				return i;
@@ -204,49 +250,134 @@ public static class AIHelper
 		return SearchSimulationState.k_NoElement;
 	}
 
-	public static float EvaluateScoreEarnedIfOnTileElementMoveTo(this SearchSimulationState gameSimulationState, int onTileElementId, Vector2Int toPosition, int temporalRelevancy)
+	public struct TryGetPositionResult
 	{
-		float scoreEarned = 0;
-		int mappedTileIndex = gameSimulationState.GetIndexOfTileAt(toPosition);
-		if (mappedTileIndex == SearchSimulationState.k_NoTile)
+		public bool Success;
+		public Vector2Int Position;
+	}
+
+	public static TryGetPositionResult TryGetPositionOfOnTileElementWithId(this SearchSimulationState searchSimulationState, int targetOnTileElementId)
+	{
+		int index = GetIndexOfOnTileElementWithId(searchSimulationState, targetOnTileElementId);
+
+		if (index == SearchSimulationState.k_NoElement)
 		{
-			// If the given position doesn't have a tile, the score earned is always zero.
-			return 0;
+			return new TryGetPositionResult() { Success = false };
 		}
 
-		int mappedOnTileElementIndex = gameSimulationState.GetIndexOfOnTileElementWithId(onTileElementId);
-		int teamId = gameSimulationState.OnTileElementTeamIds[mappedOnTileElementIndex];
+		var position = searchSimulationState.OnTileElementPositions[index];
+		return new TryGetPositionResult() { Success = true, Position = position };
+	}
+
+	public struct EvaluationParameters
+	{
+		/// <summary>
+		/// How likely the agent would take over a tile. 0 means not influenced at all.
+		/// </summary>
+		public float TileOwnershipAffinity;
+
+		/// <summary>
+		/// How likely the agent would eat an item. 0 means not influenced at all.
+		/// </summary>
+		public float ItemAffinity;
+
+		/// <summary>
+		/// How likely the agent would try to attack predator. 0 means not influenced at all.
+		/// </summary>
+		public float Aggressiveness;
+
+		/// <summary>
+		/// How likely the agent would avoid powerful enemy. 0 means not influenced at all.
+		/// </summary>
+		public float Cautiousness;
+
+		public static EvaluationParameters GetBasicBehaviourParameters()
+		{
+			return new EvaluationParameters()
+			{
+				TileOwnershipAffinity = 1,
+				ItemAffinity = 1,
+				Aggressiveness = 1,
+				Cautiousness = 1,
+			};
+		}
+
+		public static EvaluationParameters GetKillerBehaviourParameters()
+		{
+			return new EvaluationParameters()
+			{
+				TileOwnershipAffinity = 0,
+				ItemAffinity = 1,
+				Aggressiveness = 2,
+				Cautiousness = 1,
+			};
+		}
+
+		public static EvaluationParameters GetGreedyBehaviourParameters()
+		{
+			return new EvaluationParameters()
+			{
+				TileOwnershipAffinity = 2,
+				ItemAffinity = 1,
+				Aggressiveness = 0,
+				Cautiousness = 1,
+			};
+		}
+
+		public static EvaluationParameters GetPeacefulBehaviourParameters()
+		{
+			return new EvaluationParameters()
+			{
+				TileOwnershipAffinity = 1,
+				ItemAffinity = 1,
+				Aggressiveness = 0,
+				Cautiousness = 0,
+			};
+		}
+	}
+	public static float EvaluateScoreEarnedIfOnTileElementMoveTo(this SearchSimulationState searchSimulationState, int onTileElementId, Vector2Int toPosition, EvaluationParameters evaluationParams, int temporalRelevancy)
+	{
+		float scoreEarned = 0;
+		int mappedTileIndex = searchSimulationState.GetIndexOfTileAt(toPosition);
+		if (mappedTileIndex == SearchSimulationState.k_NoTile)
+		{
+			// If the given position doesn't have a tile, cannot do the action.
+			return SearchSimulationState.k_NeverDoActionScore;
+		}
+
+		int mappedOnTileElementIndex = searchSimulationState.GetIndexOfOnTileElementWithId(onTileElementId);
+		int teamId = searchSimulationState.OnTileElementTeamIds[mappedOnTileElementIndex];
 
 		// Evaluate the tile based on its ownership.
-		bool tileIsOwnable = gameSimulationState.TileWorthPoints[mappedTileIndex] > 0;
+		bool tileIsOwnable = searchSimulationState.TileWorthPoints[mappedTileIndex] > 0;
 		if (tileIsOwnable)
 		{
-			int worthPoints = gameSimulationState.TileWorthPoints[mappedTileIndex];
+			int worthPoints = searchSimulationState.TileWorthPoints[mappedTileIndex];
 
-			int ownerTeamId = gameSimulationState.TileOwnerTeamIds[mappedTileIndex];
+			int ownerTeamId = searchSimulationState.TileOwnerTeamIds[mappedTileIndex];
 			bool tileHasOwner = ownerTeamId != SearchSimulationState.k_NoOwnerTeamId && ownerTeamId != SearchSimulationState.k_NotOwnableTeamId;
 			if (!tileHasOwner)
 			{
 				// If the tile doesn't have an owner, move to it will reward the agent with points.
-				scoreEarned += (1 + temporalRelevancy * 0.1f) * worthPoints;
+				scoreEarned += (1 + temporalRelevancy * 0.1f) * worthPoints * evaluationParams.TileOwnershipAffinity;
 			}
 
 			bool isOwnedByDifferentTeam = tileHasOwner && ownerTeamId != teamId;
 			if (isOwnedByDifferentTeam)
 			{
 				// If the tile is owned by a different team, move to it will greatly reward the agent (increase own score, decrease opponent's score).
-				scoreEarned += (1 + temporalRelevancy * 0.2f) * worthPoints;
+				scoreEarned += (1 + temporalRelevancy * 0.2f) * worthPoints * evaluationParams.TileOwnershipAffinity;
 			}
 		}
 
 		// Evaluate the tile based on the item/powerup
-		if (gameSimulationState.TileItems[mappedTileIndex])
+		if (searchSimulationState.TileItems[mappedTileIndex])
 		{
-			scoreEarned += (1 + temporalRelevancy * 0.3f);
+			scoreEarned += (1 + temporalRelevancy * 0.3f) * evaluationParams.ItemAffinity;
 		}
 
 		// Evaluate if the occupying element is potential prey/predator
-		for (int i = 0; i < gameSimulationState.OnTileElementPositions.Length; i++)
+		for (int i = 0; i < searchSimulationState.OnTileElementPositions.Length; i++)
 		{
 			if (i == mappedOnTileElementIndex)
 			{
@@ -254,14 +385,14 @@ public static class AIHelper
 				continue;
 			}
 
-			var onTileElementPosition = gameSimulationState.OnTileElementPositions[i];
+			var onTileElementPosition = searchSimulationState.OnTileElementPositions[i];
 			if (onTileElementPosition != toPosition)
 			{
 				// The OnTileElement is not at the location we are interested in, skip it.
 				continue;
 			}
 
-			int occupierTeamId = gameSimulationState.OnTileElementTeamIds[i];
+			int occupierTeamId = searchSimulationState.OnTileElementTeamIds[i];
 			bool isInTheSameTeam = occupierTeamId == teamId;
 			if (isInTheSameTeam)
 			{
@@ -269,42 +400,22 @@ public static class AIHelper
 				break;
 			}
 
-			int opponentPriority = gameSimulationState.OnTileElementPriorities[i];
-			int agentPriority = gameSimulationState.OnTileElementPriorities[mappedOnTileElementIndex];
+			int opponentPriority = searchSimulationState.OnTileElementPriorities[i];
+			int agentPriority = searchSimulationState.OnTileElementPriorities[mappedOnTileElementIndex];
 
-			if (opponentPriority > agentPriority)
+			if (agentPriority < opponentPriority)
 			{
 				// The agent can kill this opponent, moving to this position rewards with a kill!
 				// We square the temporalRelevancy because we only want to chase the target that is close enough, distant target is more unpredictable.
-				scoreEarned += (1 + temporalRelevancy * temporalRelevancy * 0.5f);
+				scoreEarned += (1 + temporalRelevancy * 0.5f) * evaluationParams.Aggressiveness;
 			}
 			else
 			{
 				// The opponent is possibly dangerous to the agent, moving away from this position to avoid death!
-				scoreEarned -= (1 + temporalRelevancy * temporalRelevancy * 0.5f);
+				scoreEarned -= (1 + temporalRelevancy * 0.5f) * evaluationParams.Cautiousness;
 			}
 		}
 
 		return scoreEarned;
-	}
-
-	/// <summary>
-	/// Update game simulation state as if the given OnTileElement move to the position.
-	/// </summary>
-	/// <param name="gameSimulationState"></param>
-	/// <param name="onTileElementId"></param>
-	/// <param name="toPosition"></param>
-	public static void MoveOnTileElementTo(this SearchSimulationState gameSimulationState, int onTileElementId, Vector2Int toPosition)
-	{
-		// TODO: update the game state as if the on tile element moved to the given location
-		int mappedOnTileElementIndex = gameSimulationState.GetIndexOfOnTileElementWithId(onTileElementId);
-		int mappedTileIndex = gameSimulationState.GetIndexOfTileAt(toPosition);
-		int teamId = gameSimulationState.OnTileElementTeamIds[mappedOnTileElementIndex];
-		gameSimulationState.OnTileElementPositions[mappedOnTileElementIndex] = toPosition;
-
-		if (gameSimulationState.TileOwnerTeamIds[mappedTileIndex] != SearchSimulationState.k_NotOwnableTeamId)
-		{
-			gameSimulationState.TileOwnerTeamIds[mappedTileIndex] = teamId;
-		}
 	}
 }

@@ -44,7 +44,7 @@ public class LevelData : ScriptableObject
 				{
 					tileId = "collapse";
 				}
-				else if (random > 0.1f)
+				else if (random > 0.2f)
 				{
 					tileId = "normal";
 				}
