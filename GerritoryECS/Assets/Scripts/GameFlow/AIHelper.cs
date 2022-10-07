@@ -52,6 +52,10 @@ public static class AIHelper
 		/// Indexed with <see cref="OnTileElementIds"/>, the positions of OnTileElements.
 		/// </summary>
 		public NativeArray<Vector2Int> OnTileElementPositions;
+		/// <summary>
+		/// Indexed with <see cref="OnTileElementIds"/>, the priority of OnTileElements. We don't update this regularly.
+		/// </summary>
+		public NativeArray<int> OnTileElementPriorities;
 
 		public const int k_NotOwnableTeamId = -2;
 		public const int k_NoOwnerTeamId = -1;
@@ -120,6 +124,7 @@ public static class AIHelper
 			OnTileElementIds = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
 			OnTileElementTeamIds = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
 			OnTileElementPositions = new NativeArray<Vector2Int>(numberOfRelevantOnTileElements, allocator);
+			OnTileElementPriorities = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
 
 			for (int i = 0; i < numberOfRelevantOnTileElements; i++)
 			{
@@ -127,6 +132,7 @@ public static class AIHelper
 				OnTileElementIds[i] = element.OnTileElement.Id;
 				OnTileElementTeamIds[i] = element.Team.Id;
 				OnTileElementPositions[i] = element.OnTilePosition.Value;
+				OnTileElementPriorities[i] = contexts.GetOnTileElementKillPriority(element);
 			}
 
 			IsInitialized = true;
@@ -239,8 +245,45 @@ public static class AIHelper
 			scoreEarned += (1 + temporalRelevancy * 0.3f);
 		}
 
-		// TODO: Evaluate potential prey/predator, need more data to achieve this. (i.e. Priority)
-		// ...
+		// Evaluate if the occupying element is potential prey/predator
+		for (int i = 0; i < gameSimulationState.OnTileElementPositions.Length; i++)
+		{
+			if (i == mappedOnTileElementIndex)
+			{
+				// Oneself cannot be a prey or predator, skip it.
+				continue;
+			}
+
+			var onTileElementPosition = gameSimulationState.OnTileElementPositions[i];
+			if (onTileElementPosition != toPosition)
+			{
+				// The OnTileElement is not at the location we are interested in, skip it.
+				continue;
+			}
+
+			int occupierTeamId = gameSimulationState.OnTileElementTeamIds[i];
+			bool isInTheSameTeam = occupierTeamId == teamId;
+			if (isInTheSameTeam)
+			{
+				// The occupier is in the same team as the agent, therefore it is impossible to be a prey or a predator.
+				break;
+			}
+
+			int opponentPriority = gameSimulationState.OnTileElementPriorities[i];
+			int agentPriority = gameSimulationState.OnTileElementPriorities[mappedOnTileElementIndex];
+
+			if (opponentPriority > agentPriority)
+			{
+				// The agent can kill this opponent, moving to this position rewards with a kill!
+				// We square the temporalRelevancy because we only want to chase the target that is close enough, distant target is more unpredictable.
+				scoreEarned += (1 + temporalRelevancy * temporalRelevancy * 0.5f);
+			}
+			else
+			{
+				// The opponent is possibly dangerous to the agent, moving away from this position to avoid death!
+				scoreEarned -= (1 + temporalRelevancy * temporalRelevancy * 0.5f);
+			}
+		}
 
 		return scoreEarned;
 	}
