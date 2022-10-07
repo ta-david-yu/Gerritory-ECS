@@ -8,28 +8,18 @@ public sealed class MoveOnTileSystem : IFixedUpdateSystem
 	private readonly ElementContext m_ElementContext;
 	private readonly MessageContext m_MessageContext;
 
-	private readonly IGroup<ElementEntity> m_JustBeginMoveOnTileGroup;
 	private readonly IGroup<ElementEntity> m_MoveOnTileGroup;
 
 	public MoveOnTileSystem(Contexts contexts)
 	{
 		m_MessageContext = contexts.Message;
 
-		m_JustBeginMoveOnTileGroup = contexts.Element.GetGroup(ElementMatcher.AllOf(ElementMatcher.OnTileElement, ElementMatcher.MoveOnTileBegin).NoneOf(ElementMatcher.MoveOnTile));
 		m_MoveOnTileGroup = contexts.Element.GetGroup(ElementMatcher.AllOf(ElementMatcher.OnTileElement, ElementMatcher.MoveOnTile));
 	}
 
 	public void FixedUpdate()
 	{
-		// Cache group entities first, so MoveOnTileBegin group won't move right away in the second foreach loop.
-		var justBeginMoveOnTileGroupCache = m_JustBeginMoveOnTileGroup.GetEntities();
 		var moveOnTileGroupCache = m_MoveOnTileGroup.GetEntities();
-
-		// Add MoveOnTile component to entities that just start moving (have MoveOnTileBegin component but no MoveOnTile).
-		foreach (var beginMoveEntity in justBeginMoveOnTileGroupCache)
-		{
-			beginMoveEntity.AddMoveOnTile(0, beginMoveEntity.MoveOnTileBegin.FromPosition, beginMoveEntity.MoveOnTileBegin.ToPosition);
-		}
 
 		// Move OnTileElements with MoveOnTile component.
 		foreach (var moveEntity in moveOnTileGroupCache)
