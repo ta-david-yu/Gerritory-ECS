@@ -79,6 +79,13 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 			{
 				Vector2Int moveOffset = Movement.TypeToOffset[(int)movement];
 				Vector2Int currentPosition = playerEntity.OnTilePosition.Value;
+				Vector2Int nextPosition = currentPosition + moveOffset;
+				if (m_Contexts.Tile.GetEntityWithTilePosition(nextPosition) == null)
+				{
+					// There is no tile at the position, skip it.
+					continue;
+				}
+
 				float reward = gameSimulationState.EvaluateScoreEarnedIfOnTileElementMoveTo(playerEntity.OnTileElement.Id, currentPosition + moveOffset, 3);
 				//float reward = evaluateScoreEarnedIfOnTileElementMoveToPosition(playerEntity.OnTileElement.Id, currentPosition + moveOffset, 3);
 
