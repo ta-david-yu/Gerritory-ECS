@@ -68,7 +68,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem
 			// TODO: Collect job result and apply the result to movement input action
 			// ...
 
-			AIHelper.GameSimulationState gameSimulationState = new AIHelper.GameSimulationState();
+			AIHelper.SearchSimulationState gameSimulationState = new AIHelper.SearchSimulationState();
 			gameSimulationState.InitializeWithContexts(m_Contexts, Unity.Collections.Allocator.Temp);
 
 			// TODO: remove this, currently the depth level is only 1.
