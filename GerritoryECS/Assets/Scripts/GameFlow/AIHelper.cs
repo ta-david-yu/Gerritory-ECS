@@ -452,11 +452,23 @@ public static class AIHelper
 			}
 
 			var onTileElementPosition = searchSimulationState.OnTileElementPositions[i];
-			if (onTileElementPosition != toPosition)
+			bool isOnTileElementAtThePosition = onTileElementPosition == toPosition;
+			bool isOnTileElementAdjacentToThePosition = 
+				(onTileElementPosition == (toPosition + Vector2Int.right)) ||
+				(onTileElementPosition == (toPosition + Vector2Int.down)) ||
+				(onTileElementPosition == (toPosition + Vector2Int.left)) ||
+				(onTileElementPosition == (toPosition + Vector2Int.up));
+			if (!isOnTileElementAtThePosition && !isOnTileElementAdjacentToThePosition)
 			{
 				// The OnTileElement is not at the location we are interested in, skip it.
 				continue;
 			}
+
+			// If the prey is not on the tile, we don't force to chase it.
+			float preyFactor = isOnTileElementAtThePosition ? 1.0f : 0.0f;
+
+			// If the predator is adjacent to the tile, we would still want to avoid it.
+			float predatorFactor = isOnTileElementAtThePosition ? 1.0f : 0.8f;
 
 			int occupierTeamId = searchSimulationState.OnTileElementTeamIds[i];
 			bool isInTheSameTeam = occupierTeamId == teamId;
@@ -471,14 +483,16 @@ public static class AIHelper
 
 			if (agentPriority < opponentPriority)
 			{
+				// Prey!
 				// The agent can kill this opponent, moving to this position rewards with a kill!
 				// We square the temporalRelevancy because we only want to chase the target that is close enough, distant target is more unpredictable.
-				scoreEarned += (1 + temporalRelevancy * temporalRelevancy * 0.5f) * evaluationParams.Aggressiveness;
+				scoreEarned += (1 + temporalRelevancy * temporalRelevancy * 0.5f) * preyFactor * evaluationParams.Aggressiveness;
 			}
 			else
 			{
+				// Predator!
 				// The opponent is possibly dangerous to the agent, moving away from this position to avoid death!
-				scoreEarned -= (1 + temporalRelevancy * 0.5f) * evaluationParams.Cautiousness;
+				scoreEarned -= (1 + temporalRelevancy * temporalRelevancy * 0.5f) * predatorFactor * evaluationParams.Cautiousness;
 			}
 		}
 

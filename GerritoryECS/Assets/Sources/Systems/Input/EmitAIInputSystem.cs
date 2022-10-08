@@ -15,7 +15,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 	private readonly IGroup<InputEntity> m_AIInputGroup;
 
 	private const float k_NextMoveEvaluationTimeOffset = 0.1f;
-	private const int k_SearchDepthLevel = 2;
+	private const int k_SearchDepthLevel = 5;
 
 	public EmitAIInputSystem(Contexts contexts)
 	{
@@ -177,14 +177,20 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 			simulationAction.Apply(ref searchSimulationState);
 
 			// Select the next OnTileElement to do the action simulation.
-			int numberOfRelevantOnTileElements = searchSimulationState.OnTileElementIds.Length;
-			int nextOnTileElementIndex = (mappedElementIndex + 1) % numberOfRelevantOnTileElements;
-			while (searchSimulationState.AreOnTileElementsDead[nextOnTileElementIndex])
-			{
-				// Loop to find an element that is not dead
-				nextOnTileElementIndex = (nextOnTileElementIndex + 1) % numberOfRelevantOnTileElements;
-			}
-
+			// Normally in minimax you would choose another OnTileElement other than the agent itself,
+			// Something like this:
+			// 
+			//	int numberOfRelevantOnTileElements = searchSimulationState.OnTileElementIds.Length;
+			//	int nextOnTileElementIndex = (mappedElementIndex + 1) % numberOfRelevantOnTileElements;
+			//	while (searchSimulationState.AreOnTileElementsDead[nextOnTileElementIndex])
+			//	{
+			//		nextOnTileElementIndex = (nextOnTileElementIndex + 1) % numberOfRelevantOnTileElements;
+			//	}
+			// 
+			// but it turns out that, since our game is real-time action, assuming players would take turn to move doesn't help the AI to search better.
+			// Therefore we assume all the other OnTileElements are static threats/rewards as if they wouldn't move during the AI search simulation.
+			// It's more performant + the resulted behaviour is similar to the previous implementation.
+			int nextOnTileElementIndex = mappedElementIndex;
 			int nextOnTileElementId = searchSimulationState.OnTileElementIds[nextOnTileElementIndex];
 
 			int iterationStepsLeft = input.NumberOfIterationStepsLeft;
