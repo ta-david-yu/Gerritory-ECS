@@ -185,7 +185,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 				nextOnTileElementIndex = (nextOnTileElementIndex + 1) % numberOfRelevantOnTileElements;
 			}
 
-			int nextOnTileElementId = searchSimulationState.OnTileElementIds[(mappedElementIndex + 1) % numberOfRelevantOnTileElements];
+			int nextOnTileElementId = searchSimulationState.OnTileElementIds[nextOnTileElementIndex];
 
 			int iterationStepsLeft = input.NumberOfIterationStepsLeft;
 			if (nextOnTileElementId == input.AgentOnTileElementId)
