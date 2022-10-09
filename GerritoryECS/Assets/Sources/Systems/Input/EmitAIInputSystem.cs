@@ -2,6 +2,7 @@ using JCMG.EntitasRedux;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
+using UnityEngine.Windows;
 using static AIHelper;
 
 public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
@@ -10,6 +11,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 	private readonly Contexts m_Contexts;
 	private readonly IGroup<InputEntity> m_AIInputGroup;
 
+	private const float k_MinimumStayTime = 0.1f;
 	private const float k_NextMoveEvaluationTimeOffset = 0.1f;
 	private const int k_SearchDepthLevel = 5;
 
@@ -18,13 +20,19 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 		m_ElementContext = contexts.Element;
 		m_Contexts = contexts;
 
-		m_AIInputGroup = contexts.Input.GetGroup(InputMatcher.AIInput);
+		m_AIInputGroup = contexts.Input.GetGroup(InputMatcher.AllOf(InputMatcher.AIInput).NoneOf(InputMatcher.IdleTimer));
 	}
 
 	public void Update()
 	{
 		foreach (var inputEntity in m_AIInputGroup.GetEntities())
 		{
+			if (inputEntity.HasIdleTimer)
+			{
+				// The input driver is still in idle state, skip it.
+				continue;
+			}
+
 			int targetPlayerId = inputEntity.AIInput.TargetPlayerId;
 			var elementEntity = m_ElementContext.GetEntityWithPlayer(targetPlayerId);
 
@@ -81,6 +89,10 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 
 			if (bestMove == Movement.Type.Stay)
 			{
+				scheduleSearchJobFor(elementEntity, inputEntity);
+				
+				// Add an idle timer to avoid move right away after Stay.
+				inputEntity.AddIdleTimer(k_MinimumStayTime);
 				continue;
 			}
 
@@ -107,9 +119,10 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 		// Schedule the job to evaluate the next move
 		AIHelper.MinimaxInput minimaxInput = new AIHelper.MinimaxInput()
 		{
-			AgentOnTileElementId = elementEntity.OnTileElement.Id,                  // The agent
+			AgentOnTileElementId = elementEntity.OnTileElement.Id,										// The agent
 			AgentTeamId = elementEntity.HasTeam ? elementEntity.Team.Id : -1,
-			CurrentTurnOnTileElementId = elementEntity.OnTileElement.Id,            // We start with the agent's turn
+			AgentEvaluationParameters = AIHelper.EvaluationParameters.GetBasicBehaviourParameters(),	// For now we always uses Basic agent behaviour
+			CurrentTurnOnTileElementId = elementEntity.OnTileElement.Id,								// We start with the agent's turn
 			NumberOfIterationStepsLeft = k_SearchDepthLevel,
 			CurrentScore = 0,
 			LastMove = Movement.Type.Stay,

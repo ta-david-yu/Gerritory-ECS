@@ -10,7 +10,10 @@ public sealed class InputFeature : Feature
 		// Construct input systems
 		Add(new ConstructInputEntitySystem(contexts));
 
-		// Read/emit Input from Users or AI
+		// Update AI input idle timer
+		Add(new UpdateIdleTimerSystem(contexts));
+
+		// Read/emit input from Users or AIs
 		Add(new EmitUserInputSystem(contexts));
 		Add(new EmitAIInputSystem(contexts));
 

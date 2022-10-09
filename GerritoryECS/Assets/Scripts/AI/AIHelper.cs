@@ -378,7 +378,7 @@ public static partial class AIHelper
 		{
 			return new EvaluationParameters()
 			{
-				TileOwnershipAffinity = 0,
+				TileOwnershipAffinity = -0.2f,
 				ItemAffinity = 1,
 				Aggressiveness = 2,
 				Cautiousness = 1,

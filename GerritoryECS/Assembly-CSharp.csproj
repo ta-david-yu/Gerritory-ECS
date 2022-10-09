@@ -486,6 +486,9 @@
     <Compile Include="Assets\Scripts\Tile\CollapseTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Input\IdleTimerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\Components\InputIdleTimerComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Input\UpdateIdleTimerSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

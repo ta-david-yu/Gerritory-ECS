@@ -13,6 +13,7 @@ public static partial class AIHelper
 	{
 		public int AgentOnTileElementId;
 		public int AgentTeamId;
+		public EvaluationParameters AgentEvaluationParameters;
 		public int CurrentTurnOnTileElementId;
 		public int NumberOfIterationStepsLeft;
 		public float CurrentScore;
@@ -84,7 +85,7 @@ public static partial class AIHelper
 			(
 				input.CurrentTurnOnTileElementId,
 				nextPosition,
-				isFriendlyTurn ? AIHelper.EvaluationParameters.GetBasicBehaviourParameters() : AIHelper.EvaluationParameters.GetPeacefulBehaviourParameters(),
+				isFriendlyTurn ? input.AgentEvaluationParameters : AIHelper.EvaluationParameters.GetPeacefulBehaviourParameters(),
 				input.NumberOfIterationStepsLeft
 			);
 
@@ -127,6 +128,7 @@ public static partial class AIHelper
 			{
 				AgentOnTileElementId = input.AgentOnTileElementId,
 				AgentTeamId = input.AgentTeamId,
+				AgentEvaluationParameters = input.AgentEvaluationParameters,
 				CurrentTurnOnTileElementId = nextOnTileElementId,
 				NumberOfIterationStepsLeft = iterationStepsLeft,
 				CurrentScore = scoreAfterTakingTheAction,

@@ -18,7 +18,11 @@ public partial class InputEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is DebugMessageComponent DebugMessage)
+		if (component is IdleTimerComponent IdleTimer)
+		{
+			CopyIdleTimerTo(IdleTimer);
+		}
+		else if (component is DebugMessageComponent DebugMessage)
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
