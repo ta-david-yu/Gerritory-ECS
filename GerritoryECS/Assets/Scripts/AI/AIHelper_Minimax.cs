@@ -68,6 +68,17 @@ public static partial class AIHelper
 				continue;
 			}
 
+			TryGetOnTileElementAtPositionResult tryGetElementAtNextPositionResult = searchSimulationState.TryGetOnTileElementAtPosition(nextPosition);
+			if (tryGetElementAtNextPositionResult.HasOnTileElement)
+			{
+				bool isTeammateAtPosition = searchSimulationState.OnTileElementTeamIds[tryGetElementAtNextPositionResult.OnTileElementArrayIndex] == teamId;
+				if (isTeammateAtPosition)
+				{
+					// If there is a teammate at the given position, it's basically not moveable to. Skip it.
+					continue;
+				}
+			}
+
 			// Evaluate the reward earned from the action.
 			float scoreEarnedWithTheAction = searchSimulationState.EvaluateScoreEarnedIfOnTileElementMoveTo
 			(

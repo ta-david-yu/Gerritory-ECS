@@ -308,7 +308,6 @@ public static partial class AIHelper
 		public bool Success;
 		public Vector2Int Position;
 	}
-
 	public static TryGetPositionResult TryGetPositionOfOnTileElementWithId(this SearchSimulationState searchSimulationState, int targetOnTileElementId)
 	{
 		int index = GetIndexOfOnTileElementWithId(searchSimulationState, targetOnTileElementId);
@@ -320,6 +319,26 @@ public static partial class AIHelper
 
 		var position = searchSimulationState.OnTileElementPositions[index];
 		return new TryGetPositionResult() { Success = true, Position = position };
+	}
+
+	public struct TryGetOnTileElementAtPositionResult
+	{
+		public bool HasOnTileElement;
+		public int OnTileElementArrayIndex;
+	}
+	public static TryGetOnTileElementAtPositionResult TryGetOnTileElementAtPosition(this SearchSimulationState searchSimulationState, Vector2Int position)
+	{
+		for (int i = 0; i < searchSimulationState.OnTileElementPositions.Length; i++)
+		{
+			var onTileElementPosition = searchSimulationState.OnTileElementPositions[i];
+			bool isOnTileElementAtThePosition = onTileElementPosition == position;
+			if (isOnTileElementAtThePosition)
+			{
+				return new TryGetOnTileElementAtPositionResult() { HasOnTileElement = true, OnTileElementArrayIndex = i };
+			}
+		}
+
+		return new TryGetOnTileElementAtPositionResult() { HasOnTileElement = false, OnTileElementArrayIndex = -1 };
 	}
 
 	public struct EvaluationParameters
