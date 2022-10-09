@@ -9,7 +9,7 @@ using UnityEditor.Build;
 using UnityEngine;
 using static AIHelper;
 
-public static class AIHelper
+public static partial class AIHelper
 {
 	/// <summary>
 	/// <see cref="SearchSimulationState"/> stores important relevant game state used during AI search algorithm.
