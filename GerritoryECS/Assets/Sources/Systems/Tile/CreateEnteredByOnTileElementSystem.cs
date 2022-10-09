@@ -29,7 +29,20 @@ public sealed class CreateEnteredByOnTileElementSystem : IUpdateSystem
 		{
 			Vector2Int enterPosition = enterMessageEntity.OnTileElementEnterTile.Position;
 			TileEntity enterTileEntity = m_TileContext.GetEntityWithTilePosition(enterPosition);
-			enterTileEntity.AddEnteredByOnTileElement(enterMessageEntity.OnTileElementEnterTile.OnTileElementId);
+
+			if (enterTileEntity.HasEnteredByOnTileElement)
+			{
+				Debug.LogError
+				(
+					$"There has already been an EnteredBy component {enterTileEntity.EnteredByOnTileElement.OnTileElementId} on the tile.\n" +
+					$"The new component is held by {enterMessageEntity.OnTileElementEnterTile.OnTileElementId}."
+				);
+				enterTileEntity.ReplaceEnteredByOnTileElement(enterMessageEntity.OnTileElementEnterTile.OnTileElementId);
+			}
+			else
+			{
+				enterTileEntity.AddEnteredByOnTileElement(enterMessageEntity.OnTileElementEnterTile.OnTileElementId);
+			}
 		}
 	}
 }
