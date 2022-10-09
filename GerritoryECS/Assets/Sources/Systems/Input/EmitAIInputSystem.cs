@@ -1,9 +1,6 @@
 using JCMG.EntitasRedux;
 using Unity.Collections;
 using Unity.Jobs;
-using UnityEngine;
-using UnityEngine.Windows;
-using static AIHelper;
 
 public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 {
