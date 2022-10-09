@@ -28,7 +28,7 @@ public partial class InputEntity
 		}
 		else if (component is EvaluatingForMovementInputComponent EvaluatingForMovementInput)
 		{
-			IsEvaluatingForMovementInput = true;
+			CopyEvaluatingForMovementInputTo(EvaluatingForMovementInput);
 		}
 		else if (component is UserInputComponent UserInput)
 		{

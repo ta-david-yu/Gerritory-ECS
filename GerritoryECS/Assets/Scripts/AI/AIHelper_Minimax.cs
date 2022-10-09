@@ -21,6 +21,13 @@ public static partial class AIHelper
 		public float BestActionScore;
 		public Movement.Type BestAction;
 	}
+
+	/// <summary>
+	/// Optimized version of minimax (no min, max-only LOL)
+	/// </summary>
+	/// <param name="input"></param>
+	/// <param name="searchSimulationState"></param>
+	/// <returns></returns>
 	public static MinimaxResult minimax(MinimaxInput input, ref AIHelper.SearchSimulationState searchSimulationState)
 	{
 		if (input.NumberOfIterationStepsLeft == 0)
@@ -41,7 +48,7 @@ public static partial class AIHelper
 
 		// Go through all the possible moves/actions recursively to see which one is the best action.
 		var movements = Movement.TypeList;
-		int movementStartIndex = UnityEngine.Random.Range(0, movements.Length);
+		int movementStartIndex = 0; //UnityEngine.Random.Range(0, movements.Length);
 		for (int i = 0; i < movements.Length; i++)
 		{
 			var movement = movements[(movementStartIndex + i) % movements.Length];

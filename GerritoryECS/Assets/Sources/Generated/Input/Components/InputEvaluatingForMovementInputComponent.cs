@@ -9,31 +9,45 @@
 //------------------------------------------------------------------------------
 public partial class InputEntity
 {
-	static readonly EvaluatingForMovementInputComponent EvaluatingForMovementInputComponent = new EvaluatingForMovementInputComponent();
+	public EvaluatingForMovementInputComponent EvaluatingForMovementInput { get { return (EvaluatingForMovementInputComponent)GetComponent(InputComponentsLookup.EvaluatingForMovementInput); } }
+	public bool HasEvaluatingForMovementInput { get { return HasComponent(InputComponentsLookup.EvaluatingForMovementInput); } }
 
-	public bool IsEvaluatingForMovementInput
+	public void AddEvaluatingForMovementInput(SearchBestActionWithMinimaxJob newJob, Unity.Jobs.JobHandle newJobHandle)
 	{
-		get { return HasComponent(InputComponentsLookup.EvaluatingForMovementInput); }
-		set
-		{
-			if (value != IsEvaluatingForMovementInput)
-			{
-				var index = InputComponentsLookup.EvaluatingForMovementInput;
-				if (value)
-				{
-					var componentPool = GetComponentPool(index);
-					var component = componentPool.Count > 0
-							? componentPool.Pop()
-							: EvaluatingForMovementInputComponent;
+		var index = InputComponentsLookup.EvaluatingForMovementInput;
+		var component = (EvaluatingForMovementInputComponent)CreateComponent(index, typeof(EvaluatingForMovementInputComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.Job = newJob;
+		component.JobHandle = newJobHandle;
+		#endif
+		AddComponent(index, component);
+	}
 
-					AddComponent(index, component);
-				}
-				else
-				{
-					RemoveComponent(index);
-				}
-			}
-		}
+	public void ReplaceEvaluatingForMovementInput(SearchBestActionWithMinimaxJob newJob, Unity.Jobs.JobHandle newJobHandle)
+	{
+		var index = InputComponentsLookup.EvaluatingForMovementInput;
+		var component = (EvaluatingForMovementInputComponent)CreateComponent(index, typeof(EvaluatingForMovementInputComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.Job = newJob;
+		component.JobHandle = newJobHandle;
+		#endif
+		ReplaceComponent(index, component);
+	}
+
+	public void CopyEvaluatingForMovementInputTo(EvaluatingForMovementInputComponent copyComponent)
+	{
+		var index = InputComponentsLookup.EvaluatingForMovementInput;
+		var component = (EvaluatingForMovementInputComponent)CreateComponent(index, typeof(EvaluatingForMovementInputComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.Job = copyComponent.Job;
+		component.JobHandle = copyComponent.JobHandle;
+		#endif
+		ReplaceComponent(index, component);
+	}
+
+	public void RemoveEvaluatingForMovementInput()
+	{
+		RemoveComponent(InputComponentsLookup.EvaluatingForMovementInput);
 	}
 }
 

@@ -18,7 +18,7 @@ public class SetTileWorldPositionOnComponentsAdded : EntityCreationEventListener
 		StringBuilder stringBuilder = new StringBuilder(m_RootTransform.gameObject.name);
 		stringBuilder.Insert(0, $"{tileEntity.TilePosition.Value} ");
 		m_RootTransform.gameObject.name = stringBuilder.ToString();
-		Debug.Log($"Set the name of the tile view - {m_RootTransform.gameObject.name}");
+		//Debug.Log($"Set the name of the tile view - {m_RootTransform.gameObject.name}");
 	}
 
 	public override void HandleOnEntityCreated(IEntity entity)

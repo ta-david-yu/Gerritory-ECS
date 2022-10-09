@@ -1,12 +1,8 @@
 using JCMG.EntitasRedux;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Unity.Collections;
+using Unity.Jobs;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.Windows;
+using static AIHelper;
 
 public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 {
@@ -30,66 +26,90 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 		foreach (var inputEntity in m_AIInputGroup.GetEntities())
 		{
 			int targetPlayerId = inputEntity.AIInput.TargetPlayerId;
-			var playerEntity = m_ElementContext.GetEntityWithPlayer(targetPlayerId);
+			var elementEntity = m_ElementContext.GetEntityWithPlayer(targetPlayerId);
 
-			if (!playerEntity.HasOnTilePosition)
+			if (!elementEntity.HasOnTilePosition)
 			{
 				// The entity is currently not in the level, no need to decide the input now.
 				continue;
 			}
 
-			if (playerEntity.HasMoveOnTile)
+			if (elementEntity.HasMoveOnTile)
 			{
-				/*
-				if (inputEntity.IsEvaluatingForMovementInput)
+				if (inputEntity.HasEvaluatingForMovementInput)
 				{
-					// The next movement input has already been decided, no need to evaluate the next move.
+					// The evaluation for the next movement input is already in the process, no need to start a new process.
 					continue;
 				}
 
-				float totalMoveDuration = playerEntity.GetElementEntityMoveOnTileDuration();
-				float timeLeftToCompleteCurrentMove = (1.0f - playerEntity.MoveOnTile.Progress) * totalMoveDuration;
+				float totalMoveDuration = elementEntity.GetElementEntityMoveOnTileDuration();
+				float timeLeftToCompleteCurrentMove = (1.0f - elementEntity.MoveOnTile.Progress) * totalMoveDuration;
 				if (timeLeftToCompleteCurrentMove > k_NextMoveEvaluationTimeOffset)
 				{
-					// The player entity is in the middle of a movement, it's still too early to evaluate the next move.
+					// The entity is in the middle of a movement, it's still too early to evaluate the next move.
 					continue;
 				}
 
-				// TODO: Schedule job to evaluate the next move
-				// ...
-				
-				*/
+				// Schedule a job to evaluate the next move
+				scheduleSearchJobFor(elementEntity, inputEntity);
 
 				continue;
 			}
 
-			Movement.Type bestMove = getNextBestMoveUsingMinMaxForOnTileElement(playerEntity, ref inputEntity.AIInput.SearchSimulationState);
+			if (!inputEntity.HasEvaluatingForMovementInput)
+			{
+				// The agent hasn't decided the next move yet.
+				// Schedule a job to evaluate the next move.
+				scheduleSearchJobFor(elementEntity, inputEntity);
+				continue;
+			}
+
+			var evaluationComponent = inputEntity.EvaluatingForMovementInput;
+			if (!evaluationComponent.JobHandle.IsCompleted)
+			{
+				// The job hasn't completed yet, wait for another frame.
+				continue;
+			}
+
+			// Call complete to make sure the job has actually completed.
+			evaluationComponent.JobHandle.Complete();
+
+			// Collect the result and cleanup the component & container
+			Movement.Type bestMove = evaluationComponent.Job.ResultContainer[0].BestAction;
+			evaluationComponent.Job.ResultContainer.Dispose();
+			inputEntity.RemoveEvaluatingForMovementInput();
 
 			if (bestMove == Movement.Type.Stay)
 			{
 				continue;
 			}
 
-			playerEntity.ReplaceMovementInputAction(bestMove, 0.0f);
+			elementEntity.ReplaceMovementInputAction(bestMove, 0.0f);
 		}
 	}
-
 
 	public void TearDown()
 	{
 		foreach (var inputEntity in m_AIInputGroup.GetEntities())
 		{
+			if (inputEntity.HasEvaluatingForMovementInput)
+			{
+				inputEntity.EvaluatingForMovementInput.JobHandle.Complete();
+				inputEntity.EvaluatingForMovementInput.Job.ResultContainer.Dispose();
+			}
+
 			inputEntity.AIInput.SearchSimulationState.Deallocate();
 		}
 	}
 
-	private Movement.Type getNextBestMoveUsingMinMaxForOnTileElement(ElementEntity elementEntity, ref AIHelper.SearchSimulationState searchSimulationState)
+	private void scheduleSearchJobFor(ElementEntity elementEntity, InputEntity inputEntity)
 	{
+		// Schedule the job to evaluate the next move
 		AIHelper.MinimaxInput minimaxInput = new AIHelper.MinimaxInput()
 		{
-			AgentOnTileElementId = elementEntity.OnTileElement.Id,					// The agent
-			AgentTeamId = elementEntity.HasTeam? elementEntity.Team.Id : -1,
-			CurrentTurnOnTileElementId = elementEntity.OnTileElement.Id,			// We start with the agent's turn
+			AgentOnTileElementId = elementEntity.OnTileElement.Id,                  // The agent
+			AgentTeamId = elementEntity.HasTeam ? elementEntity.Team.Id : -1,
+			CurrentTurnOnTileElementId = elementEntity.OnTileElement.Id,            // We start with the agent's turn
 			NumberOfIterationStepsLeft = k_SearchDepthLevel,
 			CurrentScore = 0,
 			LastMove = Movement.Type.Stay,
@@ -97,11 +117,17 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 			Beta = int.MaxValue,
 			CallStackCount = 0
 		};
+		inputEntity.AIInput.SearchSimulationState.InitializeWithContexts(m_Contexts);
 
-		searchSimulationState.InitializeWithContexts(m_Contexts);
+		NativeArray<AIHelper.MinimaxResult> resultContainer = new NativeArray<AIHelper.MinimaxResult>(1, Allocator.Persistent);
+		SearchBestActionWithMinimaxJob job = new SearchBestActionWithMinimaxJob()
+		{
+			SimulationState = inputEntity.AIInput.SearchSimulationState,
+			Input = minimaxInput,
+			ResultContainer = resultContainer
+		};
+		JobHandle jobHandle = job.Schedule();
 
-		AIHelper.MinimaxResult result = AIHelper.minimax(minimaxInput, ref searchSimulationState);
-
-		return result.BestAction;
+		inputEntity.AddEvaluatingForMovementInput(job, jobHandle);
 	}
 }

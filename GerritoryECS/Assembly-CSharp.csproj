@@ -116,7 +116,7 @@
     <Compile Include="Assets\Sources\Generated\Command\Systems\CommandCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Tile\CollapseTileOnLeaveTileSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageBlueprint.cs" />
-    <Compile Include="Assets\Scripts\GameFlow\AIHelper.cs" />
+    <Compile Include="Assets\Scripts\AI\AIHelper.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMoveOnTileEndComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Components\Config\PlayerGameConfig.cs" />
@@ -457,6 +457,7 @@
     <Compile Include="Assets\Sources\Generated\Element\Systems\ElementCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Systems\Level\UpdateGameTimerSystem.cs" />
+    <Compile Include="Assets\Scripts\AI\AIHelper_Minimax.cs" />
     <Compile Include="Assets\Sources\Generated\Command\CommandBlueprint.cs" />
     <Compile Include="Assets\Sources\Systems\Level\InitializeRandomSeedSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemComponentsLookup.cs" />
@@ -466,6 +467,7 @@
     <Compile Include="Assets\Sources\Generated\Components\Interfaces\IDebugMessageEntity.cs" />
     <Compile Include="Assets\Sources\Components\GameFlow\ScoreObjectiveComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Command\CommandContext.cs" />
+    <Compile Include="Assets\Scripts\AI\SearchBestActionWithMinimaxJob.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementOnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\OwnerRemovedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\TeamAddedEventSystem.cs" />
@@ -484,7 +486,6 @@
     <Compile Include="Assets\Scripts\Tile\CollapseTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Scripts\GameFlow\AIHelper_Minimax.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

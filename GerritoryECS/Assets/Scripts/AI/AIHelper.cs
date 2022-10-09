@@ -1,13 +1,6 @@
-using JCMG.EntitasRedux;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using Unity.Collections;
-using Unity.VisualScripting;
-using UnityEditor.Build;
 using UnityEngine;
-using static AIHelper;
 
 public static partial class AIHelper
 {
@@ -55,10 +48,12 @@ public static partial class AIHelper
 		/// <summary>
 		/// Indexed with <see cref="OnTileElementIds"/>, the priority of OnTileElements. We don't update this regularly.
 		/// </summary>
+		[ReadOnly]
 		public NativeArray<int> OnTileElementPriorities;
 		/// <summary>
 		/// Indexed with <see cref="OnTileElementIds"/>, indicating if OnTilElements are dead. We don't update his regularly
 		/// </summary>
+		[ReadOnly]
 		public NativeArray<bool> AreOnTileElementsDead;
 
 		public const int k_NotOwnableTeamId = -2;

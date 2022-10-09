@@ -1,4 +1,6 @@
 using JCMG.EntitasRedux;
+using Unity.Collections;
+using Unity.Jobs;
 using UnityEngine;
 
 /// <summary>
@@ -7,4 +9,6 @@ using UnityEngine;
 [Input]
 public sealed class EvaluatingForMovementInputComponent : IComponent
 {
+	public SearchBestActionWithMinimaxJob Job;
+	public JobHandle JobHandle;
 }
