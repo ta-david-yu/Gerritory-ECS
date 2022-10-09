@@ -124,6 +124,7 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 		{
 			SimulationState = inputEntity.AIInput.SearchSimulationState,
 			Input = minimaxInput,
+			RandomSeedIndex = UnityEngine.Random.Range(0, 100),
 			ResultContainer = resultContainer
 		};
 		JobHandle jobHandle = job.Schedule();

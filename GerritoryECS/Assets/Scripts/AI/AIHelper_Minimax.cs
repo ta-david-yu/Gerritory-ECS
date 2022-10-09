@@ -4,6 +4,11 @@ using UnityEngine;
 
 public static partial class AIHelper
 {
+	private static readonly int[] s_threadSafeRandomSeedArray = new int[32] 
+	{
+		2, 48, 87, 63, 95, 34, 22, 27, 15, 28, 42, 64, 67, 69, 57, 82, 16, 31, 3, 100, 78, 6, 75, 98, 45, 88, 4, 20, 83, 90, 21, 81
+	};
+
 	public struct MinimaxInput
 	{
 		public int AgentOnTileElementId;
@@ -28,8 +33,9 @@ public static partial class AIHelper
 	/// <param name="input"></param>
 	/// <param name="searchSimulationState"></param>
 	/// <returns></returns>
-	public static MinimaxResult minimax(MinimaxInput input, ref AIHelper.SearchSimulationState searchSimulationState)
+	public static MinimaxResult minimax(MinimaxInput input, ref AIHelper.SearchSimulationState searchSimulationState, int randomSeedIndex)
 	{
+		int randomSeed = s_threadSafeRandomSeedArray[randomSeedIndex % s_threadSafeRandomSeedArray.Length];
 		if (input.NumberOfIterationStepsLeft == 0)
 		{
 			return new MinimaxResult() { BestActionScore = input.CurrentScore, BestAction = input.LastMove };
@@ -48,7 +54,7 @@ public static partial class AIHelper
 
 		// Go through all the possible moves/actions recursively to see which one is the best action.
 		var movements = Movement.TypeList;
-		int movementStartIndex = 0; //UnityEngine.Random.Range(0, movements.Length);
+		int movementStartIndex = randomSeed % Movement.TypeList.Length;
 		for (int i = 0; i < movements.Length; i++)
 		{
 			var movement = movements[(movementStartIndex + i) % movements.Length];
@@ -120,7 +126,7 @@ public static partial class AIHelper
 			};
 
 			// Search the next best move.
-			MinimaxResult minimaxResult = minimax(nextMinimaxInput, ref searchSimulationState);
+			MinimaxResult minimaxResult = minimax(nextMinimaxInput, ref searchSimulationState, randomSeedIndex + 1);
 
 			float finalScoreAfterTakingTheAction = minimaxResult.BestActionScore;
 
