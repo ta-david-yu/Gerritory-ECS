@@ -18,13 +18,19 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 		m_ElementContext = contexts.Element;
 		m_Contexts = contexts;
 
-		m_AIInputGroup = contexts.Input.GetGroup(InputMatcher.AllOf(InputMatcher.AIInput).NoneOf(InputMatcher.IdleTimer));
+		m_AIInputGroup = contexts.Input.GetGroup(InputMatcher.AllOf(InputMatcher.AIInput));
 	}
 
 	public void Update()
 	{
 		foreach (var inputEntity in m_AIInputGroup.GetEntities())
 		{
+			if (inputEntity.HasIdleTimer)
+			{
+				// The input entity is still idling, skip it.
+				continue;
+			}
+
 			int targetPlayerId = inputEntity.AIInput.TargetPlayerId;
 			var elementEntity = m_ElementContext.GetEntityWithPlayer(targetPlayerId);
 

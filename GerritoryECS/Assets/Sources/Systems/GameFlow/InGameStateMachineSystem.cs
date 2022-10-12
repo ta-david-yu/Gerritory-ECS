@@ -115,7 +115,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 			}
 
 			// Destory all the input entities after the game is over.
-			m_InputContext.DestroyAllEntities();
+			m_InputContext.DeallocateAndDestroyAllEntities();
 
 			// Remove components that might change the result of the game.
 			foreach (var onTileEntity in m_OnTileElementEntityGroup)
