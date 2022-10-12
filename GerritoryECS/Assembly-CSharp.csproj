@@ -194,6 +194,7 @@
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemApplySpeedChangeStateForEaterOnEatenComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\ElementEventSystems.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Features\TileCleanupFeature.cs" />
+    <Compile Include="Assets\Scripts\Utility\Debug\DebugDraw.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementDeadComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateDebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\CleanupDebugMessageSystem.cs" />

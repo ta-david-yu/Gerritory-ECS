@@ -1,6 +1,7 @@
 using JCMG.EntitasRedux;
 using Unity.Collections;
 using Unity.Jobs;
+using UnityEngine;
 
 public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 {
@@ -24,12 +25,6 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 	{
 		foreach (var inputEntity in m_AIInputGroup.GetEntities())
 		{
-			if (inputEntity.HasIdleTimer)
-			{
-				// The input driver is still in idle state, skip it.
-				continue;
-			}
-
 			int targetPlayerId = inputEntity.AIInput.TargetPlayerId;
 			var elementEntity = m_ElementContext.GetEntityWithPlayer(targetPlayerId);
 
@@ -58,6 +53,12 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 				// Schedule a job to evaluate the next move
 				scheduleSearchJobFor(elementEntity, inputEntity);
 
+				continue;
+			}
+
+			if (elementEntity.HasMovementInputAction)
+			{
+				// There is already a buffered input action on the element, skip it.
 				continue;
 			}
 
@@ -127,7 +128,8 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 			Beta = int.MaxValue,
 			CallStackCount = 0
 		};
-		inputEntity.AIInput.SearchSimulationState.InitializeWithContexts(m_Contexts);
+		inputEntity.AIInput.SearchSimulationState.InitializeWithContexts(m_Contexts, elementEntity.OnTileElement.Id);
+		//inputEntity.AIInput.SearchSimulationState.DebugDrawState();
 
 		NativeArray<AIHelper.MinimaxResult> resultContainer = new NativeArray<AIHelper.MinimaxResult>(1, Allocator.Persistent);
 		SearchBestActionWithMinimaxJob job = new SearchBestActionWithMinimaxJob()

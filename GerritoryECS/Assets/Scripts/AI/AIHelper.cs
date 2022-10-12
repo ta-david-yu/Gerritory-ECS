@@ -17,11 +17,13 @@ public static partial class AIHelper
 
 		/// <summary>
 		/// An array of indices for tiles that should be used to access other arrays of data in the struct.
-		/// An element with the value of -1 means there is no tile at that position.
+		/// An element with the value of -1 (k_NoTile) means there is no tile at that position.
 		/// </summary>
 		public NativeArray<int> TileIndices;
 		/// <summary>
-		/// Indexed with <see cref="TileIndices"/>, indicating which tiles are owned. An element with the value of -1 means it is not owned by any team yet.
+		/// Indexed with <see cref="TileIndices"/>, indicating which tiles are owned. 
+		/// An element with the value of -1 (k_NoOwnerTeamId) means it is not owned by any team yet.
+		/// An element with the value of -2 (k_NotOwnableTeamId) means it is not ownable.
 		/// </summary>
 		public NativeArray<int> TileOwnerTeamIds;
 		/// <summary>
@@ -97,7 +99,7 @@ public static partial class AIHelper
 			return this;
 		}
 
-		public void InitializeWithContexts(Contexts contexts)
+		public void InitializeWithContexts(Contexts contexts, int observerOnTileElementId)
 		{
 			if (!IsAllocated)
 			{
@@ -133,7 +135,7 @@ public static partial class AIHelper
 			{
 				var tilePosition = tilePositions[i];
 				TileEntity tile = contexts.Tile.GetEntityWithTilePosition(tilePosition);
-				int oneDimensionIndex = tilePositionTo1DArrayIndex(tilePosition, LevelBoundingRectSize);
+				int oneDimensionIndex = tilePositionTo1DArrayIndex(tilePosition);
 				TileIndices[oneDimensionIndex] = i;
 				
 				if (!tile.HasOwnable)
@@ -168,13 +170,25 @@ public static partial class AIHelper
 				OnTileElementIds[i] = element.OnTileElement.Id;
 				OnTileElementTeamIds[i] = element.Team.Id;
 
-				float aiNoticeMovementDelay = 0.7f;
-				float aiNoticeMovementStagger = 0.25f;
-				aiNoticeMovementDelay += Random.Range(-aiNoticeMovementStagger, aiNoticeMovementStagger);
-				if (element.HasMoveOnTile && element.MoveOnTile.Progress > aiNoticeMovementDelay)
+				float aiNoticeMovementProgress = 0.5f;
+				if (element.OnTileElement.Id != observerOnTileElementId)
+				{
+					// If the element is not the agent itself, we add a time stagger for the AI to notice the movement.
+					// Therefore it feels natural/human-like.
+					// Otherwise we would take any MoveOnTile with the progress of more than 0.5f as if it's at the new position.
+					aiNoticeMovementProgress = 0.7f;
+					float aiNotiveMovementDelayStagger = 0.25f;
+					aiNoticeMovementProgress += Random.Range(-aiNotiveMovementDelayStagger, aiNotiveMovementDelayStagger);
+				}
+
+				if (element.HasMoveOnTile && element.MoveOnTile.Progress > aiNoticeMovementProgress)
 				{
 					// If the element is moving, take its destination as the position.
 					OnTileElementPositions[i] = element.MoveOnTile.ToPosition;
+
+					// Take over the tile if it's possible!
+					int tileToOccupyIndex = this.GetIndexOfTileAt(element.MoveOnTile.ToPosition);
+					TileOwnerTeamIds[tileToOccupyIndex] = TileOwnerTeamIds[tileToOccupyIndex] == k_NotOwnableTeamId ? k_NotOwnableTeamId : element.Team.Id;
 				}
 				else if (element.HasOnTilePosition)
 				{
@@ -212,19 +226,62 @@ public static partial class AIHelper
 			IsAllocated = false;
 		}
 
-		private int tilePositionTo1DArrayIndex(Vector2Int position, Vector2Int levelSize)
+		private int tilePositionTo1DArrayIndex(Vector2Int position)
 		{
-			int tileArrayIndex = position.x * levelSize.y + position.y;
+			int tileArrayIndex = position.x * LevelBoundingRectSize.y + position.y;
 			return tileArrayIndex;
 		}
 
+		private Vector2Int oneDimensionArrayIndexToTilePosition(int index)
+		{
+			int x = index / LevelBoundingRectSize.y;
+			int y = index % LevelBoundingRectSize.y;
+			return new Vector2Int(x, y);
+		}
+
+		public void DebugDrawState()
+		{
+			float delay = 0.2f;
+			foreach (var elementPosition in OnTileElementPositions)
+			{
+				Vector3 elementWorldPosition = GameConstants.TilePositionToWorldPosition(elementPosition);
+				DebugDraw.Cross(elementWorldPosition, 1.0f, Color.black, delay);
+			}
+
+			for (int i = 0; i < TileIndices.Length; i++)
+			{
+				var tileIndex = TileIndices[i];
+				var position = oneDimensionArrayIndexToTilePosition(i);
+				var worldPosition = GameConstants.TilePositionToWorldPosition(position);
+				var ownerTeamId = TileOwnerTeamIds[tileIndex];
+				var worthPoints = TileWorthPoints[tileIndex];
+
+				if (worthPoints > 0)
+				{
+				}
+
+				if (ownerTeamId == k_NotOwnableTeamId)
+				{
+					continue;
+				}
+
+				if (ownerTeamId == k_NoOwnerTeamId)
+				{
+					DebugDraw.Tile(worldPosition, 0.5f, Color.blue, delay);
+				}
+				else
+				{
+					DebugDraw.Tile(worldPosition, 0.5f, Color.yellow, delay);
+				}
+			}
+		}
 
 		public struct OnTileElementAction
 		{
 			public int OnTileElementId;
 			public Vector2Int MoveToPosition;
 
-			private bool hasBeenApplied;
+			private bool m_HasBeenApplied;
 			private Vector2Int m_PreviousOnTileElementPosition;
 			private int m_PreviousOwnerTeamIdAtMoveToPosition;
 
@@ -243,12 +300,12 @@ public static partial class AIHelper
 					searchSimulationState.TileOwnerTeamIds[mappedTileIndex] = teamId;
 				}
 
-				hasBeenApplied = true;
+				m_HasBeenApplied = true;
 			}
 
 			public void Revert(ref SearchSimulationState searchSimulationState)
 			{
-				if (!hasBeenApplied)
+				if (!m_HasBeenApplied)
 				{
 					// The action has not been applied, revert will result in faulty state.
 					return;
@@ -288,7 +345,7 @@ public static partial class AIHelper
 	/// </summary>
 	/// <param name="searchSimulationState"></param>
 	/// <param name="position"></param>
-	/// <returns>The index of the OnTileElement; otherwise return -1 if the OnTileElement with the id is not in the list.</returns>
+	/// <returns>The index of the OnTileElement; otherwise return -1 (k_NoElement) if the OnTileElement with the id is not in the list.</returns>
 	public static int GetIndexOfOnTileElementWithId(this SearchSimulationState searchSimulationState, int targetOnTileElementId)
 	{
 		for (int i = 0; i < searchSimulationState.OnTileElementIds.Length; i++)
@@ -392,7 +449,7 @@ public static partial class AIHelper
 				TileOwnershipAffinity = 2,
 				ItemAffinity = 1,
 				Aggressiveness = 0,
-				Cautiousness = 1,
+				Cautiousness = 0,
 			};
 		}
 
@@ -429,13 +486,13 @@ public static partial class AIHelper
 		}
 
 		// Evaluate the tile based on its ownership.
-		bool tileIsOwnable = searchSimulationState.TileWorthPoints[mappedTileIndex] > 0;
+		bool tileIsOwnable = searchSimulationState.TileOwnerTeamIds[mappedTileIndex] != SearchSimulationState.k_NotOwnableTeamId;
 		if (tileIsOwnable)
 		{
 			int worthPoints = searchSimulationState.TileWorthPoints[mappedTileIndex];
 
 			int ownerTeamId = searchSimulationState.TileOwnerTeamIds[mappedTileIndex];
-			bool tileHasOwner = ownerTeamId != SearchSimulationState.k_NoOwnerTeamId && ownerTeamId != SearchSimulationState.k_NotOwnableTeamId;
+			bool tileHasOwner = ownerTeamId != SearchSimulationState.k_NoOwnerTeamId;
 			if (!tileHasOwner)
 			{
 				// If the tile doesn't have an owner, move to it will reward the agent with points.
@@ -468,10 +525,10 @@ public static partial class AIHelper
 			var onTileElementPosition = searchSimulationState.OnTileElementPositions[i];
 			bool isOnTileElementAtThePosition = onTileElementPosition == toPosition;
 			bool isOnTileElementAdjacentToThePosition = 
-				(onTileElementPosition == (toPosition + Vector2Int.right)) ||
-				(onTileElementPosition == (toPosition + Vector2Int.down)) ||
-				(onTileElementPosition == (toPosition + Vector2Int.left)) ||
-				(onTileElementPosition == (toPosition + Vector2Int.up));
+				(onTileElementPosition + Vector2Int.right == toPosition) ||
+				(onTileElementPosition + Vector2Int.down == toPosition) ||
+				(onTileElementPosition + Vector2Int.left == toPosition) ||
+				(onTileElementPosition + Vector2Int.up == toPosition);
 			if (!isOnTileElementAtThePosition && !isOnTileElementAdjacentToThePosition)
 			{
 				// The OnTileElement is not at the location we are interested in, skip it.
@@ -506,7 +563,7 @@ public static partial class AIHelper
 			{
 				// Predator!
 				// The opponent is possibly dangerous to the agent, moving away from this position to avoid death!
-				scoreEarned -= (1 + temporalRelevancy * temporalRelevancy * 0.5f) * predatorFactor * evaluationParams.Cautiousness;
+				scoreEarned -= (1 + temporalRelevancy * 0.5f) * predatorFactor * evaluationParams.Cautiousness;
 			}
 		}
 

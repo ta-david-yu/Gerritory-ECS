@@ -55,10 +55,12 @@ public static partial class AIHelper
 
 		// Go through all the possible moves/actions recursively to see which one is the best action.
 		var movements = Movement.TypeList;
+		float[] debugScores = new float[5] { 0, 0, 0, 0, 0 };
 		int movementStartIndex = randomSeed % Movement.TypeList.Length;
 		for (int i = 0; i < movements.Length; i++)
 		{
-			var movement = movements[(movementStartIndex + i) % movements.Length];
+			int movementIndex = (movementStartIndex + i) % movements.Length;
+			var movement = movements[movementIndex];
 
 			Vector2Int moveOffset = Movement.TypeToOffset[(int)movement];
 			Vector2Int nextPosition = currPosition + moveOffset;
@@ -142,6 +144,7 @@ public static partial class AIHelper
 			MinimaxResult minimaxResult = minimax(nextMinimaxInput, ref searchSimulationState, randomSeedIndex + 1);
 
 			float finalScoreAfterTakingTheAction = minimaxResult.BestActionScore;
+			debugScores[movementIndex] = finalScoreAfterTakingTheAction;
 
 			if (isFriendlyTurn)
 			{
@@ -187,7 +190,24 @@ public static partial class AIHelper
 
 		if (input.CallStackCount == 0)
 		{
-			// TODO: add more randomness
+			/*
+			 * Don't remove this part yet cuz it's proven to be really useful from time to time :P
+			 * Better than debugger
+			 * 
+			string log = "";
+			for (int i = 0; i < Movement.TypeList.Length; i++)
+			{
+				if (bestAction == Movement.TypeList[i])
+				{
+					log += $"\n+{Movement.TypeList[i]}: {debugScores[i]}";
+				}
+				else
+				{
+					log += $"\n-{Movement.TypeList[i]}: {debugScores[i]}";
+				}
+			}
+			Debug.Log(log);
+			*/
 		}
 
 		return new MinimaxResult() { BestActionScore = bestActionScore, BestAction = bestAction };
