@@ -301,4 +301,26 @@ public static class GameHelper
 			return GameConstants.MoveOnTileDuration;
 		}
 	}
+
+	/// <summary>
+	/// Use this instead of InputContext.DestoryAllEntities, because some of the input components hold unmanaged data (i.e. AIInput.SearchSimulationState)
+	/// </summary>
+	/// <param name="context"></param>
+	public static void DeallocateAndDestroyAllEntities(this InputContext context)
+	{
+		// Deallocate AIInput simulation state data
+		var aiInputGroup = context.GetGroup(InputMatcher.AIInput);
+		foreach (var inputEntity in aiInputGroup)
+		{
+			if (inputEntity.HasEvaluatingForMovementInput)
+			{
+				inputEntity.EvaluatingForMovementInput.JobHandle.Complete();
+				inputEntity.EvaluatingForMovementInput.Job.ResultContainer.Dispose();
+			}
+
+			inputEntity.AIInput.SearchSimulationState.Deallocate();
+		}
+
+		context.DestroyAllEntities();
+	}
 }
