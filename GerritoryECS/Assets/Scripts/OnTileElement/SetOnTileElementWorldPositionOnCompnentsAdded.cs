@@ -7,7 +7,7 @@ public class SetOnTileElementWorldPositionOnCompnentsAdded : EntityCreationEvent
 	[SerializeField]
 	private Transform m_RootTransform;
 
-	public override void HandleOnComponentsAdded(IEntity entity)
+	public override void HandleOnComponentsAdded(Contexts contexts, IEntity entity)
 	{
 		ElementEntity gameEntity = entity as ElementEntity;
 
@@ -25,7 +25,7 @@ public class SetOnTileElementWorldPositionOnCompnentsAdded : EntityCreationEvent
 		Debug.Log($"Set the name of the player view - {m_RootTransform.gameObject.name}");
 	}
 
-	public override void HandleOnEntityCreated(IEntity entity)
+	public override void HandleOnEntityCreated(Contexts contexts, IEntity entity)
 	{
 	}
 }

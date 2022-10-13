@@ -8,19 +8,19 @@ public sealed class EntityCreationEventController : MonoBehaviour, IEntityCreati
 	[SerializeField]
 	private List<EntityCreationEventListenerBase> m_Listeners = new List<EntityCreationEventListenerBase>();
 
-	public void OnEntityCreated(IEntity entity)
+	public void OnEntityCreated(Contexts contexts, IEntity entity)
 	{
 		foreach (var listener in m_Listeners)
 		{
-			listener.HandleOnEntityCreated(entity);
+			listener.HandleOnEntityCreated(contexts, entity);
 		}
 	}
 
-	public void OnComponentsAdded(IEntity entity)
+	public void OnComponentsAdded(Contexts contexts, IEntity entity)
 	{
 		foreach (var listener in m_Listeners)
 		{
-			listener.HandleOnComponentsAdded(entity);
+			listener.HandleOnComponentsAdded(contexts, entity);
 		}
 	}
 

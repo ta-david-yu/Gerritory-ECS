@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player World UI
+    uniqueID: 4084651193
+    locked: 0

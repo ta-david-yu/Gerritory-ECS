@@ -201,7 +201,7 @@ public static class GameHelper
 		// Create player entity and its view controller
 		ElementEntity playerEntity = contexts.Element.CreateEntity();
 		IEntityCreationEventController viewController = playerFactory.CreatePlayerView(playerId, teamId, skinId);
-		viewController.OnEntityCreated(playerEntity);
+		viewController.OnEntityCreated(contexts, playerEntity);
 
 		// Add needed componenets
 		playerEntity.AddPlayer(playerId);
@@ -229,7 +229,7 @@ public static class GameHelper
 
 		contexts.Message.EmitOnTileElementEnterTileMessage(playerEntity.OnTileElement.Id, playerEntity.OnTilePosition.Value);
 
-		viewController.OnComponentsAdded(playerEntity);
+		viewController.OnComponentsAdded(contexts, playerEntity);
 
 		// Link view controller with entity
 		viewController.Link(playerEntity);
@@ -267,13 +267,13 @@ public static class GameHelper
 		// Create entity and its view controller
 		var tileEntity = contexts.Tile.CreateEntity();
 		IEntityCreationEventController viewController = tileFactory.CreateTileView(tileId);
-		viewController.OnEntityCreated(tileEntity);
+		viewController.OnEntityCreated(contexts, tileEntity);
 
 		// Apply blueprint and components
 		var blueprint = tileFactory.GetTileBlueprint(tileId);
 		blueprint.ApplyToEntity(tileEntity);
 		tileEntity.AddTilePosition(tilePosition);
-		viewController.OnComponentsAdded(tileEntity);
+		viewController.OnComponentsAdded(contexts, tileEntity);
 
 		// Link view controller with entity
 		viewController.Link(tileEntity);

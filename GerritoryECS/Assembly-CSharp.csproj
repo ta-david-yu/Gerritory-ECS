@@ -112,6 +112,7 @@
     <Compile Include="Assets\Sources\Generated\Level\LevelMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\TeamAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Systems\RemoveMoveOnTileBeginFromElementEntitiesSystem.cs" />
+    <Compile Include="Assets\Scripts\GameData\GameInfoViewFactory.cs" />
     <Compile Include="Assets\Sources\Generated\Input\InputAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\Command\Systems\CommandCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Tile\CollapseTileOnLeaveTileSystem.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Assets\Scripts\GameFlow\GameHelper.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileLeftByOnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Features\_Sandbox\TutorialFeature.cs" />
+    <Compile Include="Assets\Sources\Systems\Input\UpdateIdleTimerSystem.cs" />
     <Compile Include="Assets\Sources\Components\Config\GameEndingCondition.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\ItemEaterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowEntity_CopyTo.cs" />
@@ -155,6 +157,7 @@
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateEntity.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowScoreObjectiveComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementDebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Input\IdleTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateBlueprint.cs" />
     <Compile Include="Assets\Sources\Components\Level\ConstructPlayerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMoveOnTileBeginAddedListenerComponent.cs" />
@@ -264,6 +267,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnterableRemovedEventSystem.cs" />
     <Compile Include="Assets\Sources\Features\ItemFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelOnTileElementIdCounterComponent.cs" />
+    <Compile Include="Assets\Scripts\GameData\IGameInfoViewFactory.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementSpeedChangeableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileEnteredByOnTileElementComponent.cs" />
     <Compile Include="Assets\Scripts\Tile\ColorTileOnTakenOverAnimationController.cs" />
@@ -375,6 +379,7 @@
     <Compile Include="Assets\Sources\Generated\Level\LevelComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Components\Level\TeamGameRankingComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\EffectComponentsLookup.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\Components\InputIdleTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileEndAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\GameFlow\GameOverComponent.cs" />
@@ -487,9 +492,29 @@
     <Compile Include="Assets\Scripts\Tile\CollapseTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Components\Input\IdleTimerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Input\Components\InputIdleTimerComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Input\UpdateIdleTimerSystem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1188,8 +1213,8 @@
     <Reference Include="Unity.Searcher.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
@@ -1212,11 +1237,14 @@
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Flow">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>

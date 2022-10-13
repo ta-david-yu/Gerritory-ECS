@@ -13,14 +13,14 @@ public class PlayerTeamColorViewController : EntityCreationEventListenerBase, IT
 	[SerializeField]
 	private List<Renderer> m_Renderers;
 
-	public override void HandleOnEntityCreated(IEntity entity)
+	public override void HandleOnEntityCreated(Contexts contexts, IEntity entity)
 	{
 		ElementEntity gameEntity = entity as ElementEntity;
 
 		gameEntity.AddTeamAddedListener(this);
 	}
 
-	public override void HandleOnComponentsAdded(IEntity entity)
+	public override void HandleOnComponentsAdded(Contexts contexts, IEntity entity)
 	{
 		ElementEntity gameEntity = entity as ElementEntity;
 

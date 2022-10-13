@@ -65,14 +65,14 @@ public class TileSinkOnEnterAnimationController : EntityCreationEventListenerBas
 		}
 	}
 
-	public override void HandleOnEntityCreated(IEntity entity)
+	public override void HandleOnEntityCreated(Contexts contexts, IEntity entity)
 	{
 		TileEntity tileEntity = entity as TileEntity;
 		tileEntity.AddEnteredByOnTileElementAddedListener(this);
 		tileEntity.AddLeftByOnTileElementAddedListener(this);
 	}
 
-	public override void HandleOnComponentsAdded(IEntity entity)
+	public override void HandleOnComponentsAdded(Contexts contexts, IEntity entity)
 	{
 	}
 

@@ -16,12 +16,12 @@ public class EntityCreationUnityEvent : EntityCreationEventListenerBase
 
 	public ExecuteEvents Events = new ExecuteEvents();
 
-	public override void HandleOnEntityCreated(IEntity entity)
+	public override void HandleOnEntityCreated(Contexts contexts, IEntity entity)
 	{
 		Events.OnEntityCreated?.Invoke(entity);
 	}
 
-	public override void HandleOnComponentsAdded(IEntity entity)
+	public override void HandleOnComponentsAdded(Contexts contexts, IEntity entity)
 	{
 		Events.OnComponentsAdded?.Invoke(entity);
 	}

@@ -33,14 +33,14 @@ public class ColorTileOnTakenOverAnimationController : EntityCreationEventListen
 		}
 	}
 
-	public override void HandleOnEntityCreated(IEntity entity)
+	public override void HandleOnEntityCreated(Contexts contexts, IEntity entity)
 	{
 		TileEntity tileEntity = entity as TileEntity;
 		tileEntity.AddOwnerAddedListener(this);
 		tileEntity.AddOwnerRemovedListener(this);
 	}
 
-	public override void HandleOnComponentsAdded(IEntity entity)
+	public override void HandleOnComponentsAdded(Contexts contexts, IEntity entity)
 	{
 	}
 

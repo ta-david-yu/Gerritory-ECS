@@ -13,7 +13,7 @@ public class PlayerDeathAnimationController : EntityCreationEventListenerBase, I
 	/// </summary>
 	private ElementEntity m_CahcedGameEntity;
 
-	public override void HandleOnEntityCreated(IEntity entity)
+	public override void HandleOnEntityCreated(Contexts contexts, IEntity entity)
 	{
 		ElementEntity gameEntity = entity as ElementEntity;
 
@@ -24,7 +24,7 @@ public class PlayerDeathAnimationController : EntityCreationEventListenerBase, I
 		m_CahcedGameEntity = gameEntity;
 	}
 
-	public override void HandleOnComponentsAdded(IEntity entity)
+	public override void HandleOnComponentsAdded(Contexts contexts, IEntity entity)
 	{
 		ElementEntity gameEntity = entity as ElementEntity;
 		m_Appearance.SetActive(!gameEntity.IsDead);

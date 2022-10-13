@@ -19,6 +19,10 @@ public class ScriptableGameConfig : ScriptableObject, IGameConfig
 	public IPlayerFactory PlayerFactory => m_PlayerFactory;
 
 	[SerializeField]
+	private GameInfoViewFactory m_GameInfoViewFactory;
+	public IGameInfoViewFactory GameInfoViewFactory => m_GameInfoViewFactory;
+
+	[SerializeField]
 	private List<PlayerGameConfig> m_PlayerGameConfigs = new List<PlayerGameConfig>();
 	public ReadOnlyCollection<PlayerGameConfig> PlayerGameConfigs => m_PlayerGameConfigs.AsReadOnly();
 

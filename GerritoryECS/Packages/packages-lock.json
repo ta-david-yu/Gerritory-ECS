@@ -19,6 +19,12 @@
       },
       "hash": "63103d2350b2668405c2b3ba2e09e9ee0f5a743c"
     },
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
     "com.unity.burst": {
       "version": "1.6.6",
       "depth": 1,

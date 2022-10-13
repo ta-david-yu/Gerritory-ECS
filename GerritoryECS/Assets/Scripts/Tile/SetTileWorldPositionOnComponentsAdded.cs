@@ -9,7 +9,7 @@ public class SetTileWorldPositionOnComponentsAdded : EntityCreationEventListener
 	[SerializeField]
 	private Transform m_RootTransform;
 
-	public override void HandleOnComponentsAdded(IEntity entity)
+	public override void HandleOnComponentsAdded(Contexts contexts, IEntity entity)
 	{
 		TileEntity tileEntity = entity as TileEntity;
 		m_RootTransform.localPosition = GameConstants.TilePositionToWorldPosition(tileEntity.TilePosition.Value);
@@ -21,7 +21,7 @@ public class SetTileWorldPositionOnComponentsAdded : EntityCreationEventListener
 		//Debug.Log($"Set the name of the tile view - {m_RootTransform.gameObject.name}");
 	}
 
-	public override void HandleOnEntityCreated(IEntity entity)
+	public override void HandleOnEntityCreated(Contexts contexts, IEntity entity)
 	{
 	}
 }
