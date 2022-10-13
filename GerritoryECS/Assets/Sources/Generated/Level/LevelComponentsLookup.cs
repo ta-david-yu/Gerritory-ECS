@@ -20,10 +20,12 @@ public static class LevelComponentsLookup
 	public const int SearchSimulationGlobalState = 4;
 	public const int StateHolderIdCounter = 5;
 	public const int TeamGameRanking = 6;
-	public const int TeamInfo = 7;
-	public const int TeamScore = 8;
+	public const int TeamInfoAddedListener = 7;
+	public const int TeamInfo = 8;
+	public const int TeamScoreAddedListener = 9;
+	public const int TeamScore = 10;
 
-	public const int TotalComponents = 9;
+	public const int TotalComponents = 11;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -34,7 +36,9 @@ public static class LevelComponentsLookup
 		"SearchSimulationGlobalState",
 		"StateHolderIdCounter",
 		"TeamGameRanking",
+		"TeamInfoAddedListener",
 		"TeamInfo",
+		"TeamScoreAddedListener",
 		"TeamScore"
 	};
 
@@ -47,7 +51,9 @@ public static class LevelComponentsLookup
 		typeof(SearchSimulationGlobalStateComponent),
 		typeof(StateHolderIdCounterComponent),
 		typeof(TeamGameRankingComponent),
+		typeof(TeamInfoAddedListenerComponent),
 		typeof(TeamInfoComponent),
+		typeof(TeamScoreAddedListenerComponent),
 		typeof(TeamScoreComponent)
 	};
 
@@ -60,8 +66,10 @@ public static class LevelComponentsLookup
 		{ typeof(SearchSimulationGlobalStateComponent), 4 },
 		{ typeof(StateHolderIdCounterComponent), 5 },
 		{ typeof(TeamGameRankingComponent), 6 },
-		{ typeof(TeamInfoComponent), 7 },
-		{ typeof(TeamScoreComponent), 8 }
+		{ typeof(TeamInfoAddedListenerComponent), 7 },
+		{ typeof(TeamInfoComponent), 8 },
+		{ typeof(TeamScoreAddedListenerComponent), 9 },
+		{ typeof(TeamScoreComponent), 10 }
 	};
 
 	/// <summary>

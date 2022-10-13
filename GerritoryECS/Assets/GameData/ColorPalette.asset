@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: ColorPalette
   m_EditorClassIdentifier: 
   m_DefaultColorSet:
-    PlayerBodyColor: {r: 0.3019608, g: 0.93333334, b: 0.91764706, a: 0}
-    TileBodyColor: {r: 0.3019608, g: 0.93333334, b: 0.91764706, a: 0}
-    FogColor: {r: 1, g: 1, b: 1, a: 0}
+    PlayerBodyColor: {r: 0.3019608, g: 0.93333334, b: 0.91764706, a: 1}
+    TileBodyColor: {r: 0.3019608, g: 0.93333334, b: 0.91764706, a: 1}
+    FogColor: {r: 1, g: 1, b: 1, a: 1}
   m_ColorSets:
-  - PlayerBodyColor: {r: 0.32941177, g: 0.08627451, b: 0.5647059, a: 0}
-    TileBodyColor: {r: 0.32941177, g: 0.08627451, b: 0.5647059, a: 0}
-    FogColor: {r: 0.32941177, g: 0.08627451, b: 0.5647059, a: 0}
-  - PlayerBodyColor: {r: 1, g: 0.8039216, b: 0.21960784, a: 0}
-    TileBodyColor: {r: 1, g: 0.8039216, b: 0.21960784, a: 0}
-    FogColor: {r: 1, g: 0.8039216, b: 0.21960784, a: 0}
-  - PlayerBodyColor: {r: 1, g: 0.28627452, b: 0.28627452, a: 0}
-    TileBodyColor: {r: 1, g: 0.28627452, b: 0.28627452, a: 0}
-    FogColor: {r: 1, g: 0.28627452, b: 0.28627452, a: 0}
-  - PlayerBodyColor: {r: 1, g: 0.5529412, b: 0.16078432, a: 0}
-    TileBodyColor: {r: 1, g: 0.5529412, b: 0.16078432, a: 0}
-    FogColor: {r: 1, g: 0.5529412, b: 0.16078432, a: 0}
+  - PlayerBodyColor: {r: 0.32941177, g: 0.08627451, b: 0.5647059, a: 1}
+    TileBodyColor: {r: 0.32941177, g: 0.08627451, b: 0.5647059, a: 1}
+    FogColor: {r: 0.32941177, g: 0.08627451, b: 0.5647059, a: 1}
+  - PlayerBodyColor: {r: 1, g: 0.8039216, b: 0.21960784, a: 1}
+    TileBodyColor: {r: 1, g: 0.8039216, b: 0.21960784, a: 1}
+    FogColor: {r: 1, g: 0.8039216, b: 0.21960784, a: 1}
+  - PlayerBodyColor: {r: 1, g: 0.28627452, b: 0.28627452, a: 1}
+    TileBodyColor: {r: 1, g: 0.28627452, b: 0.28627452, a: 1}
+    FogColor: {r: 1, g: 0.28627452, b: 0.28627452, a: 1}
+  - PlayerBodyColor: {r: 1, g: 0.5529412, b: 0.16078432, a: 1}
+    TileBodyColor: {r: 1, g: 0.5529412, b: 0.16078432, a: 1}
+    FogColor: {r: 1, g: 0.5529412, b: 0.16078432, a: 1}

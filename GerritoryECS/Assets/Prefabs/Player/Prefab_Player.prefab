@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 2772787618552083922}
   - component: {fileID: 4415260190463713275}
   m_Layer: 0
-  m_Name: PlayerTeamColorViewController
+  m_Name: OnTileElementTeamColorViewController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

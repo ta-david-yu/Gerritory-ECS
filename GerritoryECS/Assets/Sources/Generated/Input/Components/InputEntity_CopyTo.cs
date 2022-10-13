@@ -18,11 +18,7 @@ public partial class InputEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is IdleTimerComponent IdleTimer)
-		{
-			CopyIdleTimerTo(IdleTimer);
-		}
-		else if (component is DebugMessageComponent DebugMessage)
+		if (component is DebugMessageComponent DebugMessage)
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
@@ -37,6 +33,10 @@ public partial class InputEntity
 		else if (component is UserInputComponent UserInput)
 		{
 			CopyUserInputTo(UserInput);
+		}
+		else if (component is IdleTimerComponent IdleTimer)
+		{
+			CopyIdleTimerTo(IdleTimer);
 		}
 		#endif
 	}

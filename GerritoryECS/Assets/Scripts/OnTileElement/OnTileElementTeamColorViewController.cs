@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTeamColorViewController : EntityCreationEventListenerBase, ITeamAddedListener
+public class OnTileElementTeamColorViewController : EntityCreationEventListenerBase, ITeamAddedListener
 {
 	[SerializeField]
 	private ColorPalette m_ColorPalette;

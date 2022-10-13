@@ -82,6 +82,7 @@ public class InGameController : MonoBehaviour
 			// Generated event systems
 			.Add(new ElementEventSystems(contexts))
 			.Add(new TileEventSystems(contexts))
+			.Add(new LevelEventSystems(contexts))
 
 			// Generated cleanup systems
 			.Add(new ElementCleanupSystems(contexts.Element))
