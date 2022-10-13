@@ -33,10 +33,12 @@ public sealed class SpawnPlayerPointerUIController : EntityCreationEventListener
 			m_SpawnedPlayerPointerUI.SetScoreTextColor(m_ColorPalette.GetPlayerBodyColorForTeam(elementEntity.Team.Id));
 		}
 
-		// TODO: register to player state etc...
+		// Register to player state.
 		elementEntity.AddEnterStateAddedListener(this);
 		elementEntity.AddLeaveStateAddedListener(this);
 
+		// Change UI depth value to avoid overlapping issue.
+		m_SpawnedPlayerPointerUI.SetZValue(elementEntity.OnTileElement.Id * 0.1f);
 
 		//contexts.Level.GetEntityWithTeamInfo(elementEntity.Team)
 	}
@@ -49,10 +51,14 @@ public sealed class SpawnPlayerPointerUIController : EntityCreationEventListener
 	public void OnEnterStateAdded(ElementEntity entity)
 	{
 		m_SpawnedPlayerPointerUI.PlayChangeStateAnimation(Color.yellow);
+
+		// TODO: update state timer UI
 	}
 
 	public void OnLeaveStateAdded(ElementEntity entity)
 	{
 		m_SpawnedPlayerPointerUI.PlayChangeStateAnimation(Color.yellow);
+
+		// TODO: update state timer UI
 	}
 }

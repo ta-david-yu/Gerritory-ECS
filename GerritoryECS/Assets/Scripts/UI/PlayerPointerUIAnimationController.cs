@@ -71,6 +71,17 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// This is useful for solving UI overlapping issue when two players are located at the same position.
+	/// </summary>
+	/// <param name="value"></param>
+	public void SetZValue(float value)
+	{
+		Vector3 localPosition = m_PointerTipAnchor.localPosition;
+		localPosition.z = value;
+		m_PointerTipAnchor.localPosition = localPosition;
+	}
+
 	public void SetFollowingTargetTransform(Transform target)
 	{
 		m_FollowingTransform = target;
