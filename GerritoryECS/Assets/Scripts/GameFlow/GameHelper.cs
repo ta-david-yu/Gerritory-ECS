@@ -109,9 +109,9 @@ public static class GameHelper
 
 
 	private static readonly PlayerStateEntity[] s_PreallocatedPlayerStateEntitiesToBeDestroyed = new PlayerStateEntity[4];
-	public static void RemovePlayerStateFor(this PlayerStateContext context, int stateHolderId)
+	public static void RemovePlayerStateFor(this Contexts contexts, int stateHolderId)
 	{
-		var playerStateEntitiesSet = context.GetEntitiesWithState(stateHolderId);
+		var playerStateEntitiesSet = contexts.PlayerState.GetEntitiesWithState(stateHolderId);
 		if (playerStateEntitiesSet.Count > 1)
 		{
 			Debug.LogWarning($"There should only be at most 1 state targetting a state holder at the same time, but there are {playerStateEntitiesSet.Count}." +
@@ -124,10 +124,32 @@ public static class GameHelper
 		for (int i = 0; i < playerStateEntitiesSet.Count; i++)
 		{
 			var playerStateEntity = s_PreallocatedPlayerStateEntitiesToBeDestroyed[i];
-			playerStateEntity.Destroy();
+			contexts.DestroyPlayerStateEntity(playerStateEntity);
 		}
 
 		return;
+	}
+
+	public static void DestroyPlayerStateEntity(this Contexts contexts, PlayerStateEntity playerStateEntity)
+	{
+		int stateHolderId = playerStateEntity.State.HolderId;
+		playerStateEntity.Destroy();
+
+		// Create one-frame event component on the state holder.
+		ElementEntity elementEntity = contexts.Element.GetEntityWithStateHolder(stateHolderId);
+		elementEntity.IsLeaveState = true;
+	}
+
+	public static PlayerStateEntity AddPlayerStateFor(this Contexts contexts, int stateHolderId)
+	{
+		PlayerStateEntity newStateEntity = contexts.PlayerState.CreateEntity();
+		newStateEntity.AddState(stateHolderId);
+
+		// Create one-frame event component on the state holder.
+		ElementEntity elementEntity = contexts.Element.GetEntityWithStateHolder(stateHolderId);
+		elementEntity.IsEnterState = true;
+
+		return newStateEntity;
 	}
 
 	private const int k_InivinciblePriority = -1;

@@ -7,10 +7,8 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class LevelEventSystems : Feature
+[JCMG.EntitasRedux.DontGenerate(false)]
+public sealed class TimerAddedListenerComponent : JCMG.EntitasRedux.IComponent
 {
-	public LevelEventSystems(Contexts contexts)
-	{
-		Add(new TeamScoreAddedEventSystem(contexts)); // priority: 0
-	}
+	public System.Collections.Generic.List<ITimerAddedListener> value;
 }

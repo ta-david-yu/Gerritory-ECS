@@ -7,8 +7,7 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-[JCMG.EntitasRedux.DontGenerate(false)]
-public sealed class TeamInfoAddedListenerComponent : JCMG.EntitasRedux.IComponent
+public interface IEnterStateAddedListener
 {
-	public System.Collections.Generic.List<ITeamInfoAddedListener> value;
+	void OnEnterStateAdded(ElementEntity entity);
 }

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[PlayerState]
+[Element]
+[Cleanup(CleanupMode.RemoveComponent)]
 [Event(EventTarget.Self)]
-public sealed class TimerComponent : IComponent
+public sealed class EnterStateComponent : IComponent
 {
-	public float Value;
 }

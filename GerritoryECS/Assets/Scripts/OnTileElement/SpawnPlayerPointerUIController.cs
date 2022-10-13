@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class SpawnPlayerPointerUIController : EntityCreationEventListenerBase, ITeamScoreAddedListener
+public sealed class SpawnPlayerPointerUIController : EntityCreationEventListenerBase, ITeamScoreAddedListener, IEnterStateAddedListener, ILeaveStateAddedListener
 {
 	[SerializeField]
 	private ColorPalette m_ColorPalette;
@@ -34,6 +34,9 @@ public sealed class SpawnPlayerPointerUIController : EntityCreationEventListener
 		}
 
 		// TODO: register to player state etc...
+		elementEntity.AddEnterStateAddedListener(this);
+		elementEntity.AddLeaveStateAddedListener(this);
+
 
 		//contexts.Level.GetEntityWithTeamInfo(elementEntity.Team)
 	}
@@ -41,5 +44,15 @@ public sealed class SpawnPlayerPointerUIController : EntityCreationEventListener
 	public void OnTeamScoreAdded(LevelEntity entity, int value)
 	{
 		m_SpawnedPlayerPointerUI.ChangeScoreText(value.ToString());
+	}
+
+	public void OnEnterStateAdded(ElementEntity entity)
+	{
+		m_SpawnedPlayerPointerUI.PlayChangeStateAnimation(Color.yellow);
+	}
+
+	public void OnLeaveStateAdded(ElementEntity entity)
+	{
+		m_SpawnedPlayerPointerUI.PlayChangeStateAnimation(Color.yellow);
 	}
 }

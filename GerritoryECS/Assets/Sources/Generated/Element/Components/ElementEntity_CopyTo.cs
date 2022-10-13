@@ -18,7 +18,15 @@ public partial class ElementEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is DeadComponent Dead)
+		if (component is LeaveStateComponent LeaveState)
+		{
+			IsLeaveState = true;
+		}
+		else if (component is EnterStateComponent EnterState)
+		{
+			IsEnterState = true;
+		}
+		else if (component is DeadComponent Dead)
 		{
 			IsDead = true;
 		}
@@ -93,6 +101,14 @@ public partial class ElementEntity
 		else if (component is PlayerComponent Player)
 		{
 			CopyPlayerTo(Player);
+		}
+		else if (component is LeaveStateAddedListenerComponent LeaveStateAddedListener)
+		{
+			CopyLeaveStateAddedListenerTo(LeaveStateAddedListener);
+		}
+		else if (component is EnterStateAddedListenerComponent EnterStateAddedListener)
+		{
+			CopyEnterStateAddedListenerTo(EnterStateAddedListener);
 		}
 		else if (component is DeadAddedListenerComponent DeadAddedListener)
 		{

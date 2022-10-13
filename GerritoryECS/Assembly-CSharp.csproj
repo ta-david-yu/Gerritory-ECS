@@ -496,15 +496,30 @@
     <Compile Include="Assets\Scripts\UI\PlayerPointerUIAnimationController.cs" />
     <Compile Include="Assets\Scripts\Utility\TweenManager.cs" />
     <Compile Include="Assets\Scripts\Utility\TweenManagerUpdator.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Systems\TeamInfoAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\LevelEventSystems.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Components\TeamInfoAddedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamInfoAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamScoreAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\ITeamScoreAddedListener.cs" />
-    <Compile Include="Assets\Sources\Generated\Events\Interfaces\ITeamInfoAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\TeamScoreAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\TeamScoreAddedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\EnterStateComponent.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\LeaveStateComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\EnterStateAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementLeaveStateComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\TimerAddedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\ITimerAddedListener.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\EnterStateAddedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementEnterStateComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementEnterStateAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\TimerAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IEnterStateAddedListener.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\PlayerStateEventSystems.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\ILeaveStateAddedListener.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\LeaveStateAddedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateTimerAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementLeaveStateAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\LeaveStateAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Systems\RemoveEnterStateFromElementEntitiesSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Systems\RemoveLeaveStateFromElementEntitiesSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

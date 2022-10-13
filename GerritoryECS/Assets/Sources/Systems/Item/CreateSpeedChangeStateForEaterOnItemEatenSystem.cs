@@ -9,6 +9,7 @@ public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpda
 	private readonly ElementContext m_ElementContext;
 	private readonly ItemContext m_ItemContext;
 	private readonly PlayerStateContext m_PlayerStateContext;
+	private readonly Contexts m_Contexts;
 
 	private readonly IGroup<ItemEntity> m_EatenSpeedChangePowerupGroup;
 
@@ -19,6 +20,7 @@ public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpda
 		m_ElementContext = contexts.Element;
 		m_ItemContext = contexts.Item;
 		m_PlayerStateContext = contexts.PlayerState;
+		m_Contexts = contexts;
 		m_EatenSpeedChangePowerupGroup = m_ItemContext.GetGroup(ItemMatcher.AllOf(ItemMatcher.OnTileItem, ItemMatcher.ApplySpeedChangeStateForEaterOnEaten, ItemMatcher.Eaten));
 	}
 
@@ -36,11 +38,10 @@ public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpda
 			int stateHolderId = eaterEntity.StateHolder.Id;
 
 			// Remove existing states targetting the holder because there should only be 1 state at a time.
-			m_PlayerStateContext.RemovePlayerStateFor(stateHolderId);
+			m_Contexts.RemovePlayerStateFor(stateHolderId);
 
 			// Create a new state entity targetting the holder.
-			PlayerStateEntity newStateEntity = m_PlayerStateContext.CreateEntity();
-			newStateEntity.AddState(stateHolderId);
+			PlayerStateEntity newStateEntity = m_Contexts.AddPlayerStateFor(stateHolderId);
 			newStateEntity.AddTimer(powerupEntity.ApplySpeedChangeStateForEaterOnEaten.Duration);
 			newStateEntity.AddSpeedChangeState(powerupEntity.ApplySpeedChangeStateForEaterOnEaten.SpeedMultiplier);
 

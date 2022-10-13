@@ -86,7 +86,7 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 		m_ScoreText.color = color;
 	}
 
-	private void playChangeStateAnimation(Color ringColor)
+	public void PlayChangeStateAnimation(Color ringColor)
 	{
 		m_PointerTipAnchor.localScale = Vector3.one * m_ChangeStateAnimationStartScale;
 		m_OuterRing.color = ringColor;
@@ -120,6 +120,6 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 	[ContextMenu("Player Change State Animation (Red)")]
 	private void _debugChangeStateAnimation()
 	{
-		playChangeStateAnimation(Color.red);
+		PlayChangeStateAnimation(Color.red);
 	}
 }

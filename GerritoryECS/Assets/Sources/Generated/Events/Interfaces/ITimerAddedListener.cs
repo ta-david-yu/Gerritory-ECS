@@ -7,10 +7,7 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class LevelEventSystems : Feature
+public interface ITimerAddedListener
 {
-	public LevelEventSystems(Contexts contexts)
-	{
-		Add(new TeamScoreAddedEventSystem(contexts)); // priority: 0
-	}
+	void OnTimerAdded(PlayerStateEntity entity, float value);
 }

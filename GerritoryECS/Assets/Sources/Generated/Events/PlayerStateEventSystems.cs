@@ -7,7 +7,10 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public interface ITeamInfoAddedListener
+public sealed class PlayerStateEventSystems : Feature
 {
-	void OnTeamInfoAdded(LevelEntity entity, int id);
+	public PlayerStateEventSystems(Contexts contexts)
+	{
+		Add(new TimerAddedEventSystem(contexts)); // priority: 0
+	}
 }

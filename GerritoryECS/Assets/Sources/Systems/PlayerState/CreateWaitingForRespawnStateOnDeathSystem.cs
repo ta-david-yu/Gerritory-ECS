@@ -7,11 +7,13 @@ public sealed class CreateWaitingForRespawnStateOnDeathSystem : ReactiveSystem<E
 {
 	private readonly ElementContext m_ElementContext;
 	private readonly PlayerStateContext m_PlayerStateContext;
+	private readonly Contexts m_Contexts;
 
 	public CreateWaitingForRespawnStateOnDeathSystem(Contexts contexts) : base(contexts.Element)
 	{
 		m_ElementContext = contexts.Element;
 		m_PlayerStateContext = contexts.PlayerState;
+		m_Contexts = contexts;
 	}
 
 	protected override ICollector<ElementEntity> GetTrigger(IContext<ElementEntity> context)
@@ -37,11 +39,10 @@ public sealed class CreateWaitingForRespawnStateOnDeathSystem : ReactiveSystem<E
 			int stateHolderId = deadEntity.StateHolder.Id;
 
 			// Remove existing states targetting the holder because there should only be 1 state at a time.
-			m_PlayerStateContext.RemovePlayerStateFor(stateHolderId);
+			m_Contexts.RemovePlayerStateFor(stateHolderId);
 
 			// Create a new state entity targetting the holder.
-			PlayerStateEntity newStateEntity = m_PlayerStateContext.CreateEntity();
-			newStateEntity.AddState(stateHolderId);
+			PlayerStateEntity newStateEntity = m_Contexts.AddPlayerStateFor(stateHolderId);
 			newStateEntity.AddTimer(GameConstants.WaitingForRespawnDuration);
 			newStateEntity.AddWaitingForRespawnState(newRespawnAreaId: 0);	// TODO: add custom respawn area id here
 		}

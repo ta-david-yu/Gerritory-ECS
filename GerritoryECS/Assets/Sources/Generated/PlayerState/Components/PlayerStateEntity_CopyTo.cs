@@ -37,6 +37,10 @@ public partial class PlayerStateEntity
 		else if (component is TimerComponent Timer)
 		{
 			CopyTimerTo(Timer);
+		}
+		else if (component is TimerAddedListenerComponent TimerAddedListener)
+		{
+			CopyTimerAddedListenerTo(TimerAddedListener);
 		}
 		#endif
 	}

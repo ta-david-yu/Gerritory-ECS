@@ -16,16 +16,18 @@ public static class PlayerStateComponentsLookup
 	public const int DebugMessage = 0;
 	public const int SpeedChangeState = 1;
 	public const int State = 2;
-	public const int Timer = 3;
-	public const int WaitingForRespawnState = 4;
+	public const int TimerAddedListener = 3;
+	public const int Timer = 4;
+	public const int WaitingForRespawnState = 5;
 
-	public const int TotalComponents = 5;
+	public const int TotalComponents = 6;
 
 	public static readonly string[] ComponentNames =
 	{
 		"DebugMessage",
 		"SpeedChangeState",
 		"State",
+		"TimerAddedListener",
 		"Timer",
 		"WaitingForRespawnState"
 	};
@@ -35,6 +37,7 @@ public static class PlayerStateComponentsLookup
 		typeof(DebugMessageComponent),
 		typeof(SpeedChangeState),
 		typeof(StateComponent),
+		typeof(TimerAddedListenerComponent),
 		typeof(TimerComponent),
 		typeof(WaitingForRespawnState)
 	};
@@ -44,8 +47,9 @@ public static class PlayerStateComponentsLookup
 		{ typeof(DebugMessageComponent), 0 },
 		{ typeof(SpeedChangeState), 1 },
 		{ typeof(StateComponent), 2 },
-		{ typeof(TimerComponent), 3 },
-		{ typeof(WaitingForRespawnState), 4 }
+		{ typeof(TimerAddedListenerComponent), 3 },
+		{ typeof(TimerComponent), 4 },
+		{ typeof(WaitingForRespawnState), 5 }
 	};
 
 	/// <summary>
