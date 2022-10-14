@@ -14,6 +14,7 @@ public sealed class InputFeature : Feature
 		Add(new UpdateIdleTimerSystem(contexts));
 
 		// Read/emit input from Users or AIs
+		Add(new IdleAIOnRespawnSystem(contexts));
 		Add(new EmitUserInputSystem(contexts));
 		Add(new EmitAIInputSystem(contexts));
 
