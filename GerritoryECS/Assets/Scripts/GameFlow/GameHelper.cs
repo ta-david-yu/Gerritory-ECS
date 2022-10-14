@@ -114,7 +114,7 @@ public static class GameHelper
 		var playerStateEntitiesSet = contexts.PlayerState.GetEntitiesWithState(stateHolderId);
 		if (playerStateEntitiesSet.Count > 1)
 		{
-			Debug.LogWarning($"There should only be at most 1 state targetting a state holder at the same time, but there are {playerStateEntitiesSet.Count}." +
+			Debug.LogError($"There should only be at most 1 state targetting a state holder at the same time, but there are {playerStateEntitiesSet.Count}." +
 				$"Something could be wrong!");
 		}
 

@@ -18,21 +18,17 @@ public partial class ElementEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is LeaveStateComponent LeaveState)
-		{
-			IsLeaveState = true;
-		}
-		else if (component is EnterStateComponent EnterState)
-		{
-			IsEnterState = true;
-		}
-		else if (component is DeadComponent Dead)
+		if (component is DeadComponent Dead)
 		{
 			IsDead = true;
 		}
 		else if (component is MovementInputActionComponent MovementInputAction)
 		{
 			CopyMovementInputActionTo(MovementInputAction);
+		}
+		else if (component is LeaveStateComponent LeaveState)
+		{
+			IsLeaveState = true;
 		}
 		else if (component is MoveOnTileComponent MoveOnTile)
 		{
@@ -86,6 +82,10 @@ public partial class ElementEntity
 		{
 			CopySpeedChangeableTo(SpeedChangeable);
 		}
+		else if (component is EnterStateComponent EnterState)
+		{
+			IsEnterState = true;
+		}
 		else if (component is IComponentRefComponent IComponentRef)
 		{
 			CopyIComponentRefTo(IComponentRef);
@@ -102,14 +102,6 @@ public partial class ElementEntity
 		{
 			CopyPlayerTo(Player);
 		}
-		else if (component is LeaveStateAddedListenerComponent LeaveStateAddedListener)
-		{
-			CopyLeaveStateAddedListenerTo(LeaveStateAddedListener);
-		}
-		else if (component is EnterStateAddedListenerComponent EnterStateAddedListener)
-		{
-			CopyEnterStateAddedListenerTo(EnterStateAddedListener);
-		}
 		else if (component is DeadAddedListenerComponent DeadAddedListener)
 		{
 			CopyDeadAddedListenerTo(DeadAddedListener);
@@ -117,6 +109,10 @@ public partial class ElementEntity
 		else if (component is DeadRemovedListenerComponent DeadRemovedListener)
 		{
 			CopyDeadRemovedListenerTo(DeadRemovedListener);
+		}
+		else if (component is LeaveStateAddedListenerComponent LeaveStateAddedListener)
+		{
+			CopyLeaveStateAddedListenerTo(LeaveStateAddedListener);
 		}
 		else if (component is MoveOnTileAddedListenerComponent MoveOnTileAddedListener)
 		{
@@ -133,6 +129,10 @@ public partial class ElementEntity
 		else if (component is MoveOnTileEndAddedListenerComponent MoveOnTileEndAddedListener)
 		{
 			CopyMoveOnTileEndAddedListenerTo(MoveOnTileEndAddedListener);
+		}
+		else if (component is EnterStateAddedListenerComponent EnterStateAddedListener)
+		{
+			CopyEnterStateAddedListenerTo(EnterStateAddedListener);
 		}
 		else if (component is MoveOnTileBeginAddedListenerComponent MoveOnTileBeginAddedListener)
 		{

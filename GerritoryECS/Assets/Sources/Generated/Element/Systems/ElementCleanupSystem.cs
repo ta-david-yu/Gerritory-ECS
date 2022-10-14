@@ -16,8 +16,8 @@ public class ElementCleanupSystems : JCMG.EntitasRedux.Systems
 	{
 		var context = Contexts.SharedInstance.Element;
 		_cleanupSystems.Add(new RemoveLeaveStateFromElementEntitiesSystem(context));
-		_cleanupSystems.Add(new RemoveEnterStateFromElementEntitiesSystem(context));
 		_cleanupSystems.Add(new RemoveMoveOnTileEndFromElementEntitiesSystem(context));
+		_cleanupSystems.Add(new RemoveEnterStateFromElementEntitiesSystem(context));
 		_cleanupSystems.Add(new RemoveMoveOnTileBeginFromElementEntitiesSystem(context));
 	}
 	#endif
@@ -25,8 +25,8 @@ public class ElementCleanupSystems : JCMG.EntitasRedux.Systems
 	public ElementCleanupSystems(IContext<ElementEntity> context) : base()
 	{
 		_cleanupSystems.Add(new RemoveLeaveStateFromElementEntitiesSystem(context));
-		_cleanupSystems.Add(new RemoveEnterStateFromElementEntitiesSystem(context));
 		_cleanupSystems.Add(new RemoveMoveOnTileEndFromElementEntitiesSystem(context));
+		_cleanupSystems.Add(new RemoveEnterStateFromElementEntitiesSystem(context));
 		_cleanupSystems.Add(new RemoveMoveOnTileBeginFromElementEntitiesSystem(context));
 	}
 }

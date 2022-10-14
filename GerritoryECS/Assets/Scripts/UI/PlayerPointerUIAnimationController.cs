@@ -13,10 +13,10 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 	private TMPro.TextMeshPro m_ScoreText;
 
 	[SerializeField]
-	private Image m_InnerFillCircle;
+	private CanvasGroup m_CanvasGroup;
 
 	[SerializeField]
-	private Image m_PointerImage;
+	private Image m_InnerFillCircle;
 
 	[SerializeField]
 	private Image m_OuterRing;
@@ -58,7 +58,7 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 		Vector3 targetPosition = m_FollowingTransform.position;
 		Vector3 currentPosition = transform.position;
 
-		if ((targetPosition - currentPosition).sqrMagnitude > 0.01f)
+		if ((targetPosition - currentPosition).sqrMagnitude > 0.001f)
 		{
 			// Use half-life lerp function to interpolate the position.
 			Vector3 newPosition = Vector3.Lerp(currentPosition, targetPosition, 1.0f - Mathf.Pow(0.5f, Time.deltaTime / m_FollowingHalfLifeTime));
@@ -82,6 +82,12 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 		m_PointerTipAnchor.localPosition = localPosition;
 	}
 
+	public void SnapToTargetTransform()
+	{
+		Vector3 targetPosition = m_FollowingTransform.position;
+		transform.position = targetPosition;
+	}
+
 	public void SetFollowingTargetTransform(Transform target)
 	{
 		m_FollowingTransform = target;
@@ -101,7 +107,6 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 	{
 		m_PointerTipAnchor.localScale = Vector3.one * m_ChangeStateAnimationStartScale;
 		m_OuterRing.color = ringColor;
-		m_PointerImage.color = ringColor;
 
 		Tweener.SafeAbortTweener(ref m_ChangeStateTweener);
 
@@ -118,7 +123,6 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 
 			Color color = Color.Lerp(ringColor, m_NormalRingColor, progress);
 			m_OuterRing.color = color;
-			m_PointerImage.color = color;
 
 		})
 		.SetTerminateCallback(() =>
@@ -126,6 +130,43 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 			m_ChangeStateTweener = null;
 		})
 		.SetEase(EasingFunction.Ease.Linear).SetTime(m_ChangeStateAnimationTime);
+	}
+
+	public void PlayLeaveStateAnimation()
+	{
+		m_OuterRing.color = Color.white;
+
+		m_ChangeStateTweener = TweenManager.Instance.Tween((float progress) =>
+		{
+			Color color = Color.Lerp(Color.white, m_NormalRingColor, progress);
+			m_OuterRing.color = color;
+
+		})
+		.SetTerminateCallback(() =>
+		{
+			m_ChangeStateTweener = null;
+		})
+		.SetEase(EasingFunction.Ease.Linear).SetTime(m_ChangeStateAnimationTime);
+	}
+
+	public void UpdateTimerProgress(float progress)
+	{
+		m_InnerFillCircle.fillAmount = progress;
+	}
+
+	public void ChangeTimerColor(Color color)
+	{
+		m_InnerFillCircle.color = color;
+	}
+
+	public void PlayDeadAnimation()
+	{
+		m_CanvasGroup.alpha = 0.7f;
+	}
+
+	public void PlayRespawnAnimation()
+	{
+		m_CanvasGroup.alpha = 1.0f;
 	}
 
 	[ContextMenu("Player Change State Animation (Red)")]

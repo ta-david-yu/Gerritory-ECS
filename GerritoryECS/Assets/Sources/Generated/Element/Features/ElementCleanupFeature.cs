@@ -26,8 +26,8 @@ public class ElementCleanupFeature : Feature
 	private void AddSystems(IContext<ElementEntity> context)
 	{
 		Add(new RemoveLeaveStateFromElementEntitiesSystem(context));
-		Add(new RemoveEnterStateFromElementEntitiesSystem(context));
 		Add(new RemoveMoveOnTileEndFromElementEntitiesSystem(context));
+		Add(new RemoveEnterStateFromElementEntitiesSystem(context));
 		Add(new RemoveMoveOnTileBeginFromElementEntitiesSystem(context));
 	}
 }
