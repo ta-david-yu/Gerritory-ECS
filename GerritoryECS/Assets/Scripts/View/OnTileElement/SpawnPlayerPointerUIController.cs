@@ -22,6 +22,10 @@ public sealed class SpawnPlayerPointerUIController :
 	private PlayerPointerUIAnimationController m_SpawnedPlayerPointerUI;
 	private float m_CurrentStateDuration;
 
+	private const float k_UIDepthOrderBaseWhenAlive = -0.2f;
+	private const float k_UIDepthOrderOffset = 0.05f;
+	private const float k_UIDepthOrderWhenDead = 0.2f;
+
 	public override void HandleOnEntityCreated(Contexts contexts, IEntity entity)
 	{
 		m_Contexts = contexts;
@@ -53,7 +57,7 @@ public sealed class SpawnPlayerPointerUIController :
 		elementEntity.AddDeadRemovedListener(this);
 
 		// Change UI depth value based on the element id to avoid overlapping issue.
-		m_SpawnedPlayerPointerUI.SetZValue(elementEntity.OnTileElement.Id * 0.1f);
+		m_SpawnedPlayerPointerUI.SetZValue(k_UIDepthOrderBaseWhenAlive + elementEntity.OnTileElement.Id * k_UIDepthOrderOffset);
 
 		// Update Timer progress to 0 initially.
 		m_SpawnedPlayerPointerUI.ChangeTimerColor(Color.white);
@@ -108,11 +112,15 @@ public sealed class SpawnPlayerPointerUIController :
 	public void OnDeadAdded(ElementEntity entity)
 	{
 		m_SpawnedPlayerPointerUI.PlayDeadAnimation();
-		
+		m_SpawnedPlayerPointerUI.SetZValue(k_UIDepthOrderWhenDead);
+
 	}
 
 	public void OnDeadRemoved(ElementEntity entity)
 	{
 		m_SpawnedPlayerPointerUI.PlayRespawnAnimation();
+
+		// Reset the z order back
+		m_SpawnedPlayerPointerUI.SetZValue(k_UIDepthOrderBaseWhenAlive + entity.OnTileElement.Id * k_UIDepthOrderOffset);
 	}
 }

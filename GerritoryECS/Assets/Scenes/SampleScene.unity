@@ -1528,10 +1528,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_PlayerPointerUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2240361966700819149, guid: 7d0c39aaa72fdf94788e06a65628b0af,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d0c39aaa72fdf94788e06a65628b0af, type: 3}
