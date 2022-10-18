@@ -3,6 +3,6 @@
 
 public enum StateTypeEnum
 {
-	SpeedUp,
-	SlowDown
+	SpeedUp = 0,
+	SlowDown = 1
 }

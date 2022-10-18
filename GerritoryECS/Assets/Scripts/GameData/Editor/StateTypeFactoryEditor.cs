@@ -88,7 +88,7 @@ public enum StateTypeEnum
 		var stateTypeEnumElementsList = string.Join
 		(
 			",\n\t",
-			factory.StateTypes.Select((stateType) => stateType.Name)
+			factory.StateTypes.Select((stateType, index) => $"{stateType.Name} = {index}")
 		);
 
 		string generatedEnumText = k_EnumFileTemplate.Replace(k_EnumElementsListToken, stateTypeEnumElementsList);
@@ -101,6 +101,7 @@ public enum StateTypeEnum
 		AssetDatabase.Refresh();
 		System.IO.File.WriteAllText(System.IO.Path.GetDirectoryName(Application.dataPath) + "\\" + path, generatedEnumText);
 
+		AssetDatabase.Refresh();
 		AssetDatabase.SaveAssets();
 	}
 }
