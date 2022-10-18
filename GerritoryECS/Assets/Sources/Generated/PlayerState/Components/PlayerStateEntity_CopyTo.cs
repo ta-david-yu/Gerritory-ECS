@@ -18,7 +18,11 @@ public partial class PlayerStateEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is StateComponent State)
+		if (component is SpeedChangeStateComponent SpeedChangeState)
+		{
+			CopySpeedChangeStateTo(SpeedChangeState);
+		}
+		else if (component is StateComponent State)
 		{
 			CopyStateTo(State);
 		}
@@ -26,11 +30,7 @@ public partial class PlayerStateEntity
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
-		else if (component is SpeedChangeState SpeedChangeState)
-		{
-			CopySpeedChangeStateTo(SpeedChangeState);
-		}
-		else if (component is WaitingForRespawnState WaitingForRespawnState)
+		else if (component is WaitingForRespawnStateComponent WaitingForRespawnState)
 		{
 			CopyWaitingForRespawnStateTo(WaitingForRespawnState);
 		}

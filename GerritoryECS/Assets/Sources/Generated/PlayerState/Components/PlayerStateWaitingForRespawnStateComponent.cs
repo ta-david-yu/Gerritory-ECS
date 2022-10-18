@@ -9,13 +9,13 @@
 //------------------------------------------------------------------------------
 public partial class PlayerStateEntity
 {
-	public WaitingForRespawnState WaitingForRespawnState { get { return (WaitingForRespawnState)GetComponent(PlayerStateComponentsLookup.WaitingForRespawnState); } }
+	public WaitingForRespawnStateComponent WaitingForRespawnState { get { return (WaitingForRespawnStateComponent)GetComponent(PlayerStateComponentsLookup.WaitingForRespawnState); } }
 	public bool HasWaitingForRespawnState { get { return HasComponent(PlayerStateComponentsLookup.WaitingForRespawnState); } }
 
 	public void AddWaitingForRespawnState(int newRespawnAreaId)
 	{
 		var index = PlayerStateComponentsLookup.WaitingForRespawnState;
-		var component = (WaitingForRespawnState)CreateComponent(index, typeof(WaitingForRespawnState));
+		var component = (WaitingForRespawnStateComponent)CreateComponent(index, typeof(WaitingForRespawnStateComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.RespawnAreaId = newRespawnAreaId;
 		#endif
@@ -25,17 +25,17 @@ public partial class PlayerStateEntity
 	public void ReplaceWaitingForRespawnState(int newRespawnAreaId)
 	{
 		var index = PlayerStateComponentsLookup.WaitingForRespawnState;
-		var component = (WaitingForRespawnState)CreateComponent(index, typeof(WaitingForRespawnState));
+		var component = (WaitingForRespawnStateComponent)CreateComponent(index, typeof(WaitingForRespawnStateComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.RespawnAreaId = newRespawnAreaId;
 		#endif
 		ReplaceComponent(index, component);
 	}
 
-	public void CopyWaitingForRespawnStateTo(WaitingForRespawnState copyComponent)
+	public void CopyWaitingForRespawnStateTo(WaitingForRespawnStateComponent copyComponent)
 	{
 		var index = PlayerStateComponentsLookup.WaitingForRespawnState;
-		var component = (WaitingForRespawnState)CreateComponent(index, typeof(WaitingForRespawnState));
+		var component = (WaitingForRespawnStateComponent)CreateComponent(index, typeof(WaitingForRespawnStateComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.RespawnAreaId = copyComponent.RespawnAreaId;
 		#endif

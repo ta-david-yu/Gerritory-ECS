@@ -98,9 +98,10 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 		m_ScoreText.text = text;
 	}
 
-	public void SetScoreTextColor(Color color)
+	public void SetNormalRingColor(Color color)
 	{
-		m_ScoreText.color = color;
+		m_NormalRingColor = color;
+		m_OuterRing.color = color;
 	}
 
 	public void PlayChangeStateAnimation(Color ringColor)

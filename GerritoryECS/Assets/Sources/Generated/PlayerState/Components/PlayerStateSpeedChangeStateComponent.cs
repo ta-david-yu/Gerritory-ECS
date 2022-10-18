@@ -9,13 +9,13 @@
 //------------------------------------------------------------------------------
 public partial class PlayerStateEntity
 {
-	public SpeedChangeState SpeedChangeState { get { return (SpeedChangeState)GetComponent(PlayerStateComponentsLookup.SpeedChangeState); } }
+	public SpeedChangeStateComponent SpeedChangeState { get { return (SpeedChangeStateComponent)GetComponent(PlayerStateComponentsLookup.SpeedChangeState); } }
 	public bool HasSpeedChangeState { get { return HasComponent(PlayerStateComponentsLookup.SpeedChangeState); } }
 
 	public void AddSpeedChangeState(float newSpeedMultiplier)
 	{
 		var index = PlayerStateComponentsLookup.SpeedChangeState;
-		var component = (SpeedChangeState)CreateComponent(index, typeof(SpeedChangeState));
+		var component = (SpeedChangeStateComponent)CreateComponent(index, typeof(SpeedChangeStateComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.SpeedMultiplier = newSpeedMultiplier;
 		#endif
@@ -25,17 +25,17 @@ public partial class PlayerStateEntity
 	public void ReplaceSpeedChangeState(float newSpeedMultiplier)
 	{
 		var index = PlayerStateComponentsLookup.SpeedChangeState;
-		var component = (SpeedChangeState)CreateComponent(index, typeof(SpeedChangeState));
+		var component = (SpeedChangeStateComponent)CreateComponent(index, typeof(SpeedChangeStateComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.SpeedMultiplier = newSpeedMultiplier;
 		#endif
 		ReplaceComponent(index, component);
 	}
 
-	public void CopySpeedChangeStateTo(SpeedChangeState copyComponent)
+	public void CopySpeedChangeStateTo(SpeedChangeStateComponent copyComponent)
 	{
 		var index = PlayerStateComponentsLookup.SpeedChangeState;
-		var component = (SpeedChangeState)CreateComponent(index, typeof(SpeedChangeState));
+		var component = (SpeedChangeStateComponent)CreateComponent(index, typeof(SpeedChangeStateComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.SpeedMultiplier = copyComponent.SpeedMultiplier;
 		#endif

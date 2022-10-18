@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Group event-based system that modifies <see cref="StateHolder"/>'s speed on <see cref="SpeedChangeState"/> creation & destruction.
+/// Group event-based system that modifies <see cref="StateHolder"/>'s speed on <see cref="SpeedChangeStateComponent"/> creation & destruction.
 /// </summary>
 public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 {
@@ -84,9 +84,9 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 		{
 			speedMultiplier = entity.SpeedChangeState.SpeedMultiplier;
 		}
-		else if (component is SpeedChangeState)
+		else if (component is SpeedChangeStateComponent)
 		{
-			speedMultiplier = (component as SpeedChangeState).SpeedMultiplier;
+			speedMultiplier = (component as SpeedChangeStateComponent).SpeedMultiplier;
 		}
 		else
 		{

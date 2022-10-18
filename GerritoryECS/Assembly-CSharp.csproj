@@ -218,7 +218,7 @@
     <Compile Include="Assets\Sources\Components\OnTileElement\EnterStateComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\ElementComponentsLookup.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\SpeedChangeableComponent.cs" />
-    <Compile Include="Assets\Sources\Components\PlayerState\WaitingForRespawnState.cs" />
+    <Compile Include="Assets\Sources\Components\PlayerState\WaitingForRespawnStateComponent.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\LogMouseClickSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\OnTilePositionAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\Effect\OnTileElementEffectComponent.cs" />
@@ -279,7 +279,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnterableRemovedEventSystem.cs" />
     <Compile Include="Assets\Sources\Features\ItemFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelOnTileElementIdCounterComponent.cs" />
-    <Compile Include="Assets\Scripts\GameData\IGameInfoViewFactory.cs" />
+    <Compile Include="Assets\Scripts\GameData\Interface\IGameInfoViewFactory.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementSpeedChangeableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileEnteredByOnTileElementComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Input\IdleAIOnRespawnSystem.cs" />
@@ -305,7 +305,7 @@
     <Compile Include="Assets\Scripts\Utility\EasingFunction.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\ILeaveStateAddedListener.cs" />
-    <Compile Include="Assets\Scripts\GameData\ITileFactory.cs" />
+    <Compile Include="Assets\Scripts\GameData\Interface\ITileFactory.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileBeginAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\CanRespawnAfterDeathComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IEnterableAddedListener.cs" />
@@ -329,7 +329,6 @@
     <Compile Include="Assets\Scripts\View\OnTileElement\OnTileElementTeamColorViewController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IEnterStateAddedListener.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerPointerUIAnimationController.cs" />
-    <Compile Include="Assets\Sources\Components\PlayerState\SpeedChangeState.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\TileBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Systems\LevelCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageContext.cs" />
@@ -354,7 +353,7 @@
     <Compile Include="Assets\Sources\Generated\Events\PlayerStateEventSystems.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\EffectContext.cs" />
     <Compile Include="Assets\Sources\Generated\Level\LevelContext.cs" />
-    <Compile Include="Assets\Scripts\GameData\IPlayerFactory.cs" />
+    <Compile Include="Assets\Scripts\GameData\Interface\IPlayerFactory.cs" />
     <Compile Include="Assets\Sources\Generated\Element\ElementEntity.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementCanRespawnAfterDeathComponent.cs" />
     <Compile Include="Assets\Sources\Components\_Sandbox\DebugMessageComponent.cs" />
@@ -521,6 +520,11 @@
     <Compile Include="Assets\Scripts\View\Tile\CollapseTileAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Components\PlayerState\SpeedChangeStateComponent.cs" />
+    <Compile Include="Assets\Sources\Components\PlayerState\StateFactoryTypeIdentifierComponent.cs" />
+    <Compile Include="Assets\Scripts\GameData\Interface\IItemFactory.cs" />
+    <Compile Include="Assets\Scripts\GameData\Interface\IStateFactory.cs" />
+    <Compile Include="Assets\Scripts\GameData\StateFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

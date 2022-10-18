@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [PlayerState]
-public sealed class SpeedChangeState : IComponent
+public sealed class SpeedChangeStateComponent : IComponent
 {
 	public float SpeedMultiplier = 1.0f;
 }

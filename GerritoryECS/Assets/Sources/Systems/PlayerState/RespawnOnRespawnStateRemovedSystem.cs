@@ -59,9 +59,9 @@ public sealed class RespawnOnWaitingForRespawnStateRemovedSystem : IInitializeSy
 		{
 			targetRespawnAreaId = entity.WaitingForRespawnState.RespawnAreaId;
 		}
-		else if (component is WaitingForRespawnState)
+		else if (component is WaitingForRespawnStateComponent)
 		{
-			targetRespawnAreaId = (component as WaitingForRespawnState).RespawnAreaId;
+			targetRespawnAreaId = (component as WaitingForRespawnStateComponent).RespawnAreaId;
 		}
 		else
 		{

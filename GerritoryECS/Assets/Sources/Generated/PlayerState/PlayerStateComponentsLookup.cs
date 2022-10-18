@@ -35,21 +35,21 @@ public static class PlayerStateComponentsLookup
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(DebugMessageComponent),
-		typeof(SpeedChangeState),
+		typeof(SpeedChangeStateComponent),
 		typeof(StateComponent),
 		typeof(TimerAddedListenerComponent),
 		typeof(TimerComponent),
-		typeof(WaitingForRespawnState)
+		typeof(WaitingForRespawnStateComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(DebugMessageComponent), 0 },
-		{ typeof(SpeedChangeState), 1 },
+		{ typeof(SpeedChangeStateComponent), 1 },
 		{ typeof(StateComponent), 2 },
 		{ typeof(TimerAddedListenerComponent), 3 },
 		{ typeof(TimerComponent), 4 },
-		{ typeof(WaitingForRespawnState), 5 }
+		{ typeof(WaitingForRespawnStateComponent), 5 }
 	};
 
 	/// <summary>

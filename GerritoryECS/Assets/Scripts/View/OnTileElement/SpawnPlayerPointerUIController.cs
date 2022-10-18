@@ -45,7 +45,7 @@ public sealed class SpawnPlayerPointerUIController :
 			LevelEntity teamEntity = contexts.Level.GetEntityWithTeamInfo(elementEntity.Team.Id);
 			teamEntity.AddTeamScoreAddedListener(this);
 
-			m_SpawnedPlayerPointerUI.SetScoreTextColor(m_ColorPalette.GetPlayerBodyColorForTeam(elementEntity.Team.Id));
+			m_SpawnedPlayerPointerUI.SetNormalRingColor(m_ColorPalette.GetPlayerBodyColorForTeam(elementEntity.Team.Id));
 		}
 
 		// Register to player state related events.
