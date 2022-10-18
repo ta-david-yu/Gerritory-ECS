@@ -12,5 +12,9 @@ public sealed class ItemFeature : Feature
 
 		// Create powerup item / state types systems
 		Add(new ApplyStateTypeToEaterOnItemEatenSystem(contexts));
+
+		// Item spawning related systems
+		Add(new TimedGlobalItemSpawnerSystem(contexts));
+		Add(new SpawnItemSystem(contexts));
 	}
 }

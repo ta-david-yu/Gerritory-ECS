@@ -132,6 +132,8 @@ public partial class Contexts
 	public const string OnTilePosition = "OnTilePosition";
 	public const string Owner = "Owner";
 	public const string Player = "Player";
+	public const string SpawnedByGlobalSpawner = "SpawnedByGlobalSpawner";
+	public const string SpawnItem = "SpawnItem";
 	public const string State = "State";
 	public const string StateHolder = "StateHolder";
 	public const string Team = "Team";
@@ -216,6 +218,20 @@ public partial class Contexts
 			Player,
 			Element.GetGroup(ElementMatcher.Player),
 			(e, c) => ((PlayerComponent)c).Id));
+
+		Item.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<ItemEntity, int>(
+			SpawnedByGlobalSpawner,
+			Item.GetGroup(ItemMatcher.SpawnedByGlobalSpawner),
+			(e, c) => ((SpawnedByGlobalSpawnerComponent)c).SpawnerId));
+		Command.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<CommandEntity, int>(
+			SpawnedByGlobalSpawner,
+			Command.GetGroup(CommandMatcher.SpawnedByGlobalSpawner),
+			(e, c) => ((SpawnedByGlobalSpawnerComponent)c).SpawnerId));
+
+		Command.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<CommandEntity, UnityEngine.Vector2Int>(
+			SpawnItem,
+			Command.GetGroup(CommandMatcher.SpawnItem),
+			(e, c) => ((SpawnItemComponent)c).TilePosition));
 
 		PlayerState.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<PlayerStateEntity, int>(
 			State,
@@ -324,6 +340,21 @@ public static class ContextsExtensions
 	public static ElementEntity GetEntityWithPlayer(this ElementContext context, int Id)
 	{
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>)context.GetEntityIndex(Contexts.Player)).GetEntity(Id);
+	}
+
+	public static System.Collections.Generic.HashSet<ItemEntity> GetEntitiesWithSpawnedByGlobalSpawner(this ItemContext context, int SpawnerId)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<ItemEntity, int>)context.GetEntityIndex(Contexts.SpawnedByGlobalSpawner)).GetEntities(SpawnerId);
+	}
+
+	public static System.Collections.Generic.HashSet<CommandEntity> GetEntitiesWithSpawnedByGlobalSpawner(this CommandContext context, int SpawnerId)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<CommandEntity, int>)context.GetEntityIndex(Contexts.SpawnedByGlobalSpawner)).GetEntities(SpawnerId);
+	}
+
+	public static System.Collections.Generic.HashSet<CommandEntity> GetEntitiesWithSpawnItem(this CommandContext context, UnityEngine.Vector2Int TilePosition)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<CommandEntity, UnityEngine.Vector2Int>)context.GetEntityIndex(Contexts.SpawnItem)).GetEntities(TilePosition);
 	}
 
 	public static System.Collections.Generic.HashSet<PlayerStateEntity> GetEntitiesWithState(this PlayerStateContext context, int HolderId)

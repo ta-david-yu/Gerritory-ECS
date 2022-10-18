@@ -18,11 +18,7 @@ public partial class ElementEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is MaxNumberOfItemsInLevelComponent MaxItemInLevel)
-		{
-			IsMaxItemInLevel = true;
-		}
-		else if (component is DeadComponent Dead)
+		if (component is DeadComponent Dead)
 		{
 			IsDead = true;
 		}

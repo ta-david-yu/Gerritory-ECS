@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using JCMG.EntitasRedux;
+using TMPro;
 
 [System.Serializable]
 public struct TryGetValidRespawnPositionResult
@@ -11,10 +12,22 @@ public struct TryGetValidRespawnPositionResult
 	public Vector2Int TilePosition;
 }
 
+public struct TryAddPlayerStateTypeResult
+{
+	public bool Success;
+	public PlayerStateEntity PlayerStateEntity;
+}
+
 [System.Serializable]
 public struct TryCommandKillResult
 {
 	public bool Success;
+}
+
+public struct TryCommandSpawnItemResult
+{
+	public bool Success;
+	public CommandEntity CommandEntity;
 }
 
 public static class GameHelper
@@ -140,11 +153,6 @@ public static class GameHelper
 		elementEntity.IsLeaveState = true;
 	}
 
-	public struct TryAddPlayerStateTypeResult
-	{
-		public bool Success;
-		public PlayerStateEntity PlayerStateEntity;
-	}
 	public static TryAddPlayerStateTypeResult TryAddPlayerStateTypeFor(this Contexts contexts, StateTypeEnum stateType, int stateHolderId)
 	{
 		if (!contexts.Config.GameConfig.value.StateTypeFactory.TryGetStateBlueprint(stateType, out var blueprint))
@@ -238,6 +246,37 @@ public static class GameHelper
 		}
 
 		return true;
+	}
+
+	public static TryCommandSpawnItemResult TryCommandSpawnItemAt(this Contexts contexts, IItemBlueprint itemBlueprint, Vector2Int tilePosition)
+	{
+		ItemEntity itemEntity = contexts.Item.GetEntityWithOnTileItem(tilePosition);
+		if (itemEntity != null)
+		{
+			// There is already an item on the given location. Command not sent.
+			Debug.LogWarning($"There is already an item on the given position {tilePosition}.");
+			return new TryCommandSpawnItemResult { Success = false };
+		}
+
+		TileEntity tileEntity = contexts.Tile.GetEntityWithTilePosition(tilePosition);
+		if (!tileEntity.IsItemHolder)
+		{
+			// The tile at the given position is not an item holder.
+			Debug.LogWarning($"The tile at the given position {tilePosition} is not an item holder.");
+			return new TryCommandSpawnItemResult { Success = false };
+		}
+
+		if (!tileEntity.IsEnterable)
+		{
+			// Normally the system that creates the spawn command should check if the location is valid first!
+			Debug.LogWarning($"The tile at the given position {tilePosition} is not enterable.");
+			return new TryCommandSpawnItemResult { Success = false };
+		}
+
+		// Create spawn item command entity.
+		var command = contexts.Command.CreateEntity();
+		command.AddSpawnItem(tilePosition, itemBlueprint);
+		return new TryCommandSpawnItemResult { Success = true, CommandEntity = command };
 	}
 
 	public static ElementEntity ConstructPlayerEntity(this Contexts contexts, int playerId, int teamId, int skinId)

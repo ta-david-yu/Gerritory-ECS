@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Item]
+[Item, Command]
 public sealed class SpawnedByGlobalSpawnerComponent : IComponent
 {
 	[EntityIndex]

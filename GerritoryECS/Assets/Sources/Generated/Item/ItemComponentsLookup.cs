@@ -18,9 +18,13 @@ public static class ItemComponentsLookup
 	public const int DebugMessage = 2;
 	public const int Eaten = 3;
 	public const int GlobalItemSpawner = 4;
-	public const int OnTileItem = 5;
+	public const int MaxNumberOfItemsInLevel = 5;
+	public const int OnTileItem = 6;
+	public const int SpawnedByGlobalSpawner = 7;
+	public const int SpawnInterval = 8;
+	public const int SpawnItemTimer = 9;
 
-	public const int TotalComponents = 6;
+	public const int TotalComponents = 10;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -29,7 +33,11 @@ public static class ItemComponentsLookup
 		"DebugMessage",
 		"Eaten",
 		"GlobalItemSpawner",
-		"OnTileItem"
+		"MaxNumberOfItemsInLevel",
+		"OnTileItem",
+		"SpawnedByGlobalSpawner",
+		"SpawnInterval",
+		"SpawnItemTimer"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
@@ -39,7 +47,11 @@ public static class ItemComponentsLookup
 		typeof(DebugMessageComponent),
 		typeof(EatenComponent),
 		typeof(GlobalItemSpawnerComponent),
-		typeof(OnTileItemComponent)
+		typeof(MaxNumberOfItemsInLevelComponent),
+		typeof(OnTileItemComponent),
+		typeof(SpawnedByGlobalSpawnerComponent),
+		typeof(SpawnIntervalComponent),
+		typeof(SpawnItemTimerComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
@@ -49,7 +61,11 @@ public static class ItemComponentsLookup
 		{ typeof(DebugMessageComponent), 2 },
 		{ typeof(EatenComponent), 3 },
 		{ typeof(GlobalItemSpawnerComponent), 4 },
-		{ typeof(OnTileItemComponent), 5 }
+		{ typeof(MaxNumberOfItemsInLevelComponent), 5 },
+		{ typeof(OnTileItemComponent), 6 },
+		{ typeof(SpawnedByGlobalSpawnerComponent), 7 },
+		{ typeof(SpawnIntervalComponent), 8 },
+		{ typeof(SpawnItemTimerComponent), 9 }
 	};
 
 	/// <summary>

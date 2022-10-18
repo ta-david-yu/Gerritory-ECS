@@ -18,8 +18,10 @@ public static class CommandComponentsLookup
 	public const int ConstructTile = 2;
 	public const int ConstructUserInput = 3;
 	public const int MarkOnTileElementDead = 4;
+	public const int SpawnedByGlobalSpawner = 5;
+	public const int SpawnItem = 6;
 
-	public const int TotalComponents = 5;
+	public const int TotalComponents = 7;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -27,7 +29,9 @@ public static class CommandComponentsLookup
 		"ConstructPlayer",
 		"ConstructTile",
 		"ConstructUserInput",
-		"MarkOnTileElementDead"
+		"MarkOnTileElementDead",
+		"SpawnedByGlobalSpawner",
+		"SpawnItem"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
@@ -36,7 +40,9 @@ public static class CommandComponentsLookup
 		typeof(ConstructPlayerComponent),
 		typeof(ConstructTileComponent),
 		typeof(ConstructUserInputComponent),
-		typeof(MarkOnTileElementDeadComponent)
+		typeof(MarkOnTileElementDeadComponent),
+		typeof(SpawnedByGlobalSpawnerComponent),
+		typeof(SpawnItemComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
@@ -45,7 +51,9 @@ public static class CommandComponentsLookup
 		{ typeof(ConstructPlayerComponent), 1 },
 		{ typeof(ConstructTileComponent), 2 },
 		{ typeof(ConstructUserInputComponent), 3 },
-		{ typeof(MarkOnTileElementDeadComponent), 4 }
+		{ typeof(MarkOnTileElementDeadComponent), 4 },
+		{ typeof(SpawnedByGlobalSpawnerComponent), 5 },
+		{ typeof(SpawnItemComponent), 6 }
 	};
 
 	/// <summary>
