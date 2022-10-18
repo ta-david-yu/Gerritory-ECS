@@ -549,6 +549,7 @@
     <Compile Include="Assets\Sources\Generated\Command\Components\CommandSpawnedByGlobalSpawnerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Components\Interfaces\ISpawnedByGlobalSpawnerEntity.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemSpawnItemTimerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Config\GlobalItemSpawnerConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

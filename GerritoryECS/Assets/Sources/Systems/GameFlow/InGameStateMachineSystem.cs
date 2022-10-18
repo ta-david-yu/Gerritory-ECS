@@ -1,6 +1,7 @@
 using JCMG.EntitasRedux;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSystem
@@ -12,6 +13,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 	private readonly CommandContext m_CommandContext;
 	private readonly ConfigContext m_ConfigContext;
 	private readonly MessageContext m_MessageContext;
+	private readonly ItemContext m_ItemContext;
 	private readonly Contexts m_Contexts;
 
 	private readonly IGroup<ElementEntity> m_OnTileElementEntityGroup;
@@ -101,6 +103,13 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 
 				m_LevelContext.GameInfoEntity.AddGameTimer(0);
 				gameFlowEntity.RemoveCountdownTimer();
+
+				// Create global item spawner.
+				var spawnerConfigs = m_ConfigContext.GameConfig.value.LevelData.GlobalItemSpawnerConfigs;
+				foreach (var spawnerConfig in spawnerConfigs)
+				{
+					m_Contexts.CreateGlobalItemSpawner(spawnerConfig.ItemBlueprintPool, spawnerConfig.SpawnInterval, spawnerConfig.MaxItemOnLevelCount);
+				}
 
 				// Go to play after countdown timer is up.
 				gameFlowEntity.ReplaceInGameState(InGameStateComponent.State.Playing);

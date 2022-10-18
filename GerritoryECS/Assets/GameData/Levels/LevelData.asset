@@ -377,5 +377,17 @@ MonoBehaviour:
     Value:
       TileId: respawn
   LevelBoundingRectSize: {x: 11, y: 11}
+  m_Objective: 0
+  m_EndingCondition: 0
+  m_Timeout: 30
+  m_GoalScore: 1
+  m_NumberOfTeamsShouldBeLeft: 0
+  GlobalItemSpawnerConfigs:
+  - m_ItemBlueprintPool:
+    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
+    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
+    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
+    SpawnInterval: 2
+    MaxItemOnLevelCount: 10
   m_RandomSeed: 4
   m_Size: 11

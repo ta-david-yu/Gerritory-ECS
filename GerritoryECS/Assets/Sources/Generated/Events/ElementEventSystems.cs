@@ -11,10 +11,10 @@ public sealed class ElementEventSystems : Feature
 {
 	public ElementEventSystems(Contexts contexts)
 	{
+		Add(new LeaveStateAddedEventSystem(contexts)); // priority: -1
 		Add(new DeadAddedEventSystem(contexts)); // priority: 0
 		Add(new DeadRemovedEventSystem(contexts)); // priority: 0
 		Add(new EnterStateAddedEventSystem(contexts)); // priority: 0
-		Add(new LeaveStateAddedEventSystem(contexts)); // priority: 0
 		Add(new MoveOnTileAddedEventSystem(contexts)); // priority: 0
 		Add(new MoveOnTileBeginAddedEventSystem(contexts)); // priority: 0
 		Add(new MoveOnTileEndAddedEventSystem(contexts)); // priority: 0

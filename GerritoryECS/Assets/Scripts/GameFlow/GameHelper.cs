@@ -279,6 +279,15 @@ public static class GameHelper
 		return new TryCommandSpawnItemResult { Success = true, CommandEntity = command };
 	}
 
+	public static ItemEntity CreateGlobalItemSpawner(this Contexts contexts, IItemBlueprint[] itemBlueprints, float spawnInterval, int maxItemCountOnLevel)
+	{
+		ItemEntity spawnerEntity = contexts.Item.CreateEntity();
+		spawnerEntity.AddGlobalItemSpawner(contexts.Level.GetNewItemSpawnerId(), itemBlueprints);
+		spawnerEntity.AddSpawnInterval(spawnInterval);
+		spawnerEntity.AddMaxNumberOfItemsInLevel(maxItemCountOnLevel);
+		return spawnerEntity;
+	}
+
 	public static ElementEntity ConstructPlayerEntity(this Contexts contexts, int playerId, int teamId, int skinId)
 	{
 		IPlayerFactory playerFactory = contexts.Config.GameConfig.value.PlayerFactory;
@@ -340,6 +349,13 @@ public static class GameHelper
 	{
 		int id = context.StateHolderIdCounter.value.Value;
 		context.ReplaceStateHolderIdCounter(new UniqueIdCounter { Value = id + 1 });
+		return id;
+	}
+
+	public static int GetNewItemSpawnerId(this LevelContext context)
+	{
+		int id = context.ItemSpawnerIdCounter.value.Value;
+		context.ReplaceItemSpawnerIdCounter(new UniqueIdCounter { Value = id + 1 });
 		return id;
 	}
 

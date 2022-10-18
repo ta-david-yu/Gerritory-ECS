@@ -12,9 +12,44 @@ public class LevelData : ScriptableObject
 		public TileData Value;
 	}
 
+	[Header("Tile Settings")]
 	public List<TilePair> TileDataPairs = new List<TilePair>();
 
 	public Vector2Int LevelBoundingRectSize;
+
+	[Header("Objective Settings")]
+	[SerializeField]
+	private GameObjective m_Objective = GameObjective.Score;
+	public GameObjective Objective => m_Objective;
+
+	[SerializeField]
+	[EnumFlags]
+	private GameEndingCondition m_EndingCondition = GameEndingCondition.Timeout;
+	public GameEndingCondition EndingCondition => m_EndingCondition;
+
+	[SerializeField]
+	private float m_Timeout = 30;
+	/// <summary>
+	/// The game ends when the game timer reaches <see cref="Timeout"/>.
+	/// </summary>
+	public float Timeout => m_Timeout;
+
+	[SerializeField]
+	private int m_GoalScore = 1;
+	/// <summary>
+	/// The game ends when a team reaches <see cref="GoalScore"/>.
+	/// </summary>
+	public int GoalScore => m_GoalScore;
+
+	[SerializeField]
+	private int m_NumberOfTeamsShouldBeLeft = 1;
+	/// <summary>
+	/// The game ends when <see cref="NumberOfTeamsShouldBeLeft"/> or less teams are left on the field.
+	/// </summary>
+	public int NumberOfTeamsShouldBeLeft => m_NumberOfTeamsShouldBeLeft;
+
+	[Header("Item Spawning Settings")]
+	public GlobalItemSpawnerConfig[] GlobalItemSpawnerConfigs = new GlobalItemSpawnerConfig[0];
 
 	[Header("Debug Section")]
 	[SerializeField]

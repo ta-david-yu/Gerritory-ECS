@@ -16,9 +16,6 @@ public sealed class SpawnPlayerPointerUIController :
 	private ColorPalette m_ColorPalette;
 
 	[SerializeField]
-	private StateTypeFactory m_StateTypeFactory;
-
-	[SerializeField]
 	private PlayerPointerUIAnimationController m_PlayerPointerUIPrefab;
 
 	private Contexts m_Contexts;
@@ -75,7 +72,6 @@ public sealed class SpawnPlayerPointerUIController :
 
 	public void OnEnterStateAdded(ElementEntity entity)
 	{
-		m_SpawnedPlayerPointerUI.PlayChangeStateAnimation(Color.red);
 		var playerStateEntitiesSet = m_Contexts.PlayerState.GetEntitiesWithState(entity.StateHolder.Id);
 		if (playerStateEntitiesSet.Count == 0)
 		{
@@ -86,21 +82,25 @@ public sealed class SpawnPlayerPointerUIController :
 		PlayerStateEntity playerStateEntity = playerStateEntitiesSet.SingleEntity();
 
 		// Change the color based on the state.
-		if (playerStateEntity.HasStateFactoryType && m_StateTypeFactory.TryGetStateColor(playerStateEntity.StateFactoryType.Value, out Color stateColor))
+		Color stateColor = Color.grey;
+		if (playerStateEntity.HasStateFactoryType)
 		{
+			m_Contexts.Config.GameConfig.value.StateTypeFactory.TryGetStateColor(playerStateEntity.StateFactoryType.Value, out stateColor);
 			m_SpawnedPlayerPointerUI.ChangeTimerColor(stateColor);
 		}
 		else if (playerStateEntity.HasWaitingForRespawnState)
 		{
 			// Waiting for respawn color.
-			m_SpawnedPlayerPointerUI.ChangeTimerColor(Color.grey);
+			stateColor = Color.grey;
 		}
 		else
 		{
 			// Default fallback color.
-			m_SpawnedPlayerPointerUI.ChangeTimerColor(Color.grey);
+			stateColor = Color.grey;
 		}
 
+		m_SpawnedPlayerPointerUI.PlayChangeStateAnimation(stateColor);
+		m_SpawnedPlayerPointerUI.ChangeTimerColor(stateColor);
 		m_SpawnedPlayerPointerUI.UpdateTimerProgress(1.0f);
 		if (!playerStateEntity.HasTimer)
 		{

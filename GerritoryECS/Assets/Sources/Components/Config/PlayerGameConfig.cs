@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public sealed class PlayerGameConfig
+public struct PlayerGameConfig
 {
 	public int PlayerId;
 	public string PlayerName;
@@ -12,5 +12,5 @@ public sealed class PlayerGameConfig
 	public int TeamId;
 	public int SkinId;
 
-	public bool IsAI = false;
+	public bool IsAI;
 }

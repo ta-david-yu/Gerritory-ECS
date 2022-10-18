@@ -62,6 +62,8 @@ public sealed class SpawnItemSystem : IFixedUpdateSystem
 
 			// TODO: Load View Controller in and register events to the item entity
 			// ...
+
+			spawnItemCommand.Destroy();
 		}
 	}
 }
