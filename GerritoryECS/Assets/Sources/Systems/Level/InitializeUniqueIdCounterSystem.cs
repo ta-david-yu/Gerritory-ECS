@@ -19,5 +19,6 @@ public sealed class InitializeUniqueIdCounterSystem : IInitializeSystem
 		m_LevelContext.SetOnTileElementIdCounter(new UniqueIdCounter { Value = 0 });
 		m_LevelContext.SetStateHolderIdCounter(new UniqueIdCounter { Value = 0 });
 		m_LevelContext.SetItemEaterIdCounter(new UniqueIdCounter { Value = 0 });
+		m_LevelContext.SetItemSpawnerIdCounter(new UniqueIdCounter { Value = 0 });
 	}
 }

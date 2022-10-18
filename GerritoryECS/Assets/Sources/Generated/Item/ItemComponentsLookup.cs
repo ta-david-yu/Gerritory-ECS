@@ -17,9 +17,10 @@ public static class ItemComponentsLookup
 	public const int ApplyStateTypeToEaterOnEaten = 1;
 	public const int DebugMessage = 2;
 	public const int Eaten = 3;
-	public const int OnTileItem = 4;
+	public const int GlobalItemSpawner = 4;
+	public const int OnTileItem = 5;
 
-	public const int TotalComponents = 5;
+	public const int TotalComponents = 6;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -27,6 +28,7 @@ public static class ItemComponentsLookup
 		"ApplyStateTypeToEaterOnEaten",
 		"DebugMessage",
 		"Eaten",
+		"GlobalItemSpawner",
 		"OnTileItem"
 	};
 
@@ -36,6 +38,7 @@ public static class ItemComponentsLookup
 		typeof(ApplyStateTypeToEaterOnEatenComponent),
 		typeof(DebugMessageComponent),
 		typeof(EatenComponent),
+		typeof(GlobalItemSpawnerComponent),
 		typeof(OnTileItemComponent)
 	};
 
@@ -45,7 +48,8 @@ public static class ItemComponentsLookup
 		{ typeof(ApplyStateTypeToEaterOnEatenComponent), 1 },
 		{ typeof(DebugMessageComponent), 2 },
 		{ typeof(EatenComponent), 3 },
-		{ typeof(OnTileItemComponent), 4 }
+		{ typeof(GlobalItemSpawnerComponent), 4 },
+		{ typeof(OnTileItemComponent), 5 }
 	};
 
 	/// <summary>

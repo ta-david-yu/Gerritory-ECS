@@ -16,21 +16,23 @@ public static class LevelComponentsLookup
 	public const int GameInfo = 0;
 	public const int GameTimer = 1;
 	public const int ItemEaterIdCounter = 2;
-	public const int OnTileElementIdCounter = 3;
-	public const int SearchSimulationGlobalState = 4;
-	public const int StateHolderIdCounter = 5;
-	public const int TeamGameRanking = 6;
-	public const int TeamInfo = 7;
-	public const int TeamScoreAddedListener = 8;
-	public const int TeamScore = 9;
+	public const int ItemSpawnerIdCounter = 3;
+	public const int OnTileElementIdCounter = 4;
+	public const int SearchSimulationGlobalState = 5;
+	public const int StateHolderIdCounter = 6;
+	public const int TeamGameRanking = 7;
+	public const int TeamInfo = 8;
+	public const int TeamScoreAddedListener = 9;
+	public const int TeamScore = 10;
 
-	public const int TotalComponents = 10;
+	public const int TotalComponents = 11;
 
 	public static readonly string[] ComponentNames =
 	{
 		"GameInfo",
 		"GameTimer",
 		"ItemEaterIdCounter",
+		"ItemSpawnerIdCounter",
 		"OnTileElementIdCounter",
 		"SearchSimulationGlobalState",
 		"StateHolderIdCounter",
@@ -45,6 +47,7 @@ public static class LevelComponentsLookup
 		typeof(GameInfoComponent),
 		typeof(GameTimerComponent),
 		typeof(ItemEaterIdCounterComponent),
+		typeof(ItemSpawnerIdCounterComponent),
 		typeof(OnTileElementIdCounterComponent),
 		typeof(SearchSimulationGlobalStateComponent),
 		typeof(StateHolderIdCounterComponent),
@@ -59,13 +62,14 @@ public static class LevelComponentsLookup
 		{ typeof(GameInfoComponent), 0 },
 		{ typeof(GameTimerComponent), 1 },
 		{ typeof(ItemEaterIdCounterComponent), 2 },
-		{ typeof(OnTileElementIdCounterComponent), 3 },
-		{ typeof(SearchSimulationGlobalStateComponent), 4 },
-		{ typeof(StateHolderIdCounterComponent), 5 },
-		{ typeof(TeamGameRankingComponent), 6 },
-		{ typeof(TeamInfoComponent), 7 },
-		{ typeof(TeamScoreAddedListenerComponent), 8 },
-		{ typeof(TeamScoreComponent), 9 }
+		{ typeof(ItemSpawnerIdCounterComponent), 3 },
+		{ typeof(OnTileElementIdCounterComponent), 4 },
+		{ typeof(SearchSimulationGlobalStateComponent), 5 },
+		{ typeof(StateHolderIdCounterComponent), 6 },
+		{ typeof(TeamGameRankingComponent), 7 },
+		{ typeof(TeamInfoComponent), 8 },
+		{ typeof(TeamScoreAddedListenerComponent), 9 },
+		{ typeof(TeamScoreComponent), 10 }
 	};
 
 	/// <summary>

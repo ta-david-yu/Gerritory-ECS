@@ -406,7 +406,7 @@
     <Compile Include="Assets\Sources\Generated\Item\ItemBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileEndAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Components\GameFlow\GameOverComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Item\CreateSpeedChangeStateForEaterOnItemEatenSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Item\_Deprecated\CreateSpeedChangeStateForEaterOnItemEatenSystem.cs" />
     <Compile Include="Assets\Sources\Components\Level\ConstructAIInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\OwnerAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMoveOnTileBeginComponent.cs" />
@@ -528,8 +528,18 @@
     <Compile Include="Assets\Sources\Components\Item\ApplyStateTypeToEaterOnEatenComponent.cs" />
     <Compile Include="Assets\Scripts\Utility\TagSelector\TagSelectorAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemApplyStateTypeToEaterOnEatenComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateStateFactoryTypeIdentifierComponent.cs" />
     <Compile Include="Assets\GameData\StateTypeEnum.cs" />
+    <Compile Include="Assets\Sources\Systems\Item\ApplyStateTypeToEaterOnItemEatenSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateStateFactoryTypeComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Item\GlobalItemSpawnerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemGlobalItemSpawnerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Item\SpawnIntervalComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Item\SpawnedByGlobalSpawnerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Item\SpawnTimerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Item\MaxNumberOfItemsInLevelComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Components\ItemSpawnerIdCounterComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementMaxItemInLevelComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelItemSpawnerIdCounterComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -18,7 +18,11 @@ public partial class ItemEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is ApplyStateTypeToEaterOnEatenComponent ApplyStateTypeToEaterOnEaten)
+		if (component is GlobalItemSpawnerComponent GlobalItemSpawner)
+		{
+			CopyGlobalItemSpawnerTo(GlobalItemSpawner);
+		}
+		else if (component is ApplyStateTypeToEaterOnEatenComponent ApplyStateTypeToEaterOnEaten)
 		{
 			CopyApplyStateTypeToEaterOnEatenTo(ApplyStateTypeToEaterOnEaten);
 		}

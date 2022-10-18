@@ -19,6 +19,10 @@ public class ScriptableGameConfig : ScriptableObject, IGameConfig
 	public IPlayerFactory PlayerFactory => m_PlayerFactory;
 
 	[SerializeField]
+	private StateTypeFactory m_StateTypeFactory;
+	public IStateTypeFactory StateTypeFactory => m_StateTypeFactory;
+
+	[SerializeField]
 	private GameInfoViewFactory m_GameInfoViewFactory;
 	public IGameInfoViewFactory GameInfoViewFactory => m_GameInfoViewFactory;
 

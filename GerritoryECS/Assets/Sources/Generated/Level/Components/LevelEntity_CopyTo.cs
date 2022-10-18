@@ -54,6 +54,10 @@ public partial class LevelEntity
 		{
 			CopyItemEaterIdCounterTo(ItemEaterIdCounter);
 		}
+		else if (component is ItemSpawnerIdCounterComponent ItemSpawnerIdCounter)
+		{
+			CopyItemSpawnerIdCounterTo(ItemSpawnerIdCounter);
+		}
 		else if (component is TeamScoreAddedListenerComponent TeamScoreAddedListener)
 		{
 			CopyTeamScoreAddedListenerTo(TeamScoreAddedListener);

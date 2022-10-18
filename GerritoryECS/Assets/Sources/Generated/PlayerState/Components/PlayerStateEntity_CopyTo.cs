@@ -18,9 +18,9 @@ public partial class PlayerStateEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is StateFactoryTypeIdentifierComponent StateFactoryTypeIdentifier)
+		if (component is StateFactoryTypeComponent StateFactoryType)
 		{
-			CopyStateFactoryTypeIdentifierTo(StateFactoryTypeIdentifier);
+			CopyStateFactoryTypeTo(StateFactoryType);
 		}
 		else if (component is SpeedChangeStateComponent SpeedChangeState)
 		{

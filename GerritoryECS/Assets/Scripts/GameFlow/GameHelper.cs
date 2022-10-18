@@ -140,6 +140,30 @@ public static class GameHelper
 		elementEntity.IsLeaveState = true;
 	}
 
+	public struct TryAddPlayerStateTypeResult
+	{
+		public bool Success;
+		public PlayerStateEntity PlayerStateEntity;
+	}
+	public static TryAddPlayerStateTypeResult TryAddPlayerStateTypeFor(this Contexts contexts, StateTypeEnum stateType, int stateHolderId)
+	{
+		if (!contexts.Config.GameConfig.value.StateTypeFactory.TryGetStateBlueprint(stateType, out var blueprint))
+		{
+			return new TryAddPlayerStateTypeResult() { Success = false };
+		}
+
+		PlayerStateEntity newStateEntity = contexts.PlayerState.CreateEntity();
+		blueprint.ApplyToEntity(newStateEntity);
+		newStateEntity.AddState(stateHolderId);
+		newStateEntity.AddStateFactoryType(stateType);
+
+		// Create one-frame event component on the state holder.
+		ElementEntity elementEntity = contexts.Element.GetEntityWithStateHolder(stateHolderId);
+		elementEntity.IsEnterState = true;
+
+		return new TryAddPlayerStateTypeResult() { Success = true, PlayerStateEntity = newStateEntity };
+	}
+
 	public static PlayerStateEntity AddPlayerStateFor(this Contexts contexts, int stateHolderId)
 	{
 		PlayerStateEntity newStateEntity = contexts.PlayerState.CreateEntity();

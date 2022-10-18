@@ -18,8 +18,9 @@ public class StateTypeFactory : ScriptableObject, IStateTypeFactory
 	private List<StateType> m_StateTypes = new List<StateType>();
 	public ReadOnlyCollection<StateType> StateTypes => m_StateTypes.AsReadOnly();
 
-	public bool TryGetStateBlueprint(int id, out IPlayerStateBlueprint blueprint)
+	public bool TryGetStateBlueprint(StateTypeEnum type, out IPlayerStateBlueprint blueprint)
 	{
+		int id = (int)type;
 		if (id < 0 || id >= m_StateTypes.Count)
 		{
 			blueprint = null;
@@ -27,11 +28,18 @@ public class StateTypeFactory : ScriptableObject, IStateTypeFactory
 		}
 
 		blueprint = m_StateTypes[id].Blueprint;
+		
+		if (blueprint == null)
+		{
+			return false;
+		}
+		
 		return true;
 	}
 
-	public bool TryGetStateColor(int id, out Color color)
+	public bool TryGetStateColor(StateTypeEnum type, out Color color)
 	{
+		int id = (int)type;
 		if (id < 0 || id >= m_StateTypes.Count)
 		{
 			color = Color.cyan;
@@ -42,8 +50,9 @@ public class StateTypeFactory : ScriptableObject, IStateTypeFactory
 		return true;
 	}
 
-	public bool TryGetStateName(int id, out string name)
+	public bool TryGetStateName(StateTypeEnum type, out string name)
 	{
+		int id = (int)type;
 		if (id < 0 || id >= m_StateTypes.Count)
 		{
 			name = "Unnamed State";

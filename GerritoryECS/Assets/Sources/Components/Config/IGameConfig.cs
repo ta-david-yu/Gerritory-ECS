@@ -10,6 +10,8 @@ public interface IGameConfig
 	int InitialRandomSeed { get; }
 	ITileFactory TileFactory { get; }
 	IPlayerFactory PlayerFactory { get; }
+	IStateTypeFactory StateTypeFactory { get; }
+	IGameInfoViewFactory GameInfoViewFactory { get; }
 	ReadOnlyCollection<PlayerGameConfig> PlayerGameConfigs { get; }
 
 	LevelData LevelData { get; }

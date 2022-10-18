@@ -120,6 +120,7 @@ public partial class Contexts
 	public const string AIInput = "AIInput";
 	public const string CanBeRespawnedOn = "CanBeRespawnedOn";
 	public const string Eaten = "Eaten";
+	public const string GlobalItemSpawner = "GlobalItemSpawner";
 	public const string ItemEater = "ItemEater";
 	public const string MarkOnTileElementDead = "MarkOnTileElementDead";
 	public const string MoveOnTile = "MoveOnTile";
@@ -155,6 +156,11 @@ public partial class Contexts
 			Eaten,
 			Item.GetGroup(ItemMatcher.Eaten),
 			(e, c) => ((EatenComponent)c).EaterId));
+
+		Item.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<ItemEntity, int>(
+			GlobalItemSpawner,
+			Item.GetGroup(ItemMatcher.GlobalItemSpawner),
+			(e, c) => ((GlobalItemSpawnerComponent)c).Id));
 
 		Element.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>(
 			ItemEater,
@@ -258,6 +264,11 @@ public static class ContextsExtensions
 	public static System.Collections.Generic.HashSet<ItemEntity> GetEntitiesWithEaten(this ItemContext context, int EaterId)
 	{
 		return ((JCMG.EntitasRedux.EntityIndex<ItemEntity, int>)context.GetEntityIndex(Contexts.Eaten)).GetEntities(EaterId);
+	}
+
+	public static ItemEntity GetEntityWithGlobalItemSpawner(this ItemContext context, int Id)
+	{
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ItemEntity, int>)context.GetEntityIndex(Contexts.GlobalItemSpawner)).GetEntity(Id);
 	}
 
 	public static ElementEntity GetEntityWithItemEater(this ElementContext context, int Id)

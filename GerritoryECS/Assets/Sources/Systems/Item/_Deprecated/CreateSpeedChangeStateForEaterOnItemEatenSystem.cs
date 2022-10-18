@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Obsolete("We don't use explicit state powerup system anymore, use ApplyStateTypeToEaterOnItemEatenSystem instead")]
 public sealed class CreateSpeedChangeStateForEaterOnItemEatenSystem : IFixedUpdateSystem
 {
 	private readonly ElementContext m_ElementContext;

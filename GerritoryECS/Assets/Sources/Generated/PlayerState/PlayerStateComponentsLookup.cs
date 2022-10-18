@@ -16,7 +16,7 @@ public static class PlayerStateComponentsLookup
 	public const int DebugMessage = 0;
 	public const int SpeedChangeState = 1;
 	public const int State = 2;
-	public const int StateFactoryTypeIdentifier = 3;
+	public const int StateFactoryType = 3;
 	public const int TimerAddedListener = 4;
 	public const int Timer = 5;
 	public const int WaitingForRespawnState = 6;
@@ -28,7 +28,7 @@ public static class PlayerStateComponentsLookup
 		"DebugMessage",
 		"SpeedChangeState",
 		"State",
-		"StateFactoryTypeIdentifier",
+		"StateFactoryType",
 		"TimerAddedListener",
 		"Timer",
 		"WaitingForRespawnState"
@@ -39,7 +39,7 @@ public static class PlayerStateComponentsLookup
 		typeof(DebugMessageComponent),
 		typeof(SpeedChangeStateComponent),
 		typeof(StateComponent),
-		typeof(StateFactoryTypeIdentifierComponent),
+		typeof(StateFactoryTypeComponent),
 		typeof(TimerAddedListenerComponent),
 		typeof(TimerComponent),
 		typeof(WaitingForRespawnStateComponent)
@@ -50,7 +50,7 @@ public static class PlayerStateComponentsLookup
 		{ typeof(DebugMessageComponent), 0 },
 		{ typeof(SpeedChangeStateComponent), 1 },
 		{ typeof(StateComponent), 2 },
-		{ typeof(StateFactoryTypeIdentifierComponent), 3 },
+		{ typeof(StateFactoryTypeComponent), 3 },
 		{ typeof(TimerAddedListenerComponent), 4 },
 		{ typeof(TimerComponent), 5 },
 		{ typeof(WaitingForRespawnStateComponent), 6 }
