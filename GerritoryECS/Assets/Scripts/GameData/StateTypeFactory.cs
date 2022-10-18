@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "StateFactory", menuName = "GameData/StateFactory")]
-public class StateFactory : ScriptableObject, IStateFactory
+[CreateAssetMenu(fileName = "StateTypeFactory", menuName = "GameData/StateTypeFactory")]
+public class StateTypeFactory : ScriptableObject, IStateTypeFactory
 {
 	[System.Serializable]
-	private struct StateType
+	public struct StateType
 	{
 		public string Name;
 		public PlayerStateBlueprint Blueprint;
@@ -15,6 +16,7 @@ public class StateFactory : ScriptableObject, IStateFactory
 
 	[SerializeField]
 	private List<StateType> m_StateTypes = new List<StateType>();
+	public ReadOnlyCollection<StateType> StateTypes => m_StateTypes.AsReadOnly();
 
 	public bool TryGetStateBlueprint(int id, out IPlayerStateBlueprint blueprint)
 	{

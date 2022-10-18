@@ -10,14 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a19f594c9b6a6a4ba0f23731e12af56, type: 3}
-  m_Name: NewPlayerStateBlueprint
+  m_Name: Blueprint_SpeedUp
   m_EditorClassIdentifier: 
   _components:
-  - rid: 1863424900822466563
+  - rid: 2904898045406871554
+  - rid: 2904898045406871555
   references:
     version: 2
     RefIds:
-    - rid: 1863424900822466563
-      type: {class: StateComponent, ns: , asm: Assembly-CSharp}
+    - rid: 2904898045406871554
+      type: {class: SpeedChangeStateComponent, ns: , asm: Assembly-CSharp}
       data:
-        HolderId: 0
+        SpeedMultiplier: 2
+    - rid: 2904898045406871555
+      type: {class: TimerComponent, ns: , asm: Assembly-CSharp}
+      data:
+        Value: 3

@@ -18,7 +18,11 @@ public partial class ItemEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is OnTileItemComponent OnTileItem)
+		if (component is ApplyStateTypeToEaterOnEatenComponent ApplyStateTypeToEaterOnEaten)
+		{
+			CopyApplyStateTypeToEaterOnEatenTo(ApplyStateTypeToEaterOnEaten);
+		}
+		else if (component is OnTileItemComponent OnTileItem)
 		{
 			CopyOnTileItemTo(OnTileItem);
 		}

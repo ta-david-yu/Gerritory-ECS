@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: StateFactory
   m_EditorClassIdentifier: 
   m_StateTypes:
-  - Name: Speed Up
-    Blueprint: {fileID: 0}
+  - Name: SpeedUp
+    Blueprint: {fileID: 11400000, guid: 09be5192375ad0743b2f1a917a2fb1cc, type: 2}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  - Name: SlowDown
+    Blueprint: {fileID: 11400000, guid: 9e06644aade93ee49a462072d970aab1, type: 2}
     Color: {r: 0, g: 0, b: 0, a: 0}

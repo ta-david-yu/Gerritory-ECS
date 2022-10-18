@@ -523,8 +523,13 @@
     <Compile Include="Assets\Sources\Components\PlayerState\SpeedChangeStateComponent.cs" />
     <Compile Include="Assets\Sources\Components\PlayerState\StateFactoryTypeIdentifierComponent.cs" />
     <Compile Include="Assets\Scripts\GameData\Interface\IItemFactory.cs" />
-    <Compile Include="Assets\Scripts\GameData\Interface\IStateFactory.cs" />
-    <Compile Include="Assets\Scripts\GameData\StateFactory.cs" />
+    <Compile Include="Assets\Scripts\GameData\Interface\IStateTypeFactory.cs" />
+    <Compile Include="Assets\Scripts\GameData\StateTypeFactory.cs" />
+    <Compile Include="Assets\Sources\Components\Item\ApplyStateTypeToEaterOnEatenComponent.cs" />
+    <Compile Include="Assets\Scripts\Utility\TagSelector\TagSelectorAttribute.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemApplyStateTypeToEaterOnEatenComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateStateFactoryTypeIdentifierComponent.cs" />
+    <Compile Include="Assets\GameData\StateTypeEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
