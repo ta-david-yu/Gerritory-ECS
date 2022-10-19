@@ -63,6 +63,9 @@ public sealed class SpawnPlayerPointerUIController :
 		m_SpawnedPlayerPointerUI.ChangeTimerColor(Color.white);
 		m_SpawnedPlayerPointerUI.UpdateTimerProgress(0.0f);
 
+		// Play Show Animation
+		m_SpawnedPlayerPointerUI.PlayShowUIAnimation();
+
 	}
 
 	public void OnTeamScoreAdded(LevelEntity entity, int value)

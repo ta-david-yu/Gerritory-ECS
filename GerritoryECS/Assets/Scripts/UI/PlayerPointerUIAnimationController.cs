@@ -41,10 +41,25 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 	[SerializeField]
 	private EasingFunction.Ease m_ChangeStateAnimationScaleEasing = EasingFunction.Ease.EaseOutQuad;
 
+	[Space]
+	[SerializeField]
+	private float m_ShowAnimationTime = 0.4f;
+
+	[SerializeField]
+	private float m_ShowAnimationStartScale = 0.0f;
+
+	[SerializeField]
+	private float m_ShowAnimationEndScale = 1.0f;
+
+	[SerializeField]
+	private EasingFunction.Ease m_ShowAnimationScaleEasing = EasingFunction.Ease.EaseOutBackDouble;
+
+
 	private Transform m_FollowingTransform;
 
 	// Tweener references
 	private Tweener m_ChangeStateTweener = null;
+	private Tweener m_ShowTweener = null;
 
 	// Update is called once per frame
 	void LateUpdate()
@@ -150,6 +165,36 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 			m_ChangeStateTweener = null;
 		})
 		.SetEase(EasingFunction.Ease.Linear).SetTime(m_ChangeStateAnimationTime);
+	}
+
+	public void PlayShowUIAnimation()
+	{
+		m_PointerTipAnchor.localScale = Vector3.one * m_ShowAnimationStartScale;
+
+		Tweener.SafeAbortTweener(ref m_ShowTweener);
+
+		m_ShowTweener = TweenManager.Instance.Tween((float progress) =>
+		{
+			m_PointerTipAnchor.localScale =
+				Vector3.one *
+				EasingFunction.GetEasingFunction(m_ShowAnimationScaleEasing)
+				(
+					m_ShowAnimationStartScale,
+					m_ShowAnimationEndScale,
+					progress
+				);
+
+		})
+		.SetTerminateCallback(() =>
+		{
+			m_ShowTweener = null;
+		})
+		.SetEase(EasingFunction.Ease.Linear).SetTime(m_ShowAnimationTime);
+	}
+
+	public void PlayHideUIAnimation()
+	{
+		// TODO:
 	}
 
 	public void UpdateTimerProgress(float progress)
