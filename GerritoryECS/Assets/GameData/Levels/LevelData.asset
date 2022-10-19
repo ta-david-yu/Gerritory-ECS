@@ -389,5 +389,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
     SpawnInterval: 2
     MaxItemOnLevelCount: 10
+  - m_ItemBlueprintPool:
+    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
+    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
+    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
+    SpawnInterval: 1
+    MaxItemOnLevelCount: 10
   m_RandomSeed: 4
   m_Size: 11

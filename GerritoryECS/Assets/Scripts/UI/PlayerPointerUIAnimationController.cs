@@ -137,6 +137,8 @@ public class PlayerPointerUIAnimationController : MonoBehaviour
 	{
 		m_OuterRing.color = Color.white;
 
+		Tweener.SafeAbortTweener(ref m_ChangeStateTweener);
+
 		m_ChangeStateTweener = TweenManager.Instance.Tween((float progress) =>
 		{
 			Color color = Color.Lerp(Color.white, m_NormalRingColor, progress);
