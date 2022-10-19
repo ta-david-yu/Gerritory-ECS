@@ -10,6 +10,7 @@ public sealed class GlobalItemSpawnerConfig
 	private List<ItemBlueprint> m_ItemBlueprintPool = new List<ItemBlueprint>();
 	public IItemBlueprint[] ItemBlueprintPool => m_ItemBlueprintPool.ToArray();
 
-	public float SpawnInterval = 5.0f;
-	public int MaxItemOnLevelCount = 4;
+	public float MinimumSpawnInterval = 5.0f;
+	public float MaximumSpawnInterval = 5.0f;
+	public int MaxNumberOfItemsOnLevelAtTheSameTime = 4;
 }

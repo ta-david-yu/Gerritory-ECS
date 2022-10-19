@@ -108,7 +108,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 				var spawnerConfigs = m_ConfigContext.GameConfig.value.LevelData.GlobalItemSpawnerConfigs;
 				foreach (var spawnerConfig in spawnerConfigs)
 				{
-					m_Contexts.CreateGlobalItemSpawner(spawnerConfig.ItemBlueprintPool, spawnerConfig.SpawnInterval, spawnerConfig.MaxItemOnLevelCount);
+					m_Contexts.CreateGlobalItemSpawner(spawnerConfig);
 				}
 
 				// Go to play after countdown timer is up.

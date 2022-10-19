@@ -18,21 +18,21 @@ public partial class CommandEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is SpawnItemComponent SpawnItem)
+		if (component is ConstructTileComponent ConstructTile)
 		{
-			CopySpawnItemTo(SpawnItem);
+			CopyConstructTileTo(ConstructTile);
 		}
 		else if (component is SpawnedByGlobalSpawnerComponent SpawnedByGlobalSpawner)
 		{
 			CopySpawnedByGlobalSpawnerTo(SpawnedByGlobalSpawner);
 		}
-		else if (component is ConstructTileComponent ConstructTile)
-		{
-			CopyConstructTileTo(ConstructTile);
-		}
 		else if (component is ConstructAIInputComponent ConstructAIInput)
 		{
 			CopyConstructAIInputTo(ConstructAIInput);
+		}
+		else if (component is SpawnItemComponent SpawnItem)
+		{
+			CopySpawnItemTo(SpawnItem);
 		}
 		else if (component is MarkOnTileElementDeadComponent MarkOnTileElementDead)
 		{

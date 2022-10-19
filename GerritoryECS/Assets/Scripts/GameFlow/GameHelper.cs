@@ -279,12 +279,12 @@ public static class GameHelper
 		return new TryCommandSpawnItemResult { Success = true, CommandEntity = command };
 	}
 
-	public static ItemEntity CreateGlobalItemSpawner(this Contexts contexts, IItemBlueprint[] itemBlueprints, float spawnInterval, int maxItemCountOnLevel)
+	public static ItemEntity CreateGlobalItemSpawner(this Contexts contexts, GlobalItemSpawnerConfig config)
 	{
 		ItemEntity spawnerEntity = contexts.Item.CreateEntity();
-		spawnerEntity.AddGlobalItemSpawner(contexts.Level.GetNewItemSpawnerId(), itemBlueprints);
-		spawnerEntity.AddSpawnInterval(spawnInterval);
-		spawnerEntity.AddMaxNumberOfItemsInLevel(maxItemCountOnLevel);
+		spawnerEntity.AddGlobalItemSpawner(contexts.Level.GetNewItemSpawnerId(), config.ItemBlueprintPool);
+		spawnerEntity.AddSpawnInterval(config.MinimumSpawnInterval, config.MaximumSpawnInterval);
+		spawnerEntity.AddMaxNumberOfItemsInLevel(config.MaxNumberOfItemsOnLevelAtTheSameTime);
 		return spawnerEntity;
 	}
 

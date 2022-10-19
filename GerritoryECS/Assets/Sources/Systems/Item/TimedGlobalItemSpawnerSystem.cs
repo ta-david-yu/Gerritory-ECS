@@ -80,11 +80,8 @@ public sealed class TimedGlobalItemSpawnerSystem : IFixedUpdateSystem
 					continue;
 				}
 
-				// TODO: randomly pick an item blueprint from the pool instead of picking index 0 item.
-				// ...
-				int spawnItemPoolIndex = 0;
-
-				var commandResult = m_Contexts.TryCommandSpawnItemAt(spawnerEntity.GlobalItemSpawner.ItemBlueprintPool[spawnItemPoolIndex], tileToSpawnOn.TilePosition.Value);
+				IItemBlueprint itemToSpawn = spawnerEntity.GlobalItemSpawner.GetRandomItemFromPool();
+				var commandResult = m_Contexts.TryCommandSpawnItemAt(itemToSpawn, tileToSpawnOn.TilePosition.Value);
 				if (!commandResult.Success)
 				{
 					// Failed to spawn an item at the given location, skip the spawn this time.

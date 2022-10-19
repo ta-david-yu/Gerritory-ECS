@@ -12,22 +12,24 @@ public partial class ItemEntity
 	public SpawnIntervalComponent SpawnInterval { get { return (SpawnIntervalComponent)GetComponent(ItemComponentsLookup.SpawnInterval); } }
 	public bool HasSpawnInterval { get { return HasComponent(ItemComponentsLookup.SpawnInterval); } }
 
-	public void AddSpawnInterval(float newValue)
+	public void AddSpawnInterval(float newMinValue, float newMaxValue)
 	{
 		var index = ItemComponentsLookup.SpawnInterval;
 		var component = (SpawnIntervalComponent)CreateComponent(index, typeof(SpawnIntervalComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.Value = newValue;
+		component.MinValue = newMinValue;
+		component.MaxValue = newMaxValue;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceSpawnInterval(float newValue)
+	public void ReplaceSpawnInterval(float newMinValue, float newMaxValue)
 	{
 		var index = ItemComponentsLookup.SpawnInterval;
 		var component = (SpawnIntervalComponent)CreateComponent(index, typeof(SpawnIntervalComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.Value = newValue;
+		component.MinValue = newMinValue;
+		component.MaxValue = newMaxValue;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -37,7 +39,8 @@ public partial class ItemEntity
 		var index = ItemComponentsLookup.SpawnInterval;
 		var component = (SpawnIntervalComponent)CreateComponent(index, typeof(SpawnIntervalComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.Value = copyComponent.Value;
+		component.MinValue = copyComponent.MinValue;
+		component.MaxValue = copyComponent.MaxValue;
 		#endif
 		ReplaceComponent(index, component);
 	}

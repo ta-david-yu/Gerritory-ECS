@@ -18,29 +18,9 @@ public partial class ItemEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is MaxNumberOfItemsInLevelComponent MaxNumberOfItemsInLevel)
-		{
-			CopyMaxNumberOfItemsInLevelTo(MaxNumberOfItemsInLevel);
-		}
-		else if (component is SpawnItemTimerComponent SpawnItemTimer)
-		{
-			CopySpawnItemTimerTo(SpawnItemTimer);
-		}
-		else if (component is SpawnedByGlobalSpawnerComponent SpawnedByGlobalSpawner)
+		if (component is SpawnedByGlobalSpawnerComponent SpawnedByGlobalSpawner)
 		{
 			CopySpawnedByGlobalSpawnerTo(SpawnedByGlobalSpawner);
-		}
-		else if (component is SpawnIntervalComponent SpawnInterval)
-		{
-			CopySpawnIntervalTo(SpawnInterval);
-		}
-		else if (component is GlobalItemSpawnerComponent GlobalItemSpawner)
-		{
-			CopyGlobalItemSpawnerTo(GlobalItemSpawner);
-		}
-		else if (component is ApplyStateTypeToEaterOnEatenComponent ApplyStateTypeToEaterOnEaten)
-		{
-			CopyApplyStateTypeToEaterOnEatenTo(ApplyStateTypeToEaterOnEaten);
 		}
 		else if (component is OnTileItemComponent OnTileItem)
 		{
@@ -54,9 +34,29 @@ public partial class ItemEntity
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}
+		else if (component is SpawnIntervalComponent SpawnInterval)
+		{
+			CopySpawnIntervalTo(SpawnInterval);
+		}
+		else if (component is ApplyStateTypeToEaterOnEatenComponent ApplyStateTypeToEaterOnEaten)
+		{
+			CopyApplyStateTypeToEaterOnEatenTo(ApplyStateTypeToEaterOnEaten);
+		}
+		else if (component is SpawnItemTimerComponent SpawnItemTimer)
+		{
+			CopySpawnItemTimerTo(SpawnItemTimer);
+		}
+		else if (component is GlobalItemSpawnerComponent GlobalItemSpawner)
+		{
+			CopyGlobalItemSpawnerTo(GlobalItemSpawner);
+		}
 		else if (component is ApplySpeedChangeStateForEaterOnEatenComponent ApplySpeedChangeStateForEaterOnEaten)
 		{
 			CopyApplySpeedChangeStateForEaterOnEatenTo(ApplySpeedChangeStateForEaterOnEaten);
+		}
+		else if (component is MaxNumberOfItemsInLevelComponent MaxNumberOfItemsInLevel)
+		{
+			CopyMaxNumberOfItemsInLevelTo(MaxNumberOfItemsInLevel);
 		}
 		#endif
 	}

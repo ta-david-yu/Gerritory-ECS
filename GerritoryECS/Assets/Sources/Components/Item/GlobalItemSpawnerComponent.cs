@@ -9,4 +9,10 @@ public sealed class GlobalItemSpawnerComponent : IComponent
 	[PrimaryEntityIndex]
 	public int Id;
 	public IItemBlueprint[] ItemBlueprintPool;
+
+	public IItemBlueprint GetRandomItemFromPool()
+	{
+		int index = UnityEngine.Random.Range(0, ItemBlueprintPool.Length);
+		return ItemBlueprintPool[index];
+	}
 }
