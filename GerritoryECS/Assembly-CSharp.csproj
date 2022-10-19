@@ -73,8 +73,10 @@
     <Compile Include="Assets\Sources\Generated\Events\Components\MoveOnTileAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectSpeedEffectComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\CanBeRespawnedOnComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Item\MaxNumberOfItemsInLevelComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectOnTileElementEffectComponent.cs" />
     <Compile Include="Assets\Sources\Features\InitializationFeature.cs" />
+    <Compile Include="Assets\Sources\Components\PlayerState\StateFactoryTypeIdentifierComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\ElementBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigDebugMessageComponent.cs" />
     <Compile Include="Assets\Scripts\View\OnTileElement\SpawnPlayerPointerUIController.cs" />
@@ -93,17 +95,20 @@
     <Compile Include="Assets\Sources\Systems\Input\EmitUserInputSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\OwnerAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Features\MessageFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemMaxNumberOfItemsInLevelComponent.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowEndOnEliminatedComponent.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\PlayerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\HelloWorldSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemContext.cs" />
     <Compile Include="Assets\Sources\Features\InGameFlowFeature.cs" />
+    <Compile Include="Assets\Sources\Generated\Command\Components\CommandSpawnItemComponent.cs" />
     <Compile Include="Assets\Scripts\Input\InputActionManager.cs" />
     <Compile Include="Assets\Sources\Generated\Input\IInputBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\IGameFlowBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOwnerAddedListener.cs" />
     <Compile Include="Assets\Scripts\View\EntityCreationEventListenerBase.cs" />
     <Compile Include="Assets\Sources\Systems\Input\DecayMovementInputActionSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Command\Components\CommandSpawnedByGlobalSpawnerComponent.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MoveOnTileBeginComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Command\Components\CommandConstructAIInputComponent.cs" />
     <Compile Include="Assets\Sources\Components\Message\ConsumedComponent.cs" />
@@ -121,6 +126,7 @@
     <Compile Include="Assets\Sources\Generated\Message\MessageBlueprint.cs" />
     <Compile Include="Assets\Scripts\AI\AIHelper.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMoveOnTileEndComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelItemSpawnerIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Components\Config\PlayerGameConfig.cs" />
     <Compile Include="Assets\Sources\Systems\Item\EatItemOnMoveEndSystem.cs" />
@@ -160,6 +166,7 @@
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateEntity.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowScoreObjectiveComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementDebugMessageComponent.cs" />
+    <Compile Include="Assets\Scripts\GameData\Interface\IStateTypeFactory.cs" />
     <Compile Include="Assets\Sources\Components\Input\IdleTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateBlueprint.cs" />
     <Compile Include="Assets\Sources\Components\Command\ConstructPlayerComponent.cs" />
@@ -178,6 +185,7 @@
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementEnterStateComponent.cs" />
     <Compile Include="Assets\Sources\Components\Item\ApplySpeedChangeOnEatenComponent.cs" />
     <Compile Include="Assets\Sources\Features\InputFeature.cs" />
+    <Compile Include="Assets\Scripts\Utility\TagSelector\TagSelectorAttribute.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\DebugMessageSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementTeamComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\EffectMatcher.cs" />
@@ -244,12 +252,14 @@
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnerComponent.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\StateHolderComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Components\EffectEntity_CopyTo.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemApplyStateTypeToEaterOnEatenComponent.cs" />
     <Compile Include="Assets\Sources\Components\Command\MarkOnTileElementDeadComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Level\CreateEntityFromLevelBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileTilePositionComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\CreateEntityFromEffectBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\RemoveEnteredByOnTileElementFromTileEntitiesSystem.cs" />
+    <Compile Include="Assets\Scripts\GameData\Interface\IItemFactory.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\CreateEntityFromPlayerStateBlueprint.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\TileOwnerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputDebugMessageComponent.cs" />
@@ -262,6 +272,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\ITeamAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnterStateAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMoveOnTileAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemSpawnIntervalComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\ITeamScoreAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowGameFlowComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\Features\PlayerStateCleanupFeature.cs" />
@@ -277,6 +288,7 @@
     <Compile Include="Assets\Sources\Generated\GameFlow\GameFlowBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Element\ElementBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnterableRemovedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Item\GlobalItemSpawnerComponent.cs" />
     <Compile Include="Assets\Sources\Features\ItemFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelOnTileElementIdCounterComponent.cs" />
     <Compile Include="Assets\Scripts\GameData\Interface\IGameInfoViewFactory.cs" />
@@ -317,6 +329,8 @@
     <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowCountdownTimerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Item\SpawnItemTimerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Item\ApplyStateTypeToEaterOnEatenComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileBeginAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\ITimerAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMovementInputActionComponent.cs" />
@@ -331,7 +345,9 @@
     <Compile Include="Assets\Scripts\UI\PlayerPointerUIAnimationController.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\TileBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Systems\LevelCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Item\SpawnIntervalComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Message\MessageContext.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemGlobalItemSpawnerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Systems\RemoveMoveOnTileEndFromElementEntitiesSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\TimerAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemEntity.cs" />
@@ -346,6 +362,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Systems\MoveOnTileEndAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Tile\CreateLeftByOnTileElementSystem.cs" />
     <Compile Include="Assets\Scripts\GameFlow\GameConstants.cs" />
+    <Compile Include="Assets\Scripts\GameData\StateTypeFactory.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\DeadAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IDeadAddedListener.cs" />
@@ -357,6 +374,7 @@
     <Compile Include="Assets\Sources\Generated\Element\ElementEntity.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementCanRespawnAfterDeathComponent.cs" />
     <Compile Include="Assets\Sources\Components\_Sandbox\DebugMessageComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemSpawnedByGlobalSpawnerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Systems\RemoveEnterStateFromElementEntitiesSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemOnTileItemComponent.cs" />
     <Compile Include="Assets\Sources\Extensions\MessageContextExtensions.cs" />
@@ -366,8 +384,10 @@
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnterableAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\OnTileElementKillerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateContext.cs" />
+    <Compile Include="Assets\Sources\Components\Config\GlobalItemSpawnerConfig.cs" />
     <Compile Include="Assets\Sources\Generated\Element\ElementAttribute.cs" />
     <Compile Include="Assets\Sources\Components\Tile\TilePositionComponent.cs" />
+    <Compile Include="Assets\GameData\StateTypeEnum.cs" />
     <Compile Include="Assets\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\Systems\EffectCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\LeaveStateAddedEventSystem.cs" />
@@ -379,6 +399,7 @@
     <Compile Include="Assets\Sources\Features\MovementFeature.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowEndOnTimeoutComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Input\EmitAIInputSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Command\SpawnItemComponent.cs" />
     <Compile Include="Assets\Sources\Components\GameFlow\EndOnTimeoutComponent.cs" />
     <Compile Include="Assets\Sources\Components\Tile\LeftByOnTileElementComponent.cs" />
     <Compile Include="Assets\Scripts\GameFlow\InGameController.cs" />
@@ -386,6 +407,7 @@
     <Compile Include="Assets\Sources\Generated\Effect\EffectAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\ILeftByOnTileElementAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementLeaveStateAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Item\ApplyStateTypeToEaterOnItemEatenSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\EffectBlueprint.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\TeamComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Command\Components\CommandMarkOnTileElementDeadComponent.cs" />
@@ -393,6 +415,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Components\OwnerRemovedListenerComponent.cs" />
     <Compile Include="Assets\Scripts\View\Tile\SetTileWorldPositionOnComponentsAdded.cs" />
     <Compile Include="Assets\Sources\Generated\Level\Components\LevelTeamScoreComponent.cs" />
+    <Compile Include="Assets\Sources\Components\PlayerState\SpeedChangeStateComponent.cs" />
     <Compile Include="Assets\Sources\Components\Item\ItemComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileEnteredByOnTileElementAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Systems\ItemCleanupSystem.cs" />
@@ -425,6 +448,7 @@
     <Compile Include="Assets\Scripts\View\IEntityCreationEventController.cs" />
     <Compile Include="Assets\Sources\Components\Tile\OwnerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\GameFlow\InGameStateMachineSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Components\Interfaces\ISpawnedByGlobalSpawnerEntity.cs" />
     <Compile Include="Assets\Sources\Components\PlayerState\StateComponent.cs" />
     <Compile Include="Assets\Sources\Features\TileFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\EnteredByOnTileElementAddedListenerComponent.cs" />
@@ -442,13 +466,16 @@
     <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Systems\Message\ConsumeMessageSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\LevelEventSystems.cs" />
+    <Compile Include="Assets\Sources\Systems\Item\SpawnItemSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemAttribute.cs" />
     <Compile Include="Assets\Sources\Components\Tile\EnterableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Feature.cs" />
+    <Compile Include="Assets\Sources\Components\Item\SpawnedByGlobalSpawnerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\TileEventSystems.cs" />
     <Compile Include="Assets\Sources\Components\GameFlow\CountdownTimerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Command\CommandAttribute.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\GameFlowEntity.cs" />
+    <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateStateFactoryTypeComponent.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\UpdateStateTimerSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\DeadRemovedEventSystem.cs" />
     <Compile Include="Assets\Sources\Systems\GameFlow\CheckEliminationConditionSystem.cs" />
@@ -457,6 +484,7 @@
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Generated\Command\CommandEntity.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigComponentsLookup.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemSpawnItemTimerComponent.cs" />
     <Compile Include="Assets\Sources\Components\Command\ConstructTileComponent.cs" />
     <Compile Include="Assets\Sources\Components\Movement\MovementInputActionComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\IElementBlueprint.cs" />
@@ -499,6 +527,7 @@
     <Compile Include="Assets\Sources\Components\OnTileElement\DeadComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Components\Interfaces\IDebugMessageEntity.cs" />
     <Compile Include="Assets\Sources\Components\GameFlow\ScoreObjectiveComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Item\TimedGlobalItemSpawnerSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Command\CommandContext.cs" />
     <Compile Include="Assets\Scripts\AI\SearchBestActionWithMinimaxJob.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementOnTileElementComponent.cs" />
@@ -518,38 +547,9 @@
     <Compile Include="Assets\Sources\Generated\Config\IConfigBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileOwnableComponent.cs" />
     <Compile Include="Assets\Scripts\View\Tile\CollapseTileAnimationController.cs" />
+    <Compile Include="Assets\Sources\Generated\Components\ItemSpawnerIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Components\PlayerState\SpeedChangeStateComponent.cs" />
-    <Compile Include="Assets\Sources\Components\PlayerState\StateFactoryTypeIdentifierComponent.cs" />
-    <Compile Include="Assets\Scripts\GameData\Interface\IItemFactory.cs" />
-    <Compile Include="Assets\Scripts\GameData\Interface\IStateTypeFactory.cs" />
-    <Compile Include="Assets\Scripts\GameData\StateTypeFactory.cs" />
-    <Compile Include="Assets\Sources\Components\Item\ApplyStateTypeToEaterOnEatenComponent.cs" />
-    <Compile Include="Assets\Scripts\Utility\TagSelector\TagSelectorAttribute.cs" />
-    <Compile Include="Assets\Sources\Generated\Item\Components\ItemApplyStateTypeToEaterOnEatenComponent.cs" />
-    <Compile Include="Assets\GameData\StateTypeEnum.cs" />
-    <Compile Include="Assets\Sources\Systems\Item\ApplyStateTypeToEaterOnItemEatenSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\PlayerState\Components\PlayerStateStateFactoryTypeComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Item\GlobalItemSpawnerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Item\Components\ItemGlobalItemSpawnerComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Item\SpawnIntervalComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Item\SpawnedByGlobalSpawnerComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Item\SpawnItemTimerComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Item\MaxNumberOfItemsInLevelComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Components\ItemSpawnerIdCounterComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Level\Components\LevelItemSpawnerIdCounterComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Item\TimedGlobalItemSpawnerSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Item\Components\ItemSpawnIntervalComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Item\Components\ItemSpawnedByGlobalSpawnerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Item\Components\ItemMaxNumberOfItemsInLevelComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Item\SpawnItemSystem.cs" />
-    <Compile Include="Assets\Sources\Components\Command\SpawnItemComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Command\Components\CommandSpawnItemComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Command\Components\CommandSpawnedByGlobalSpawnerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Components\Interfaces\ISpawnedByGlobalSpawnerEntity.cs" />
-    <Compile Include="Assets\Sources\Generated\Item\Components\ItemSpawnItemTimerComponent.cs" />
-    <Compile Include="Assets\Sources\Components\Config\GlobalItemSpawnerConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
