@@ -559,6 +559,10 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IEatenAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\EatenAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemEatenAddedListenerComponent.cs" />
+    <Compile Include="Assets\Scripts\GameFlow\GameHelper_OnTileElement.cs" />
+    <Compile Include="Assets\Scripts\GameFlow\GameHelper_Item.cs" />
+    <Compile Include="Assets\Scripts\GameFlow\GameHelper_Tile.cs" />
+    <Compile Include="Assets\Scripts\GameFlow\GameHelper_PlayerState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
