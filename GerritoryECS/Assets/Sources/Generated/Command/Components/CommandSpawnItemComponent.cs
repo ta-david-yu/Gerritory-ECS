@@ -12,24 +12,24 @@ public partial class CommandEntity
 	public SpawnItemComponent SpawnItem { get { return (SpawnItemComponent)GetComponent(CommandComponentsLookup.SpawnItem); } }
 	public bool HasSpawnItem { get { return HasComponent(CommandComponentsLookup.SpawnItem); } }
 
-	public void AddSpawnItem(UnityEngine.Vector2Int newTilePosition, IItemBlueprint newItemBlueprint)
+	public void AddSpawnItem(UnityEngine.Vector2Int newTilePosition, IItemData newItemData)
 	{
 		var index = CommandComponentsLookup.SpawnItem;
 		var component = (SpawnItemComponent)CreateComponent(index, typeof(SpawnItemComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.TilePosition = newTilePosition;
-		component.ItemBlueprint = newItemBlueprint;
+		component.ItemData = newItemData;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceSpawnItem(UnityEngine.Vector2Int newTilePosition, IItemBlueprint newItemBlueprint)
+	public void ReplaceSpawnItem(UnityEngine.Vector2Int newTilePosition, IItemData newItemData)
 	{
 		var index = CommandComponentsLookup.SpawnItem;
 		var component = (SpawnItemComponent)CreateComponent(index, typeof(SpawnItemComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.TilePosition = newTilePosition;
-		component.ItemBlueprint = newItemBlueprint;
+		component.ItemData = newItemData;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -40,7 +40,7 @@ public partial class CommandEntity
 		var component = (SpawnItemComponent)CreateComponent(index, typeof(SpawnItemComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.TilePosition = copyComponent.TilePosition;
-		component.ItemBlueprint = copyComponent.ItemBlueprint;
+		component.ItemData = copyComponent.ItemData;
 		#endif
 		ReplaceComponent(index, component);
 	}

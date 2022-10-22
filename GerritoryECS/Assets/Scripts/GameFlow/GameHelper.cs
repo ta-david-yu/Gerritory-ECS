@@ -248,7 +248,7 @@ public static class GameHelper
 		return true;
 	}
 
-	public static TryCommandSpawnItemResult TryCommandSpawnItemAt(this Contexts contexts, IItemBlueprint itemBlueprint, Vector2Int tilePosition)
+	public static TryCommandSpawnItemResult TryCommandSpawnItemAt(this Contexts contexts, IItemData itemData, Vector2Int tilePosition)
 	{
 		ItemEntity itemEntity = contexts.Item.GetEntityWithOnTileItem(tilePosition);
 		if (itemEntity != null)
@@ -275,14 +275,14 @@ public static class GameHelper
 
 		// Create spawn item command entity.
 		var command = contexts.Command.CreateEntity();
-		command.AddSpawnItem(tilePosition, itemBlueprint);
+		command.AddSpawnItem(tilePosition, itemData);
 		return new TryCommandSpawnItemResult { Success = true, CommandEntity = command };
 	}
 
 	public static ItemEntity CreateGlobalItemSpawner(this Contexts contexts, GlobalItemSpawnerConfig config)
 	{
 		ItemEntity spawnerEntity = contexts.Item.CreateEntity();
-		spawnerEntity.AddGlobalItemSpawner(contexts.Level.GetNewItemSpawnerId(), config.ItemBlueprintPool);
+		spawnerEntity.AddGlobalItemSpawner(contexts.Level.GetNewItemSpawnerId(), config.ItemDataPool);
 		spawnerEntity.AddSpawnInterval(config.MinimumSpawnInterval, config.MaximumSpawnInterval);
 		spawnerEntity.AddMaxNumberOfItemsInLevel(config.MaxNumberOfItemsOnLevelAtTheSameTime);
 		return spawnerEntity;
@@ -379,16 +379,43 @@ public static class GameHelper
 		// Link view controller with entity
 		viewController.Link(tileEntity);
 
-		// TODO: remove this!
-		/*
-		if (Random.Range(0.0f, 1.0f) > 0.8f)
-		{
-			var itemEntity = contexts.Item.CreateEntity();
-			itemEntity.AddOnTileItem(tilePosition);
-			itemEntity.AddApplySpeedChangeStateForEaterOnEaten(3.0f, 2.0f);
-		}*/
-
 		return tileEntity;
+	}
+
+
+	public static ItemEntity ConstructGlobalSpawnerItemAtPosition(this Contexts contexts, IItemData itemData, Vector2Int position, int globalSpawnerId)
+	{
+		ItemEntity itemEntity = contexts.Item.CreateEntity();
+		IEntityCreationEventController viewController = itemData.CreateItemView();
+		viewController.OnEntityCreated(contexts, itemEntity);
+
+		IItemBlueprint itemBlueprint = itemData.ItemBlueprint;
+		itemBlueprint.ApplyToEntity(itemEntity);
+		itemEntity.ReplaceOnTileItem(position);
+		itemEntity.AddSpawnedByGlobalSpawner(globalSpawnerId);
+		viewController.OnComponentsAdded(contexts, itemEntity);
+
+		// Link view controller with entity
+		viewController.Link(itemEntity);
+
+		return itemEntity;
+	}
+
+	public static ItemEntity ConstructItemAtPosition(this Contexts contexts, IItemData itemData, Vector2Int position)
+	{
+		ItemEntity itemEntity = contexts.Item.CreateEntity();
+		IEntityCreationEventController viewController = itemData.CreateItemView();
+		viewController.OnEntityCreated(contexts, itemEntity);
+
+		IItemBlueprint itemBlueprint = itemData.ItemBlueprint;
+		itemBlueprint.ApplyToEntity(itemEntity);
+		itemEntity.ReplaceOnTileItem(position);
+		viewController.OnComponentsAdded(contexts, itemEntity);
+
+		// Link view controller with entity
+		viewController.Link(itemEntity);
+
+		return itemEntity;
 	}
 
 	public static float GetElementEntityMoveOnTileDuration(this ElementEntity elementEntity)

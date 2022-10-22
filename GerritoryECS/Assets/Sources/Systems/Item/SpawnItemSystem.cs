@@ -1,6 +1,8 @@
 using JCMG.EntitasRedux;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public sealed class SpawnItemSystem : IFixedUpdateSystem
@@ -49,20 +51,16 @@ public sealed class SpawnItemSystem : IFixedUpdateSystem
 				Debug.LogWarning($"The tile at the given position {targetPosition} is not enterable. Force spawn the item.");
 			}
 
-			ItemEntity newItemEntity = m_ItemContext.CreateEntity();
-			IItemBlueprint itemBlueprint = spawnItemCommand.SpawnItem.ItemBlueprint;
-			itemBlueprint.ApplyToEntity(newItemEntity);
-			newItemEntity.ReplaceOnTileItem(targetPosition);
-
 			if (spawnItemCommand.HasSpawnedByGlobalSpawner)
 			{
-				// Label the item with the global item spawner id.
-				newItemEntity.AddSpawnedByGlobalSpawner(spawnItemCommand.SpawnedByGlobalSpawner.SpawnerId);
+				m_Contexts.ConstructGlobalSpawnerItemAtPosition(spawnItemCommand.SpawnItem.ItemData, targetPosition, spawnItemCommand.SpawnedByGlobalSpawner.SpawnerId);
+			}
+			else
+			{
+				m_Contexts.ConstructItemAtPosition(spawnItemCommand.SpawnItem.ItemData, targetPosition);
 			}
 
-			// TODO: Load View Controller in and register events to the item entity
-			// ...
-
+			// Destroy the command.
 			spawnItemCommand.Destroy();
 		}
 	}

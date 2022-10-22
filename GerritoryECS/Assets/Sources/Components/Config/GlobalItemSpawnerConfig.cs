@@ -7,8 +7,8 @@ using UnityEngine;
 public sealed class GlobalItemSpawnerConfig
 {
 	[SerializeField]
-	private List<ItemBlueprint> m_ItemBlueprintPool = new List<ItemBlueprint>();
-	public IItemBlueprint[] ItemBlueprintPool => m_ItemBlueprintPool.ToArray();
+	private List<ItemData> m_ItemDataPool = new List<ItemData>();
+	public IItemData[] ItemDataPool => m_ItemDataPool.ToArray();
 
 	public float MinimumSpawnInterval = 5.0f;
 	public float MaximumSpawnInterval = 5.0f;

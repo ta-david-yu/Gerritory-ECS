@@ -383,19 +383,18 @@ MonoBehaviour:
   m_GoalScore: 1
   m_NumberOfTeamsShouldBeLeft: 0
   GlobalItemSpawnerConfigs:
-  - m_ItemBlueprintPool:
-    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
-    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
-    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
+  - m_ItemDataPool:
+    - {fileID: 11400000, guid: 2c1b0975e7d80004fb2909fa0f5afc63, type: 2}
+    - {fileID: 11400000, guid: 2c1b0975e7d80004fb2909fa0f5afc63, type: 2}
     MinimumSpawnInterval: 3
     MaximumSpawnInterval: 6
-    MaxItemOnLevelCount: 10
-  - m_ItemBlueprintPool:
-    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
-    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
-    - {fileID: 11400000, guid: 889cd064fa823994cade96a8f55dcc57, type: 2}
+    MaxNumberOfItemsOnLevelAtTheSameTime: 4
+  - m_ItemDataPool:
+    - {fileID: 11400000, guid: 2c1b0975e7d80004fb2909fa0f5afc63, type: 2}
+    - {fileID: 11400000, guid: 2c1b0975e7d80004fb2909fa0f5afc63, type: 2}
+    - {fileID: 11400000, guid: 2c1b0975e7d80004fb2909fa0f5afc63, type: 2}
     MinimumSpawnInterval: 6
     MaximumSpawnInterval: 12
-    MaxItemOnLevelCount: 10
+    MaxNumberOfItemsOnLevelAtTheSameTime: 4
   m_RandomSeed: 4
   m_Size: 11

@@ -550,6 +550,15 @@
     <Compile Include="Assets\Sources\Generated\Components\ItemSpawnerIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
+    <Compile Include="Assets\Scripts\GameData\Interface\IItemData.cs" />
+    <Compile Include="Assets\Scripts\GameData\ItemData.cs" />
+    <Compile Include="Assets\Scripts\View\Item\SetItemWorldPositionOnCompnentsAdded.cs" />
+    <Compile Include="Assets\Scripts\View\Item\ItemEatenAnimationController.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\EatenAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\ItemEventSystems.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IEatenAddedListener.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\EatenAddedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Item\Components\ItemEatenAddedListenerComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

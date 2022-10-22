@@ -80,7 +80,7 @@ public sealed class TimedGlobalItemSpawnerSystem : IFixedUpdateSystem
 					continue;
 				}
 
-				IItemBlueprint itemToSpawn = spawnerEntity.GlobalItemSpawner.GetRandomItemFromPool();
+				IItemData itemToSpawn = spawnerEntity.GlobalItemSpawner.GetRandomItemFromPool();
 				var commandResult = m_Contexts.TryCommandSpawnItemAt(itemToSpawn, tileToSpawnOn.TilePosition.Value);
 				if (!commandResult.Success)
 				{

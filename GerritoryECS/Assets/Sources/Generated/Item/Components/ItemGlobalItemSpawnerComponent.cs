@@ -12,24 +12,24 @@ public partial class ItemEntity
 	public GlobalItemSpawnerComponent GlobalItemSpawner { get { return (GlobalItemSpawnerComponent)GetComponent(ItemComponentsLookup.GlobalItemSpawner); } }
 	public bool HasGlobalItemSpawner { get { return HasComponent(ItemComponentsLookup.GlobalItemSpawner); } }
 
-	public void AddGlobalItemSpawner(int newId, IItemBlueprint[] newItemBlueprintPool)
+	public void AddGlobalItemSpawner(int newId, IItemData[] newItemDataPool)
 	{
 		var index = ItemComponentsLookup.GlobalItemSpawner;
 		var component = (GlobalItemSpawnerComponent)CreateComponent(index, typeof(GlobalItemSpawnerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Id = newId;
-		component.ItemBlueprintPool = newItemBlueprintPool;
+		component.ItemDataPool = newItemDataPool;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceGlobalItemSpawner(int newId, IItemBlueprint[] newItemBlueprintPool)
+	public void ReplaceGlobalItemSpawner(int newId, IItemData[] newItemDataPool)
 	{
 		var index = ItemComponentsLookup.GlobalItemSpawner;
 		var component = (GlobalItemSpawnerComponent)CreateComponent(index, typeof(GlobalItemSpawnerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Id = newId;
-		component.ItemBlueprintPool = newItemBlueprintPool;
+		component.ItemDataPool = newItemDataPool;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -40,7 +40,7 @@ public partial class ItemEntity
 		var component = (GlobalItemSpawnerComponent)CreateComponent(index, typeof(GlobalItemSpawnerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Id = copyComponent.Id;
-		component.ItemBlueprintPool = (IItemBlueprint[])copyComponent.ItemBlueprintPool.Clone();
+		component.ItemDataPool = (IItemData[])copyComponent.ItemDataPool.Clone();
 		#endif
 		ReplaceComponent(index, component);
 	}

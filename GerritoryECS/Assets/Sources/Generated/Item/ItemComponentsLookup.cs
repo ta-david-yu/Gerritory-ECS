@@ -16,21 +16,23 @@ public static class ItemComponentsLookup
 	public const int ApplySpeedChangeStateForEaterOnEaten = 0;
 	public const int ApplyStateTypeToEaterOnEaten = 1;
 	public const int DebugMessage = 2;
-	public const int Eaten = 3;
-	public const int GlobalItemSpawner = 4;
-	public const int MaxNumberOfItemsInLevel = 5;
-	public const int OnTileItem = 6;
-	public const int SpawnedByGlobalSpawner = 7;
-	public const int SpawnInterval = 8;
-	public const int SpawnItemTimer = 9;
+	public const int EatenAddedListener = 3;
+	public const int Eaten = 4;
+	public const int GlobalItemSpawner = 5;
+	public const int MaxNumberOfItemsInLevel = 6;
+	public const int OnTileItem = 7;
+	public const int SpawnedByGlobalSpawner = 8;
+	public const int SpawnInterval = 9;
+	public const int SpawnItemTimer = 10;
 
-	public const int TotalComponents = 10;
+	public const int TotalComponents = 11;
 
 	public static readonly string[] ComponentNames =
 	{
 		"ApplySpeedChangeStateForEaterOnEaten",
 		"ApplyStateTypeToEaterOnEaten",
 		"DebugMessage",
+		"EatenAddedListener",
 		"Eaten",
 		"GlobalItemSpawner",
 		"MaxNumberOfItemsInLevel",
@@ -45,6 +47,7 @@ public static class ItemComponentsLookup
 		typeof(ApplySpeedChangeStateForEaterOnEatenComponent),
 		typeof(ApplyStateTypeToEaterOnEatenComponent),
 		typeof(DebugMessageComponent),
+		typeof(EatenAddedListenerComponent),
 		typeof(EatenComponent),
 		typeof(GlobalItemSpawnerComponent),
 		typeof(MaxNumberOfItemsInLevelComponent),
@@ -59,13 +62,14 @@ public static class ItemComponentsLookup
 		{ typeof(ApplySpeedChangeStateForEaterOnEatenComponent), 0 },
 		{ typeof(ApplyStateTypeToEaterOnEatenComponent), 1 },
 		{ typeof(DebugMessageComponent), 2 },
-		{ typeof(EatenComponent), 3 },
-		{ typeof(GlobalItemSpawnerComponent), 4 },
-		{ typeof(MaxNumberOfItemsInLevelComponent), 5 },
-		{ typeof(OnTileItemComponent), 6 },
-		{ typeof(SpawnedByGlobalSpawnerComponent), 7 },
-		{ typeof(SpawnIntervalComponent), 8 },
-		{ typeof(SpawnItemTimerComponent), 9 }
+		{ typeof(EatenAddedListenerComponent), 3 },
+		{ typeof(EatenComponent), 4 },
+		{ typeof(GlobalItemSpawnerComponent), 5 },
+		{ typeof(MaxNumberOfItemsInLevelComponent), 6 },
+		{ typeof(OnTileItemComponent), 7 },
+		{ typeof(SpawnedByGlobalSpawnerComponent), 8 },
+		{ typeof(SpawnIntervalComponent), 9 },
+		{ typeof(SpawnItemTimerComponent), 10 }
 	};
 
 	/// <summary>

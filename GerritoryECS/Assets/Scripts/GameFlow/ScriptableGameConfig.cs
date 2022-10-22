@@ -33,4 +33,18 @@ public class ScriptableGameConfig : ScriptableObject, IGameConfig
 	[SerializeField]
 	private LevelData m_LevelData;
 	public LevelData LevelData => m_LevelData;
+
+	[ContextMenu("Auto-assign PlayerIds in PlayerConfigs")]
+	private void assignPlayerIdBasedOnArrayIndex()
+	{
+#if UNITY_EDITOR
+		UnityEditor.Undo.RecordObject(this, "Update PlayerIds in PlayerConfigs");
+		for (int i = 0; i < m_PlayerGameConfigs.Count; i++)
+		{
+			var playerConfig = m_PlayerGameConfigs[i];
+			playerConfig.PlayerId = i;
+			m_PlayerGameConfigs[i] = playerConfig;
+		}
+#endif
+	}
 }

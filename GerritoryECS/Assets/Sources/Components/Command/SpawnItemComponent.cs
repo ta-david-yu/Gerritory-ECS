@@ -8,5 +8,5 @@ public sealed class SpawnItemComponent : IComponent
 {
 	[EntityIndex]
 	public Vector2Int TilePosition;
-	public IItemBlueprint ItemBlueprint;
+	public IItemData ItemData;
 }

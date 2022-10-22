@@ -57,6 +57,10 @@ public partial class ItemEntity
 		else if (component is MaxNumberOfItemsInLevelComponent MaxNumberOfItemsInLevel)
 		{
 			CopyMaxNumberOfItemsInLevelTo(MaxNumberOfItemsInLevel);
+		}
+		else if (component is EatenAddedListenerComponent EatenAddedListener)
+		{
+			CopyEatenAddedListenerTo(EatenAddedListener);
 		}
 		#endif
 	}

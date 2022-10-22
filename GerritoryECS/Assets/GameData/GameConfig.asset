@@ -24,4 +24,24 @@ MonoBehaviour:
     TeamId: 0
     SkinId: 0
     IsAI: 0
+  - PlayerId: 1
+    PlayerName: Player 1
+    TeamId: 1
+    SkinId: 0
+    IsAI: 1
+  - PlayerId: 2
+    PlayerName: Player 1
+    TeamId: 1
+    SkinId: 0
+    IsAI: 1
+  - PlayerId: 3
+    PlayerName: Player 1
+    TeamId: 1
+    SkinId: 0
+    IsAI: 1
+  - PlayerId: 4
+    PlayerName: Player 1
+    TeamId: 1
+    SkinId: 0
+    IsAI: 1
   m_LevelData: {fileID: 11400000, guid: 56a53a42f5162074ea5a0fc52fc4e41e, type: 2}
