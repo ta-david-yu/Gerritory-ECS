@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 6755567712436927980}
   - component: {fileID: 1740902244499296032}
   m_Layer: 0
-  m_Name: PlayerDeathAnimationController
+  m_Name: PlayerDeathRespawnAnimationController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,3 +351,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Appearance: {fileID: 5925678393195942143}
+  m_RespawnAnimationRoot: {fileID: 990923275265623467}
+  m_RespawnAnimationStartScale: 0
+  m_RespawnAnimationEndScale: 1
+  m_RespawnAnimationDuration: 0.5
+  m_RespawnAnimationEasingType: 30
