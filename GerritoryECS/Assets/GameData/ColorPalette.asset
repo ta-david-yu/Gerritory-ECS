@@ -29,3 +29,6 @@ MonoBehaviour:
   - PlayerBodyColor: {r: 1, g: 0.5529412, b: 0.16078432, a: 1}
     TileBodyColor: {r: 1, g: 0.5529412, b: 0.16078432, a: 1}
     FogColor: {r: 1, g: 0.5529412, b: 0.16078432, a: 1}
+  - PlayerBodyColor: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
+    TileBodyColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
+    FogColor: {r: 0, g: 0, b: 0, a: 0.8}

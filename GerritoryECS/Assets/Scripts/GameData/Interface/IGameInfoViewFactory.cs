@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IGameInfoViewFactory
 {
-	//public IEntityCreationEventController CreateTeamView(int teamId);
+	public IEntityCreationEventController CreateGameInfoViewController();
 }

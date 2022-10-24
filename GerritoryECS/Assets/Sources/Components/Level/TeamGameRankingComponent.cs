@@ -4,6 +4,7 @@ using JCMG.EntitasRedux;
 /// The team ranking order in the game. With a number of 1 means the team has the hightest score right now.
 /// </summary>
 [Level]
+[Event(eventType: EventType.Added, eventTarget: EventTarget.Any)]
 public sealed class TeamGameRankingComponent : IComponent
 {
 	/// <summary>

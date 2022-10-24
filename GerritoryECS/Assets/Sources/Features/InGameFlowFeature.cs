@@ -14,6 +14,7 @@ public sealed class InGameFlowFeature : Feature
 
 		// Update general game info systems
 		Add(new UpdateTeamGameRankingSystem(contexts));
+		Add(new UpdateLeadingTeamSystem(contexts));
 
 		// End game check systems
 		Add(new CheckEliminationConditionSystem(contexts));

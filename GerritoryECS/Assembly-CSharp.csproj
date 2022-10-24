@@ -562,6 +562,20 @@
     <Compile Include="Assets\Sources\Generated\Components\ItemSpawnerIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\AnyTeamGameRankingAddedEventSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\IAnyTeamGameRankingAddedListener.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\AnyTeamGameRankingAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelAnyTeamGameRankingAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\LeadingTimerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Level\LeadingTeamComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Level\UpdateLeadingTeamSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelLeadingTeamComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelLeadingTimerComponent.cs" />
+    <Compile Include="Assets\Scripts\View\GameInfo\ChangeFogPlaneColorOnLeadingTeamChangedAnimation.cs" />
+    <Compile Include="Assets\Sources\Generated\Level\Components\LevelLeadingTeamAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Components\LeadingTeamAddedListenerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Interfaces\ILeadingTeamAddedListener.cs" />
+    <Compile Include="Assets\Sources\Generated\Events\Systems\LeadingTeamAddedEventSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

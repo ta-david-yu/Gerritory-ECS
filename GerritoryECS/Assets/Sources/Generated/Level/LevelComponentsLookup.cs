@@ -13,26 +13,34 @@ using JCMG.EntitasRedux;
 
 public static class LevelComponentsLookup
 {
-	public const int GameInfo = 0;
-	public const int GameTimer = 1;
-	public const int ItemEaterIdCounter = 2;
-	public const int ItemSpawnerIdCounter = 3;
-	public const int OnTileElementIdCounter = 4;
-	public const int SearchSimulationGlobalState = 5;
-	public const int StateHolderIdCounter = 6;
-	public const int TeamGameRanking = 7;
-	public const int TeamInfo = 8;
-	public const int TeamScoreAddedListener = 9;
-	public const int TeamScore = 10;
+	public const int AnyTeamGameRankingAddedListener = 0;
+	public const int GameInfo = 1;
+	public const int GameTimer = 2;
+	public const int ItemEaterIdCounter = 3;
+	public const int ItemSpawnerIdCounter = 4;
+	public const int LeadingTeamAddedListener = 5;
+	public const int LeadingTeam = 6;
+	public const int LeadingTimer = 7;
+	public const int OnTileElementIdCounter = 8;
+	public const int SearchSimulationGlobalState = 9;
+	public const int StateHolderIdCounter = 10;
+	public const int TeamGameRanking = 11;
+	public const int TeamInfo = 12;
+	public const int TeamScoreAddedListener = 13;
+	public const int TeamScore = 14;
 
-	public const int TotalComponents = 11;
+	public const int TotalComponents = 15;
 
 	public static readonly string[] ComponentNames =
 	{
+		"AnyTeamGameRankingAddedListener",
 		"GameInfo",
 		"GameTimer",
 		"ItemEaterIdCounter",
 		"ItemSpawnerIdCounter",
+		"LeadingTeamAddedListener",
+		"LeadingTeam",
+		"LeadingTimer",
 		"OnTileElementIdCounter",
 		"SearchSimulationGlobalState",
 		"StateHolderIdCounter",
@@ -44,10 +52,14 @@ public static class LevelComponentsLookup
 
 	public static readonly System.Type[] ComponentTypes =
 	{
+		typeof(AnyTeamGameRankingAddedListenerComponent),
 		typeof(GameInfoComponent),
 		typeof(GameTimerComponent),
 		typeof(ItemEaterIdCounterComponent),
 		typeof(ItemSpawnerIdCounterComponent),
+		typeof(LeadingTeamAddedListenerComponent),
+		typeof(LeadingTeamComponent),
+		typeof(LeadingTimerComponent),
 		typeof(OnTileElementIdCounterComponent),
 		typeof(SearchSimulationGlobalStateComponent),
 		typeof(StateHolderIdCounterComponent),
@@ -59,17 +71,21 @@ public static class LevelComponentsLookup
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(GameInfoComponent), 0 },
-		{ typeof(GameTimerComponent), 1 },
-		{ typeof(ItemEaterIdCounterComponent), 2 },
-		{ typeof(ItemSpawnerIdCounterComponent), 3 },
-		{ typeof(OnTileElementIdCounterComponent), 4 },
-		{ typeof(SearchSimulationGlobalStateComponent), 5 },
-		{ typeof(StateHolderIdCounterComponent), 6 },
-		{ typeof(TeamGameRankingComponent), 7 },
-		{ typeof(TeamInfoComponent), 8 },
-		{ typeof(TeamScoreAddedListenerComponent), 9 },
-		{ typeof(TeamScoreComponent), 10 }
+		{ typeof(AnyTeamGameRankingAddedListenerComponent), 0 },
+		{ typeof(GameInfoComponent), 1 },
+		{ typeof(GameTimerComponent), 2 },
+		{ typeof(ItemEaterIdCounterComponent), 3 },
+		{ typeof(ItemSpawnerIdCounterComponent), 4 },
+		{ typeof(LeadingTeamAddedListenerComponent), 5 },
+		{ typeof(LeadingTeamComponent), 6 },
+		{ typeof(LeadingTimerComponent), 7 },
+		{ typeof(OnTileElementIdCounterComponent), 8 },
+		{ typeof(SearchSimulationGlobalStateComponent), 9 },
+		{ typeof(StateHolderIdCounterComponent), 10 },
+		{ typeof(TeamGameRankingComponent), 11 },
+		{ typeof(TeamInfoComponent), 12 },
+		{ typeof(TeamScoreAddedListenerComponent), 13 },
+		{ typeof(TeamScoreComponent), 14 }
 	};
 
 	/// <summary>

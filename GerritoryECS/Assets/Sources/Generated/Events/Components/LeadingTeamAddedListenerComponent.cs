@@ -7,12 +7,8 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class LevelEventSystems : Feature
+[JCMG.EntitasRedux.DontGenerate(false)]
+public sealed class LeadingTeamAddedListenerComponent : JCMG.EntitasRedux.IComponent
 {
-	public LevelEventSystems(Contexts contexts)
-	{
-		Add(new LeadingTeamAddedEventSystem(contexts)); // priority: 0
-		Add(new AnyTeamGameRankingAddedEventSystem(contexts)); // priority: 0
-		Add(new TeamScoreAddedEventSystem(contexts)); // priority: 0
-	}
+	public System.Collections.Generic.List<ILeadingTeamAddedListener> value;
 }

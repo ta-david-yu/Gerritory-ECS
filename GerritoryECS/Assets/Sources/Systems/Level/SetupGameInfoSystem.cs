@@ -8,6 +8,7 @@ public class SetupGameInfoSystem : IInitializeSystem
 	private readonly ElementContext m_ElementContext;
 	private readonly LevelContext m_LevelContext;
 	private readonly ConfigContext m_ConfigContext;
+	private readonly Contexts m_Contexts;
 	private readonly IGroup<LevelEntity> m_TeamInfoGroup;
 
 	public SetupGameInfoSystem(Contexts contexts)
@@ -15,6 +16,7 @@ public class SetupGameInfoSystem : IInitializeSystem
 		m_ElementContext = contexts.Element;
 		m_LevelContext = contexts.Level;
 		m_ConfigContext = contexts.Config;
+		m_Contexts = contexts;
 
 		m_TeamInfoGroup = m_LevelContext.GetGroup(LevelMatcher.TeamInfo);
 	}
@@ -53,6 +55,11 @@ public class SetupGameInfoSystem : IInitializeSystem
 		}
 
 		// Calculate highest objective value
-		m_LevelContext.SetGameInfo(newCurrentHighestTeamScore: 0, newCurrentHighestTeamMemberCount: currentHighestNumberOfTeamMemebers);
+		LevelEntity gameInfoEntity = m_LevelContext.SetGameInfo(newCurrentHighestTeamScore: 0, newCurrentHighestTeamMemberCount: currentHighestNumberOfTeamMemebers);
+
+		// Create game info view controller
+		IEntityCreationEventController gameInfoViewController = m_ConfigContext.GameConfig.value.GameInfoViewFactory.CreateGameInfoViewController();
+		gameInfoViewController.OnEntityCreated(m_Contexts, gameInfoEntity);
+		gameInfoViewController.OnComponentsAdded(m_Contexts, gameInfoEntity);
 	}
 }

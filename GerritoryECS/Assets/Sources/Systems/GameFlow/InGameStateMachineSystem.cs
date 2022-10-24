@@ -71,7 +71,7 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 				//m_Contexts.ConstructPlayerEntity(playerConfig.PlayerId, playerConfig.TeamId, playerConfig.SkinId);
 			}
 
-			gameFlowEntity.AddCountdownTimer(3);
+			gameFlowEntity.AddCountdownTimer(GameConstants.CountdownTime);
 
 			// Go to countdown directly.
 			gameFlowEntity.ReplaceInGameState(InGameStateComponent.State.Countdown);

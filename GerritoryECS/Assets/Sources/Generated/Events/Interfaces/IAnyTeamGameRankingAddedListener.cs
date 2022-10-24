@@ -7,12 +7,7 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed class LevelEventSystems : Feature
+public interface IAnyTeamGameRankingAddedListener
 {
-	public LevelEventSystems(Contexts contexts)
-	{
-		Add(new LeadingTeamAddedEventSystem(contexts)); // priority: 0
-		Add(new AnyTeamGameRankingAddedEventSystem(contexts)); // priority: 0
-		Add(new TeamScoreAddedEventSystem(contexts)); // priority: 0
-	}
+	void OnAnyTeamGameRankingAdded(LevelEntity entity, int number);
 }

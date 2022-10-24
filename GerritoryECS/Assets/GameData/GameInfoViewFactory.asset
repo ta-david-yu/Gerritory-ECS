@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e604d1daab09f2a469849a26abf9e2a0, type: 3}
   m_Name: GameInfoViewFactory
   m_EditorClassIdentifier: 
+  m_GameInfoViewControllerPrefab: {fileID: 6186247965390908749, guid: c652ef284f7c98b47a2a8d9d81c8e652,
+    type: 3}
