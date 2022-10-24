@@ -6,10 +6,18 @@ using UnityEngine;
 public class PlayerDeathRespawnAnimationController : EntityCreationEventListenerBase, IDeadAddedListener, IDeadRemovedListener
 {
 	[SerializeField]
+	private ColorPalette m_ColorPalette;
+
+	[Space]
+
+	[SerializeField]
 	private GameObject m_Appearance;
 
 	[SerializeField]
 	private Transform m_RespawnAnimationRoot;
+
+	[SerializeField]
+	private ParticleSystem m_DeathParticleSystem;
 
 	[Header("Settings")]
 
@@ -48,12 +56,26 @@ public class PlayerDeathRespawnAnimationController : EntityCreationEventListener
 	{
 		ElementEntity gameEntity = entity as ElementEntity;
 		m_Appearance.SetActive(!gameEntity.IsDead);
+
+		if (!gameEntity.HasTeam)
+		{
+			return;
+		}
+
+		// Change particle renderer material color to team's color
+		Color color = m_ColorPalette.GetPlayerBodyColorForTeam(gameEntity.Team.Id);
+		m_DeathParticleSystem.GetComponent<ParticleSystemRenderer>().material.color = color;
 	}
 
 	public void OnDeadAdded(ElementEntity entity)
 	{
 		// Dead animation
 		m_Appearance.SetActive(false);
+
+		// Play the particle system at the bottom of the element
+		m_DeathParticleSystem.transform.position = m_Appearance.transform.position + Vector3.down * 0.5f;
+		m_DeathParticleSystem.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
+		m_DeathParticleSystem.Play(true);
 	}
 
 	public void OnDeadRemoved(ElementEntity entity)
