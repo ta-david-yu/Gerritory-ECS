@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
@@ -38,9 +40,45 @@ public sealed class InputManager
 	/// </summary>
 	private Dictionary<int, UserInputSettings> m_UserInputSettingsCollection = new Dictionary<int, UserInputSettings>();
 
+	private List<InputDevice> m_UnpairedGamepadDevices = new List<InputDevice>();
+
 	private InputManager()
 	{
 		m_SystemInput = new InputActionManager();
+
+		var unpairedInputDevices = InputUser.GetUnpairedInputDevices();
+		m_UnpairedGamepadDevices = unpairedInputDevices.Where((inputDevice) => inputDevice is Gamepad).ToList();
+
+		InputSystem.onDeviceChange += handleOnDeviceChange;
+	}
+
+	private void handleOnDeviceChange(InputDevice inputDevice, InputDeviceChange inputDeviceChange)
+	{
+		bool isGamepad = inputDevice is Gamepad;
+		if (!isGamepad)
+		{
+			// For now, we are only interested in gamepad/controll devices. Therefore if it's not, we skip it!
+			return;
+		}
+
+		Debug.Log("Gamepad Change Event: " + inputDeviceChange);
+
+		// TODO: do pairing with previously diconnected user
+		// ...
+
+		switch (inputDeviceChange)
+		{
+			case InputDeviceChange.Added:
+				m_UnpairedGamepadDevices.Add(inputDevice);
+				break;
+			case InputDeviceChange.Removed:
+				m_UnpairedGamepadDevices.Remove(inputDevice);
+				break;
+			case InputDeviceChange.Disconnected:
+				break;
+			case InputDeviceChange.Reconnected:
+				break;
+		}
 	}
 
 	private UserInputSettings getOrCreateUserInputSettings(int userIndex)
@@ -53,6 +91,20 @@ public sealed class InputManager
 		// Create a new user with the given index
 		InputActionManager newInputActions = new InputActionManager();
 		InputUser newUser = InputUser.PerformPairingWithDevice(InputSystem.GetDevice<Keyboard>());
+		
+		if (m_UnpairedGamepadDevices.Count > 0)
+		{
+			// Pair a gamepad to the user if there is an available device
+			InputDevice inputDevice = m_UnpairedGamepadDevices[0];
+			InputUser.PerformPairingWithDevice(inputDevice, newUser);
+
+			// TODO: do pairing with previously diconnected user
+			// ...
+
+			m_UnpairedGamepadDevices.RemoveAt(0);
+		}
+
+		// Associate input actions mapping with the user according to the UserIndex
 		newUser.AssociateActionsWithUser(newInputActions);
 		newUser.ActivateControlScheme($"Player{userIndex}");
 		newInputActions.Enable();

@@ -378,7 +378,7 @@ MonoBehaviour:
       TileId: respawn
   LevelBoundingRectSize: {x: 11, y: 11}
   m_Objective: 0
-  m_EndingCondition: 3
+  m_EndingCondition: 0
   m_Timeout: 30
   m_GoalScore: 30
   m_NumberOfTeamsShouldBeLeft: 0
