@@ -267,7 +267,6 @@
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileTilePositionComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\CreateEntityFromEffectBlueprint.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\RemoveEnteredByOnTileElementFromTileEntitiesSystem.cs" />
-    <Compile Include="Assets\Scripts\GameData\Interface\IItemFactory.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\CreateEntityFromPlayerStateBlueprint.cs" />
     <Compile Include="Assets\Sources\Components\OnTileElement\TileOwnerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputDebugMessageComponent.cs" />
