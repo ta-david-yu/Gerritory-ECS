@@ -43,7 +43,7 @@ public partial class @InputActionManager : IInputActionCollection2, IDisposable
                     ""id"": ""528b1a25-eec3-4a84-ad3b-1502c42483ba"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AnalogStickInGameMovement"",
                     ""groups"": ""Player0;Player1;Player2;Player3"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
