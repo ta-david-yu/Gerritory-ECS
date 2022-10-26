@@ -15,6 +15,8 @@ public class InGameController : MonoBehaviour
 	private Systems m_OnGUIDebugSystems;
 	private Systems m_OnDrawGizmosDebugSystems;
 
+	private Contexts m_CacheContexts;
+
 	// Start is called before the first frame update
 	private void Awake()
 	{
@@ -27,6 +29,8 @@ public class InGameController : MonoBehaviour
 
 		// Setup game config for systems to initialize
 		contexts.Config.SetGameConfig(m_GameConfig);
+
+		m_CacheContexts = contexts;
 	}
 
 	private void Start()
@@ -115,5 +119,11 @@ public class InGameController : MonoBehaviour
 		}
 
 		m_OnDrawGizmosDebugSystems.Update();
+	}
+
+	[ContextMenu("Spawn Ghost")]
+	private void _spawnGhost()
+	{
+		m_CacheContexts.ConstructGhostEntity();
 	}
 }
