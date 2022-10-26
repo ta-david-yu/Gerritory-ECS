@@ -94,6 +94,44 @@ public class LevelData : ScriptableObject
 #endif
 	}
 
+	[ContextMenu("Generate Maze Level Randomly")]
+	private void randomlyGenerateMaze()
+	{
+#if UNITY_EDITOR
+		UnityEditor.Undo.RecordObject(this, "Generate Level Data Randomly");
+		TileDataPairs.Clear();
+
+		Vector2Int levelSize = new Vector2Int(m_Size, m_Size);
+		Random.InitState(m_RandomSeed);
+
+		Vector2Int mazeSize = levelSize / 2;
+
+		for (int x = 0; x < mazeSize.x; x++)
+		{
+			for (int y = 0; y < mazeSize.y; y++)
+			{
+				Vector2Int position = new Vector2Int(x * 2, y * 2);
+				string tileId = "normal";
+				float random = Random.Range(0.0f, 1.0f);
+				if (random > 1.0f)
+				{
+					tileId = "collapse";
+				}
+				else if (random > 0.2f)
+				{
+					tileId = "normal";
+				}
+				else
+				{
+					tileId = "respawn";
+				}
+
+				TileDataPairs.Add(new TilePair() { Key = position, Value = new TileData { TileId = tileId } });
+			}
+		}
+#endif
+	}
+
 	[ContextMenu("Recalculate Level Bounding Rect Size")]
 	private void recalculateBoundingRectSize()
 	{

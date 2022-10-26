@@ -18,17 +18,13 @@ public partial class LevelEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is LeadingTeamComponent LeadingTeam)
-		{
-			CopyLeadingTeamTo(LeadingTeam);
-		}
-		else if (component is LeadingTimerComponent LeadingTimer)
-		{
-			CopyLeadingTimerTo(LeadingTimer);
-		}
-		else if (component is TeamScoreComponent TeamScore)
+		if (component is TeamScoreComponent TeamScore)
 		{
 			CopyTeamScoreTo(TeamScore);
+		}
+		else if (component is LeadingTeamComponent LeadingTeam)
+		{
+			CopyLeadingTeamTo(LeadingTeam);
 		}
 		else if (component is SearchSimulationGlobalStateComponent SearchSimulationGlobalState)
 		{
@@ -50,6 +46,10 @@ public partial class LevelEntity
 		{
 			CopyGameInfoTo(GameInfo);
 		}
+		else if (component is LeadingTimerComponent LeadingTimer)
+		{
+			CopyLeadingTimerTo(LeadingTimer);
+		}
 		else if (component is OnTileElementIdCounterComponent OnTileElementIdCounter)
 		{
 			CopyOnTileElementIdCounterTo(OnTileElementIdCounter);
@@ -66,13 +66,13 @@ public partial class LevelEntity
 		{
 			CopyItemSpawnerIdCounterTo(ItemSpawnerIdCounter);
 		}
-		else if (component is LeadingTeamAddedListenerComponent LeadingTeamAddedListener)
-		{
-			CopyLeadingTeamAddedListenerTo(LeadingTeamAddedListener);
-		}
 		else if (component is TeamScoreAddedListenerComponent TeamScoreAddedListener)
 		{
 			CopyTeamScoreAddedListenerTo(TeamScoreAddedListener);
+		}
+		else if (component is LeadingTeamAddedListenerComponent LeadingTeamAddedListener)
+		{
+			CopyLeadingTeamAddedListenerTo(LeadingTeamAddedListener);
 		}
 		else if (component is AnyTeamGameRankingAddedListenerComponent AnyTeamGameRankingAddedListener)
 		{

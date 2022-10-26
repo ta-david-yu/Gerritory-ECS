@@ -293,6 +293,7 @@
     <Compile Include="Assets\Sources\Generated\PlayerState\Features\PlayerStateCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\TimerAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IMoveOnTileAddedListener.cs" />
+    <Compile Include="Assets\Sources\Systems\Debug\OnDrawGizmosUserInputSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\TeamScoreAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Config\ConfigMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\GameFlowBlueprintBehaviour.cs" />
@@ -577,6 +578,11 @@
     <Compile Include="Assets\Sources\Generated\Components\ItemSpawnerIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Input\HoldMovementInputBufferComponent.cs" />
+    <Compile Include="Assets\Sources\Components\Input\TapMovementInputBufferComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\Components\InputHoldMovementInputBufferComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\Components\InputTapMovementInputBufferComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Input\DecayTapMovementInputSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

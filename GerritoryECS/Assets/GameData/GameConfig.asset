@@ -28,5 +28,5 @@ MonoBehaviour:
     PlayerName: Player 1
     TeamId: 1
     SkinId: 0
-    IsAI: 1
+    IsAI: 0
   m_LevelData: {fileID: 11400000, guid: 56a53a42f5162074ea5a0fc52fc4e41e, type: 2}

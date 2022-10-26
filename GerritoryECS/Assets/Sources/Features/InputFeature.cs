@@ -19,6 +19,7 @@ public sealed class InputFeature : Feature
 		Add(new EmitAIInputSystem(contexts));
 
 		// Input Action Validation
+		Add(new DecayTapMovementInputSystem(contexts));
 		Add(new DecayMovementInputActionSystem(contexts));
 	}
 }

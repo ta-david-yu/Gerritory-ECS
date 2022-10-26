@@ -9,6 +9,8 @@ public static class GameConstants
 	public const float MoveOnTileDuration = 0.33f;
 	public const float WaitingForRespawnDuration = 3.0f;
 	public const float CountdownTime = 3.0f;
+	public const float UserInputDecayTime = 0.15f;
+	public const float UserTapInputDecayTime = 0.3f;
 
 	/// <summary>
 	/// When the game timer is bigger than the value, the LeadingTeam system would start updating the LeadingTeam info based on TeamGameRankings.

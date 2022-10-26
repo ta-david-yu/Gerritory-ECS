@@ -17,5 +17,6 @@ public sealed class UserInputComponent : IComponent
 	/// <summary>
 	/// The player id this user input is controlling
 	/// </summary>
+	[PrimaryEntityIndex]
 	public int TargetPlayerId;
 }
