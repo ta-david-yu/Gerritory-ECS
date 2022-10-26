@@ -17,10 +17,9 @@ public static class InputComponentsLookup
 	public const int DebugMessage = 1;
 	public const int EvaluatingForMovementInput = 2;
 	public const int IdleTimer = 3;
-	public const int TapMovementInputBuffer = 4;
-	public const int UserInput = 5;
+	public const int UserInput = 4;
 
-	public const int TotalComponents = 6;
+	public const int TotalComponents = 5;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -28,7 +27,6 @@ public static class InputComponentsLookup
 		"DebugMessage",
 		"EvaluatingForMovementInput",
 		"IdleTimer",
-		"TapMovementInputBuffer",
 		"UserInput"
 	};
 
@@ -38,7 +36,6 @@ public static class InputComponentsLookup
 		typeof(DebugMessageComponent),
 		typeof(EvaluatingForMovementInputComponent),
 		typeof(IdleTimerComponent),
-		typeof(TapMovementInputBufferComponent),
 		typeof(UserInputComponent)
 	};
 
@@ -48,8 +45,7 @@ public static class InputComponentsLookup
 		{ typeof(DebugMessageComponent), 1 },
 		{ typeof(EvaluatingForMovementInputComponent), 2 },
 		{ typeof(IdleTimerComponent), 3 },
-		{ typeof(TapMovementInputBufferComponent), 4 },
-		{ typeof(UserInputComponent), 5 }
+		{ typeof(UserInputComponent), 4 }
 	};
 
 	/// <summary>

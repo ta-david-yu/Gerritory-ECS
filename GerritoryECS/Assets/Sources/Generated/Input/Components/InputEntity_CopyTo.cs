@@ -18,11 +18,7 @@ public partial class InputEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is TapMovementInputBufferComponent TapMovementInputBuffer)
-		{
-			CopyTapMovementInputBufferTo(TapMovementInputBuffer);
-		}
-		else if (component is DebugMessageComponent DebugMessage)
+		if (component is DebugMessageComponent DebugMessage)
 		{
 			CopyDebugMessageTo(DebugMessage);
 		}

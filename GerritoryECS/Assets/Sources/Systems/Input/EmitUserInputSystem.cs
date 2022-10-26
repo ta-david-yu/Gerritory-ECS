@@ -79,30 +79,29 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 			}
 
 			// Check input tapping state
-			float tapDecayTime = Mathf.Min(GameConstants.UserTapInputDecayTime, playerEntity.GetElementEntityMoveOnTileDuration());
+			Movement.Type tapMovementInput = Movement.Type.Stay;
 			if (userInputActions.Player.MoveRight.triggered)
 			{
-				inputEntity.ReplaceTapMovementInputBuffer(Movement.Type.Right, tapDecayTime);
+				tapMovementInput = Movement.Type.Right;
 			}
 			else if (userInputActions.Player.MoveDown.triggered)
 			{
-				inputEntity.ReplaceTapMovementInputBuffer(Movement.Type.Down, tapDecayTime);
+				tapMovementInput = Movement.Type.Down;
 			}
 			else if (userInputActions.Player.MoveLeft.triggered)
 			{
-				inputEntity.ReplaceTapMovementInputBuffer(Movement.Type.Left, tapDecayTime);
+				tapMovementInput = Movement.Type.Left;
 			}
 			else if (userInputActions.Player.MoveUp.triggered)
 			{
-				inputEntity.ReplaceTapMovementInputBuffer(Movement.Type.Up, tapDecayTime);
+				tapMovementInput = Movement.Type.Up;
 			}
 
-			if (inputEntity.HasTapMovementInputBuffer)
+			if (tapMovementInput != Movement.Type.Stay)
 			{
 				// Movment input created through tap has higher priority, it will always override the previous movement input action.
-				Movement.Type type = inputEntity.TapMovementInputBuffer.Type;
-				playerEntity.ReplaceMovementInputAction(type, GameConstants.UserTapInputDecayTime);
-				inputEntity.RemoveTapMovementInputBuffer();
+				float tapDecayTime = Mathf.Min(GameConstants.UserTapInputDecayTime, playerEntity.GetElementEntityMoveOnTileDuration());
+				playerEntity.ReplaceMovementInputAction(tapMovementInput, tapDecayTime);
 			}
 			else if (!playerEntity.HasMovementInputAction && holdMovementInput != Movement.Type.Stay)
 			{
