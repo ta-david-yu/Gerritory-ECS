@@ -59,7 +59,7 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 			float movementDuration = playerEntity.GetElementEntityMoveOnTileDuration();
 			InputActionManager userInputActions = InputManager.Instance.GetOrCreateUserInputWithIndex(userIndex);
 
-			// Check input holding state
+			// Check button input holding state
 			Movement.Type holdMovementInput = Movement.Type.Stay;
 			if (userInputActions.Player.MoveRight.IsPressed())
 			{
@@ -78,7 +78,26 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 				holdMovementInput = Movement.Type.Up;
 			}
 
-			// Check input tap state
+			// Check analog stick input holding state separately because the analog stick input value is remapped with a processor
+			Vector2 axis = userInputActions.Player.MoveAnalog.ReadValue<Vector2>();
+			if (axis.x > 0.5f)
+			{
+				holdMovementInput = Movement.Type.Right;
+			}
+			else if (axis.y < -0.5f)
+			{
+				holdMovementInput = Movement.Type.Down;
+			}
+			else if (axis.x < -0.5f)
+			{
+				holdMovementInput = Movement.Type.Left;
+			}
+			else if (axis.y > 0.5f)
+			{
+				holdMovementInput = Movement.Type.Up;
+			}
+
+			// Check button input tap state
 			Movement.Type tapMovementInput = Movement.Type.Stay;
 			if (userInputActions.Player.MoveRight.triggered)
 			{
@@ -115,7 +134,9 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 			}
 
 			// If there is no recorded movement input action, use the movement input created through holding as the input.
-			playerEntity.ReplaceMovementInputAction(holdMovementInput, GameConstants.UserHoldInputDecayTime);
+			// Notice the max possible decay time for hold input is the half of the move duration (hence * 0.5f).
+			float holdDecayTime = Mathf.Min(GameConstants.UserHoldInputDecayTime, playerEntity.GetElementEntityMoveOnTileDuration() * 0.5f);
+			playerEntity.ReplaceMovementInputAction(holdMovementInput, holdDecayTime);
 		}
 	}
 
