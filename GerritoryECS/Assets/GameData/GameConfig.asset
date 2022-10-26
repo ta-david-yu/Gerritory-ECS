@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InitialRandomSeed: 0
   m_TileFactory: {fileID: 11400000, guid: aa95a57f7e8081e49b06e1f3bd8c3ae0, type: 2}
-  m_PlayerFactory: {fileID: 11400000, guid: 9515d61c389dbcb489f534a98d0c9ed8, type: 2}
+  m_OnTileElementFactory: {fileID: 11400000, guid: 9515d61c389dbcb489f534a98d0c9ed8,
+    type: 2}
   m_StateTypeFactory: {fileID: 11400000, guid: f7fc5a48a38204a4590c5cc0f6ac251e, type: 2}
   m_GameInfoViewFactory: {fileID: 11400000, guid: 71e6af0bd4c9e5d45a96ebf28a1e3c7e,
     type: 2}

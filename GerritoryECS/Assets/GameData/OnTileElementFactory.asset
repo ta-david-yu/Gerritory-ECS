@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34448e033cd085e4b8dd7c779d9cdfe3, type: 3}
-  m_Name: PlayerFactory
+  m_Name: OnTileElementFactory
   m_EditorClassIdentifier: 
   m_PlayerPrefab: {fileID: 3802677346352072511, guid: 3e1292d70e6bde94093b4656c8ed30e3,
+    type: 3}
+  m_GhostPrefab: {fileID: 7173073605833126893, guid: fdcac478413b36042b6704d594698783,
     type: 3}

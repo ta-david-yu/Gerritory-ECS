@@ -15,8 +15,8 @@ public class ScriptableGameConfig : ScriptableObject, IGameConfig
 	public ITileFactory TileFactory => m_TileFactory;
 
 	[SerializeField]
-	private PlayerFactory m_PlayerFactory;
-	public IPlayerFactory PlayerFactory => m_PlayerFactory;
+	private OnTileElementFactory m_OnTileElementFactory;
+	public IOnTileElementFactory OnTileElementFactory => m_OnTileElementFactory;
 
 	[SerializeField]
 	private StateTypeFactory m_StateTypeFactory;

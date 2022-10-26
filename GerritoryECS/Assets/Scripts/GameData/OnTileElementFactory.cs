@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerFactory", menuName = "GameData/PlayerFactory")]
-public class PlayerFactory : ScriptableObject, IPlayerFactory
+[CreateAssetMenu(fileName = "OnTileElementFactory", menuName = "GameData/OnTileElementFactory")]
+public class OnTileElementFactory : ScriptableObject, IOnTileElementFactory
 {
 	[SerializeField]
 	private EntityCreationEventController m_PlayerPrefab;
+
+	[SerializeField]
+	private EntityCreationEventController m_GhostPrefab;
 
 	private GameObject m_CreatedViewRoot;
 	public GameObject CreatedViewRoot
@@ -15,7 +18,7 @@ public class PlayerFactory : ScriptableObject, IPlayerFactory
 		{
 			if (m_CreatedViewRoot == null)
 			{
-				m_CreatedViewRoot = new GameObject("PlayerViewsRoot");
+				m_CreatedViewRoot = new GameObject("OnTileElementViewsRoot");
 			}
 
 			return m_CreatedViewRoot;
@@ -26,5 +29,11 @@ public class PlayerFactory : ScriptableObject, IPlayerFactory
 	{
 		var playerUnityView = GameObject.Instantiate(m_PlayerPrefab, CreatedViewRoot.transform);
 		return playerUnityView;
+	}
+
+	public IEntityCreationEventController CreateGhostView()
+	{
+		var ghostUnityView = GameObject.Instantiate(m_GhostPrefab, CreatedViewRoot.transform);
+		return ghostUnityView;
 	}
 }

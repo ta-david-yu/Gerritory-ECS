@@ -389,7 +389,7 @@
     <Compile Include="Assets\Sources\Generated\Events\PlayerStateEventSystems.cs" />
     <Compile Include="Assets\Sources\Generated\Effect\EffectContext.cs" />
     <Compile Include="Assets\Sources\Generated\Level\LevelContext.cs" />
-    <Compile Include="Assets\Scripts\GameData\Interface\IPlayerFactory.cs" />
+    <Compile Include="Assets\Scripts\GameData\Interface\IOnTileElementFactory.cs" />
     <Compile Include="Assets\Sources\Generated\Element\ElementEntity.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementCanRespawnAfterDeathComponent.cs" />
     <Compile Include="Assets\Sources\Components\_Sandbox\DebugMessageComponent.cs" />
@@ -540,7 +540,7 @@
     <Compile Include="Assets\Sources\Generated\Message\Features\MessageCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Item\Components\ItemEntity_CopyTo.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementTileOwnerComponent.cs" />
-    <Compile Include="Assets\Scripts\GameData\PlayerFactory.cs" />
+    <Compile Include="Assets\Scripts\GameData\OnTileElementFactory.cs" />
     <Compile Include="Assets\Sources\Components\Movement\Message\LeaveBecauseOfDeathComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Systems\ElementCleanupSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Config\Components\ConfigEntity_CopyTo.cs" />
