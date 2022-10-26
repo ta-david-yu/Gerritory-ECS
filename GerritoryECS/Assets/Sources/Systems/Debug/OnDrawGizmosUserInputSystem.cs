@@ -61,7 +61,7 @@ public class OnDrawGizmosUserInputSystem : IUpdateSystem
 				Vector3 bufferedInputMoveToBaseWorldPosition = GameConstants.TilePositionToWorldPosition(bufferedInputMoveToLocationBase);
 				Gizmos.DrawWireSphere(bufferedInputMoveToWorldPosition, 0.15f);
 
-				float decayTimeLeftRatio = elementEntity.MovementInputAction.DecayTimer / GameConstants.UserInputDecayTime;
+				float decayTimeLeftRatio = elementEntity.MovementInputAction.DecayTimer / GameConstants.UserHoldInputDecayTime;
 				Gizmos.DrawSphere(bufferedInputMoveToWorldPosition, decayTimeLeftRatio * 0.15f);
 				Gizmos.DrawLine(bufferedInputMoveToBaseWorldPosition, bufferedInputMoveToWorldPosition);
 			}

@@ -22,10 +22,6 @@ public partial class InputEntity
 		{
 			CopyTapMovementInputBufferTo(TapMovementInputBuffer);
 		}
-		else if (component is HoldMovementInputBufferComponent HoldMovementInputBuffer)
-		{
-			CopyHoldMovementInputBufferTo(HoldMovementInputBuffer);
-		}
 		else if (component is DebugMessageComponent DebugMessage)
 		{
 			CopyDebugMessageTo(DebugMessage);

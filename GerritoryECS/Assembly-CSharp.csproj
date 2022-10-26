@@ -578,9 +578,7 @@
     <Compile Include="Assets\Sources\Generated\Components\ItemSpawnerIdCounterComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
-    <Compile Include="Assets\Sources\Components\Input\HoldMovementInputBufferComponent.cs" />
     <Compile Include="Assets\Sources\Components\Input\TapMovementInputBufferComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Input\Components\InputHoldMovementInputBufferComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Input\Components\InputTapMovementInputBufferComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Input\DecayTapMovementInputSystem.cs" />
   </ItemGroup>

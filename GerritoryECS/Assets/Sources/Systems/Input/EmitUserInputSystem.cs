@@ -60,26 +60,22 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 			InputActionManager userInputActions = InputManager.Instance.GetOrCreateUserInputWithIndex(userIndex);
 
 			// Check input holding state
-			if (inputEntity.HasHoldMovementInputBuffer)
-			{
-				inputEntity.RemoveHoldMovementInputBuffer();
-			}
-
+			Movement.Type holdMovementInput = Movement.Type.Stay;
 			if (userInputActions.Player.MoveRight.IsPressed())
 			{
-				inputEntity.AddHoldMovementInputBuffer(Movement.Type.Right);
+				holdMovementInput = Movement.Type.Right;
 			}
 			else if (userInputActions.Player.MoveDown.IsPressed())
 			{
-				inputEntity.AddHoldMovementInputBuffer(Movement.Type.Down);
+				holdMovementInput = Movement.Type.Down;
 			}
 			else if (userInputActions.Player.MoveLeft.IsPressed())
 			{
-				inputEntity.AddHoldMovementInputBuffer(Movement.Type.Left);
+				holdMovementInput = Movement.Type.Left;
 			}
 			else if (userInputActions.Player.MoveUp.IsPressed())
 			{
-				inputEntity.AddHoldMovementInputBuffer(Movement.Type.Up);
+				holdMovementInput = Movement.Type.Up;
 			}
 
 			// Check input tapping state
@@ -108,11 +104,10 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 				playerEntity.ReplaceMovementInputAction(type, GameConstants.UserTapInputDecayTime);
 				inputEntity.RemoveTapMovementInputBuffer();
 			}
-			else if (!playerEntity.HasMovementInputAction && inputEntity.HasHoldMovementInputBuffer)
+			else if (!playerEntity.HasMovementInputAction && holdMovementInput != Movement.Type.Stay)
 			{
 				// If there is no recorded movement input action, use the movement input created through holding as the input.
-				Movement.Type type = inputEntity.HoldMovementInputBuffer.Type;
-				playerEntity.ReplaceMovementInputAction(inputEntity.HoldMovementInputBuffer.Type, GameConstants.UserInputDecayTime);
+				playerEntity.ReplaceMovementInputAction(holdMovementInput, GameConstants.UserHoldInputDecayTime);
 			}
 		}
 	}
