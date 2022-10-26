@@ -59,27 +59,6 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 			float movementDuration = playerEntity.GetElementEntityMoveOnTileDuration();
 			InputActionManager userInputActions = InputManager.Instance.GetOrCreateUserInputWithIndex(userIndex);
 
-			/*
-			Vector2 axis = userInputActions.Player.Move.ReadValue<Vector2>();
-			if (axis.x > 0.5f)
-			{
-				playerEntity.ReplaceMovementInputAction(Movement.Type.Right, GameConstants.UserInputDecayTime);
-			}
-			else if (axis.y < -0.5f)
-			{
-				playerEntity.ReplaceMovementInputAction(Movement.Type.Down, GameConstants.UserInputDecayTime);
-			}
-			else if (axis.x < -0.5f)
-			{
-				playerEntity.ReplaceMovementInputAction(Movement.Type.Left, GameConstants.UserInputDecayTime);
-			}
-			else if (axis.y > 0.5f)
-			{
-				playerEntity.ReplaceMovementInputAction(Movement.Type.Up, GameConstants.UserInputDecayTime);
-			}
-			continue;
-			*/
-
 			// Check input holding state
 			if (inputEntity.HasHoldMovementInputBuffer)
 			{
@@ -128,14 +107,12 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 				Movement.Type type = inputEntity.TapMovementInputBuffer.Type;
 				playerEntity.ReplaceMovementInputAction(type, GameConstants.UserTapInputDecayTime);
 				inputEntity.RemoveTapMovementInputBuffer();
-				Debug.Log($"Tap {type}");
 			}
 			else if (!playerEntity.HasMovementInputAction && inputEntity.HasHoldMovementInputBuffer)
 			{
 				// If there is no recorded movement input action, use the movement input created through holding as the input.
 				Movement.Type type = inputEntity.HoldMovementInputBuffer.Type;
 				playerEntity.ReplaceMovementInputAction(inputEntity.HoldMovementInputBuffer.Type, GameConstants.UserInputDecayTime);
-				Debug.Log($"Hold {type}");
 			}
 		}
 	}
