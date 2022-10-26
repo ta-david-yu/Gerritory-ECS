@@ -78,7 +78,7 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 				holdMovementInput = Movement.Type.Up;
 			}
 
-			// Check input tapping state
+			// Check input tap state
 			Movement.Type tapMovementInput = Movement.Type.Stay;
 			if (userInputActions.Player.MoveRight.triggered)
 			{
@@ -103,11 +103,19 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 				float tapDecayTime = Mathf.Min(GameConstants.UserTapInputDecayTime, playerEntity.GetElementEntityMoveOnTileDuration());
 				playerEntity.ReplaceMovementInputAction(tapMovementInput, tapDecayTime);
 			}
-			else if (!playerEntity.HasMovementInputAction && holdMovementInput != Movement.Type.Stay)
+
+			if (playerEntity.HasMovementInputAction)
 			{
-				// If there is no recorded movement input action, use the movement input created through holding as the input.
-				playerEntity.ReplaceMovementInputAction(holdMovementInput, GameConstants.UserHoldInputDecayTime);
+				continue;
 			}
+
+			if (holdMovementInput == Movement.Type.Stay)
+			{
+				continue;
+			}
+
+			// If there is no recorded movement input action, use the movement input created through holding as the input.
+			playerEntity.ReplaceMovementInputAction(holdMovementInput, GameConstants.UserHoldInputDecayTime);
 		}
 	}
 
