@@ -12,24 +12,24 @@ public partial class InputEntity
 	public UserInputComponent UserInput { get { return (UserInputComponent)GetComponent(InputComponentsLookup.UserInput); } }
 	public bool HasUserInput { get { return HasComponent(InputComponentsLookup.UserInput); } }
 
-	public void AddUserInput(int newUserId, int newTargetPlayerId)
+	public void AddUserInput(int newUserId, int newTargetElementId)
 	{
 		var index = InputComponentsLookup.UserInput;
 		var component = (UserInputComponent)CreateComponent(index, typeof(UserInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.UserId = newUserId;
-		component.TargetPlayerId = newTargetPlayerId;
+		component.TargetElementId = newTargetElementId;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceUserInput(int newUserId, int newTargetPlayerId)
+	public void ReplaceUserInput(int newUserId, int newTargetElementId)
 	{
 		var index = InputComponentsLookup.UserInput;
 		var component = (UserInputComponent)CreateComponent(index, typeof(UserInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.UserId = newUserId;
-		component.TargetPlayerId = newTargetPlayerId;
+		component.TargetElementId = newTargetElementId;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -40,7 +40,7 @@ public partial class InputEntity
 		var component = (UserInputComponent)CreateComponent(index, typeof(UserInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.UserId = copyComponent.UserId;
-		component.TargetPlayerId = copyComponent.TargetPlayerId;
+		component.TargetElementId = copyComponent.TargetElementId;
 		#endif
 		ReplaceComponent(index, component);
 	}

@@ -12,24 +12,24 @@ public partial class CommandEntity
 	public ConstructUserInputComponent ConstructUserInput { get { return (ConstructUserInputComponent)GetComponent(CommandComponentsLookup.ConstructUserInput); } }
 	public bool HasConstructUserInput { get { return HasComponent(CommandComponentsLookup.ConstructUserInput); } }
 
-	public void AddConstructUserInput(int newUserId, int newTargetPlayerId)
+	public void AddConstructUserInput(int newUserId, int newTargetElementId)
 	{
 		var index = CommandComponentsLookup.ConstructUserInput;
 		var component = (ConstructUserInputComponent)CreateComponent(index, typeof(ConstructUserInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.UserId = newUserId;
-		component.TargetPlayerId = newTargetPlayerId;
+		component.TargetElementId = newTargetElementId;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceConstructUserInput(int newUserId, int newTargetPlayerId)
+	public void ReplaceConstructUserInput(int newUserId, int newTargetElementId)
 	{
 		var index = CommandComponentsLookup.ConstructUserInput;
 		var component = (ConstructUserInputComponent)CreateComponent(index, typeof(ConstructUserInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.UserId = newUserId;
-		component.TargetPlayerId = newTargetPlayerId;
+		component.TargetElementId = newTargetElementId;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -40,7 +40,7 @@ public partial class CommandEntity
 		var component = (ConstructUserInputComponent)CreateComponent(index, typeof(ConstructUserInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.UserId = copyComponent.UserId;
-		component.TargetPlayerId = copyComponent.TargetPlayerId;
+		component.TargetElementId = copyComponent.TargetElementId;
 		#endif
 		ReplaceComponent(index, component);
 	}

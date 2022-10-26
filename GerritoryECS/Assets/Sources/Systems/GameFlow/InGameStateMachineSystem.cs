@@ -91,13 +91,15 @@ public sealed class InGameStateMachineSystem : IInitializeSystem, IFixedUpdateSy
 				var playerConfigs = m_ConfigContext.GameConfig.value.PlayerGameConfigs;
 				foreach (var playerConfig in playerConfigs)
 				{
+					ElementEntity targetElementEntity = m_ElementContext.GetEntityWithPlayer(playerConfig.PlayerId);
+					int playerOnTileElementId = targetElementEntity.OnTileElement.Id;
 					if (!playerConfig.IsAI)
 					{
-						m_CommandContext.CreateEntity().AddConstructUserInput(playerConfig.PlayerId, playerConfig.PlayerId);
+						m_CommandContext.CreateEntity().AddConstructUserInput(playerConfig.PlayerId, playerOnTileElementId);
 					}
 					else
 					{
-						m_CommandContext.CreateEntity().AddConstructAIInput(Movement.Type.Right, playerConfig.PlayerId);
+						m_CommandContext.CreateEntity().AddConstructAIInput(Movement.Type.Right, playerOnTileElementId);
 					}
 				}
 

@@ -30,7 +30,7 @@ public class ConstructInputEntitySystem : IFixedUpdateSystem
 		foreach (var constructUserInputEntity in m_ConstructUserInputGroup.GetEntities())
 		{
 			InputEntity inputEntity = m_InputContext.CreateEntity();
-			inputEntity.AddUserInput(constructUserInputEntity.ConstructUserInput.TargetPlayerId, constructUserInputEntity.ConstructUserInput.TargetPlayerId);
+			inputEntity.AddUserInput(constructUserInputEntity.ConstructUserInput.TargetElementId, constructUserInputEntity.ConstructUserInput.TargetElementId);
 
 			constructUserInputEntity.Destroy();
 		}
@@ -40,7 +40,7 @@ public class ConstructInputEntitySystem : IFixedUpdateSystem
 			InputEntity inputEntity = m_InputContext.CreateEntity();
 			inputEntity.AddAIInput
 			(
-				constructAIInputEntity.ConstructAIInput.TargetPlayerId, 
+				constructAIInputEntity.ConstructAIInput.TargetElementId, 
 				new AIHelper.SearchSimulationState().AllocateWithContexts(m_Contexts, Unity.Collections.Allocator.Persistent)
 			);
 

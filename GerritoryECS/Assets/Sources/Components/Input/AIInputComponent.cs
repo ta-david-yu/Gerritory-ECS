@@ -8,10 +8,10 @@ using UnityEngine;
 public sealed class AIInputComponent : IComponent
 {
 	/// <summary>
-	/// The player id this user input is controlling
+	/// The OnTileElement id this ai input is controlling
 	/// </summary>
 	[PrimaryEntityIndex]
-	public int TargetPlayerId;
+	public int TargetElementId;
 
 	public AIHelper.SearchSimulationState SearchSimulationState;
 }

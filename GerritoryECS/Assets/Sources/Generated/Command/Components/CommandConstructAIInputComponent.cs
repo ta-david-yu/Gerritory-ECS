@@ -12,24 +12,24 @@ public partial class CommandEntity
 	public ConstructAIInputComponent ConstructAIInput { get { return (ConstructAIInputComponent)GetComponent(CommandComponentsLookup.ConstructAIInput); } }
 	public bool HasConstructAIInput { get { return HasComponent(CommandComponentsLookup.ConstructAIInput); } }
 
-	public void AddConstructAIInput(Movement.Type newMovement, int newTargetPlayerId)
+	public void AddConstructAIInput(Movement.Type newMovement, int newTargetElementId)
 	{
 		var index = CommandComponentsLookup.ConstructAIInput;
 		var component = (ConstructAIInputComponent)CreateComponent(index, typeof(ConstructAIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Movement = newMovement;
-		component.TargetPlayerId = newTargetPlayerId;
+		component.TargetElementId = newTargetElementId;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceConstructAIInput(Movement.Type newMovement, int newTargetPlayerId)
+	public void ReplaceConstructAIInput(Movement.Type newMovement, int newTargetElementId)
 	{
 		var index = CommandComponentsLookup.ConstructAIInput;
 		var component = (ConstructAIInputComponent)CreateComponent(index, typeof(ConstructAIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Movement = newMovement;
-		component.TargetPlayerId = newTargetPlayerId;
+		component.TargetElementId = newTargetElementId;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -40,7 +40,7 @@ public partial class CommandEntity
 		var component = (ConstructAIInputComponent)CreateComponent(index, typeof(ConstructAIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
 		component.Movement = copyComponent.Movement;
-		component.TargetPlayerId = copyComponent.TargetPlayerId;
+		component.TargetElementId = copyComponent.TargetElementId;
 		#endif
 		ReplaceComponent(index, component);
 	}

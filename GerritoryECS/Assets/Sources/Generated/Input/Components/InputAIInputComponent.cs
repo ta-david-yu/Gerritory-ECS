@@ -12,23 +12,23 @@ public partial class InputEntity
 	public AIInputComponent AIInput { get { return (AIInputComponent)GetComponent(InputComponentsLookup.AIInput); } }
 	public bool HasAIInput { get { return HasComponent(InputComponentsLookup.AIInput); } }
 
-	public void AddAIInput(int newTargetPlayerId, AIHelper.SearchSimulationState newSearchSimulationState)
+	public void AddAIInput(int newTargetElementId, AIHelper.SearchSimulationState newSearchSimulationState)
 	{
 		var index = InputComponentsLookup.AIInput;
 		var component = (AIInputComponent)CreateComponent(index, typeof(AIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.TargetPlayerId = newTargetPlayerId;
+		component.TargetElementId = newTargetElementId;
 		component.SearchSimulationState = newSearchSimulationState;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceAIInput(int newTargetPlayerId, AIHelper.SearchSimulationState newSearchSimulationState)
+	public void ReplaceAIInput(int newTargetElementId, AIHelper.SearchSimulationState newSearchSimulationState)
 	{
 		var index = InputComponentsLookup.AIInput;
 		var component = (AIInputComponent)CreateComponent(index, typeof(AIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.TargetPlayerId = newTargetPlayerId;
+		component.TargetElementId = newTargetElementId;
 		component.SearchSimulationState = newSearchSimulationState;
 		#endif
 		ReplaceComponent(index, component);
@@ -39,7 +39,7 @@ public partial class InputEntity
 		var index = InputComponentsLookup.AIInput;
 		var component = (AIInputComponent)CreateComponent(index, typeof(AIInputComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.TargetPlayerId = copyComponent.TargetPlayerId;
+		component.TargetElementId = copyComponent.TargetElementId;
 		component.SearchSimulationState = copyComponent.SearchSimulationState;
 		#endif
 		ReplaceComponent(index, component);

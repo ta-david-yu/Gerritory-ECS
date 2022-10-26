@@ -140,7 +140,7 @@ public partial class Contexts
 	public const string TeamInfo = "TeamInfo";
 	public const string TilePosition = "TilePosition";
 	public const string UserInputUserId = "UserInputUserId";
-	public const string UserInputTargetPlayerId = "UserInputTargetPlayerId";
+	public const string UserInputTargetElementId = "UserInputTargetElementId";
 
 	[JCMG.EntitasRedux.PostConstructor]
 	public void InitializeEntityIndices()
@@ -148,7 +148,7 @@ public partial class Contexts
 		Input.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<InputEntity, int>(
 			AIInput,
 			Input.GetGroup(InputMatcher.AIInput),
-			(e, c) => ((AIInputComponent)c).TargetPlayerId));
+			(e, c) => ((AIInputComponent)c).TargetElementId));
 
 		Tile.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<TileEntity, int>(
 			CanBeRespawnedOn,
@@ -265,17 +265,17 @@ public partial class Contexts
 			(e, c) => ((UserInputComponent)c).UserId));
 
 		Input.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<InputEntity, int>(
-			UserInputTargetPlayerId,
+			UserInputTargetElementId,
 			Input.GetGroup(InputMatcher.UserInput),
-			(e, c) => ((UserInputComponent)c).TargetPlayerId));
+			(e, c) => ((UserInputComponent)c).TargetElementId));
 	}
 }
 
 public static class ContextsExtensions
 {
-	public static InputEntity GetEntityWithAIInput(this InputContext context, int TargetPlayerId)
+	public static InputEntity GetEntityWithAIInput(this InputContext context, int TargetElementId)
 	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<InputEntity, int>)context.GetEntityIndex(Contexts.AIInput)).GetEntity(TargetPlayerId);
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<InputEntity, int>)context.GetEntityIndex(Contexts.AIInput)).GetEntity(TargetElementId);
 	}
 
 	public static System.Collections.Generic.HashSet<TileEntity> GetEntitiesWithCanBeRespawnedOn(this TileContext context, int RespawnAreaId)
@@ -393,9 +393,9 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.EntityIndex<InputEntity, int>)context.GetEntityIndex(Contexts.UserInputUserId)).GetEntities(UserId);
 	}
 
-	public static InputEntity GetEntityWithUserInputTargetPlayerId(this InputContext context, int TargetPlayerId)
+	public static InputEntity GetEntityWithUserInputTargetElementId(this InputContext context, int TargetElementId)
 	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<InputEntity, int>)context.GetEntityIndex(Contexts.UserInputTargetPlayerId)).GetEntity(TargetPlayerId);
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<InputEntity, int>)context.GetEntityIndex(Contexts.UserInputTargetElementId)).GetEntity(TargetElementId);
 	}
 }
 //------------------------------------------------------------------------------

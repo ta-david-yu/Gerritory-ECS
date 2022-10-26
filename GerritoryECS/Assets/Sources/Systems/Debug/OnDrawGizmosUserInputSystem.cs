@@ -24,7 +24,7 @@ public class OnDrawGizmosUserInputSystem : IUpdateSystem
 	{
 		foreach (var elementEntity in m_InLevelUserElementGroup.GetEntities())
 		{
-			var userInputEntity = m_InputContext.GetEntityWithUserInputTargetPlayerId(elementEntity.Player.Id);
+			var userInputEntity = m_InputContext.GetEntityWithUserInputTargetElementId(elementEntity.OnTileElement.Id);
 			if (userInputEntity == null)
 			{
 				// The element is not controlled by an user input. Skip it.

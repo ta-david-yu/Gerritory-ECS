@@ -4,5 +4,5 @@ using JCMG.EntitasRedux;
 public sealed class ConstructAIInputComponent : IComponent
 {
 	public Movement.Type Movement;
-	public int TargetPlayerId;
+	public int TargetElementId;
 }
