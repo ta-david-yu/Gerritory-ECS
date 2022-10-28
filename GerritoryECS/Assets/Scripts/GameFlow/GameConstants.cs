@@ -18,6 +18,8 @@ public static class GameConstants
 	public const float HasLeadingTeamTime = 5.0f;
 	public const int MaxTeamCount = 32;
 
+	public const int MaxGhostChaseVictimHeuristicDistance = 20;
+
 	public static Vector3 TilePositionToWorldPosition(Vector2Int tilePosition)
 	{
 		return new Vector3(tilePosition.x, 0, tilePosition.y) * GameConstants.TileOffset;

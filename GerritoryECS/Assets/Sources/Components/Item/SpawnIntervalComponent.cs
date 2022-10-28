@@ -11,7 +11,6 @@ public sealed class SpawnIntervalComponent : IComponent
 
 	public float GetNextSpawnInterval()
 	{
-		// TODO: randomized time value
 		return UnityEngine.Random.Range(MinValue, MaxValue);
 	}
 }

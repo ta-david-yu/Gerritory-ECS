@@ -37,6 +37,10 @@ public partial class InputEntity
 		else if (component is IdleTimerComponent IdleTimer)
 		{
 			CopyIdleTimerTo(IdleTimer);
+		}
+		else if (component is ChaseNearestOnTileElementVictimInputComponent ChaseNearestOnTileElementVictimInput)
+		{
+			CopyChaseNearestOnTileElementVictimInputTo(ChaseNearestOnTileElementVictimInput);
 		}
 		#endif
 	}

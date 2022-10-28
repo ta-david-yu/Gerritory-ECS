@@ -58,9 +58,6 @@ public sealed class TakeOverOwnableOnEnterTileSystem : IFixedUpdateSystem
 				continue;
 			}
 
-			// TODO: take-overable check logic
-			// ...
-
 			int tileWorthPoints = enterTileEntity.Ownable.WorthPoints;
 
 			if (enterTileEntity.HasOwner) 

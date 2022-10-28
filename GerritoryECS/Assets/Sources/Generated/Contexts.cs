@@ -119,6 +119,7 @@ public partial class Contexts
 {
 	public const string AIInput = "AIInput";
 	public const string CanBeRespawnedOn = "CanBeRespawnedOn";
+	public const string ChaseNearestOnTileElementVictimInput = "ChaseNearestOnTileElementVictimInput";
 	public const string Eaten = "Eaten";
 	public const string GlobalItemSpawner = "GlobalItemSpawner";
 	public const string ItemEater = "ItemEater";
@@ -154,6 +155,11 @@ public partial class Contexts
 			CanBeRespawnedOn,
 			Tile.GetGroup(TileMatcher.CanBeRespawnedOn),
 			(e, c) => ((CanBeRespawnedOnComponent)c).RespawnAreaId));
+
+		Input.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<InputEntity, int>(
+			ChaseNearestOnTileElementVictimInput,
+			Input.GetGroup(InputMatcher.ChaseNearestOnTileElementVictimInput),
+			(e, c) => ((ChaseNearestOnTileElementVictimInputComponent)c).ControllingElementId));
 
 		Item.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<ItemEntity, int>(
 			Eaten,
@@ -281,6 +287,11 @@ public static class ContextsExtensions
 	public static System.Collections.Generic.HashSet<TileEntity> GetEntitiesWithCanBeRespawnedOn(this TileContext context, int RespawnAreaId)
 	{
 		return ((JCMG.EntitasRedux.EntityIndex<TileEntity, int>)context.GetEntityIndex(Contexts.CanBeRespawnedOn)).GetEntities(RespawnAreaId);
+	}
+
+	public static InputEntity GetEntityWithChaseNearestOnTileElementVictimInput(this InputContext context, int ControllingElementId)
+	{
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<InputEntity, int>)context.GetEntityIndex(Contexts.ChaseNearestOnTileElementVictimInput)).GetEntity(ControllingElementId);
 	}
 
 	public static System.Collections.Generic.HashSet<ItemEntity> GetEntitiesWithEaten(this ItemContext context, int EaterId)

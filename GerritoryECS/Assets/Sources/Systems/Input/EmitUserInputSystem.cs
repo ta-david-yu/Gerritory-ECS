@@ -46,13 +46,13 @@ public sealed class EmitUserInputSystem : IInitializeSystem, IUpdateSystem, ITea
 		foreach (var inputEntity in m_UserInputGroup)
 		{
 			int userIndex = inputEntity.UserInput.UserId;
-			int targetPlayerId = inputEntity.UserInput.TargetElementId;
-			ElementEntity playerEntity = m_ElementContext.GetEntityWithPlayer(targetPlayerId);
+			int targetElementId = inputEntity.UserInput.TargetElementId;
+			ElementEntity playerEntity = m_ElementContext.GetEntityWithOnTileElement(targetElementId);
 
 			if (playerEntity == null)
 			{
 				// Couldn't find a player entity with the given id. Skip the input.
-				Debug.LogWarning($"Couldn't find a player entity with the given id - {targetPlayerId}. The input is ignored.");
+				Debug.LogWarning($"Couldn't find an element entity with the given id - {targetElementId}. The input is ignored.");
 				continue;
 			}
 

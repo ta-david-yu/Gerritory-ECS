@@ -14,16 +14,18 @@ using JCMG.EntitasRedux;
 public static class InputComponentsLookup
 {
 	public const int AIInput = 0;
-	public const int DebugMessage = 1;
-	public const int EvaluatingForMovementInput = 2;
-	public const int IdleTimer = 3;
-	public const int UserInput = 4;
+	public const int ChaseNearestOnTileElementVictimInput = 1;
+	public const int DebugMessage = 2;
+	public const int EvaluatingForMovementInput = 3;
+	public const int IdleTimer = 4;
+	public const int UserInput = 5;
 
-	public const int TotalComponents = 5;
+	public const int TotalComponents = 6;
 
 	public static readonly string[] ComponentNames =
 	{
 		"AIInput",
+		"ChaseNearestOnTileElementVictimInput",
 		"DebugMessage",
 		"EvaluatingForMovementInput",
 		"IdleTimer",
@@ -33,6 +35,7 @@ public static class InputComponentsLookup
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(AIInputComponent),
+		typeof(ChaseNearestOnTileElementVictimInputComponent),
 		typeof(DebugMessageComponent),
 		typeof(EvaluatingForMovementInputComponent),
 		typeof(IdleTimerComponent),
@@ -42,10 +45,11 @@ public static class InputComponentsLookup
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(AIInputComponent), 0 },
-		{ typeof(DebugMessageComponent), 1 },
-		{ typeof(EvaluatingForMovementInputComponent), 2 },
-		{ typeof(IdleTimerComponent), 3 },
-		{ typeof(UserInputComponent), 4 }
+		{ typeof(ChaseNearestOnTileElementVictimInputComponent), 1 },
+		{ typeof(DebugMessageComponent), 2 },
+		{ typeof(EvaluatingForMovementInputComponent), 3 },
+		{ typeof(IdleTimerComponent), 4 },
+		{ typeof(UserInputComponent), 5 }
 	};
 
 	/// <summary>

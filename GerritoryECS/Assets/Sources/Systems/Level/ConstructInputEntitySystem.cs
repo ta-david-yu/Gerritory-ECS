@@ -30,7 +30,7 @@ public class ConstructInputEntitySystem : IFixedUpdateSystem
 		foreach (var constructUserInputEntity in m_ConstructUserInputGroup.GetEntities())
 		{
 			InputEntity inputEntity = m_InputContext.CreateEntity();
-			inputEntity.AddUserInput(constructUserInputEntity.ConstructUserInput.TargetElementId, constructUserInputEntity.ConstructUserInput.TargetElementId);
+			inputEntity.AddUserInput(constructUserInputEntity.ConstructUserInput.UserId, constructUserInputEntity.ConstructUserInput.TargetElementId);
 
 			constructUserInputEntity.Destroy();
 		}

@@ -149,8 +149,11 @@ public static partial class GameHelper
 		// TODO: if invinicible, set priority to k_InivinciblePriority
 		// ...
 
-		// TODO: if it's a ghost, set priority to k_GhostPriority
-		// ...
+		// If it's a ghost, the priority is k_GhostPriority
+		if (onTileEntity.IsGhost)
+		{
+			return k_GhsotPriority;
+		}
 
 		return priority;
 	}
@@ -208,6 +211,7 @@ public static partial class GameHelper
 		viewController.OnEntityCreated(contexts, ghostEntity);
 
 		// Add needed componenets
+		ghostEntity.IsGhost = true;
 		ghostEntity.AddOnTileElement(contexts.Level.GetNewOnTileElementId());
 		ghostEntity.AddSpeedChangeable(1, 1);
 		ghostEntity.IsOnTileElementKiller = true;
@@ -229,6 +233,12 @@ public static partial class GameHelper
 
 		// Link view controller with entity
 		viewController.Link(ghostEntity);
+
+		// TODO: move the creation of input entity to a different place
+		// ...
+		var inputEntity = contexts.Input.CreateEntity();
+		inputEntity.AddChaseNearestOnTileElementVictimInput(ghostEntity.OnTileElement.Id, GameConstants.MaxGhostChaseVictimHeuristicDistance, new AIHelper.PathfindingSimulationState());
+		inputEntity.ChaseNearestOnTileElementVictimInput.PathfindingSimulationState.AllocateWithContexts(contexts, Unity.Collections.Allocator.Persistent);
 
 		return ghostEntity;
 	}

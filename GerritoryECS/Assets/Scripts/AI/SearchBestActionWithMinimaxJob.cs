@@ -11,6 +11,6 @@ public struct SearchBestActionWithMinimaxJob : IJob
 
 	public void Execute()
 	{
-		ResultContainer[0] = AIHelper.minimax(Input, ref SimulationState, RandomSeedIndex);
+		ResultContainer[0] = AIHelper.Minimax(Input, ref SimulationState, RandomSeedIndex);
 	}
 }

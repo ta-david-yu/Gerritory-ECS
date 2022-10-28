@@ -17,6 +17,7 @@ public sealed class InputFeature : Feature
 		Add(new IdleAIOnRespawnSystem(contexts));
 		Add(new EmitUserInputSystem(contexts));
 		Add(new EmitAIInputSystem(contexts));
+		Add(new EmitChaseNearestOnTileElementVictimInputSystem(contexts));
 
 		// Input Action Validation
 		Add(new DecayMovementInputActionSystem(contexts));

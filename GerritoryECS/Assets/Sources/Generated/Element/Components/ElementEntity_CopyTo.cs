@@ -86,6 +86,10 @@ public partial class ElementEntity
 		{
 			IsEnterState = true;
 		}
+		else if (component is GhostComponent Ghost)
+		{
+			IsGhost = true;
+		}
 		else if (component is IComponentRefComponent IComponentRef)
 		{
 			CopyIComponentRefTo(IComponentRef);

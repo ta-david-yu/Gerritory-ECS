@@ -31,8 +31,8 @@ public sealed class EmitAIInputSystem : IUpdateSystem, ITearDownSystem
 				continue;
 			}
 
-			int targetPlayerId = inputEntity.AIInput.TargetElementId;
-			var elementEntity = m_ElementContext.GetEntityWithPlayer(targetPlayerId);
+			int targetElementId = inputEntity.AIInput.TargetElementId;
+			var elementEntity = m_ElementContext.GetEntityWithOnTileElement(targetElementId);
 
 			if (!elementEntity.HasOnTilePosition)
 			{
