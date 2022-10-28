@@ -22,9 +22,6 @@ MonoBehaviour:
   - Key: {x: 0, y: 2}
     Value:
       TileId: normal
-  - Key: {x: 0, y: 3}
-    Value:
-      TileId: respawn
   - Key: {x: 0, y: 4}
     Value:
       TileId: normal
@@ -127,33 +124,6 @@ MonoBehaviour:
   - Key: {x: 3, y: 4}
     Value:
       TileId: respawn
-  - Key: {x: 3, y: 5}
-    Value:
-      TileId: normal
-  - Key: {x: 3, y: 6}
-    Value:
-      TileId: normal
-  - Key: {x: 3, y: 7}
-    Value:
-      TileId: normal
-  - Key: {x: 3, y: 8}
-    Value:
-      TileId: respawn
-  - Key: {x: 3, y: 9}
-    Value:
-      TileId: normal
-  - Key: {x: 3, y: 10}
-    Value:
-      TileId: respawn
-  - Key: {x: 4, y: 0}
-    Value:
-      TileId: normal
-  - Key: {x: 4, y: 1}
-    Value:
-      TileId: normal
-  - Key: {x: 4, y: 2}
-    Value:
-      TileId: respawn
   - Key: {x: 4, y: 3}
     Value:
       TileId: normal
@@ -188,12 +158,6 @@ MonoBehaviour:
     Value:
       TileId: normal
   - Key: {x: 5, y: 3}
-    Value:
-      TileId: normal
-  - Key: {x: 5, y: 4}
-    Value:
-      TileId: normal
-  - Key: {x: 5, y: 5}
     Value:
       TileId: normal
   - Key: {x: 5, y: 6}
@@ -265,24 +229,6 @@ MonoBehaviour:
   - Key: {x: 7, y: 6}
     Value:
       TileId: respawn
-  - Key: {x: 7, y: 7}
-    Value:
-      TileId: normal
-  - Key: {x: 7, y: 8}
-    Value:
-      TileId: normal
-  - Key: {x: 7, y: 9}
-    Value:
-      TileId: normal
-  - Key: {x: 7, y: 10}
-    Value:
-      TileId: normal
-  - Key: {x: 8, y: 0}
-    Value:
-      TileId: normal
-  - Key: {x: 8, y: 1}
-    Value:
-      TileId: normal
   - Key: {x: 8, y: 2}
     Value:
       TileId: normal
@@ -290,21 +236,6 @@ MonoBehaviour:
     Value:
       TileId: normal
   - Key: {x: 8, y: 4}
-    Value:
-      TileId: normal
-  - Key: {x: 8, y: 5}
-    Value:
-      TileId: normal
-  - Key: {x: 8, y: 6}
-    Value:
-      TileId: normal
-  - Key: {x: 8, y: 7}
-    Value:
-      TileId: normal
-  - Key: {x: 8, y: 8}
-    Value:
-      TileId: normal
-  - Key: {x: 8, y: 9}
     Value:
       TileId: normal
   - Key: {x: 8, y: 10}
@@ -328,24 +259,9 @@ MonoBehaviour:
   - Key: {x: 9, y: 5}
     Value:
       TileId: normal
-  - Key: {x: 9, y: 6}
-    Value:
-      TileId: normal
-  - Key: {x: 9, y: 7}
-    Value:
-      TileId: normal
   - Key: {x: 9, y: 8}
     Value:
       TileId: normal
-  - Key: {x: 9, y: 9}
-    Value:
-      TileId: normal
-  - Key: {x: 9, y: 10}
-    Value:
-      TileId: normal
-  - Key: {x: 10, y: 0}
-    Value:
-      TileId: respawn
   - Key: {x: 10, y: 1}
     Value:
       TileId: normal
@@ -355,9 +271,6 @@ MonoBehaviour:
   - Key: {x: 10, y: 3}
     Value:
       TileId: respawn
-  - Key: {x: 10, y: 4}
-    Value:
-      TileId: normal
   - Key: {x: 10, y: 5}
     Value:
       TileId: respawn

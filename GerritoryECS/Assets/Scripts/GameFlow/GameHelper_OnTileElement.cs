@@ -213,7 +213,7 @@ public static partial class GameHelper
 		// Add needed componenets
 		ghostEntity.IsGhost = true;
 		ghostEntity.AddOnTileElement(contexts.Level.GetNewOnTileElementId());
-		ghostEntity.AddSpeedChangeable(1, 1);
+		ghostEntity.AddSpeedChangeable(GameConstants.GhostBaseSpeed, 1);
 		ghostEntity.IsOnTileElementKiller = true;
 
 		TryGetValidRespawnPositionResult result = contexts.TryGetValidGhostSpawnPosition(ghostEntity, 0);

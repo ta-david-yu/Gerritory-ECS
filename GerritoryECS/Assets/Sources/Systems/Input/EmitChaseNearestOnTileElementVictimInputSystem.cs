@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
+using static AIHelper;
 
 public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSystem, ITearDownSystem
 {
@@ -13,9 +14,8 @@ public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSyst
 	private readonly IGroup<InputEntity> m_NavigateToPositionInputGroup;
 	private readonly IGroup<ElementEntity> m_VictimCandidatesGroup;
 
-	private const float k_MinimumStayTime = 0.2f;
-	private const float k_NextMoveEvaluationTimeOffset = 0.1f;
-	private const int k_SearchDepthLevel = 5;
+	private const float k_MaximumStayTime = 0.3f;
+	private const float k_MinimumStayTime = 0.15f;
 
 	public EmitChaseNearestOnTileElementVictimInputSystem(Contexts contexts)
 	{
@@ -58,7 +58,8 @@ public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSyst
 			}
 
 			// Initialize pathfinding simulation state/data.
-			inputEntity.ChaseNearestOnTileElementVictimInput.PathfindingSimulationState.InitializeWithContexts(m_Contexts, elementEntity.OnTileElement.Id);
+			var inputComponent = inputEntity.ChaseNearestOnTileElementVictimInput;
+			inputComponent.PathfindingSimulationState.InitializeWithContexts(m_Contexts, elementEntity.OnTileElement.Id);
 
 			// Cache chaser information.
 			int chaserId = elementEntity.OnTileElement.Id;
@@ -89,7 +90,7 @@ public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSyst
 
 				// TODO: this needs to be cached in a different struct
 				// ...
-				int2 targetPosition = candidateEntity.OnTilePosition.Value.ToInt2();
+				int2 targetPosition = inputComponent.PathfindingSimulationState.OnTileElementPositions[candidateId];
 				const int k_NoTeamRanking = 99;
 				int candidateTeamGameRanking = candidateEntity.HasTeam ? m_Contexts.Level.GetEntityWithTeamInfo(candidateEntity.Team.Id).TeamGameRanking.Number : k_NoTeamRanking;
 
@@ -180,7 +181,7 @@ public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSyst
 			if (movementToTarget == Movement.Type.Stay)
 			{
 				// Add an idle timer to avoid move right away after Stay.
-				inputEntity.AddIdleTimer(k_MinimumStayTime);
+				inputEntity.AddIdleTimer(UnityEngine.Random.Range(k_MinimumStayTime, k_MaximumStayTime));
 				continue;
 			}
 

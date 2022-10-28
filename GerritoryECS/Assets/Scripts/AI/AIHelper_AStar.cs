@@ -34,7 +34,28 @@ public static partial class AIHelper
 		public NativeArray<int> TileIndices;
 		public NativeArray<TileEnterableState> TileEnterables;
 
+		/// <summary>
+		/// OnTileElementId -> Position
+		/// </summary>
+		public NativeHashMap<int, int2> OnTileElementPositions;
+
 		public const int k_NoTile = -1;
+		private static IGroup<ElementEntity> s_CachedRelevantElementsGroup;
+		private static IGroup<ElementEntity> getRelevantElementsGroup(Contexts contexts)
+		{
+			if (s_CachedRelevantElementsGroup == null)
+			{
+				s_CachedRelevantElementsGroup = contexts.Element.GetGroup
+				(
+					ElementMatcher.AllOf
+					(
+						ElementMatcher.OnTileElement,
+						ElementMatcher.OnTilePosition
+					)
+				);
+			}
+			return s_CachedRelevantElementsGroup;
+		}
 
 		public PathfindingSimulationState AllocateWithContexts(Contexts contexts, Allocator allocator)
 		{
@@ -45,6 +66,9 @@ public static partial class AIHelper
 			LevelBoundingRectSize = contexts.Config.GameConfig.value.LevelData.LevelBoundingRectSize;
 			TileIndices = new NativeArray<int>(LevelBoundingRectSize.x * LevelBoundingRectSize.y, allocator);
 			TileEnterables = new NativeArray<TileEnterableState>(numberOfTiles, allocator);
+
+			ElementEntity[] relevantElements = getRelevantElementsGroup(contexts).GetEntities();
+			OnTileElementPositions = new NativeHashMap<int, int2>(relevantElements.Length, allocator);
 
 			IsAllocated = true;
 
@@ -101,30 +125,14 @@ public static partial class AIHelper
 			}
 
 
-			// Update enterable states based on OnTileElements information
-			ElementEntity[] relevantElements = contexts.Element.GetGroup
-			(
-				ElementMatcher.AllOf
-				(
-					ElementMatcher.OnTileElement
-				)
-			).GetEntities();
+			// Update OnTileElementPositions & enterable states based on OnTileElements information
+			ElementEntity[] relevantElements = getRelevantElementsGroup(contexts).GetEntities();
 			int numberOfRelevantOnTileElements = relevantElements.Length;
+			OnTileElementPositions.Clear();
 
 			for (int i = 0; i < numberOfRelevantOnTileElements; i++)
 			{
 				ElementEntity element = relevantElements[i];
-				if (element.OnTileElement.Id == observerOnTileElementId)
-				{
-					// In pathfinding simulation, the position of the observer itself should be ignored.
-					continue;
-				}
-
-				if (!element.HasOnTilePosition)
-				{
-					// Dead OnTileElement is not relevant to our simulation, skip it.
-					continue;
-				}
 
 				// If the element is not the agent itself, we add a time stagger for the AI to notice the movement.
 				// Therefore it feels natural/human-like.
@@ -142,6 +150,15 @@ public static partial class AIHelper
 				else
 				{
 					elementPosition = element.OnTilePosition.Value;
+				}
+				OnTileElementPositions.Add(element.OnTileElement.Id, elementPosition.ToInt2());
+
+				// Update tile enterable state:
+
+				if (element.OnTileElement.Id == observerOnTileElementId)
+				{
+					// In pathfinding simulation, the observer itself should not modify tile enterable state.
+					continue;
 				}
 
 				TileEnterableState tileEnterableState = TileEnterableState.Vacant;
@@ -172,6 +189,7 @@ public static partial class AIHelper
 
 			TileIndices.Dispose();
 			TileEnterables.Dispose();
+			OnTileElementPositions.Dispose();
 
 			IsAllocated = false;
 		}
