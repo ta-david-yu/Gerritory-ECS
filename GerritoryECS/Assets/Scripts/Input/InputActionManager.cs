@@ -121,7 +121,7 @@ public partial class @InputActionManager : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6802ca3a-5e61-4f37-8771-a5866e8d4207"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/numpad5"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player3"",
@@ -176,7 +176,7 @@ public partial class @InputActionManager : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""09a30d98-d22b-4a6b-b2f7-4128e6a5722b"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/numpad2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player3"",
@@ -231,7 +231,7 @@ public partial class @InputActionManager : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dfe31592-bf4e-4da5-919d-242fa0d940f1"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/numpad3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player3"",
@@ -286,7 +286,7 @@ public partial class @InputActionManager : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""78944fc9-c303-4034-b3db-4235e641d00c"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/numpad1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player3"",

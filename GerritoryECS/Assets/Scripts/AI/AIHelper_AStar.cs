@@ -94,6 +94,10 @@ public static partial class AIHelper
 				{
 					TileEnterables[i] = TileEnterableState.Unenterable;
 				}
+				else
+				{
+					TileEnterables[i] = TileEnterableState.Vacant;
+				}
 			}
 
 
@@ -253,22 +257,22 @@ public static partial class AIHelper
 		{
 			if (this.FCost < other.FCost)
 			{
-				return -1;
+				return 1;
 			}
 
 			if (this.FCost > other.FCost)
 			{
-				return 1;
+				return -1;
 			}
 
 			if (this.HCost < other.HCost)
 			{
-				return -1;
+				return 1;
 			}
 
 			if (this.HCost > other.HCost)
 			{
-				return 1;
+				return -1;
 			}
 
 			return 0;
@@ -277,6 +281,15 @@ public static partial class AIHelper
 		public bool Equals(AStarPathNode other)
 		{
 			return Position.Equals(other.Position);
+		}
+
+		/// <summary>
+		/// We have to implement this so the internal HashMap in BinaryHeap can properly use Position as the key.
+		/// </summary>
+		/// <returns></returns>
+		public override int GetHashCode()
+		{
+			return Position.GetHashCode();
 		}
 	}
 
@@ -347,9 +360,10 @@ public static partial class AIHelper
 					HCost = HeuristicDistance(neighborPosition, input.EndPosition),
 					ParentPosition = currentNode.Position
 				};
-				int existingNodeIndexWithTheSamePosition = openNodeList.IndexOf(neighborNode);
-				bool isInOpenNodeList = existingNodeIndexWithTheSamePosition >= 0;
 
+				neighborNode.GetHashCode();
+				int existingNodeIndexWithTheSamePosition = openNodeList.IndexOf(neighborNode); // <================== This thing has some issue
+				bool isInOpenNodeList = existingNodeIndexWithTheSamePosition >= 0;
 				if (!isInOpenNodeList)
 				{
 					// A node with the neighbor position has not been recorded in the open list. Enqueue it!
