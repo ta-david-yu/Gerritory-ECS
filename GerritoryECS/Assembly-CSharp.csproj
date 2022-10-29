@@ -196,6 +196,7 @@
     <Compile Include="Assets\Sources\Components\Config\IGameConfig.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementEnterStateComponent.cs" />
     <Compile Include="Assets\Sources\Components\Item\ApplySpeedChangeOnEatenComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Input\EmitChaseNearestOnTileElementVictimInputSystem.cs" />
     <Compile Include="Assets\Sources\Features\InputFeature.cs" />
     <Compile Include="Assets\Scripts\Utility\TagSelector\TagSelectorAttribute.cs" />
     <Compile Include="Assets\Sources\Systems\_Sandbox\DebugMessageSystem.cs" />
@@ -527,6 +528,7 @@
     <Compile Include="Assets\Sources\Generated\GameFlow\Components\GameFlowEndOnGoalReachedComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\ElementMatcher.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementMoveOnTileComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Input\Components\InputChaseNearestOnTileElementVictimInputComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Command\Features\CommandCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Components\Tile\OwnableComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Element\Components\ElementItemEaterComponent.cs" />
@@ -584,8 +586,6 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
     <Compile Include="Assets\Scripts\Utility\NativeContainer\NativeBinaryHeap.cs" />
-    <Compile Include="Assets\Sources\Systems\Input\EmitChaseNearestOnTileElementVictimInputSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Input\Components\InputChaseNearestOnTileElementVictimInputComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

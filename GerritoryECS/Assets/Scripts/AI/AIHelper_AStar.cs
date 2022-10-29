@@ -325,11 +325,23 @@ public static partial class AIHelper
 		AStarPathNode startNode = new AStarPathNode { Position = input.StartPosition, GCost = 0, HCost = HeuristicDistance(input.StartPosition, input.EndPosition) };
 		openNodeList.Add(startNode);
 
+		// We want to keep track of the closest tile (heuristically) and its cost in case there is no connected path to the end.
+		// We could still return the shortest path to the closest tile.
+		int2 visitedNodePositionWithLowestHeuristicCost = input.StartPosition;
+		int lowestVisitedHeuristicCost = int.MaxValue;
+
 		bool hasConnectedPath = false;
 		while (openNodeList.Count != 0)
 		{
 			AStarPathNode currentNode = openNodeList.RemoveFirst();
 			closedNodeList.Add(currentNode);
+
+			if (currentNode.HCost < lowestVisitedHeuristicCost)
+			{
+				// Keep track of the node information that is the nearest to the end position so far.
+				lowestVisitedHeuristicCost = currentNode.HCost;
+				visitedNodePositionWithLowestHeuristicCost = currentNode.Position;
+			}
 
 			if (currentNode.Position.Equals(input.EndPosition))
 			{
@@ -427,11 +439,42 @@ public static partial class AIHelper
 		}
 		else
 		{
-			// TODO: recreate a path towards the closest tile to the end location
-			// For now we return nothing!
-			// ... 
-			result.Type = AStarResult.ResultType.NoConnectedPath;
-			result.ValidPathLength = 0;
+			// Even if we couldn't reach the target, we will return a path to the possible closest tile in the connected island.
+			if (closedNodeList.TryGetNodeWithPosition(visitedNodePositionWithLowestHeuristicCost, out AStarPathNode nearestNode))
+			{
+				// Traverse through nodes to get the evaluated shortest path.
+				NativeList<int2> path = new NativeList<int2>(Allocator.Temp);
+
+				AStarPathNode currentNode = nearestNode;
+
+				// If the start position was already on the nearest location, no need to output a path! Keep the path empty
+				if (!nearestNode.Position.Equals(input.StartPosition))
+				{
+					do
+					{
+						path.Add(currentNode.Position);
+						AStarPathNode parentNode;
+						if (!closedNodeList.TryGetNodeWithPosition(currentNode.ParentPosition, out parentNode))
+						{
+							Debug.LogError($"The parent node should always be in the closed node list but it's not found. Something is wrong :(");
+							break;
+						}
+						currentNode = parentNode;
+					} while (!currentNode.Position.Equals(input.StartPosition));
+				}
+
+				result.Type = AStarResult.ResultType.NoConnectedPath;
+				result.LowestCost = lowestVisitedHeuristicCost;
+				result.ValidPathLength = path.Length;
+				result.Path = path;
+			}
+			else
+			{
+				// If we couldn't find the node with the given node, there is something but whatever :P
+				Debug.LogError("Couldn't find a node with the given position, there is something wrong but not very urgent for now :)");
+				result.Type = AStarResult.ResultType.NoConnectedPath;
+				result.ValidPathLength = 0;
+			}
 		}
 
 		// Remember to dispose the native containers since they are allocated in unmanaged memory!

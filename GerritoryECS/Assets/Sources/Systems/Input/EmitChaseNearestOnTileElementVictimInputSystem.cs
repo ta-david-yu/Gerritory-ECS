@@ -66,12 +66,12 @@ public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSyst
 			int2 startPosition = elementEntity.OnTilePosition.Value.ToInt2();
 
 			const int k_NoVictimElementId = -1;
+			bool isCurrentNearestVictimReachable = false;
 			int nearestVictimElementId = k_NoVictimElementId;
 			int nearestVictimGameRanking = int.MaxValue;
 			int distanceToNearestVictim = int.MaxValue;
 			int2 firstPositionOfPathToNearestVictim = startPosition;
 			int2[] debugPathToNearestVictimCache = null;
-			int debugPathCost = -1;
 			foreach (var candidateEntity in m_VictimCandidatesGroup.GetEntities())
 			{
 				int candidateId = candidateEntity.OnTileElement.Id;
@@ -119,33 +119,69 @@ public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSyst
 					}, 
 					randomSeedIndex: UnityEngine.Random.Range(0, 100)
 				);
-				
-				if (aStarResult.Type == AIHelper.AStarResult.ResultType.NoConnectedPath)
-				{
-					// Cannot reach the target candidate (no path). Skip it!
-					DebugDraw.Cross(GameConstants.TilePositionToWorldPosition(startPosition.ToVector2Int()), 0.5f, Color.red, 0.2f);
-					continue;
-				}
 
 				bool isBetterVictimCandidate = false;
-
-				int distanceToCandidate = aStarResult.ValidPathLength;
-				if (distanceToCandidate < distanceToNearestVictim)
+				int distanceToCandidate = int.MaxValue;
+				if (isCurrentNearestVictimReachable)
 				{
-					// Found a target that is closer, target it as the victim instead!
-					isBetterVictimCandidate = true;
-				}
-				else if (distanceToCandidate == distanceToNearestVictim)
-				{
-					// If two candidates have the same distance, we pick one that has better ranking number!
-					if (candidateTeamGameRanking < nearestVictimGameRanking)
+					// If we already have a victim that is reachable (have connected path), we ignore candidates that aren't reachable!
+					if (aStarResult.Type == AIHelper.AStarResult.ResultType.NoConnectedPath)
 					{
+						// Cannot reach the target candidate (no path). Skip it!
+						DebugDraw.Cross(GameConstants.TilePositionToWorldPosition(targetPosition.ToVector2Int()), 0.5f, Color.red, 0.2f);
+						continue;
+					}
+
+					distanceToCandidate = aStarResult.ValidPathLength;
+					if (distanceToCandidate < distanceToNearestVictim)
+					{
+						// Found a target that is closer, target it as the victim instead!
 						isBetterVictimCandidate = true;
+					}
+					else if (distanceToCandidate == distanceToNearestVictim)
+					{
+						// If two candidates have the same distance, we pick one that has better ranking number!
+						if (candidateTeamGameRanking < nearestVictimGameRanking)
+						{
+							isBetterVictimCandidate = true;
+						}
+					}
+				}
+				else
+				{
+					// If we didn't have a reachable victim yet, any reachable candidate would be a better option than an unreachable target!
+					if (aStarResult.Type == AStarResult.ResultType.Success)
+					{
+						distanceToCandidate = aStarResult.ValidPathLength;
+						isBetterVictimCandidate = true;
+					}
+					else
+					{
+						distanceToCandidate = aStarResult.ValidPathLength;
+						if (distanceToCandidate < distanceToNearestVictim)
+						{
+							// Found a target that is closer, target it as the victim instead!
+							isBetterVictimCandidate = true;
+						}
+						else if (distanceToCandidate == distanceToNearestVictim)
+						{
+							// If two candidates have the same distance, we pick one that has better ranking number!
+							if (candidateTeamGameRanking < nearestVictimGameRanking)
+							{
+								isBetterVictimCandidate = true;
+							}
+						}
 					}
 				}
 
 				if (isBetterVictimCandidate)
 				{
+					if (aStarResult.Type == AStarResult.ResultType.Success)
+					{
+						// Mark the victim as reachable so from now on we would only take reachable candidate as victim (candidates with connected path)!
+						isCurrentNearestVictimReachable = true;
+					}
+
 					// Update relevant nearest victim info.
 					nearestVictimElementId = candidateId;
 					distanceToNearestVictim = distanceToCandidate;
@@ -154,12 +190,10 @@ public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSyst
 
 					// Debug draw the shortest path to each valid candidate.
 					debugPathToNearestVictimCache = aStarResult.Path.ToArray();
-					debugPathCost = aStarResult.LowestCost;
 				}
 			}
 
 			// Debug draw :)))
-			Debug.Log($"Cost: {debugPathCost}");
 			AIHelper.DebugDrawPath(debugPathToNearestVictimCache, Color.blue, GameConstants.MoveOnTileDuration);
 
 			// Get the actual movement to take from the calculated path.
