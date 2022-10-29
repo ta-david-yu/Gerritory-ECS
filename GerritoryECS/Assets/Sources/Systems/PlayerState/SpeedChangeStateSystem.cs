@@ -57,7 +57,6 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 		{
 			Debug.LogWarning($"The target state holder doesn't have SpeedChangeableComponent, therefore the speed change is not applied.");
 		}
-		Debug.Log($"Speed change: {entity.SpeedChangeState.SpeedMultiplier}, On state holder: {entity.State.HolderId}");
 	}
 
 	private void handleOnSpeedChangeStateRemoved(IGroup<PlayerStateEntity> group, PlayerStateEntity entity, int index, IComponent component)
@@ -106,8 +105,6 @@ public sealed class SpeedChangeStateSystem : IInitializeSystem, ITearDownSystem
 		{
 			Debug.LogWarning($"The target state holder doesn't have SpeedChangeableComponent, therefore the speed change is not recovered.");
 		}
-
-		Debug.Log($"Speed recovered: {speedMultiplier}, On state holder: {stateHolderId}");
 	}
 
 }
