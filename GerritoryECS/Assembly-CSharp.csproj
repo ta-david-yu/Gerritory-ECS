@@ -594,6 +594,13 @@
     <Compile Include="Assets\Sources\Components\PlayerState\Message\OnTileElementRespawnComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Message\Components\MessageOnTileElementRespawnComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Input\AddIgnoredByGhostOnRespawnSystem.cs" />
+    <Compile Include="Assets\Sources\Components\Config\GlobalGhostSpawnerConfig.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\Message\OnTileElementKilledComponent.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\Message\StepKilledByOnTileElementComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Components\MessageStepKilledByOnTileElementComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Components\MessageOnTileElementDieComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Command\Components\CommandStepKilledByOnTileElementComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Components\Interfaces\IStepKilledByOnTileElementEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

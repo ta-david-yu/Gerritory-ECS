@@ -7,6 +7,7 @@ public sealed class MarkOnTileElementDeadSystem : IFixedUpdateSystem
 {
 	private readonly ElementContext m_ElementContext;
 	private readonly CommandContext m_CommandContext;
+	private readonly MessageContext m_MessageContext;
 	private readonly Contexts m_Contexts;
 
 	private readonly IGroup<CommandEntity> m_MarkDeadRequestGroup;
@@ -15,6 +16,7 @@ public sealed class MarkOnTileElementDeadSystem : IFixedUpdateSystem
 	{
 		m_ElementContext = contexts.Element;
 		m_CommandContext = contexts.Command;
+		m_MessageContext = contexts.Message;
 		m_Contexts = contexts;
 
 		m_MarkDeadRequestGroup = m_CommandContext.GetGroup(CommandMatcher.MarkOnTileElementDead);
@@ -50,6 +52,14 @@ public sealed class MarkOnTileElementDeadSystem : IFixedUpdateSystem
 				Vector2Int toPosition = onTileEntity.MoveOnTile.ToPosition;
 				onTileEntity.RemoveMoveOnTile();
 				onTileEntity.AddMoveOnTileEnd(fromPosition, toPosition);
+			}
+
+			var dieMessageEntity = m_MessageContext.EmitOnTileElementDieMessage(onTileEntity.OnTileElement.Id);
+			
+			// Provides the cause of death if there is given one.
+			if (markDeadRequest.HasStepKilledByOnTileElement)
+			{
+				dieMessageEntity.ReplaceStepKilledByOnTileElement(markDeadRequest.StepKilledByOnTileElement.KillerOnTileElementId);
 			}
 
 			markDeadRequest.Destroy();

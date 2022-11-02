@@ -16,20 +16,24 @@ public static class MessageComponentsLookup
 	public const int Consumed = 0;
 	public const int ConsumeInFixedUpdate = 1;
 	public const int LeaveBecauseOfDeath = 2;
-	public const int OnTileElementEnterTile = 3;
-	public const int OnTileElementLeaveTile = 4;
-	public const int OnTileElementRespawn = 5;
+	public const int OnTileElementDie = 3;
+	public const int OnTileElementEnterTile = 4;
+	public const int OnTileElementLeaveTile = 5;
+	public const int OnTileElementRespawn = 6;
+	public const int StepKilledByOnTileElement = 7;
 
-	public const int TotalComponents = 6;
+	public const int TotalComponents = 8;
 
 	public static readonly string[] ComponentNames =
 	{
 		"Consumed",
 		"ConsumeInFixedUpdate",
 		"LeaveBecauseOfDeath",
+		"OnTileElementDie",
 		"OnTileElementEnterTile",
 		"OnTileElementLeaveTile",
-		"OnTileElementRespawn"
+		"OnTileElementRespawn",
+		"StepKilledByOnTileElement"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
@@ -37,9 +41,11 @@ public static class MessageComponentsLookup
 		typeof(ConsumedComponent),
 		typeof(ConsumeInFixedUpdateComponent),
 		typeof(LeaveBecauseOfDeathComponent),
+		typeof(OnTileElementDieComponent),
 		typeof(OnTileElementEnterTileComponent),
 		typeof(OnTileElementLeaveTileComponent),
-		typeof(OnTileElementRespawnComponent)
+		typeof(OnTileElementRespawnComponent),
+		typeof(StepKilledByOnTileElementComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
@@ -47,9 +53,11 @@ public static class MessageComponentsLookup
 		{ typeof(ConsumedComponent), 0 },
 		{ typeof(ConsumeInFixedUpdateComponent), 1 },
 		{ typeof(LeaveBecauseOfDeathComponent), 2 },
-		{ typeof(OnTileElementEnterTileComponent), 3 },
-		{ typeof(OnTileElementLeaveTileComponent), 4 },
-		{ typeof(OnTileElementRespawnComponent), 5 }
+		{ typeof(OnTileElementDieComponent), 3 },
+		{ typeof(OnTileElementEnterTileComponent), 4 },
+		{ typeof(OnTileElementLeaveTileComponent), 5 },
+		{ typeof(OnTileElementRespawnComponent), 6 },
+		{ typeof(StepKilledByOnTileElementComponent), 7 }
 	};
 
 	/// <summary>

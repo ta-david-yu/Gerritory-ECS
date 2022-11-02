@@ -126,6 +126,7 @@ public partial class Contexts
 	public const string MarkOnTileElementDead = "MarkOnTileElementDead";
 	public const string MoveOnTile = "MoveOnTile";
 	public const string OnTileElement = "OnTileElement";
+	public const string OnTileElementDie = "OnTileElementDie";
 	public const string OnTileElementEffect = "OnTileElementEffect";
 	public const string OnTileElementEnterTile = "OnTileElementEnterTile";
 	public const string OnTileElementLeaveTile = "OnTileElementLeaveTile";
@@ -138,6 +139,7 @@ public partial class Contexts
 	public const string SpawnItem = "SpawnItem";
 	public const string State = "State";
 	public const string StateHolder = "StateHolder";
+	public const string StepKilledByOnTileElement = "StepKilledByOnTileElement";
 	public const string Team = "Team";
 	public const string TeamInfo = "TeamInfo";
 	public const string TilePosition = "TilePosition";
@@ -191,6 +193,11 @@ public partial class Contexts
 			OnTileElement,
 			Element.GetGroup(ElementMatcher.OnTileElement),
 			(e, c) => ((OnTileElementComponent)c).Id));
+
+		Message.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<MessageEntity, int>(
+			OnTileElementDie,
+			Message.GetGroup(MessageMatcher.OnTileElementDie),
+			(e, c) => ((OnTileElementDieComponent)c).OnTileElementId));
 
 		Effect.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<EffectEntity, int>(
 			OnTileElementEffect,
@@ -255,6 +262,15 @@ public partial class Contexts
 			StateHolder,
 			Element.GetGroup(ElementMatcher.StateHolder),
 			(e, c) => ((StateHolderComponent)c).Id));
+
+		Command.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<CommandEntity, int>(
+			StepKilledByOnTileElement,
+			Command.GetGroup(CommandMatcher.StepKilledByOnTileElement),
+			(e, c) => ((StepKilledByOnTileElementComponent)c).KillerOnTileElementId));
+		Message.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<MessageEntity, int>(
+			StepKilledByOnTileElement,
+			Message.GetGroup(MessageMatcher.StepKilledByOnTileElement),
+			(e, c) => ((StepKilledByOnTileElementComponent)c).KillerOnTileElementId));
 
 		Element.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<ElementEntity, int>(
 			Team,
@@ -330,6 +346,11 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>)context.GetEntityIndex(Contexts.OnTileElement)).GetEntity(Id);
 	}
 
+	public static MessageEntity GetEntityWithOnTileElementDie(this MessageContext context, int OnTileElementId)
+	{
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<MessageEntity, int>)context.GetEntityIndex(Contexts.OnTileElementDie)).GetEntity(OnTileElementId);
+	}
+
 	public static System.Collections.Generic.HashSet<EffectEntity> GetEntitiesWithOnTileElementEffect(this EffectContext context, int OnTileElementId)
 	{
 		return ((JCMG.EntitasRedux.EntityIndex<EffectEntity, int>)context.GetEntityIndex(Contexts.OnTileElementEffect)).GetEntities(OnTileElementId);
@@ -393,6 +414,16 @@ public static class ContextsExtensions
 	public static ElementEntity GetEntityWithStateHolder(this ElementContext context, int Id)
 	{
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>)context.GetEntityIndex(Contexts.StateHolder)).GetEntity(Id);
+	}
+
+	public static System.Collections.Generic.HashSet<CommandEntity> GetEntitiesWithStepKilledByOnTileElement(this CommandContext context, int KillerOnTileElementId)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<CommandEntity, int>)context.GetEntityIndex(Contexts.StepKilledByOnTileElement)).GetEntities(KillerOnTileElementId);
+	}
+
+	public static System.Collections.Generic.HashSet<MessageEntity> GetEntitiesWithStepKilledByOnTileElement(this MessageContext context, int KillerOnTileElementId)
+	{
+		return ((JCMG.EntitasRedux.EntityIndex<MessageEntity, int>)context.GetEntityIndex(Contexts.StepKilledByOnTileElement)).GetEntities(KillerOnTileElementId);
 	}
 
 	public static System.Collections.Generic.HashSet<ElementEntity> GetEntitiesWithTeam(this ElementContext context, int Id)

@@ -31,4 +31,11 @@ public static class MessageContextExtensions
 		respawnMessageEntity.ReplaceOnTileElementRespawn(onTileElementId, respawnPosition);
 		return respawnMessageEntity;
 	}
+
+	public static MessageEntity EmitOnTileElementDieMessage(this MessageContext context, int onTileElementId)
+	{
+		var dieMessageEntity = CreateFixedUpdateMessageEntity(context);
+		dieMessageEntity.ReplaceOnTileElementDie(onTileElementId);
+		return dieMessageEntity;
+	}
 }
