@@ -18,6 +18,7 @@ public struct TryGetValidRespawnPositionResult
 public struct TryCommandKillResult
 {
 	public bool Success;
+	public CommandEntity CommandEntity;
 }
 
 public static partial class GameHelper
@@ -112,8 +113,9 @@ public static partial class GameHelper
 		}
 
 		// Create mark dead request entity.
-		contexts.Command.CreateEntity().AddMarkOnTileElementDead(onTileEntity.OnTileElement.Id);
-		return new TryCommandKillResult { Success = true };
+		var commandEntity = contexts.Command.CreateEntity();
+		commandEntity.AddMarkOnTileElementDead(onTileEntity.OnTileElement.Id);
+		return new TryCommandKillResult { Success = true, CommandEntity = commandEntity };
 	}
 
 	public static bool CanStepOnVictim(this Contexts contexts, ElementEntity stepperEntity, ElementEntity victimEntity)

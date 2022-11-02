@@ -92,6 +92,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 						// The kill action is not successful.
 						continue;
 					}
+					killResult.CommandEntity.ReplaceStepKilledByOnTileElement(entity.OnTileElement.Id);
 				}
 
 				List<ElementEntity> movingInEntities = m_ElementContext.GetEntitiesWithMoveOnTile(toPosition).ToList();
@@ -116,6 +117,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 						// The kill action is not successful.
 						continue;
 					}
+					killResult.CommandEntity.ReplaceStepKilledByOnTileElement(entity.OnTileElement.Id);
 				}
 			}
 
