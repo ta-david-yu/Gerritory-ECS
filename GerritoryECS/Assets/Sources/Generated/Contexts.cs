@@ -129,6 +129,7 @@ public partial class Contexts
 	public const string OnTileElementEffect = "OnTileElementEffect";
 	public const string OnTileElementEnterTile = "OnTileElementEnterTile";
 	public const string OnTileElementLeaveTile = "OnTileElementLeaveTile";
+	public const string OnTileElementRespawn = "OnTileElementRespawn";
 	public const string OnTileItem = "OnTileItem";
 	public const string OnTilePosition = "OnTilePosition";
 	public const string Owner = "Owner";
@@ -205,6 +206,11 @@ public partial class Contexts
 			OnTileElementLeaveTile,
 			Message.GetGroup(MessageMatcher.OnTileElementLeaveTile),
 			(e, c) => ((OnTileElementLeaveTileComponent)c).OnTileElementId));
+
+		Message.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<MessageEntity, int>(
+			OnTileElementRespawn,
+			Message.GetGroup(MessageMatcher.OnTileElementRespawn),
+			(e, c) => ((OnTileElementRespawnComponent)c).OnTileElementId));
 
 		Item.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<ItemEntity, UnityEngine.Vector2Int>(
 			OnTileItem,
@@ -337,6 +343,11 @@ public static class ContextsExtensions
 	public static MessageEntity GetEntityWithOnTileElementLeaveTile(this MessageContext context, int OnTileElementId)
 	{
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<MessageEntity, int>)context.GetEntityIndex(Contexts.OnTileElementLeaveTile)).GetEntity(OnTileElementId);
+	}
+
+	public static MessageEntity GetEntityWithOnTileElementRespawn(this MessageContext context, int OnTileElementId)
+	{
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<MessageEntity, int>)context.GetEntityIndex(Contexts.OnTileElementRespawn)).GetEntity(OnTileElementId);
 	}
 
 	public static ItemEntity GetEntityWithOnTileItem(this ItemContext context, UnityEngine.Vector2Int Position)

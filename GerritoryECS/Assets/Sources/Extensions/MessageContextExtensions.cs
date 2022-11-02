@@ -24,4 +24,11 @@ public static class MessageContextExtensions
 		leaveTileMessageEntity.ReplaceOnTileElementLeaveTile(onTileElementId, leavePosition);
 		return leaveTileMessageEntity;
 	}
+
+	public static MessageEntity EmitOnTileElementRespawnMessage(this MessageContext context, int onTileElementId, Vector2Int respawnPosition)
+	{
+		var respawnMessageEntity = CreateFixedUpdateMessageEntity(context);
+		respawnMessageEntity.ReplaceOnTileElementRespawn(onTileElementId, respawnPosition);
+		return respawnMessageEntity;
+	}
 }

@@ -19,6 +19,7 @@ public static class GameConstants
 	public const int MaxTeamCount = 32;
 
 	public const int MaxGhostChaseVictimHeuristicDistance = 20;
+	public const float IgnoredByGhostOnRespawnTime = 1.5f;
 	public const float GhostBaseSpeed = 1.15f;
 
 	public static Vector3 TilePositionToWorldPosition(Vector2Int tilePosition)

@@ -10,11 +10,15 @@ public sealed class InputFeature : Feature
 		// Construct input systems
 		Add(new ConstructInputEntitySystem(contexts));
 
-		// Update AI input idle timer
+		// Update AI input related timers
 		Add(new UpdateIdleTimerSystem(contexts));
+		Add(new UpdateIgnoredByGhostTimerSystem(contexts));
+
+		// AI human-like staggering behaviour systems
+		Add(new IdleAIOnRespawnSystem(contexts));
+		Add(new AddIgnoredByGhostOnRespawnSystem(contexts));
 
 		// Read/emit input from Users or AIs
-		Add(new IdleAIOnRespawnSystem(contexts));
 		Add(new EmitUserInputSystem(contexts));
 		Add(new EmitAIInputSystem(contexts));
 		Add(new EmitChaseNearestOnTileElementVictimInputSystem(contexts));

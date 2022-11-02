@@ -80,6 +80,7 @@ public class InGameController : MonoBehaviour
 			.Add(new PlayerStateFeature(contexts))
 
 			.Add(new InputFeature(contexts))
+
 			.Add(new MessageFeature(contexts))
 
 			// Generated event systems

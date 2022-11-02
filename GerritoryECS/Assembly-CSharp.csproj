@@ -586,6 +586,14 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
     <Compile Include="Assets\Scripts\Utility\NativeContainer\NativeBinaryHeap.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\IgnoredByGhostComponent.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\RemoveIgnoredByGhostTimerComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementIgnoredByGhostComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementRemoveIgnoredByGhostTimerComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Input\UpdateIgnoredByGhostTimerSystem.cs" />
+    <Compile Include="Assets\Sources\Components\PlayerState\Message\OnTileElementRespawnComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Message\Components\MessageOnTileElementRespawnComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Input\AddIgnoredByGhostOnRespawnSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -18,8 +18,9 @@ public static class MessageComponentsLookup
 	public const int LeaveBecauseOfDeath = 2;
 	public const int OnTileElementEnterTile = 3;
 	public const int OnTileElementLeaveTile = 4;
+	public const int OnTileElementRespawn = 5;
 
-	public const int TotalComponents = 5;
+	public const int TotalComponents = 6;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -27,7 +28,8 @@ public static class MessageComponentsLookup
 		"ConsumeInFixedUpdate",
 		"LeaveBecauseOfDeath",
 		"OnTileElementEnterTile",
-		"OnTileElementLeaveTile"
+		"OnTileElementLeaveTile",
+		"OnTileElementRespawn"
 	};
 
 	public static readonly System.Type[] ComponentTypes =
@@ -36,7 +38,8 @@ public static class MessageComponentsLookup
 		typeof(ConsumeInFixedUpdateComponent),
 		typeof(LeaveBecauseOfDeathComponent),
 		typeof(OnTileElementEnterTileComponent),
-		typeof(OnTileElementLeaveTileComponent)
+		typeof(OnTileElementLeaveTileComponent),
+		typeof(OnTileElementRespawnComponent)
 	};
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
@@ -45,7 +48,8 @@ public static class MessageComponentsLookup
 		{ typeof(ConsumeInFixedUpdateComponent), 1 },
 		{ typeof(LeaveBecauseOfDeathComponent), 2 },
 		{ typeof(OnTileElementEnterTileComponent), 3 },
-		{ typeof(OnTileElementLeaveTileComponent), 4 }
+		{ typeof(OnTileElementLeaveTileComponent), 4 },
+		{ typeof(OnTileElementRespawnComponent), 5 }
 	};
 
 	/// <summary>

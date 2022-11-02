@@ -79,6 +79,7 @@ public sealed class RespawnOnWaitingForRespawnStateRemovedSystem : IInitializeSy
 
 			if (stateHolderEntity.HasOnTileElement)
 			{
+				m_MessageContext.EmitOnTileElementRespawnMessage(stateHolderEntity.OnTileElement.Id, respawnPositionQueryResult.TilePosition);
 				m_MessageContext.EmitOnTileElementEnterTileMessage(stateHolderEntity.OnTileElement.Id, respawnPositionQueryResult.TilePosition);
 			}
 			else

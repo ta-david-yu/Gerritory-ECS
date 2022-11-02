@@ -18,7 +18,11 @@ public partial class MessageEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is LeaveBecauseOfDeathComponent LeaveBecauseOfDeath)
+		if (component is OnTileElementRespawnComponent OnTileElementRespawn)
+		{
+			CopyOnTileElementRespawnTo(OnTileElementRespawn);
+		}
+		else if (component is LeaveBecauseOfDeathComponent LeaveBecauseOfDeath)
 		{
 			IsLeaveBecauseOfDeath = true;
 		}

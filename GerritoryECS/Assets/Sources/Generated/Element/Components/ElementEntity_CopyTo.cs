@@ -18,7 +18,15 @@ public partial class ElementEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is DeadComponent Dead)
+		if (component is RemoveIgnoredByGhostTimerComponent RemoveIgnoredByGhostTimer)
+		{
+			CopyRemoveIgnoredByGhostTimerTo(RemoveIgnoredByGhostTimer);
+		}
+		else if (component is IgnoredByGhostComponent IgnoredByGhost)
+		{
+			IsIgnoredByGhost = true;
+		}
+		else if (component is DeadComponent Dead)
 		{
 			IsDead = true;
 		}

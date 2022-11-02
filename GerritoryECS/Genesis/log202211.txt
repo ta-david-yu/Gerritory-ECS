@@ -1,0 +1,420 @@
+2022-11-02 16:19:39.343 +01:00 [VRB] Solution found at D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\GerritoryECS.sln, attempting to load.
+2022-11-02 16:19:40.357 +01:00 [VRB] Roslyn solution found, beginning parsing.
+2022-11-02 16:19:40.361 +01:00 [VRB] Inspecting project Assembly-CSharp.
+2022-11-02 16:19:40.361 +01:00 [VRB] Inspecting project Assembly-CSharp-Editor.
+2022-11-02 16:19:40.990 +01:00 [VRB] Found a total of 469.
+2022-11-02 16:19:40.991 +01:00 [VRB] Solution loaded, 469 TypeSymbols Discovered
+2022-11-02 16:19:40.995 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.dll].
+2022-11-02 16:19:40.995 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.dll]
+2022-11-02 16:19:41.013 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.Plugins.dll].
+2022-11-02 16:19:41.013 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.Plugins.dll]
+2022-11-02 16:19:41.029 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.dll].
+2022-11-02 16:19:41.029 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.dll]
+2022-11-02 16:19:41.066 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.Plugins.dll].
+2022-11-02 16:19:41.066 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.Plugins.dll]
+2022-11-02 16:19:41.130 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.Blueprint.Plugins.dll].
+2022-11-02 16:19:41.130 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.Blueprint.Plugins.dll]
+2022-11-02 16:19:41.144 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.VisualDebugging.Plugins.dll].
+2022-11-02 16:19:41.144 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.VisualDebugging.Plugins.dll]
+2022-11-02 16:19:41.162 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.dll].
+2022-11-02 16:19:41.162 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.dll]
+2022-11-02 16:19:41.174 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.Plugin.dll].
+2022-11-02 16:19:41.174 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.Plugin.dll]
+2022-11-02 16:19:41.193 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Plugin.dll].
+2022-11-02 16:19:41.194 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Plugin.dll]
+2022-11-02 16:19:41.250 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Shared.dll].
+2022-11-02 16:19:41.250 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Shared.dll]
+2022-11-02 16:19:41.309 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.dll].
+2022-11-02 16:19:41.309 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.dll]
+2022-11-02 16:19:41.325 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.Plugin.dll].
+2022-11-02 16:19:41.325 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.Plugin.dll]
+2022-11-02 16:19:41.346 +01:00 [VRB] Loaded 12 plugins assemblies.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: BlueprintHelperClassGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: CleanupDestroyEntitySystemGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: CleanupRemoveComponentSystemGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ContextCleanupFeatureGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ContextCleanupSystemsGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ComponentContextApiGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ComponentEntityApiGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ComponentEntityApiInterfaceGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ComponentGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ComponentLookupGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ComponentMatcherApiGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ComponentDataProvider.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ContextAttributeGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ContextGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ContextMatcherGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ContextsGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ContextDataProvider.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: EntityGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: EntityIndexGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: EntityIndexDataProvider.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: EventEntityApiGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: EventListenerComponentGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: EventListenerInterfaceGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: EventSystemGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: EventSystemsGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: BlueprintClassGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ContextObserverGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: FeatureClassGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: AddFileHeaderPostProcessor.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: CleanTargetDirectoryPostProcessor.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: MergeFilesPostProcessor.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: NewLinePostProcessor.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: WriteToDiskPostProcessor.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ScriptableFactoryCodeGenerator.
+2022-11-02 16:19:41.627 +01:00 [VRB] Plugin loaded: ScriptableFactoryDataProvider.
+2022-11-02 16:19:41.627 +01:00 [VRB] Using Base64 Configs...
+2022-11-02 16:19:41.685 +01:00 [VRB] Loaded 1 GenesisConfigs. Starting code generation.
+2022-11-02 16:19:41.686 +01:00 [VRB] Setting absolute output path to D:/Game Project/2022-Gerritory-ECS/GerritoryECS/GerritoryECS/Assets/Sources/Generated.
+2022-11-02 16:19:41.841 +01:00 [VRB] Generating code from GenesisSettings.
+2022-11-02 16:19:41.897 +01:00 [VRB] Creating model Component 2.86%%
+2022-11-02 16:19:42.348 +01:00 [VRB] Creating model Context 5.71%%
+2022-11-02 16:19:42.349 +01:00 [VRB] Creating model Entity Index 8.57%%
+2022-11-02 16:19:42.364 +01:00 [VRB] Creating model Scriptable Factory Data 11.43%%
+2022-11-02 16:19:42.366 +01:00 [VRB] Creating files Blueprint Helper Class Generator 14.29%%
+2022-11-02 16:19:42.367 +01:00 [VRB] Creating files Cleanup Destroy Entity System 17.14%%
+2022-11-02 16:19:42.369 +01:00 [VRB] Creating files Cleanup Remove Component System 20.00%%
+2022-11-02 16:19:42.377 +01:00 [VRB] Creating files Component (Context API) 22.86%%
+2022-11-02 16:19:42.378 +01:00 [VRB] Creating files Component (Entity API) 25.71%%
+2022-11-02 16:19:42.406 +01:00 [VRB] Creating files Component (Entity API Interface) 28.57%%
+2022-11-02 16:19:42.406 +01:00 [VRB] Creating files Component 31.43%%
+2022-11-02 16:19:42.407 +01:00 [VRB] Creating files Component (Lookup) 34.29%%
+2022-11-02 16:19:42.410 +01:00 [VRB] Creating files Component (Matcher API) 37.14%%
+2022-11-02 16:19:42.423 +01:00 [VRB] Creating files Context (Attribute) 40.00%%
+2022-11-02 16:19:42.423 +01:00 [VRB] Creating files Context Cleanup Feature Generator 42.86%%
+2022-11-02 16:19:42.425 +01:00 [VRB] Creating files Context Cleanup Systems Generator 45.71%%
+2022-11-02 16:19:42.426 +01:00 [VRB] Creating files Context 48.57%%
+2022-11-02 16:19:42.426 +01:00 [VRB] Creating files Context (Matcher API) 51.43%%
+2022-11-02 16:19:42.426 +01:00 [VRB] Creating files Contexts 54.29%%
+2022-11-02 16:19:42.427 +01:00 [VRB] Creating files Entity 57.14%%
+2022-11-02 16:19:42.427 +01:00 [VRB] Creating files Entity Index 60.00%%
+2022-11-02 16:19:42.428 +01:00 [VRB] Creating files Event (Entity API) 62.86%%
+2022-11-02 16:19:42.429 +01:00 [VRB] Creating files Event (Listener Component) 65.71%%
+2022-11-02 16:19:42.429 +01:00 [VRB] Creating files Event (Listener Interface) 68.57%%
+2022-11-02 16:19:42.430 +01:00 [VRB] Creating files Event (System) 71.43%%
+2022-11-02 16:19:42.431 +01:00 [VRB] Creating files Event (Systems) 74.29%%
+2022-11-02 16:19:42.441 +01:00 [VRB] Creating files Blueprint Class Generator 77.14%%
+2022-11-02 16:19:42.442 +01:00 [VRB] Creating files Context Observer 80.00%%
+2022-11-02 16:19:42.442 +01:00 [VRB] Creating files Feature Class 82.86%%
+2022-11-02 16:19:42.442 +01:00 [VRB] Creating files Scriptable Factory Lookup 85.71%%
+2022-11-02 16:19:42.443 +01:00 [VRB] Post Processing Add File Header 88.57%%
+2022-11-02 16:19:42.444 +01:00 [VRB] Post Processing Clean Target Directory 91.43%%
+2022-11-02 16:19:42.490 +01:00 [VRB] Post Processing Convert Line Endings 94.29%%
+2022-11-02 16:19:42.493 +01:00 [VRB] Post Processing Merge files 97.14%%
+2022-11-02 16:19:42.494 +01:00 [VRB] Post Processing Write Code Gen Files to Disk 100.00%%
+2022-11-02 16:28:21.063 +01:00 [VRB] Solution found at D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\GerritoryECS.sln, attempting to load.
+2022-11-02 16:28:21.918 +01:00 [VRB] Roslyn solution found, beginning parsing.
+2022-11-02 16:28:21.922 +01:00 [VRB] Inspecting project Assembly-CSharp.
+2022-11-02 16:28:21.922 +01:00 [VRB] Inspecting project Assembly-CSharp-Editor.
+2022-11-02 16:28:22.543 +01:00 [VRB] Found a total of 471.
+2022-11-02 16:28:22.543 +01:00 [VRB] Solution loaded, 471 TypeSymbols Discovered
+2022-11-02 16:28:22.547 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.dll].
+2022-11-02 16:28:22.547 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.dll]
+2022-11-02 16:28:22.548 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.Plugins.dll].
+2022-11-02 16:28:22.548 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.Plugins.dll]
+2022-11-02 16:28:22.548 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.dll].
+2022-11-02 16:28:22.548 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.dll]
+2022-11-02 16:28:22.548 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.Plugins.dll].
+2022-11-02 16:28:22.548 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.Plugins.dll]
+2022-11-02 16:28:22.549 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.Blueprint.Plugins.dll].
+2022-11-02 16:28:22.549 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.Blueprint.Plugins.dll]
+2022-11-02 16:28:22.549 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.VisualDebugging.Plugins.dll].
+2022-11-02 16:28:22.549 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.VisualDebugging.Plugins.dll]
+2022-11-02 16:28:22.549 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.dll].
+2022-11-02 16:28:22.549 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.dll]
+2022-11-02 16:28:22.549 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.Plugin.dll].
+2022-11-02 16:28:22.549 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.Plugin.dll]
+2022-11-02 16:28:22.550 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Plugin.dll].
+2022-11-02 16:28:22.550 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Plugin.dll]
+2022-11-02 16:28:22.550 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Shared.dll].
+2022-11-02 16:28:22.550 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Shared.dll]
+2022-11-02 16:28:22.550 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.dll].
+2022-11-02 16:28:22.550 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.dll]
+2022-11-02 16:28:22.550 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.Plugin.dll].
+2022-11-02 16:28:22.550 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.Plugin.dll]
+2022-11-02 16:28:22.550 +01:00 [VRB] Loaded 12 plugins assemblies.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: BlueprintHelperClassGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: CleanupDestroyEntitySystemGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: CleanupRemoveComponentSystemGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ContextCleanupFeatureGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ContextCleanupSystemsGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ComponentContextApiGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ComponentEntityApiGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ComponentEntityApiInterfaceGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ComponentGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ComponentLookupGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ComponentMatcherApiGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ComponentDataProvider.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ContextAttributeGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ContextGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ContextMatcherGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ContextsGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ContextDataProvider.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: EntityGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: EntityIndexGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: EntityIndexDataProvider.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: EventEntityApiGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: EventListenerComponentGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: EventListenerInterfaceGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: EventSystemGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: EventSystemsGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: BlueprintClassGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ContextObserverGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: FeatureClassGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: AddFileHeaderPostProcessor.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: CleanTargetDirectoryPostProcessor.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: MergeFilesPostProcessor.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: NewLinePostProcessor.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: WriteToDiskPostProcessor.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ScriptableFactoryCodeGenerator.
+2022-11-02 16:28:22.738 +01:00 [VRB] Plugin loaded: ScriptableFactoryDataProvider.
+2022-11-02 16:28:22.738 +01:00 [VRB] Using Base64 Configs...
+2022-11-02 16:28:22.792 +01:00 [VRB] Loaded 1 GenesisConfigs. Starting code generation.
+2022-11-02 16:28:22.793 +01:00 [VRB] Setting absolute output path to D:/Game Project/2022-Gerritory-ECS/GerritoryECS/GerritoryECS/Assets/Sources/Generated.
+2022-11-02 16:28:22.799 +01:00 [VRB] Generating code from GenesisSettings.
+2022-11-02 16:28:22.843 +01:00 [VRB] Creating model Component 2.86%%
+2022-11-02 16:28:23.261 +01:00 [VRB] Creating model Context 5.71%%
+2022-11-02 16:28:23.262 +01:00 [VRB] Creating model Entity Index 8.57%%
+2022-11-02 16:28:23.273 +01:00 [VRB] Creating model Scriptable Factory Data 11.43%%
+2022-11-02 16:28:23.274 +01:00 [VRB] Creating files Blueprint Helper Class Generator 14.29%%
+2022-11-02 16:28:23.275 +01:00 [VRB] Creating files Cleanup Destroy Entity System 17.14%%
+2022-11-02 16:28:23.276 +01:00 [VRB] Creating files Cleanup Remove Component System 20.00%%
+2022-11-02 16:28:23.281 +01:00 [VRB] Creating files Component (Context API) 22.86%%
+2022-11-02 16:28:23.281 +01:00 [VRB] Creating files Component (Entity API) 25.71%%
+2022-11-02 16:28:23.307 +01:00 [VRB] Creating files Component (Entity API Interface) 28.57%%
+2022-11-02 16:28:23.308 +01:00 [VRB] Creating files Component 31.43%%
+2022-11-02 16:28:23.308 +01:00 [VRB] Creating files Component (Lookup) 34.29%%
+2022-11-02 16:28:23.311 +01:00 [VRB] Creating files Component (Matcher API) 37.14%%
+2022-11-02 16:28:23.323 +01:00 [VRB] Creating files Context (Attribute) 40.00%%
+2022-11-02 16:28:23.323 +01:00 [VRB] Creating files Context Cleanup Feature Generator 42.86%%
+2022-11-02 16:28:23.325 +01:00 [VRB] Creating files Context Cleanup Systems Generator 45.71%%
+2022-11-02 16:28:23.326 +01:00 [VRB] Creating files Context 48.57%%
+2022-11-02 16:28:23.326 +01:00 [VRB] Creating files Context (Matcher API) 51.43%%
+2022-11-02 16:28:23.326 +01:00 [VRB] Creating files Contexts 54.29%%
+2022-11-02 16:28:23.327 +01:00 [VRB] Creating files Entity 57.14%%
+2022-11-02 16:28:23.327 +01:00 [VRB] Creating files Entity Index 60.00%%
+2022-11-02 16:28:23.328 +01:00 [VRB] Creating files Event (Entity API) 62.86%%
+2022-11-02 16:28:23.329 +01:00 [VRB] Creating files Event (Listener Component) 65.71%%
+2022-11-02 16:28:23.329 +01:00 [VRB] Creating files Event (Listener Interface) 68.57%%
+2022-11-02 16:28:23.330 +01:00 [VRB] Creating files Event (System) 71.43%%
+2022-11-02 16:28:23.331 +01:00 [VRB] Creating files Event (Systems) 74.29%%
+2022-11-02 16:28:23.339 +01:00 [VRB] Creating files Blueprint Class Generator 77.14%%
+2022-11-02 16:28:23.340 +01:00 [VRB] Creating files Context Observer 80.00%%
+2022-11-02 16:28:23.340 +01:00 [VRB] Creating files Feature Class 82.86%%
+2022-11-02 16:28:23.340 +01:00 [VRB] Creating files Scriptable Factory Lookup 85.71%%
+2022-11-02 16:28:23.341 +01:00 [VRB] Post Processing Add File Header 88.57%%
+2022-11-02 16:28:23.342 +01:00 [VRB] Post Processing Clean Target Directory 91.43%%
+2022-11-02 16:28:23.387 +01:00 [VRB] Post Processing Convert Line Endings 94.29%%
+2022-11-02 16:28:23.389 +01:00 [VRB] Post Processing Merge files 97.14%%
+2022-11-02 16:28:23.390 +01:00 [VRB] Post Processing Write Code Gen Files to Disk 100.00%%
+2022-11-02 16:32:36.983 +01:00 [VRB] Solution found at D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\GerritoryECS.sln, attempting to load.
+2022-11-02 16:32:37.793 +01:00 [VRB] Roslyn solution found, beginning parsing.
+2022-11-02 16:32:37.797 +01:00 [VRB] Inspecting project Assembly-CSharp-Editor.
+2022-11-02 16:32:37.797 +01:00 [VRB] Inspecting project Assembly-CSharp.
+2022-11-02 16:32:38.407 +01:00 [VRB] Found a total of 471.
+2022-11-02 16:32:38.408 +01:00 [VRB] Solution loaded, 471 TypeSymbols Discovered
+2022-11-02 16:32:38.411 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.dll].
+2022-11-02 16:32:38.411 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.dll]
+2022-11-02 16:32:38.412 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.Plugins.dll].
+2022-11-02 16:32:38.412 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.Plugins.dll]
+2022-11-02 16:32:38.412 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.dll].
+2022-11-02 16:32:38.412 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.dll]
+2022-11-02 16:32:38.413 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.Plugins.dll].
+2022-11-02 16:32:38.413 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.Plugins.dll]
+2022-11-02 16:32:38.413 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.Blueprint.Plugins.dll].
+2022-11-02 16:32:38.413 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.Blueprint.Plugins.dll]
+2022-11-02 16:32:38.413 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.VisualDebugging.Plugins.dll].
+2022-11-02 16:32:38.413 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.VisualDebugging.Plugins.dll]
+2022-11-02 16:32:38.413 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.dll].
+2022-11-02 16:32:38.413 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.dll]
+2022-11-02 16:32:38.413 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.Plugin.dll].
+2022-11-02 16:32:38.413 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.Plugin.dll]
+2022-11-02 16:32:38.414 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Plugin.dll].
+2022-11-02 16:32:38.414 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Plugin.dll]
+2022-11-02 16:32:38.414 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Shared.dll].
+2022-11-02 16:32:38.414 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Shared.dll]
+2022-11-02 16:32:38.414 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.dll].
+2022-11-02 16:32:38.414 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.dll]
+2022-11-02 16:32:38.414 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.Plugin.dll].
+2022-11-02 16:32:38.414 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.Plugin.dll]
+2022-11-02 16:32:38.414 +01:00 [VRB] Loaded 12 plugins assemblies.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: BlueprintHelperClassGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: CleanupDestroyEntitySystemGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: CleanupRemoveComponentSystemGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ContextCleanupFeatureGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ContextCleanupSystemsGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ComponentContextApiGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ComponentEntityApiGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ComponentEntityApiInterfaceGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ComponentGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ComponentLookupGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ComponentMatcherApiGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ComponentDataProvider.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ContextAttributeGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ContextGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ContextMatcherGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ContextsGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ContextDataProvider.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: EntityGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: EntityIndexGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: EntityIndexDataProvider.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: EventEntityApiGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: EventListenerComponentGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: EventListenerInterfaceGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: EventSystemGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: EventSystemsGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: BlueprintClassGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ContextObserverGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: FeatureClassGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: AddFileHeaderPostProcessor.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: CleanTargetDirectoryPostProcessor.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: MergeFilesPostProcessor.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: NewLinePostProcessor.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: WriteToDiskPostProcessor.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ScriptableFactoryCodeGenerator.
+2022-11-02 16:32:38.591 +01:00 [VRB] Plugin loaded: ScriptableFactoryDataProvider.
+2022-11-02 16:32:38.591 +01:00 [VRB] Using Base64 Configs...
+2022-11-02 16:32:38.644 +01:00 [VRB] Loaded 1 GenesisConfigs. Starting code generation.
+2022-11-02 16:32:38.645 +01:00 [VRB] Setting absolute output path to D:/Game Project/2022-Gerritory-ECS/GerritoryECS/GerritoryECS/Assets/Sources/Generated.
+2022-11-02 16:32:38.651 +01:00 [VRB] Generating code from GenesisSettings.
+2022-11-02 16:32:38.696 +01:00 [VRB] Creating model Component 2.86%%
+2022-11-02 16:32:39.100 +01:00 [VRB] Creating model Context 5.71%%
+2022-11-02 16:32:39.100 +01:00 [VRB] Creating model Entity Index 8.57%%
+2022-11-02 16:32:39.113 +01:00 [VRB] Creating model Scriptable Factory Data 11.43%%
+2022-11-02 16:32:39.115 +01:00 [VRB] Creating files Blueprint Helper Class Generator 14.29%%
+2022-11-02 16:32:39.116 +01:00 [VRB] Creating files Cleanup Destroy Entity System 17.14%%
+2022-11-02 16:32:39.117 +01:00 [VRB] Creating files Cleanup Remove Component System 20.00%%
+2022-11-02 16:32:39.120 +01:00 [VRB] Creating files Component (Context API) 22.86%%
+2022-11-02 16:32:39.121 +01:00 [VRB] Creating files Component (Entity API) 25.71%%
+2022-11-02 16:32:39.147 +01:00 [VRB] Creating files Component (Entity API Interface) 28.57%%
+2022-11-02 16:32:39.148 +01:00 [VRB] Creating files Component 31.43%%
+2022-11-02 16:32:39.148 +01:00 [VRB] Creating files Component (Lookup) 34.29%%
+2022-11-02 16:32:39.162 +01:00 [VRB] Creating files Component (Matcher API) 37.14%%
+2022-11-02 16:32:39.163 +01:00 [VRB] Creating files Context (Attribute) 40.00%%
+2022-11-02 16:32:39.163 +01:00 [VRB] Creating files Context Cleanup Feature Generator 42.86%%
+2022-11-02 16:32:39.165 +01:00 [VRB] Creating files Context Cleanup Systems Generator 45.71%%
+2022-11-02 16:32:39.166 +01:00 [VRB] Creating files Context 48.57%%
+2022-11-02 16:32:39.166 +01:00 [VRB] Creating files Context (Matcher API) 51.43%%
+2022-11-02 16:32:39.166 +01:00 [VRB] Creating files Contexts 54.29%%
+2022-11-02 16:32:39.166 +01:00 [VRB] Creating files Entity 57.14%%
+2022-11-02 16:32:39.167 +01:00 [VRB] Creating files Entity Index 60.00%%
+2022-11-02 16:32:39.168 +01:00 [VRB] Creating files Event (Entity API) 62.86%%
+2022-11-02 16:32:39.168 +01:00 [VRB] Creating files Event (Listener Component) 65.71%%
+2022-11-02 16:32:39.169 +01:00 [VRB] Creating files Event (Listener Interface) 68.57%%
+2022-11-02 16:32:39.170 +01:00 [VRB] Creating files Event (System) 71.43%%
+2022-11-02 16:32:39.171 +01:00 [VRB] Creating files Event (Systems) 74.29%%
+2022-11-02 16:32:39.178 +01:00 [VRB] Creating files Blueprint Class Generator 77.14%%
+2022-11-02 16:32:39.179 +01:00 [VRB] Creating files Context Observer 80.00%%
+2022-11-02 16:32:39.180 +01:00 [VRB] Creating files Feature Class 82.86%%
+2022-11-02 16:32:39.180 +01:00 [VRB] Creating files Scriptable Factory Lookup 85.71%%
+2022-11-02 16:32:39.180 +01:00 [VRB] Post Processing Add File Header 88.57%%
+2022-11-02 16:32:39.181 +01:00 [VRB] Post Processing Clean Target Directory 91.43%%
+2022-11-02 16:32:39.225 +01:00 [VRB] Post Processing Convert Line Endings 94.29%%
+2022-11-02 16:32:39.227 +01:00 [VRB] Post Processing Merge files 97.14%%
+2022-11-02 16:32:39.228 +01:00 [VRB] Post Processing Write Code Gen Files to Disk 100.00%%
+2022-11-02 16:36:55.256 +01:00 [VRB] Solution found at D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\GerritoryECS.sln, attempting to load.
+2022-11-02 16:36:56.065 +01:00 [VRB] Roslyn solution found, beginning parsing.
+2022-11-02 16:36:56.069 +01:00 [VRB] Inspecting project Assembly-CSharp-Editor.
+2022-11-02 16:36:56.069 +01:00 [VRB] Inspecting project Assembly-CSharp.
+2022-11-02 16:36:56.672 +01:00 [VRB] Found a total of 472.
+2022-11-02 16:36:56.673 +01:00 [VRB] Solution loaded, 472 TypeSymbols Discovered
+2022-11-02 16:36:56.676 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.dll].
+2022-11-02 16:36:56.676 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.dll]
+2022-11-02 16:36:56.677 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.Plugins.dll].
+2022-11-02 16:36:56.677 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\DYEntitasRedux.Core.Plugins.dll]
+2022-11-02 16:36:56.677 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.dll].
+2022-11-02 16:36:56.677 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.dll]
+2022-11-02 16:36:56.677 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.Plugins.dll].
+2022-11-02 16:36:56.677 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Core.Plugins.dll]
+2022-11-02 16:36:56.678 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.Blueprint.Plugins.dll].
+2022-11-02 16:36:56.678 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.Blueprint.Plugins.dll]
+2022-11-02 16:36:56.678 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.VisualDebugging.Plugins.dll].
+2022-11-02 16:36:56.678 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\EntitasRedux.Unity.VisualDebugging.Plugins.dll]
+2022-11-02 16:36:56.678 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.dll].
+2022-11-02 16:36:56.678 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.dll]
+2022-11-02 16:36:56.678 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.Plugin.dll].
+2022-11-02 16:36:56.678 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Core.Plugin.dll]
+2022-11-02 16:36:56.679 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Plugin.dll].
+2022-11-02 16:36:56.679 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Plugin.dll]
+2022-11-02 16:36:56.679 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Shared.dll].
+2022-11-02 16:36:56.679 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Shared.dll]
+2022-11-02 16:36:56.679 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.dll].
+2022-11-02 16:36:56.679 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.dll]
+2022-11-02 16:36:56.679 +01:00 [VRB] Attempting to load Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.Plugin.dll].
+2022-11-02 16:36:56.679 +01:00 [VRB] Loading Assembly [D:\Game Project\2022-Gerritory-ECS\GerritoryECS\GerritoryECS\Genesis\Plugins\Genesis.Unity.Factory.Plugin.dll]
+2022-11-02 16:36:56.679 +01:00 [VRB] Loaded 12 plugins assemblies.
+2022-11-02 16:36:56.847 +01:00 [VRB] Plugin loaded: BlueprintHelperClassGenerator.
+2022-11-02 16:36:56.847 +01:00 [VRB] Plugin loaded: CleanupDestroyEntitySystemGenerator.
+2022-11-02 16:36:56.847 +01:00 [VRB] Plugin loaded: CleanupRemoveComponentSystemGenerator.
+2022-11-02 16:36:56.847 +01:00 [VRB] Plugin loaded: ContextCleanupFeatureGenerator.
+2022-11-02 16:36:56.847 +01:00 [VRB] Plugin loaded: ContextCleanupSystemsGenerator.
+2022-11-02 16:36:56.847 +01:00 [VRB] Plugin loaded: ComponentContextApiGenerator.
+2022-11-02 16:36:56.847 +01:00 [VRB] Plugin loaded: ComponentEntityApiGenerator.
+2022-11-02 16:36:56.847 +01:00 [VRB] Plugin loaded: ComponentEntityApiInterfaceGenerator.
+2022-11-02 16:36:56.847 +01:00 [VRB] Plugin loaded: ComponentGenerator.
+2022-11-02 16:36:56.847 +01:00 [VRB] Plugin loaded: ComponentLookupGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: ComponentMatcherApiGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: ComponentDataProvider.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: ContextAttributeGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: ContextGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: ContextMatcherGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: ContextsGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: ContextDataProvider.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: EntityGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: EntityIndexGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: EntityIndexDataProvider.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: EventEntityApiGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: EventListenerComponentGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: EventListenerInterfaceGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: EventSystemGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: EventSystemsGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: BlueprintClassGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: ContextObserverGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: FeatureClassGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: AddFileHeaderPostProcessor.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: CleanTargetDirectoryPostProcessor.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: MergeFilesPostProcessor.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: NewLinePostProcessor.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: WriteToDiskPostProcessor.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: ScriptableFactoryCodeGenerator.
+2022-11-02 16:36:56.848 +01:00 [VRB] Plugin loaded: ScriptableFactoryDataProvider.
+2022-11-02 16:36:56.848 +01:00 [VRB] Using Base64 Configs...
+2022-11-02 16:36:56.904 +01:00 [VRB] Loaded 1 GenesisConfigs. Starting code generation.
+2022-11-02 16:36:56.905 +01:00 [VRB] Setting absolute output path to D:/Game Project/2022-Gerritory-ECS/GerritoryECS/GerritoryECS/Assets/Sources/Generated.
+2022-11-02 16:36:56.911 +01:00 [VRB] Generating code from GenesisSettings.
+2022-11-02 16:36:56.955 +01:00 [VRB] Creating model Component 2.86%%
+2022-11-02 16:36:57.371 +01:00 [VRB] Creating model Context 5.71%%
+2022-11-02 16:36:57.371 +01:00 [VRB] Creating model Entity Index 8.57%%
+2022-11-02 16:36:57.383 +01:00 [VRB] Creating model Scriptable Factory Data 11.43%%
+2022-11-02 16:36:57.385 +01:00 [VRB] Creating files Blueprint Helper Class Generator 14.29%%
+2022-11-02 16:36:57.385 +01:00 [VRB] Creating files Cleanup Destroy Entity System 17.14%%
+2022-11-02 16:36:57.386 +01:00 [VRB] Creating files Cleanup Remove Component System 20.00%%
+2022-11-02 16:36:57.389 +01:00 [VRB] Creating files Component (Context API) 22.86%%
+2022-11-02 16:36:57.390 +01:00 [VRB] Creating files Component (Entity API) 25.71%%
+2022-11-02 16:36:57.415 +01:00 [VRB] Creating files Component (Entity API Interface) 28.57%%
+2022-11-02 16:36:57.415 +01:00 [VRB] Creating files Component 31.43%%
+2022-11-02 16:36:57.416 +01:00 [VRB] Creating files Component (Lookup) 34.29%%
+2022-11-02 16:36:57.419 +01:00 [VRB] Creating files Component (Matcher API) 37.14%%
+2022-11-02 16:36:57.430 +01:00 [VRB] Creating files Context (Attribute) 40.00%%
+2022-11-02 16:36:57.430 +01:00 [VRB] Creating files Context Cleanup Feature Generator 42.86%%
+2022-11-02 16:36:57.431 +01:00 [VRB] Creating files Context Cleanup Systems Generator 45.71%%
+2022-11-02 16:36:57.432 +01:00 [VRB] Creating files Context 48.57%%
+2022-11-02 16:36:57.432 +01:00 [VRB] Creating files Context (Matcher API) 51.43%%
+2022-11-02 16:36:57.432 +01:00 [VRB] Creating files Contexts 54.29%%
+2022-11-02 16:36:57.433 +01:00 [VRB] Creating files Entity 57.14%%
+2022-11-02 16:36:57.433 +01:00 [VRB] Creating files Entity Index 60.00%%
+2022-11-02 16:36:57.434 +01:00 [VRB] Creating files Event (Entity API) 62.86%%
+2022-11-02 16:36:57.435 +01:00 [VRB] Creating files Event (Listener Component) 65.71%%
+2022-11-02 16:36:57.435 +01:00 [VRB] Creating files Event (Listener Interface) 68.57%%
+2022-11-02 16:36:57.436 +01:00 [VRB] Creating files Event (System) 71.43%%
+2022-11-02 16:36:57.437 +01:00 [VRB] Creating files Event (Systems) 74.29%%
+2022-11-02 16:36:57.445 +01:00 [VRB] Creating files Blueprint Class Generator 77.14%%
+2022-11-02 16:36:57.446 +01:00 [VRB] Creating files Context Observer 80.00%%
+2022-11-02 16:36:57.446 +01:00 [VRB] Creating files Feature Class 82.86%%
+2022-11-02 16:36:57.447 +01:00 [VRB] Creating files Scriptable Factory Lookup 85.71%%
+2022-11-02 16:36:57.447 +01:00 [VRB] Post Processing Add File Header 88.57%%
+2022-11-02 16:36:57.448 +01:00 [VRB] Post Processing Clean Target Directory 91.43%%
+2022-11-02 16:36:57.493 +01:00 [VRB] Post Processing Convert Line Endings 94.29%%
+2022-11-02 16:36:57.495 +01:00 [VRB] Post Processing Merge files 97.14%%
+2022-11-02 16:36:57.496 +01:00 [VRB] Post Processing Write Code Gen Files to Disk 100.00%%

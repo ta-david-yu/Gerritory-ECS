@@ -22,7 +22,20 @@ public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSyst
 		m_Contexts = contexts;
 
 		m_NavigateToPositionInputGroup = contexts.Input.GetGroup(InputMatcher.AllOf(InputMatcher.ChaseNearestOnTileElementVictimInput));
-		m_VictimCandidatesGroup = contexts.Element.GetGroup(ElementMatcher.AllOf(ElementMatcher.OnTileElement, ElementMatcher.OnTilePosition, ElementMatcher.CanBeDead).NoneOf(ElementMatcher.Dead));
+		m_VictimCandidatesGroup = contexts.Element.GetGroup
+			(
+				ElementMatcher.AllOf
+				(
+					ElementMatcher.OnTileElement, 
+					ElementMatcher.OnTilePosition, 
+					ElementMatcher.CanBeDead
+				)
+				.NoneOf
+				(
+					ElementMatcher.Dead,
+					ElementMatcher.IgnoredByGhost
+				)
+			);
 	}
 
 	public void Update()
