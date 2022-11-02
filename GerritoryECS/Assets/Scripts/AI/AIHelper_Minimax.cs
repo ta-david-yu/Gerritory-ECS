@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using JCMG.EntitasRedux;
 using System.Linq;
 using Unity.Collections;
 using UnityEngine;
@@ -40,25 +39,25 @@ public static partial class AIHelper
 		/// <summary>
 		/// An array of ids of the OnTileElements in the game.
 		/// </summary>
-		public NativeArray<int> OnTileElementIds;
+		public NativeList<int> OnTileElementIds;
 		/// <summary>
 		/// Indexed with <see cref="OnTileElementIds"/>, the team ids of OnTileElements.
 		/// </summary>
-		public NativeArray<int> OnTileElementTeamIds;
+		public NativeList<int> OnTileElementTeamIds;
 		/// <summary>
 		/// Indexed with <see cref="OnTileElementIds"/>, the positions of OnTileElements.
 		/// </summary>
-		public NativeArray<Vector2Int> OnTileElementPositions;
+		public NativeList<Vector2Int> OnTileElementPositions;
 		/// <summary>
 		/// Indexed with <see cref="OnTileElementIds"/>, the priority of OnTileElements. We don't update this regularly.
 		/// </summary>
 		[ReadOnly]
-		public NativeArray<int> OnTileElementPriorities;
+		public NativeList<int> OnTileElementPriorities;
 		/// <summary>
 		/// Indexed with <see cref="OnTileElementIds"/>, indicating if OnTilElements are dead. We don't update his regularly
 		/// </summary>
 		[ReadOnly]
-		public NativeArray<bool> AreOnTileElementsDead;
+		public NativeList<bool> AreOnTileElementsDead;
 
 		public const int k_NotOwnableTeamId = -2;
 		public const int k_NoOwnerTeamId = -1;
@@ -66,6 +65,24 @@ public static partial class AIHelper
 		public const int k_NoElement = -1;
 		public const int k_NoTeam = -1;
 		public const float k_NeverDoActionScore = -100;
+
+		private static IGroup<ElementEntity> s_CachedRelevantElementsGroup;
+		private static IGroup<ElementEntity> getRelevantElementsGroup(Contexts contexts)
+		{
+			if (s_CachedRelevantElementsGroup == null)
+			{
+				s_CachedRelevantElementsGroup = contexts.Element.GetGroup
+				(
+					ElementMatcher.AllOf
+					(
+						ElementMatcher.OnTileElement,
+						ElementMatcher.TileOwner,
+						ElementMatcher.Team
+					)
+				);
+			}
+			return s_CachedRelevantElementsGroup;
+		}
 
 		public SearchSimulationState AllocateWithContexts(Contexts contexts, Allocator allocator)
 		{
@@ -80,21 +97,13 @@ public static partial class AIHelper
 			TileItems = new NativeArray<bool>(numberOfTiles, allocator);
 
 			// Allocate OnTileElement related states
-			ElementEntity[] relevantElements = contexts.Element.GetGroup
-			(
-				ElementMatcher.AllOf
-				(
-					ElementMatcher.OnTileElement,
-					ElementMatcher.TileOwner,
-					ElementMatcher.Team
-				)
-			).GetEntities();
+			ElementEntity[] relevantElements = getRelevantElementsGroup(contexts).GetEntities();
 			int numberOfRelevantOnTileElements = relevantElements.Length;
-			OnTileElementIds = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
-			OnTileElementTeamIds = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
-			OnTileElementPositions = new NativeArray<Vector2Int>(numberOfRelevantOnTileElements, allocator);
-			OnTileElementPriorities = new NativeArray<int>(numberOfRelevantOnTileElements, allocator);
-			AreOnTileElementsDead = new NativeArray<bool>(numberOfRelevantOnTileElements, allocator);
+			OnTileElementIds = new NativeList<int>(numberOfRelevantOnTileElements, allocator);
+			OnTileElementTeamIds = new NativeList<int>(numberOfRelevantOnTileElements, allocator);
+			OnTileElementPositions = new NativeList<Vector2Int>(numberOfRelevantOnTileElements, allocator);
+			OnTileElementPriorities = new NativeList<int>(numberOfRelevantOnTileElements, allocator);
+			AreOnTileElementsDead = new NativeList<bool>(numberOfRelevantOnTileElements, allocator);
 
 			IsAllocated = true;
 
@@ -155,22 +164,20 @@ public static partial class AIHelper
 
 
 			// Allocate OnTileElement related states
-			ElementEntity[] relevantElements = contexts.Element.GetGroup
-			(
-				ElementMatcher.AllOf
-				(
-					ElementMatcher.OnTileElement,
-					ElementMatcher.TileOwner,
-					ElementMatcher.Team
-				)
-			).GetEntities();
+			ElementEntity[] relevantElements = getRelevantElementsGroup(contexts).GetEntities();
 			int numberOfRelevantOnTileElements = relevantElements.Length;
+
+			OnTileElementIds.Clear();
+			OnTileElementTeamIds.Clear();
+			OnTileElementPositions.Clear();
+			AreOnTileElementsDead.Clear();
+			OnTileElementPriorities.Clear();
 
 			for (int i = 0; i < numberOfRelevantOnTileElements; i++)
 			{
 				ElementEntity element = relevantElements[i];
-				OnTileElementIds[i] = element.OnTileElement.Id;
-				OnTileElementTeamIds[i] = element.Team.Id;
+				OnTileElementIds.Add(element.OnTileElement.Id);
+				OnTileElementTeamIds.Add(element.Team.Id);
 
 				float aiNoticeMovementProgress = 0.5f;
 				if (element.OnTileElement.Id != observerOnTileElementId)
@@ -190,8 +197,11 @@ public static partial class AIHelper
 					elementPosition = element.MoveOnTile.ToPosition;
 
 					// Take over the tile if it's possible!
-					int tileToOccupyIndex = this.GetIndexOfTileAt(element.MoveOnTile.ToPosition);
-					TileOwnerTeamIds[tileToOccupyIndex] = TileOwnerTeamIds[tileToOccupyIndex] == k_NotOwnableTeamId ? k_NotOwnableTeamId : element.Team.Id;
+					if (element.IsTileOwner)
+					{
+						int tileToOccupyIndex = this.GetIndexOfTileAt(element.MoveOnTile.ToPosition);
+						TileOwnerTeamIds[tileToOccupyIndex] = TileOwnerTeamIds[tileToOccupyIndex] == k_NotOwnableTeamId ? k_NotOwnableTeamId : element.Team.Id;
+					}
 				}
 				else if (element.HasOnTilePosition)
 				{
@@ -203,10 +213,10 @@ public static partial class AIHelper
 					// We set the value to (-1, -1)
 					elementPosition = -Vector2Int.one * -1;
 				}
-				OnTileElementPositions[i] = elementPosition;
+				OnTileElementPositions.Add(elementPosition);
 
-				AreOnTileElementsDead[i] = element.IsDead;
-				OnTileElementPriorities[i] = contexts.GetOnTileElementKillPriority(element);
+				AreOnTileElementsDead.Add(element.IsDead);
+				OnTileElementPriorities.Add(contexts.GetOnTileElementKillPriority(element));
 			}
 		}
 

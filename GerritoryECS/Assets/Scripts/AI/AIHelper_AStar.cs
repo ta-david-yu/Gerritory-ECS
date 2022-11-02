@@ -40,6 +40,7 @@ public static partial class AIHelper
 		public NativeHashMap<int, int2> OnTileElementPositions;
 
 		public const int k_NoTile = -1;
+
 		private static IGroup<ElementEntity> s_CachedRelevantElementsGroup;
 		private static IGroup<ElementEntity> getRelevantElementsGroup(Contexts contexts)
 		{
