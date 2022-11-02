@@ -5,7 +5,6 @@ using System.Net.Http.Headers;
 using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
-using static AIHelper;
 
 public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSystem, ITearDownSystem
 {
@@ -150,7 +149,7 @@ public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSyst
 				else
 				{
 					// If we didn't have a reachable victim yet, any reachable candidate would be a better option than an unreachable target!
-					if (aStarResult.Type == AStarResult.ResultType.Success)
+					if (aStarResult.Type == AIHelper.AStarResult.ResultType.Success)
 					{
 						distanceToCandidate = aStarResult.ValidPathLength;
 						isBetterVictimCandidate = true;
@@ -176,7 +175,7 @@ public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSyst
 
 				if (isBetterVictimCandidate)
 				{
-					if (aStarResult.Type == AStarResult.ResultType.Success)
+					if (aStarResult.Type == AIHelper.AStarResult.ResultType.Success)
 					{
 						// Mark the victim as reachable so from now on we would only take reachable candidate as victim (candidates with connected path)!
 						isCurrentNearestVictimReachable = true;

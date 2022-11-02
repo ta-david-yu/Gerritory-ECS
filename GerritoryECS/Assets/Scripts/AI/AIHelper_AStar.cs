@@ -316,7 +316,7 @@ public static partial class AIHelper
 		int randomSeed = GetRandomValueFromSeedIndex(randomSeedIndex);
 		if (input.StartPosition.Equals(input.EndPosition))
 		{
-			new AStarResult { Type = AStarResult.ResultType.Success, LowestCost = 0, ValidPathLength = 0, Path = new NativeList<int2>() };
+			return new AStarResult { Type = AStarResult.ResultType.Success, LowestCost = 0, ValidPathLength = 0, Path = new NativeList<int2>() };
 		}
 
 		NativeBinaryHeap<AStarPathNode> openNodeList = new NativeBinaryHeap<AStarPathNode>(pathfindingSimulationState.TileEnterables.Length, Allocator.TempJob);

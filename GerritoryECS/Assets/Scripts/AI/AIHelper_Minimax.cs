@@ -487,7 +487,8 @@ public static partial class AIHelper
 		{
 			// Penalty for staying at the same location. 
 			// The value needs to be bigger than the value of taking over a tile (1 + t * 0.1f).
-			scoreEarned -= 1.2f;
+			// ...
+			//scoreEarned -= 1.2f;
 		}
 
 		// Evaluate the tile based on its ownership.
