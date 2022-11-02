@@ -65,6 +65,7 @@ public static partial class AIHelper
 		public const int k_NoElement = -1;
 		public const int k_NoTeam = -1;
 		public const float k_NeverDoActionScore = -100;
+		public static readonly Vector2Int k_NoPosition = -1 * Vector2Int.one;
 
 		private static IGroup<ElementEntity> s_CachedRelevantElementsGroup;
 		private static IGroup<ElementEntity> getRelevantElementsGroup(Contexts contexts)
@@ -76,8 +77,7 @@ public static partial class AIHelper
 					ElementMatcher.AllOf
 					(
 						ElementMatcher.OnTileElement,
-						ElementMatcher.TileOwner,
-						ElementMatcher.Team
+						ElementMatcher.OnTilePosition
 					)
 				);
 			}
@@ -177,7 +177,14 @@ public static partial class AIHelper
 			{
 				ElementEntity element = relevantElements[i];
 				OnTileElementIds.Add(element.OnTileElement.Id);
-				OnTileElementTeamIds.Add(element.Team.Id);
+				if (element.HasTeam)
+				{
+					OnTileElementTeamIds.Add(element.Team.Id);
+				}
+				else
+				{
+					OnTileElementTeamIds.Add(k_NoTeam);
+				}
 
 				float aiNoticeMovementProgress = 0.5f;
 				if (element.OnTileElement.Id != observerOnTileElementId)
@@ -203,16 +210,11 @@ public static partial class AIHelper
 						TileOwnerTeamIds[tileToOccupyIndex] = TileOwnerTeamIds[tileToOccupyIndex] == k_NotOwnableTeamId ? k_NotOwnableTeamId : element.Team.Id;
 					}
 				}
-				else if (element.HasOnTilePosition)
+				else
 				{
 					elementPosition = element.OnTilePosition.Value;
 				}
-				else
-				{
-					// The element is currently not in the level, not relevant to our simulation search (it's either dead or not added to the game)
-					// We set the value to (-1, -1)
-					elementPosition = -Vector2Int.one * -1;
-				}
+
 				OnTileElementPositions.Add(elementPosition);
 
 				AreOnTileElementsDead.Add(element.IsDead);
@@ -577,9 +579,18 @@ public static partial class AIHelper
 			}
 			else
 			{
-				// Predator!
-				// The opponent is possibly dangerous to the agent, moving away from this position to avoid death!
-				scoreEarned -= (1 + temporalRelevancy * 0.5f) * predatorFactor * evaluationParams.Cautiousness;
+				if (opponentPriority < GameHelper.k_FatalThreatPriority)
+				{
+					// Fatal threat!
+					// The opponent is definitely going to kill the agent, moving away from this position to avoid death!
+					scoreEarned -= (1 + temporalRelevancy * temporalRelevancy * 4f) * predatorFactor * evaluationParams.Cautiousness;
+				}
+				else
+				{
+					// Predator!
+					// The opponent is possibly dangerous to the agent, moving away from this position to avoid death!
+					scoreEarned -= (1 + temporalRelevancy * 0.5f) * predatorFactor * evaluationParams.Cautiousness;
+				}
 			}
 		}
 

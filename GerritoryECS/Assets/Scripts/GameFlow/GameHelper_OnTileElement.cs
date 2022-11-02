@@ -135,8 +135,9 @@ public static partial class GameHelper
 		return true;
 	}
 
-	private const int k_InivinciblePriority = -1;
-	private const int k_GhsotPriority = -1;
+	public const int k_FatalThreatPriority = -1;
+	private const int k_InivinciblePriority = k_FatalThreatPriority;
+	private const int k_GhsotPriority = k_FatalThreatPriority - 1;
 	public static int GetOnTileElementKillPriority(this Contexts contexts, ElementEntity onTileEntity)
 	{
 		int priority = 0;
