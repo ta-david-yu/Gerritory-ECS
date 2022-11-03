@@ -59,6 +59,7 @@ public sealed class MarkOnTileElementDeadSystem : IFixedUpdateSystem
 			// Provides the cause of death if there is given one.
 			if (markDeadRequest.HasStepKilledByOnTileElement)
 			{
+				Debug.Log("Killed by step!");
 				dieMessageEntity.ReplaceStepKilledByOnTileElement(markDeadRequest.StepKilledByOnTileElement.KillerOnTileElementId);
 			}
 

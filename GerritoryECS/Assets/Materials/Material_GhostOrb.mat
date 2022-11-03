@@ -20,15 +20,15 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Material_GhostBody
-  m_Shader: {fileID: -6465566751694194690, guid: 26b101b1c4c5b8648800c792e8bed7ba,
+  m_Name: Material_GhostOrb
+  m_Shader: {fileID: -6465566751694194690, guid: 0b72bb9e76a0ac64791fa759ba342ba7,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -116,7 +116,7 @@ Material:
     - _GlossyReflections: 0
     - _InteriorSpread: 1
     - _InteriorSpreadMax: 1
-    - _InteriorSpreadMin: 1
+    - _InteriorSpreadMin: 0.69
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -138,8 +138,8 @@ Material:
     - _BaseColor: {r: 0, g: 0, b: 0, a: 0.5176471}
     - _Color: {r: 0, g: 0, b: 0, a: 0.5176471}
     - _EmissionColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
-    - _FresnelColor: {r: 1, g: 1, b: 1, a: 0}
+    - _FresnelColor: {r: 2.6701567, g: 0.031413607, b: 0, a: 1}
     - _InteriorCenter: {r: 0, g: 0, b: 0, a: 0}
-    - _InteriorColor: {r: 1, g: 1, b: 1, a: 0}
+    - _InteriorColor: {r: 341.78006, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
