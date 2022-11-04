@@ -76,6 +76,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformToMove: {fileID: 991398530830192376}
+--- !u!1 &4281491413439537077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 70469631986214916}
+  - component: {fileID: 8533017554402464520}
+  m_Layer: 0
+  m_Name: GhostViewAnimationController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &70469631986214916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281491413439537077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 991398530830192376}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8533017554402464520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281491413439537077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644a580f14ae90c43aec17f777d32807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BodyRenderer: {fileID: 7836091475343315212}
 --- !u!1 &4296225139767669317
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +199,7 @@ Transform:
   - {fileID: 1088909441916763435}
   - {fileID: 6983035614630871999}
   - {fileID: 3082506427162225076}
+  - {fileID: 70469631986214916}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -172,6 +218,7 @@ MonoBehaviour:
   m_Listeners:
   - {fileID: 1386533871630071357}
   - {fileID: 632100123630477756}
+  - {fileID: 8533017554402464520}
 --- !u!1 &5400841995193772854
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +268,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5400841995193772854}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0

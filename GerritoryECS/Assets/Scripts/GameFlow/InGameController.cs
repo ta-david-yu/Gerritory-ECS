@@ -125,6 +125,9 @@ public class InGameController : MonoBehaviour
 	[ContextMenu("Spawn Ghost")]
 	private void _spawnGhost()
 	{
-		m_CacheContexts.ConstructGhostEntity();
+		var ghostEntity = m_CacheContexts.ConstructGhostEntity();
+
+		// The ghost would not move immediately!
+		ghostEntity.AddGhostAppearing(0);
 	}
 }

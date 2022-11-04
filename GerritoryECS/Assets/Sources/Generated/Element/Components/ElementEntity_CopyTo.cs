@@ -18,15 +18,7 @@ public partial class ElementEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is RemoveIgnoredByGhostTimerComponent RemoveIgnoredByGhostTimer)
-		{
-			CopyRemoveIgnoredByGhostTimerTo(RemoveIgnoredByGhostTimer);
-		}
-		else if (component is IgnoredByGhostComponent IgnoredByGhost)
-		{
-			IsIgnoredByGhost = true;
-		}
-		else if (component is DeadComponent Dead)
+		if (component is DeadComponent Dead)
 		{
 			IsDead = true;
 		}
@@ -54,6 +46,10 @@ public partial class ElementEntity
 		{
 			CopyOnTileElementTo(OnTileElement);
 		}
+		else if (component is RemoveIgnoredByGhostTimerComponent RemoveIgnoredByGhostTimer)
+		{
+			CopyRemoveIgnoredByGhostTimerTo(RemoveIgnoredByGhostTimer);
+		}
 		else if (component is DebugMessageComponent DebugMessage)
 		{
 			CopyDebugMessageTo(DebugMessage);
@@ -61,6 +57,10 @@ public partial class ElementEntity
 		else if (component is OnTilePositionComponent OnTilePosition)
 		{
 			CopyOnTilePositionTo(OnTilePosition);
+		}
+		else if (component is IgnoredByGhostComponent IgnoredByGhost)
+		{
+			IsIgnoredByGhost = true;
 		}
 		else if (component is CanRespawnAfterDeathComponent CanRespawnAfterDeath)
 		{
@@ -94,6 +94,10 @@ public partial class ElementEntity
 		{
 			IsEnterState = true;
 		}
+		else if (component is GhostDisappearingComponent GhostDisappearing)
+		{
+			CopyGhostDisappearingTo(GhostDisappearing);
+		}
 		else if (component is GhostComponent Ghost)
 		{
 			IsGhost = true;
@@ -113,6 +117,10 @@ public partial class ElementEntity
 		else if (component is PlayerComponent Player)
 		{
 			CopyPlayerTo(Player);
+		}
+		else if (component is GhostAppearingComponent GhostAppearing)
+		{
+			CopyGhostAppearingTo(GhostAppearing);
 		}
 		else if (component is DeadAddedListenerComponent DeadAddedListener)
 		{
@@ -146,9 +154,17 @@ public partial class ElementEntity
 		{
 			CopyEnterStateAddedListenerTo(EnterStateAddedListener);
 		}
+		else if (component is GhostDisappearingAddedListenerComponent GhostDisappearingAddedListener)
+		{
+			CopyGhostDisappearingAddedListenerTo(GhostDisappearingAddedListener);
+		}
 		else if (component is MoveOnTileBeginAddedListenerComponent MoveOnTileBeginAddedListener)
 		{
 			CopyMoveOnTileBeginAddedListenerTo(MoveOnTileBeginAddedListener);
+		}
+		else if (component is GhostAppearingAddedListenerComponent GhostAppearingAddedListener)
+		{
+			CopyGhostAppearingAddedListenerTo(GhostAppearingAddedListener);
 		}
 		#endif
 	}

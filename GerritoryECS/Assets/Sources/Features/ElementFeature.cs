@@ -7,7 +7,14 @@ public sealed class ElementFeature : Feature
 {
 	public ElementFeature(Contexts contexts)
 	{
+		// Entity construction systems.
 		Add(new ConstructPlayerSystem(contexts));
+
+		// Ghost related systems.
+		Add(new GhostAppearingSystem(contexts));
+		Add(new GhostDisappearingSystem(contexts));
+
+		// Death / kill systems.
 		Add(new MarkOnTileElementDeadSystem(contexts));
 	}
 }

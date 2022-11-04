@@ -15,6 +15,8 @@ public sealed class ElementEventSystems : Feature
 		Add(new DeadAddedEventSystem(contexts)); // priority: 0
 		Add(new DeadRemovedEventSystem(contexts)); // priority: 0
 		Add(new EnterStateAddedEventSystem(contexts)); // priority: 0
+		Add(new GhostAppearingAddedEventSystem(contexts)); // priority: 0
+		Add(new GhostDisappearingAddedEventSystem(contexts)); // priority: 0
 		Add(new MoveOnTileAddedEventSystem(contexts)); // priority: 0
 		Add(new MoveOnTileBeginAddedEventSystem(contexts)); // priority: 0
 		Add(new MoveOnTileEndAddedEventSystem(contexts)); // priority: 0

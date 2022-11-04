@@ -194,7 +194,7 @@ public partial class Contexts
 			Element.GetGroup(ElementMatcher.OnTileElement),
 			(e, c) => ((OnTileElementComponent)c).Id));
 
-		Message.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<MessageEntity, int>(
+		Message.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<MessageEntity, int>(
 			OnTileElementDie,
 			Message.GetGroup(MessageMatcher.OnTileElementDie),
 			(e, c) => ((OnTileElementDieComponent)c).OnTileElementId));
@@ -346,9 +346,9 @@ public static class ContextsExtensions
 		return ((JCMG.EntitasRedux.PrimaryEntityIndex<ElementEntity, int>)context.GetEntityIndex(Contexts.OnTileElement)).GetEntity(Id);
 	}
 
-	public static MessageEntity GetEntityWithOnTileElementDie(this MessageContext context, int OnTileElementId)
+	public static System.Collections.Generic.HashSet<MessageEntity> GetEntitiesWithOnTileElementDie(this MessageContext context, int OnTileElementId)
 	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<MessageEntity, int>)context.GetEntityIndex(Contexts.OnTileElementDie)).GetEntity(OnTileElementId);
+		return ((JCMG.EntitasRedux.EntityIndex<MessageEntity, int>)context.GetEntityIndex(Contexts.OnTileElementDie)).GetEntities(OnTileElementId);
 	}
 
 	public static System.Collections.Generic.HashSet<EffectEntity> GetEntitiesWithOnTileElementEffect(this EffectContext context, int OnTileElementId)

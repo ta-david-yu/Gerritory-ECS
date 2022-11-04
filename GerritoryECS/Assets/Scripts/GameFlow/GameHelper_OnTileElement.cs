@@ -112,6 +112,27 @@ public static partial class GameHelper
 			return new TryCommandKillResult { Success = false };
 		}
 
+
+		// Create mark dead request entity.
+		var commandEntity = contexts.Command.CreateEntity();
+		commandEntity.AddMarkOnTileElementDead(onTileEntity.OnTileElement.Id);
+		return new TryCommandKillResult { Success = true, CommandEntity = commandEntity };
+	}
+
+	/// <summary>
+	/// This function unlike <see cref="TryCommandKill(Contexts, ElementEntity)"/>, it doesn't check whether the entity has CanBeDead component or not.
+	/// </summary>
+	/// <param name="contexts"></param>
+	/// <param name="onTileEntity"></param>
+	/// <returns></returns>
+	public static TryCommandKillResult TryCommandForceKillImmortal(this Contexts contexts, ElementEntity onTileEntity)
+	{
+		if (onTileEntity.IsDead)
+		{
+			Debug.LogWarning("The entity is already dead. Cannot be killed again.");
+			return new TryCommandKillResult { Success = false };
+		}
+
 		// Create mark dead request entity.
 		var commandEntity = contexts.Command.CreateEntity();
 		commandEntity.AddMarkOnTileElementDead(onTileEntity.OnTileElement.Id);
@@ -204,6 +225,12 @@ public static partial class GameHelper
 		return playerEntity;
 	}
 
+	/// <summary>
+	/// Note that this function only creates the ghost entity but not the input entity that would control the ghost.
+	/// Use <see cref="ConstructChaseNearestOnTileElementInputEntity(ElementEntity, Contexts)"/> to create an input entity that would control the ghost to chase other targets.
+	/// </summary>
+	/// <param name="contexts"></param>
+	/// <returns></returns>
 	public static ElementEntity ConstructGhostEntity(this Contexts contexts)
 	{
 		IOnTileElementFactory elementFactory = contexts.Config.GameConfig.value.OnTileElementFactory;
@@ -237,13 +264,33 @@ public static partial class GameHelper
 		// Link view controller with entity
 		viewController.Link(ghostEntity);
 
-		// TODO: move the creation of input entity to a different place
-		// ...
-		var inputEntity = contexts.Input.CreateEntity();
-		inputEntity.AddChaseNearestOnTileElementVictimInput(ghostEntity.OnTileElement.Id, GameConstants.MaxGhostChaseVictimHeuristicDistance, new AIHelper.PathfindingSimulationState());
-		inputEntity.ChaseNearestOnTileElementVictimInput.PathfindingSimulationState.AllocateWithContexts(contexts, Unity.Collections.Allocator.Persistent);
-
 		return ghostEntity;
+	}
+
+	public static InputEntity ConstructChaseNearestOnTileElementInputEntity(this ElementEntity entity, Contexts contexts)
+	{
+		var inputEntity = contexts.Input.CreateEntity();
+		inputEntity.AddChaseNearestOnTileElementVictimInput(entity.OnTileElement.Id, GameConstants.MaxGhostChaseVictimHeuristicDistance, new AIHelper.PathfindingSimulationState());
+		inputEntity.ChaseNearestOnTileElementVictimInput.PathfindingSimulationState.AllocateWithContexts(contexts, Unity.Collections.Allocator.Persistent);
+		return inputEntity;
+	}
+
+	public static bool TryMakeDisappear(this ElementEntity elementEntity)
+	{
+		if (!elementEntity.IsGhost)
+		{
+			Debug.LogError("You are not supposed to make a non-ghost element entity disappear.");
+			return false;
+		}
+
+		if (elementEntity.HasGhostDisappearing)
+		{
+			Debug.LogError($"The entity {elementEntity.OnTileElement.Id} is already disappearing.");
+			return false;
+		}
+
+		elementEntity.AddGhostDisappearing(0);
+		return true;
 	}
 
 	public static float GetElementEntityMoveOnTileDuration(this ElementEntity elementEntity)

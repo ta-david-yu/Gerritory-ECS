@@ -18,11 +18,7 @@ public partial class CommandEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is StepKilledByOnTileElementComponent StepKilledByOnTileElement)
-		{
-			CopyStepKilledByOnTileElementTo(StepKilledByOnTileElement);
-		}
-		else if (component is ConstructTileComponent ConstructTile)
+		if (component is ConstructTileComponent ConstructTile)
 		{
 			CopyConstructTileTo(ConstructTile);
 		}
@@ -37,6 +33,10 @@ public partial class CommandEntity
 		else if (component is SpawnItemComponent SpawnItem)
 		{
 			CopySpawnItemTo(SpawnItem);
+		}
+		else if (component is StepKilledByOnTileElementComponent StepKilledByOnTileElement)
+		{
+			CopyStepKilledByOnTileElementTo(StepKilledByOnTileElement);
 		}
 		else if (component is MarkOnTileElementDeadComponent MarkOnTileElementDead)
 		{

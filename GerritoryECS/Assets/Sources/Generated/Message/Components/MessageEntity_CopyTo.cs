@@ -18,19 +18,7 @@ public partial class MessageEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is StepKilledByOnTileElementComponent StepKilledByOnTileElement)
-		{
-			CopyStepKilledByOnTileElementTo(StepKilledByOnTileElement);
-		}
-		else if (component is OnTileElementDieComponent OnTileElementDie)
-		{
-			CopyOnTileElementDieTo(OnTileElementDie);
-		}
-		else if (component is OnTileElementRespawnComponent OnTileElementRespawn)
-		{
-			CopyOnTileElementRespawnTo(OnTileElementRespawn);
-		}
-		else if (component is LeaveBecauseOfDeathComponent LeaveBecauseOfDeath)
+		if (component is LeaveBecauseOfDeathComponent LeaveBecauseOfDeath)
 		{
 			IsLeaveBecauseOfDeath = true;
 		}
@@ -42,9 +30,21 @@ public partial class MessageEntity
 		{
 			CopyOnTileElementEnterTileTo(OnTileElementEnterTile);
 		}
+		else if (component is StepKilledByOnTileElementComponent StepKilledByOnTileElement)
+		{
+			CopyStepKilledByOnTileElementTo(StepKilledByOnTileElement);
+		}
 		else if (component is ConsumeInFixedUpdateComponent ConsumeInFixedUpdate)
 		{
 			IsConsumeInFixedUpdate = true;
+		}
+		else if (component is OnTileElementDieComponent OnTileElementDie)
+		{
+			CopyOnTileElementDieTo(OnTileElementDie);
+		}
+		else if (component is OnTileElementRespawnComponent OnTileElementRespawn)
+		{
+			CopyOnTileElementRespawnTo(OnTileElementRespawn);
 		}
 		else if (component is ConsumedComponent Consumed)
 		{

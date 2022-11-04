@@ -21,33 +21,37 @@ public static class ElementComponentsLookup
 	public const int DebugMessage = 5;
 	public const int EnterStateAddedListener = 6;
 	public const int EnterState = 7;
-	public const int Ghost = 8;
-	public const int IComponentRef = 9;
-	public const int IgnoredByGhost = 10;
-	public const int ItemEater = 11;
-	public const int LeaveStateAddedListener = 12;
-	public const int LeaveState = 13;
-	public const int MovementInputAction = 14;
-	public const int MoveOnTileAddedListener = 15;
-	public const int MoveOnTileBeginAddedListener = 16;
-	public const int MoveOnTileBegin = 17;
-	public const int MoveOnTile = 18;
-	public const int MoveOnTileEndAddedListener = 19;
-	public const int MoveOnTileEnd = 20;
-	public const int OnTileElement = 21;
-	public const int OnTileElementKiller = 22;
-	public const int OnTilePositionAddedListener = 23;
-	public const int OnTilePosition = 24;
-	public const int Player = 25;
-	public const int RemoveIgnoredByGhostTimer = 26;
-	public const int SpeedChangeable = 27;
-	public const int StateHolder = 28;
-	public const int TeamAddedListener = 29;
-	public const int Team = 30;
-	public const int TileCollapser = 31;
-	public const int TileOwner = 32;
+	public const int GhostAppearingAddedListener = 8;
+	public const int GhostAppearing = 9;
+	public const int Ghost = 10;
+	public const int GhostDisappearingAddedListener = 11;
+	public const int GhostDisappearing = 12;
+	public const int IComponentRef = 13;
+	public const int IgnoredByGhost = 14;
+	public const int ItemEater = 15;
+	public const int LeaveStateAddedListener = 16;
+	public const int LeaveState = 17;
+	public const int MovementInputAction = 18;
+	public const int MoveOnTileAddedListener = 19;
+	public const int MoveOnTileBeginAddedListener = 20;
+	public const int MoveOnTileBegin = 21;
+	public const int MoveOnTile = 22;
+	public const int MoveOnTileEndAddedListener = 23;
+	public const int MoveOnTileEnd = 24;
+	public const int OnTileElement = 25;
+	public const int OnTileElementKiller = 26;
+	public const int OnTilePositionAddedListener = 27;
+	public const int OnTilePosition = 28;
+	public const int Player = 29;
+	public const int RemoveIgnoredByGhostTimer = 30;
+	public const int SpeedChangeable = 31;
+	public const int StateHolder = 32;
+	public const int TeamAddedListener = 33;
+	public const int Team = 34;
+	public const int TileCollapser = 35;
+	public const int TileOwner = 36;
 
-	public const int TotalComponents = 33;
+	public const int TotalComponents = 37;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -59,7 +63,11 @@ public static class ElementComponentsLookup
 		"DebugMessage",
 		"EnterStateAddedListener",
 		"EnterState",
+		"GhostAppearingAddedListener",
+		"GhostAppearing",
 		"Ghost",
+		"GhostDisappearingAddedListener",
+		"GhostDisappearing",
 		"IComponentRef",
 		"IgnoredByGhost",
 		"ItemEater",
@@ -96,7 +104,11 @@ public static class ElementComponentsLookup
 		typeof(DebugMessageComponent),
 		typeof(EnterStateAddedListenerComponent),
 		typeof(EnterStateComponent),
+		typeof(GhostAppearingAddedListenerComponent),
+		typeof(GhostAppearingComponent),
 		typeof(GhostComponent),
+		typeof(GhostDisappearingAddedListenerComponent),
+		typeof(GhostDisappearingComponent),
 		typeof(IComponentRefComponent),
 		typeof(IgnoredByGhostComponent),
 		typeof(ItemEaterComponent),
@@ -133,31 +145,35 @@ public static class ElementComponentsLookup
 		{ typeof(DebugMessageComponent), 5 },
 		{ typeof(EnterStateAddedListenerComponent), 6 },
 		{ typeof(EnterStateComponent), 7 },
-		{ typeof(GhostComponent), 8 },
-		{ typeof(IComponentRefComponent), 9 },
-		{ typeof(IgnoredByGhostComponent), 10 },
-		{ typeof(ItemEaterComponent), 11 },
-		{ typeof(LeaveStateAddedListenerComponent), 12 },
-		{ typeof(LeaveStateComponent), 13 },
-		{ typeof(MovementInputActionComponent), 14 },
-		{ typeof(MoveOnTileAddedListenerComponent), 15 },
-		{ typeof(MoveOnTileBeginAddedListenerComponent), 16 },
-		{ typeof(MoveOnTileBeginComponent), 17 },
-		{ typeof(MoveOnTileComponent), 18 },
-		{ typeof(MoveOnTileEndAddedListenerComponent), 19 },
-		{ typeof(MoveOnTileEndComponent), 20 },
-		{ typeof(OnTileElementComponent), 21 },
-		{ typeof(OnTileElementKillerComponent), 22 },
-		{ typeof(OnTilePositionAddedListenerComponent), 23 },
-		{ typeof(OnTilePositionComponent), 24 },
-		{ typeof(PlayerComponent), 25 },
-		{ typeof(RemoveIgnoredByGhostTimerComponent), 26 },
-		{ typeof(SpeedChangeableComponent), 27 },
-		{ typeof(StateHolderComponent), 28 },
-		{ typeof(TeamAddedListenerComponent), 29 },
-		{ typeof(TeamComponent), 30 },
-		{ typeof(TileCollapserComponent), 31 },
-		{ typeof(TileOwnerComponent), 32 }
+		{ typeof(GhostAppearingAddedListenerComponent), 8 },
+		{ typeof(GhostAppearingComponent), 9 },
+		{ typeof(GhostComponent), 10 },
+		{ typeof(GhostDisappearingAddedListenerComponent), 11 },
+		{ typeof(GhostDisappearingComponent), 12 },
+		{ typeof(IComponentRefComponent), 13 },
+		{ typeof(IgnoredByGhostComponent), 14 },
+		{ typeof(ItemEaterComponent), 15 },
+		{ typeof(LeaveStateAddedListenerComponent), 16 },
+		{ typeof(LeaveStateComponent), 17 },
+		{ typeof(MovementInputActionComponent), 18 },
+		{ typeof(MoveOnTileAddedListenerComponent), 19 },
+		{ typeof(MoveOnTileBeginAddedListenerComponent), 20 },
+		{ typeof(MoveOnTileBeginComponent), 21 },
+		{ typeof(MoveOnTileComponent), 22 },
+		{ typeof(MoveOnTileEndAddedListenerComponent), 23 },
+		{ typeof(MoveOnTileEndComponent), 24 },
+		{ typeof(OnTileElementComponent), 25 },
+		{ typeof(OnTileElementKillerComponent), 26 },
+		{ typeof(OnTilePositionAddedListenerComponent), 27 },
+		{ typeof(OnTilePositionComponent), 28 },
+		{ typeof(PlayerComponent), 29 },
+		{ typeof(RemoveIgnoredByGhostTimerComponent), 30 },
+		{ typeof(SpeedChangeableComponent), 31 },
+		{ typeof(StateHolderComponent), 32 },
+		{ typeof(TeamAddedListenerComponent), 33 },
+		{ typeof(TeamComponent), 34 },
+		{ typeof(TileCollapserComponent), 35 },
+		{ typeof(TileOwnerComponent), 36 }
 	};
 
 	/// <summary>

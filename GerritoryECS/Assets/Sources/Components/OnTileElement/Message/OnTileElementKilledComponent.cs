@@ -6,6 +6,6 @@ using UnityEngine;
 [Message]
 public sealed class OnTileElementDieComponent : IComponent
 {
-	[PrimaryEntityIndex]
+	[EntityIndex]
 	public int OnTileElementId;
 }

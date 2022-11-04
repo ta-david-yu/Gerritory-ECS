@@ -5,7 +5,8 @@ using UnityEngine;
 
 public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 {
-	private ElementContext m_ElementContext;
+	private readonly ElementContext m_ElementContext;
+	private readonly Contexts m_Contexts;
 
 	private readonly IGroup<GameFlowEntity> m_GameFlowGroup;
 	private readonly IGroup<LevelEntity> m_GameInfoGroup;
@@ -19,6 +20,8 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 		m_GameInfoGroup = contexts.Level.GetGroup(LevelMatcher.GameInfo);
 		m_PlayerGroup = contexts.Element.GetGroup(ElementMatcher.AllOf(ElementMatcher.Player, ElementMatcher.OnTileElement));
 		m_TeamInfoGroup = contexts.Level.GetGroup(LevelMatcher.TeamInfo);
+
+		m_Contexts = contexts;
 	}
 
 	public void Update()
@@ -77,6 +80,12 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 				{
 					GUILayout.Label("Idle");
 				}
+
+
+				if (GUILayout.Button("Kill"))
+				{
+					m_Contexts.TryCommandForceKillImmortal(entity);
+				}
 			}
 		}
 
@@ -90,6 +99,17 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 				GUILayout.Label($"Members#: {numberOfTeamMembers}");
 				GUILayout.Label($"Score: {teamEntity.TeamScore.Value}");
 				GUILayout.Label($"Ranking: {teamEntity.TeamGameRanking.Number}");
+			}
+		}
+
+		using (new GUILayout.VerticalScope(areaStyle, GUILayout.Width(200)))
+		{
+			if (GUILayout.Button("Spawn Ghost"))
+			{
+				var ghostEntity = m_Contexts.ConstructGhostEntity();
+
+				// The ghost would not move immediately!
+				ghostEntity.AddGhostAppearing(0);
 			}
 		}
 	}
