@@ -12,16 +12,18 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 	private readonly IGroup<LevelEntity> m_GameInfoGroup;
 	private readonly IGroup<ElementEntity> m_PlayerGroup;
 	private readonly IGroup<LevelEntity> m_TeamInfoGroup;
+	private readonly IGroup<ElementEntity> m_GhostGroup;
 
 	public OnGUIPlayerMovementSystem(Contexts contexts)
 	{
 		m_ElementContext = contexts.Element;
+		m_Contexts = contexts;
+
 		m_GameFlowGroup = contexts.GameFlow.GetGroup(GameFlowMatcher.GameFlow);
 		m_GameInfoGroup = contexts.Level.GetGroup(LevelMatcher.GameInfo);
 		m_PlayerGroup = contexts.Element.GetGroup(ElementMatcher.AllOf(ElementMatcher.Player, ElementMatcher.OnTileElement));
 		m_TeamInfoGroup = contexts.Level.GetGroup(LevelMatcher.TeamInfo);
-
-		m_Contexts = contexts;
+		m_GhostGroup = contexts.Element.GetGroup(ElementMatcher.Ghost);
 	}
 
 	public void Update()
@@ -104,12 +106,37 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 
 		using (new GUILayout.VerticalScope(areaStyle, GUILayout.Width(200)))
 		{
+			GUILayout.Label("Ghost Related Stuff");
 			if (GUILayout.Button("Spawn Ghost"))
 			{
 				var ghostEntity = m_Contexts.ConstructGhostEntity();
 
 				// The ghost would not move immediately!
 				ghostEntity.AddGhostAppearing(0);
+			}
+
+
+			foreach (var ghostEntity in m_GhostGroup.GetEntities())
+			{
+				using (new GUILayout.VerticalScope(areaStyle, GUILayout.Width(250)))
+				{
+					GUILayout.Label($"Element Id: {ghostEntity.OnTileElement.Id}");
+
+					if (ghostEntity.IsDead && !ghostEntity.HasGhostAppearing)
+					{
+						if (GUILayout.Button("Appear"))
+						{
+							m_Contexts.TryMakeGhostReappear(ghostEntity);
+						}
+					}
+					else
+					{
+						if (GUILayout.Button("Disappear"))
+						{
+							m_Contexts.TryMakeGhostDisappear(ghostEntity);
+						}
+					}
+				}
 			}
 		}
 	}

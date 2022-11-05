@@ -30,29 +30,7 @@ public sealed class MarkOnTileElementDeadSystem : IFixedUpdateSystem
 
 			onTileEntity.IsDead = true;
 
-			if (onTileEntity.HasOnTilePosition)
-			{
-				// If the OnTileEntity is occupying a tile, be sure to remove it from the tile.
-				Vector2Int position = onTileEntity.OnTilePosition.Value;
-				onTileEntity.RemoveOnTilePosition();
-
-				if (!onTileEntity.HasMoveOnTile)
-				{
-					// Emit global LeaveTile message if the killed entity was not moving away from its tile.
-					var leaveTileMessageEntity = m_Contexts.Message.CreateFixedUpdateMessageEntity();
-					leaveTileMessageEntity.ReplaceOnTileElementLeaveTile(onTileEntity.OnTileElement.Id, position);
-					leaveTileMessageEntity.IsLeaveBecauseOfDeath = true;
-				}
-			}
-
-			if (onTileEntity.HasMoveOnTile)
-			{
-				// If the OnTileEntity is moving, be sure to cancel the movement.
-				Vector2Int fromPosition = onTileEntity.MoveOnTile.FromPosition;
-				Vector2Int toPosition = onTileEntity.MoveOnTile.ToPosition;
-				onTileEntity.RemoveMoveOnTile();
-				onTileEntity.AddMoveOnTileEnd(fromPosition, toPosition);
-			}
+			m_Contexts.RemoveOnTileElementPositionFromLevel(onTileEntity);
 
 			var dieMessageEntity = m_MessageContext.EmitOnTileElementDieMessage(onTileEntity.OnTileElement.Id);
 			

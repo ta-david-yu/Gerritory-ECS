@@ -21,6 +21,30 @@ public struct TryCommandKillResult
 	public CommandEntity CommandEntity;
 }
 
+public struct TryMakeGhostDisppearResult
+{
+	public enum ResultType
+	{
+		Success,
+		IsAlreadyDisappearing,
+		CannotBeForceKilled
+	}
+
+	public ResultType Type;
+}
+
+public struct TryMakeGhostReappearResult
+{
+	public enum ResultType
+	{
+		Success,
+		IsAlreadyAppearing,
+		HasNoValidReappearPosition
+	}
+
+	public ResultType Type;
+}
+
 public static partial class GameHelper
 {
 	private static IGroup<TileEntity> s_RespawnableTileGroup = null;
@@ -112,6 +136,12 @@ public static partial class GameHelper
 			return new TryCommandKillResult { Success = false };
 		}
 
+		var existingKillCommands = contexts.Command.GetEntitiesWithMarkOnTileElementDead(onTileEntity.OnTileElement.Id);
+		if (existingKillCommands.Count > 0)
+		{
+			Debug.LogWarning($"Another kill command has already been issued against the entity {onTileEntity}. This one will be ignored!");
+			return new TryCommandKillResult { Success = false };
+		}
 
 		// Create mark dead request entity.
 		var commandEntity = contexts.Command.CreateEntity();
@@ -133,10 +163,114 @@ public static partial class GameHelper
 			return new TryCommandKillResult { Success = false };
 		}
 
+		var existingKillCommands = contexts.Command.GetEntitiesWithMarkOnTileElementDead(onTileEntity.OnTileElement.Id);
+		if (existingKillCommands.Count > 0)
+		{
+			Debug.LogWarning($"Another kill command has already been issued against the entity {onTileEntity}. This one will be ignored!");
+			return new TryCommandKillResult { Success = false };
+		}
+
 		// Create mark dead request entity.
 		var commandEntity = contexts.Command.CreateEntity();
 		commandEntity.AddMarkOnTileElementDead(onTileEntity.OnTileElement.Id);
 		return new TryCommandKillResult { Success = true, CommandEntity = commandEntity };
+	}
+
+	/// <summary>
+	/// Remove the given OnTileEntity from the level, namely remove its OnTilePosition and possible MoveOnTile components.
+	/// </summary>
+	/// <param name="contexts"></param>
+	/// <param name="onTileEntity"></param>
+	/// <returns></returns>
+	public static void RemoveOnTileElementPositionFromLevel(this Contexts contexts, ElementEntity onTileEntity)
+	{
+		if (onTileEntity.HasOnTilePosition)
+		{
+			// If the OnTileEntity is occupying a tile, be sure to remove it from the tile.
+			Vector2Int position = onTileEntity.OnTilePosition.Value;
+			onTileEntity.RemoveOnTilePosition();
+
+			if (!onTileEntity.HasMoveOnTile)
+			{
+				// Emit global LeaveTile message if the killed entity was not moving away from its tile.
+				var leaveTileMessageEntity = contexts.Message.CreateFixedUpdateMessageEntity();
+				leaveTileMessageEntity.ReplaceOnTileElementLeaveTile(onTileEntity.OnTileElement.Id, position);
+				leaveTileMessageEntity.IsLeaveBecauseOfDeath = true;
+			}
+		}
+
+		if (onTileEntity.HasMoveOnTile)
+		{
+			// If the OnTileEntity is moving, be sure to cancel the movement.
+			Vector2Int fromPosition = onTileEntity.MoveOnTile.FromPosition;
+			Vector2Int toPosition = onTileEntity.MoveOnTile.ToPosition;
+			onTileEntity.RemoveMoveOnTile();
+			onTileEntity.AddMoveOnTileEnd(fromPosition, toPosition);
+		}
+	}
+
+	public static TryMakeGhostDisppearResult TryMakeGhostDisappear(this Contexts contexts, ElementEntity elementEntity)
+	{
+		if (elementEntity.HasGhostDisappearing)
+		{
+			return new TryMakeGhostDisppearResult { Type = TryMakeGhostDisppearResult.ResultType.IsAlreadyDisappearing };
+		}
+
+		float initialDisappearingProgress = 0;
+		if (elementEntity.HasGhostAppearing)
+		{
+			// If the ghost is in the process of appearing, invert that progress as the disappearing progress.
+			initialDisappearingProgress = 1.0f - elementEntity.GhostAppearing.Progress;
+			elementEntity.RemoveGhostAppearing();
+		}
+
+		// Add disappearing counter component.
+		elementEntity.AddGhostDisappearing(initialDisappearingProgress);
+
+		// Kill the ghost.
+		TryCommandKillResult killResult = contexts.TryCommandForceKillImmortal(elementEntity);
+		if (!killResult.Success)
+		{
+			// The kill action is not successful.
+			return new TryMakeGhostDisppearResult { Type = TryMakeGhostDisppearResult.ResultType.CannotBeForceKilled };
+		}
+
+		return new TryMakeGhostDisppearResult { Type = TryMakeGhostDisppearResult.ResultType.Success };
+	}
+
+	public static TryMakeGhostReappearResult TryMakeGhostReappear(this Contexts contexts, ElementEntity elementEntity)
+	{
+		if (elementEntity.HasGhostAppearing)
+		{
+			Debug.LogWarning("The ghost entity is already in the process of appearing!");
+			return new TryMakeGhostReappearResult { Type = TryMakeGhostReappearResult.ResultType.IsAlreadyAppearing };
+		}
+
+		float initialAppearingProgress = 0;
+		if (elementEntity.HasGhostDisappearing)
+		{
+			// If the ghost is in the process of disappearing, invert that progress as the appearing progress.
+			initialAppearingProgress = 1.0f - elementEntity.GhostDisappearing.Progress;
+			elementEntity.RemoveGhostDisappearing();
+		}
+
+		// Get a position to revive the ghost on.
+		TryGetValidRespawnPositionResult result = contexts.TryGetValidGhostSpawnPosition(elementEntity, 0);
+		if (result.Success)
+		{
+			// Add appearing component to revive the ghost later.
+			elementEntity.AddGhostAppearing(initialAppearingProgress);
+
+			// Add new position.
+			elementEntity.ReplaceOnTilePosition(result.TilePosition);
+
+			return new TryMakeGhostReappearResult { Type = TryMakeGhostReappearResult.ResultType.Success };
+		}
+		else
+		{
+			Debug.LogError("Cannot find a valid position to spawn the ghost! Not reappeared.");
+			return new TryMakeGhostReappearResult { Type = TryMakeGhostReappearResult.ResultType.HasNoValidReappearPosition };
+		}
 	}
 
 	public static bool CanStepOnVictim(this Contexts contexts, ElementEntity stepperEntity, ElementEntity victimEntity)

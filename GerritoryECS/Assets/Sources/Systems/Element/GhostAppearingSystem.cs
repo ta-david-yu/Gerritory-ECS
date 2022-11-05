@@ -1,10 +1,9 @@
 using JCMG.EntitasRedux;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
+/// <summary>
+/// Update appearing timer and revive ghost / spawn input entity once the time is up!
+/// </summary>
 public sealed class GhostAppearingSystem : IFixedUpdateSystem
 {
 	private readonly ElementContext m_ElementContext;
@@ -37,7 +36,8 @@ public sealed class GhostAppearingSystem : IFixedUpdateSystem
 					inputEntity = ghostEntity.ConstructChaseNearestOnTileElementInputEntity(m_Contexts);
 				}
 
-				// Revive the ghost if it's marked as dead before.
+				// Revive the ghost in case it was hidden before (reappearing now).
+				ghostEntity.IsDead = false;
 			}
 			else
 			{

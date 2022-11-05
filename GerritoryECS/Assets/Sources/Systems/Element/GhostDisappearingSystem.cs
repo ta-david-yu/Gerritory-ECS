@@ -1,8 +1,9 @@
 using JCMG.EntitasRedux;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Update disappear timer and remove the timer once the time is up.
+/// </summary>
 public class GhostDisappearingSystem : IFixedUpdateSystem
 {
 	private readonly ElementContext m_ElementContext;

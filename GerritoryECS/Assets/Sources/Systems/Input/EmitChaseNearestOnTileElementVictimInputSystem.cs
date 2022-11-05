@@ -51,6 +51,12 @@ public sealed class EmitChaseNearestOnTileElementVictimInputSystem : IUpdateSyst
 			int controllingElementId = inputEntity.ChaseNearestOnTileElementVictimInput.ControllingElementId;
 			var elementEntity = m_ElementContext.GetEntityWithOnTileElement(controllingElementId);
 
+			if (elementEntity.IsDead)
+			{
+				// We don't want to move entity that is dead.
+				continue;
+			}
+
 			if (!elementEntity.HasOnTilePosition)
 			{
 				// The entity is currently not in the level, no need to decide the input now.
