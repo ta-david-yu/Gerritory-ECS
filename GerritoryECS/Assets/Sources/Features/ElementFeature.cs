@@ -17,5 +17,8 @@ public sealed class ElementFeature : Feature
 
 		// Death / kill systems.
 		Add(new MarkOnTileElementDeadSystem(contexts));
+
+		// Ghost related systems.
+		Add(new DisappearGhostOnStepKillSystem(contexts));
 	}
 }

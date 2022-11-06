@@ -4,6 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Element]
-public sealed class MakeGhostDisappearOnEnterTileComponent : IComponent
+public sealed class CanDisappearAfterStepKillComponent : IComponent
 {
 }

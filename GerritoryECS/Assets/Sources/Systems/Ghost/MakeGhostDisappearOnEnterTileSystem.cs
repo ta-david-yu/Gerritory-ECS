@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Make ghost disappear on enter tile if it's marked to be made disappear delayed.
+/// </summary>
 public sealed class MakeGhostDisappearOnEnterTileSystem : IFixedUpdateSystem
 {
 	private readonly ElementContext m_ElementContext;
@@ -18,7 +21,7 @@ public sealed class MakeGhostDisappearOnEnterTileSystem : IFixedUpdateSystem
 
 		m_Contexts = contexts;
 
-		m_ToBeMadeDisappearGhostGroup = m_ElementContext.GetGroup(ElementMatcher.AllOf(ElementMatcher.Ghost, ElementMatcher.MakeGhostDisappearOnEnterTile));
+		m_ToBeMadeDisappearGhostGroup = m_ElementContext.GetGroup(ElementMatcher.AllOf(ElementMatcher.Ghost, ElementMatcher.DelayGhostDisappearOnEnterTile));
 	}
 
 	public void FixedUpdate()
@@ -39,7 +42,7 @@ public sealed class MakeGhostDisappearOnEnterTileSystem : IFixedUpdateSystem
 			}
 
 			m_Contexts.TryMakeGhostDisappear(toBeDisappearEntity);
-			toBeDisappearEntity.IsMakeGhostDisappearOnEnterTile = false;
+			toBeDisappearEntity.IsDelayGhostDisappearOnEnterTile = false;
 		}
 	}
 }

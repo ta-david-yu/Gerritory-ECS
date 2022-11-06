@@ -14,54 +14,57 @@ using JCMG.EntitasRedux;
 public static class ElementComponentsLookup
 {
 	public const int CanBeDead = 0;
-	public const int CanRespawnAfterDeath = 1;
-	public const int DeadAddedListener = 2;
-	public const int Dead = 3;
-	public const int DeadRemovedListener = 4;
-	public const int DebugMessage = 5;
-	public const int EnterStateAddedListener = 6;
-	public const int EnterState = 7;
-	public const int GhostAppearingAddedListener = 8;
-	public const int GhostAppearing = 9;
-	public const int Ghost = 10;
-	public const int GhostDisappearingAddedListener = 11;
-	public const int GhostDisappearing = 12;
-	public const int IComponentRef = 13;
-	public const int IgnoredByGhost = 14;
-	public const int ItemEater = 15;
-	public const int LeaveStateAddedListener = 16;
-	public const int LeaveState = 17;
-	public const int MakeGhostDisappearOnEnterTile = 18;
-	public const int MovementInputAction = 19;
-	public const int MoveOnTileAddedListener = 20;
-	public const int MoveOnTileBeginAddedListener = 21;
-	public const int MoveOnTileBegin = 22;
-	public const int MoveOnTile = 23;
-	public const int MoveOnTileEndAddedListener = 24;
-	public const int MoveOnTileEnd = 25;
-	public const int OnTileElement = 26;
-	public const int OnTileElementKiller = 27;
-	public const int OnTilePositionAddedListener = 28;
-	public const int OnTilePosition = 29;
-	public const int Player = 30;
-	public const int RemoveIgnoredByGhostTimer = 31;
-	public const int SpeedChangeable = 32;
-	public const int StateHolder = 33;
-	public const int TeamAddedListener = 34;
-	public const int Team = 35;
-	public const int TileCollapser = 36;
-	public const int TileOwner = 37;
+	public const int CanDisappearAfterStepKill = 1;
+	public const int CanRespawnAfterDeath = 2;
+	public const int DeadAddedListener = 3;
+	public const int Dead = 4;
+	public const int DeadRemovedListener = 5;
+	public const int DebugMessage = 6;
+	public const int DelayGhostDisappearOnEnterTile = 7;
+	public const int EnterStateAddedListener = 8;
+	public const int EnterState = 9;
+	public const int GhostAppearingAddedListener = 10;
+	public const int GhostAppearing = 11;
+	public const int Ghost = 12;
+	public const int GhostDisappearingAddedListener = 13;
+	public const int GhostDisappearing = 14;
+	public const int IComponentRef = 15;
+	public const int IgnoredByGhost = 16;
+	public const int ItemEater = 17;
+	public const int LeaveStateAddedListener = 18;
+	public const int LeaveState = 19;
+	public const int MovementInputAction = 20;
+	public const int MoveOnTileAddedListener = 21;
+	public const int MoveOnTileBeginAddedListener = 22;
+	public const int MoveOnTileBegin = 23;
+	public const int MoveOnTile = 24;
+	public const int MoveOnTileEndAddedListener = 25;
+	public const int MoveOnTileEnd = 26;
+	public const int OnTileElement = 27;
+	public const int OnTileElementStepKiller = 28;
+	public const int OnTilePositionAddedListener = 29;
+	public const int OnTilePosition = 30;
+	public const int Player = 31;
+	public const int RemoveIgnoredByGhostTimer = 32;
+	public const int SpeedChangeable = 33;
+	public const int StateHolder = 34;
+	public const int TeamAddedListener = 35;
+	public const int Team = 36;
+	public const int TileCollapser = 37;
+	public const int TileOwner = 38;
 
-	public const int TotalComponents = 38;
+	public const int TotalComponents = 39;
 
 	public static readonly string[] ComponentNames =
 	{
 		"CanBeDead",
+		"CanDisappearAfterStepKill",
 		"CanRespawnAfterDeath",
 		"DeadAddedListener",
 		"Dead",
 		"DeadRemovedListener",
 		"DebugMessage",
+		"DelayGhostDisappearOnEnterTile",
 		"EnterStateAddedListener",
 		"EnterState",
 		"GhostAppearingAddedListener",
@@ -74,7 +77,6 @@ public static class ElementComponentsLookup
 		"ItemEater",
 		"LeaveStateAddedListener",
 		"LeaveState",
-		"MakeGhostDisappearOnEnterTile",
 		"MovementInputAction",
 		"MoveOnTileAddedListener",
 		"MoveOnTileBeginAddedListener",
@@ -83,7 +85,7 @@ public static class ElementComponentsLookup
 		"MoveOnTileEndAddedListener",
 		"MoveOnTileEnd",
 		"OnTileElement",
-		"OnTileElementKiller",
+		"OnTileElementStepKiller",
 		"OnTilePositionAddedListener",
 		"OnTilePosition",
 		"Player",
@@ -99,11 +101,13 @@ public static class ElementComponentsLookup
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(CanBeDeadComponent),
+		typeof(CanDisappearAfterStepKillComponent),
 		typeof(CanRespawnAfterDeathComponent),
 		typeof(DeadAddedListenerComponent),
 		typeof(DeadComponent),
 		typeof(DeadRemovedListenerComponent),
 		typeof(DebugMessageComponent),
+		typeof(DelayGhostDisappearOnEnterTileComponent),
 		typeof(EnterStateAddedListenerComponent),
 		typeof(EnterStateComponent),
 		typeof(GhostAppearingAddedListenerComponent),
@@ -116,7 +120,6 @@ public static class ElementComponentsLookup
 		typeof(ItemEaterComponent),
 		typeof(LeaveStateAddedListenerComponent),
 		typeof(LeaveStateComponent),
-		typeof(MakeGhostDisappearOnEnterTileComponent),
 		typeof(MovementInputActionComponent),
 		typeof(MoveOnTileAddedListenerComponent),
 		typeof(MoveOnTileBeginAddedListenerComponent),
@@ -125,7 +128,7 @@ public static class ElementComponentsLookup
 		typeof(MoveOnTileEndAddedListenerComponent),
 		typeof(MoveOnTileEndComponent),
 		typeof(OnTileElementComponent),
-		typeof(OnTileElementKillerComponent),
+		typeof(OnTileElementStepKillerComponent),
 		typeof(OnTilePositionAddedListenerComponent),
 		typeof(OnTilePositionComponent),
 		typeof(PlayerComponent),
@@ -141,43 +144,44 @@ public static class ElementComponentsLookup
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(CanBeDeadComponent), 0 },
-		{ typeof(CanRespawnAfterDeathComponent), 1 },
-		{ typeof(DeadAddedListenerComponent), 2 },
-		{ typeof(DeadComponent), 3 },
-		{ typeof(DeadRemovedListenerComponent), 4 },
-		{ typeof(DebugMessageComponent), 5 },
-		{ typeof(EnterStateAddedListenerComponent), 6 },
-		{ typeof(EnterStateComponent), 7 },
-		{ typeof(GhostAppearingAddedListenerComponent), 8 },
-		{ typeof(GhostAppearingComponent), 9 },
-		{ typeof(GhostComponent), 10 },
-		{ typeof(GhostDisappearingAddedListenerComponent), 11 },
-		{ typeof(GhostDisappearingComponent), 12 },
-		{ typeof(IComponentRefComponent), 13 },
-		{ typeof(IgnoredByGhostComponent), 14 },
-		{ typeof(ItemEaterComponent), 15 },
-		{ typeof(LeaveStateAddedListenerComponent), 16 },
-		{ typeof(LeaveStateComponent), 17 },
-		{ typeof(MakeGhostDisappearOnEnterTileComponent), 18 },
-		{ typeof(MovementInputActionComponent), 19 },
-		{ typeof(MoveOnTileAddedListenerComponent), 20 },
-		{ typeof(MoveOnTileBeginAddedListenerComponent), 21 },
-		{ typeof(MoveOnTileBeginComponent), 22 },
-		{ typeof(MoveOnTileComponent), 23 },
-		{ typeof(MoveOnTileEndAddedListenerComponent), 24 },
-		{ typeof(MoveOnTileEndComponent), 25 },
-		{ typeof(OnTileElementComponent), 26 },
-		{ typeof(OnTileElementKillerComponent), 27 },
-		{ typeof(OnTilePositionAddedListenerComponent), 28 },
-		{ typeof(OnTilePositionComponent), 29 },
-		{ typeof(PlayerComponent), 30 },
-		{ typeof(RemoveIgnoredByGhostTimerComponent), 31 },
-		{ typeof(SpeedChangeableComponent), 32 },
-		{ typeof(StateHolderComponent), 33 },
-		{ typeof(TeamAddedListenerComponent), 34 },
-		{ typeof(TeamComponent), 35 },
-		{ typeof(TileCollapserComponent), 36 },
-		{ typeof(TileOwnerComponent), 37 }
+		{ typeof(CanDisappearAfterStepKillComponent), 1 },
+		{ typeof(CanRespawnAfterDeathComponent), 2 },
+		{ typeof(DeadAddedListenerComponent), 3 },
+		{ typeof(DeadComponent), 4 },
+		{ typeof(DeadRemovedListenerComponent), 5 },
+		{ typeof(DebugMessageComponent), 6 },
+		{ typeof(DelayGhostDisappearOnEnterTileComponent), 7 },
+		{ typeof(EnterStateAddedListenerComponent), 8 },
+		{ typeof(EnterStateComponent), 9 },
+		{ typeof(GhostAppearingAddedListenerComponent), 10 },
+		{ typeof(GhostAppearingComponent), 11 },
+		{ typeof(GhostComponent), 12 },
+		{ typeof(GhostDisappearingAddedListenerComponent), 13 },
+		{ typeof(GhostDisappearingComponent), 14 },
+		{ typeof(IComponentRefComponent), 15 },
+		{ typeof(IgnoredByGhostComponent), 16 },
+		{ typeof(ItemEaterComponent), 17 },
+		{ typeof(LeaveStateAddedListenerComponent), 18 },
+		{ typeof(LeaveStateComponent), 19 },
+		{ typeof(MovementInputActionComponent), 20 },
+		{ typeof(MoveOnTileAddedListenerComponent), 21 },
+		{ typeof(MoveOnTileBeginAddedListenerComponent), 22 },
+		{ typeof(MoveOnTileBeginComponent), 23 },
+		{ typeof(MoveOnTileComponent), 24 },
+		{ typeof(MoveOnTileEndAddedListenerComponent), 25 },
+		{ typeof(MoveOnTileEndComponent), 26 },
+		{ typeof(OnTileElementComponent), 27 },
+		{ typeof(OnTileElementStepKillerComponent), 28 },
+		{ typeof(OnTilePositionAddedListenerComponent), 29 },
+		{ typeof(OnTilePositionComponent), 30 },
+		{ typeof(PlayerComponent), 31 },
+		{ typeof(RemoveIgnoredByGhostTimerComponent), 32 },
+		{ typeof(SpeedChangeableComponent), 33 },
+		{ typeof(StateHolderComponent), 34 },
+		{ typeof(TeamAddedListenerComponent), 35 },
+		{ typeof(TeamComponent), 36 },
+		{ typeof(TileCollapserComponent), 37 },
+		{ typeof(TileOwnerComponent), 38 }
 	};
 
 	/// <summary>

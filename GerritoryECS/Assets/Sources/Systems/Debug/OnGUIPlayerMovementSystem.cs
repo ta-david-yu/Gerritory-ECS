@@ -137,7 +137,7 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 							{
 								if (ghostEntity.HasMoveOnTile)
 								{
-									ghostEntity.IsMakeGhostDisappearOnEnterTile = true;
+									ghostEntity.IsDelayGhostDisappearOnEnterTile = true;
 								}
 								else
 								{

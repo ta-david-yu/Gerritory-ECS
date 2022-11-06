@@ -9,22 +9,22 @@
 //------------------------------------------------------------------------------
 public partial class ElementEntity
 {
-	static readonly OnTileElementKillerComponent OnTileElementKillerComponent = new OnTileElementKillerComponent();
+	static readonly DelayGhostDisappearOnEnterTileComponent DelayGhostDisappearOnEnterTileComponent = new DelayGhostDisappearOnEnterTileComponent();
 
-	public bool IsOnTileElementKiller
+	public bool IsDelayGhostDisappearOnEnterTile
 	{
-		get { return HasComponent(ElementComponentsLookup.OnTileElementKiller); }
+		get { return HasComponent(ElementComponentsLookup.DelayGhostDisappearOnEnterTile); }
 		set
 		{
-			if (value != IsOnTileElementKiller)
+			if (value != IsDelayGhostDisappearOnEnterTile)
 			{
-				var index = ElementComponentsLookup.OnTileElementKiller;
+				var index = ElementComponentsLookup.DelayGhostDisappearOnEnterTile;
 				if (value)
 				{
 					var componentPool = GetComponentPool(index);
 					var component = componentPool.Count > 0
 							? componentPool.Pop()
-							: OnTileElementKillerComponent;
+							: DelayGhostDisappearOnEnterTileComponent;
 
 					AddComponent(index, component);
 				}
@@ -48,20 +48,20 @@ public partial class ElementEntity
 //------------------------------------------------------------------------------
 public sealed partial class ElementMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<ElementEntity> _matcherOnTileElementKiller;
+	static JCMG.EntitasRedux.IMatcher<ElementEntity> _matcherDelayGhostDisappearOnEnterTile;
 
-	public static JCMG.EntitasRedux.IMatcher<ElementEntity> OnTileElementKiller
+	public static JCMG.EntitasRedux.IMatcher<ElementEntity> DelayGhostDisappearOnEnterTile
 	{
 		get
 		{
-			if (_matcherOnTileElementKiller == null)
+			if (_matcherDelayGhostDisappearOnEnterTile == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<ElementEntity>)JCMG.EntitasRedux.Matcher<ElementEntity>.AllOf(ElementComponentsLookup.OnTileElementKiller);
+				var matcher = (JCMG.EntitasRedux.Matcher<ElementEntity>)JCMG.EntitasRedux.Matcher<ElementEntity>.AllOf(ElementComponentsLookup.DelayGhostDisappearOnEnterTile);
 				matcher.ComponentNames = ElementComponentsLookup.ComponentNames;
-				_matcherOnTileElementKiller = matcher;
+				_matcherDelayGhostDisappearOnEnterTile = matcher;
 			}
 
-			return _matcherOnTileElementKiller;
+			return _matcherDelayGhostDisappearOnEnterTile;
 		}
 	}
 }

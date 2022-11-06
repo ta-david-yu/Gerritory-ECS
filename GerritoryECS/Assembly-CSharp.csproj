@@ -268,7 +268,6 @@
     <Compile Include="Assets\Sources\Generated\GameFlow\Features\GameFlowCleanupFeature.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Components\TileDebugMessageComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Components\DeadRemovedListenerComponent.cs" />
-    <Compile Include="Assets\Sources\Generated\Element\Components\ElementOnTileElementKillerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Kill\MarkOnTileElementDeadSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Message\Components\MessageLeaveBecauseOfDeathComponent.cs" />
     <Compile Include="Assets\Sources\Generated\GameFlow\CreateEntityFromGameFlowBlueprint.cs" />
@@ -430,7 +429,7 @@
     <Compile Include="Assets\Sources\Generated\Events\Components\LeaveStateAddedListenerComponent.cs" />
     <Compile Include="Assets\Sources\Systems\PlayerState\SpeedChangeStateSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnterableAddedEventSystem.cs" />
-    <Compile Include="Assets\Sources\Components\OnTileElement\OnTileElementKillerComponent.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\OnTileElementStepKillerComponent.cs" />
     <Compile Include="Assets\Sources\Generated\PlayerState\PlayerStateContext.cs" />
     <Compile Include="Assets\Sources\Components\Config\GlobalItemSpawnerConfig.cs" />
     <Compile Include="Assets\Sources\Generated\Element\ElementAttribute.cs" />
@@ -616,9 +615,13 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
     <Compile Include="Assets\Scripts\Utility\NativeContainer\NativeBinaryHeap.cs" />
-    <Compile Include="Assets\Sources\Components\OnTileElement\MakeGhostDisappearOnEnterTileComponent.cs" />
     <Compile Include="Assets\Sources\Systems\Ghost\MakeGhostDisappearOnEnterTileSystem.cs" />
-    <Compile Include="Assets\Sources\Generated\Element\Components\ElementMakeGhostDisappearOnEnterTileComponent.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\CanDisappearAfterStepKillComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Ghost\DisappearGhostOnStepKillSystem.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\DelayGhostDisappearOnEnterTileComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementDelayGhostDisappearOnEnterTileComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementCanDisappearAfterStepKillComponent.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementOnTileElementStepKillerComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

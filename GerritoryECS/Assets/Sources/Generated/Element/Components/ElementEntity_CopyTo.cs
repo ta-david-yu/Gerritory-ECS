@@ -18,9 +18,13 @@ public partial class ElementEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is MakeGhostDisappearOnEnterTileComponent MakeGhostDisappearOnEnterTile)
+		if (component is DelayGhostDisappearOnEnterTileComponent DelayGhostDisappearOnEnterTile)
 		{
-			IsMakeGhostDisappearOnEnterTile = true;
+			IsDelayGhostDisappearOnEnterTile = true;
+		}
+		else if (component is CanDisappearAfterStepKillComponent CanDisappearAfterStepKill)
+		{
+			IsCanDisappearAfterStepKill = true;
 		}
 		else if (component is DeadComponent Dead)
 		{
@@ -42,9 +46,9 @@ public partial class ElementEntity
 		{
 			CopyTeamTo(Team);
 		}
-		else if (component is OnTileElementKillerComponent OnTileElementKiller)
+		else if (component is OnTileElementStepKillerComponent OnTileElementStepKiller)
 		{
-			IsOnTileElementKiller = true;
+			IsOnTileElementStepKiller = true;
 		}
 		else if (component is OnTileElementComponent OnTileElement)
 		{

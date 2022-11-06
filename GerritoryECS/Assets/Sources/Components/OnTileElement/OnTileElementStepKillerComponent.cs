@@ -8,6 +8,6 @@ using UnityEngine;
 /// </summary>
 [Element]
 [System.Serializable]
-public sealed class OnTileElementKillerComponent : IComponent
+public sealed class OnTileElementStepKillerComponent : IComponent
 {
 }

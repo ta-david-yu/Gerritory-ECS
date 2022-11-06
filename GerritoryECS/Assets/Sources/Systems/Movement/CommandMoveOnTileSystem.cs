@@ -56,7 +56,7 @@ public class CommandMoveOnTileSystem : IFixedUpdateSystem
 			bool isPositionOccipied = m_Contexts.IsTileAtPositionOccupied(toPosition);
 			if (isPositionOccipied)
 			{
-				if (!entity.IsOnTileElementKiller)
+				if (!entity.IsOnTileElementStepKiller)
 				{
 					// The entity is not a killer, therefore cannot kill the occupier.
 					continue;

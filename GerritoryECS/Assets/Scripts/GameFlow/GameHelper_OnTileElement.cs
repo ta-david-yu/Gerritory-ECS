@@ -336,7 +336,7 @@ public static partial class GameHelper
 		playerEntity.IsTileCollapser = true;
 		playerEntity.IsCanBeDead = true;
 		playerEntity.IsCanRespawnAfterDeath = true;
-		playerEntity.IsOnTileElementKiller = true;
+		playerEntity.IsOnTileElementStepKiller = true;
 
 		TryGetValidRespawnPositionResult result = contexts.TryGetValidRespawnPositionOfAreaIdFor(playerEntity, 0);
 		if (result.Success)
@@ -376,9 +376,10 @@ public static partial class GameHelper
 
 		// Add needed componenets
 		ghostEntity.IsGhost = true;
+		ghostEntity.IsOnTileElementStepKiller = true;
+		ghostEntity.IsCanDisappearAfterStepKill = true;
 		ghostEntity.AddOnTileElement(contexts.Level.GetNewOnTileElementId());
 		ghostEntity.AddSpeedChangeable(GameConstants.GhostBaseSpeed, 1);
-		ghostEntity.IsOnTileElementKiller = true;
 
 		TryGetValidRespawnPositionResult result = contexts.TryGetValidGhostSpawnPosition(ghostEntity, 0);
 		if (result.Success)

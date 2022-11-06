@@ -9,22 +9,22 @@
 //------------------------------------------------------------------------------
 public partial class ElementEntity
 {
-	static readonly MakeGhostDisappearOnEnterTileComponent MakeGhostDisappearOnEnterTileComponent = new MakeGhostDisappearOnEnterTileComponent();
+	static readonly CanDisappearAfterStepKillComponent CanDisappearAfterStepKillComponent = new CanDisappearAfterStepKillComponent();
 
-	public bool IsMakeGhostDisappearOnEnterTile
+	public bool IsCanDisappearAfterStepKill
 	{
-		get { return HasComponent(ElementComponentsLookup.MakeGhostDisappearOnEnterTile); }
+		get { return HasComponent(ElementComponentsLookup.CanDisappearAfterStepKill); }
 		set
 		{
-			if (value != IsMakeGhostDisappearOnEnterTile)
+			if (value != IsCanDisappearAfterStepKill)
 			{
-				var index = ElementComponentsLookup.MakeGhostDisappearOnEnterTile;
+				var index = ElementComponentsLookup.CanDisappearAfterStepKill;
 				if (value)
 				{
 					var componentPool = GetComponentPool(index);
 					var component = componentPool.Count > 0
 							? componentPool.Pop()
-							: MakeGhostDisappearOnEnterTileComponent;
+							: CanDisappearAfterStepKillComponent;
 
 					AddComponent(index, component);
 				}
@@ -48,20 +48,20 @@ public partial class ElementEntity
 //------------------------------------------------------------------------------
 public sealed partial class ElementMatcher
 {
-	static JCMG.EntitasRedux.IMatcher<ElementEntity> _matcherMakeGhostDisappearOnEnterTile;
+	static JCMG.EntitasRedux.IMatcher<ElementEntity> _matcherCanDisappearAfterStepKill;
 
-	public static JCMG.EntitasRedux.IMatcher<ElementEntity> MakeGhostDisappearOnEnterTile
+	public static JCMG.EntitasRedux.IMatcher<ElementEntity> CanDisappearAfterStepKill
 	{
 		get
 		{
-			if (_matcherMakeGhostDisappearOnEnterTile == null)
+			if (_matcherCanDisappearAfterStepKill == null)
 			{
-				var matcher = (JCMG.EntitasRedux.Matcher<ElementEntity>)JCMG.EntitasRedux.Matcher<ElementEntity>.AllOf(ElementComponentsLookup.MakeGhostDisappearOnEnterTile);
+				var matcher = (JCMG.EntitasRedux.Matcher<ElementEntity>)JCMG.EntitasRedux.Matcher<ElementEntity>.AllOf(ElementComponentsLookup.CanDisappearAfterStepKill);
 				matcher.ComponentNames = ElementComponentsLookup.ComponentNames;
-				_matcherMakeGhostDisappearOnEnterTile = matcher;
+				_matcherCanDisappearAfterStepKill = matcher;
 			}
 
-			return _matcherMakeGhostDisappearOnEnterTile;
+			return _matcherCanDisappearAfterStepKill;
 		}
 	}
 }
