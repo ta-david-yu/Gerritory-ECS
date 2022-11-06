@@ -11,6 +11,7 @@ public sealed class ElementFeature : Feature
 		Add(new ConstructPlayerSystem(contexts));
 
 		// Ghost related systems.
+		Add(new MakeGhostDisappearOnEnterTileSystem(contexts));
 		Add(new GhostAppearingSystem(contexts));
 		Add(new GhostDisappearingSystem(contexts));
 

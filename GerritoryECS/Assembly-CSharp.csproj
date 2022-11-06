@@ -121,7 +121,7 @@
     <Compile Include="Assets\Sources\Components\Movement\MoveOnTileBeginComponent.cs" />
     <Compile Include="Assets\Sources\Generated\Command\Components\CommandConstructAIInputComponent.cs" />
     <Compile Include="Assets\Sources\Components\Message\ConsumedComponent.cs" />
-    <Compile Include="Assets\Sources\Systems\Element\GhostAppearingSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Ghost\GhostAppearingSystem.cs" />
     <Compile Include="Assets\Sources\Systems\GameFlow\CheckGoalConditionSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\GhostAppearingAddedEventSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\Systems\EnteredByOnTileElementAddedEventSystem.cs" />
@@ -519,7 +519,7 @@
     <Compile Include="Assets\Sources\Generated\Config\ConfigBlueprintBehaviour.cs" />
     <Compile Include="Assets\Sources\Systems\Message\ConsumeMessageSystem.cs" />
     <Compile Include="Assets\Sources\Generated\Events\LevelEventSystems.cs" />
-    <Compile Include="Assets\Sources\Systems\Element\GhostDisappearingSystem.cs" />
+    <Compile Include="Assets\Sources\Systems\Ghost\GhostDisappearingSystem.cs" />
     <Compile Include="Assets\Sources\Systems\Item\SpawnItemSystem.cs" />
     <Compile Include="Assets\Scripts\GameData\Interface\IItemData.cs" />
     <Compile Include="Assets\Sources\Generated\Item\ItemAttribute.cs" />
@@ -616,6 +616,9 @@
     <Compile Include="Assets\Sources\Generated\Events\Interfaces\IOnTilePositionAddedListener.cs" />
     <Compile Include="Assets\Sources\Generated\Tile\Systems\TileCleanupSystem.cs" />
     <Compile Include="Assets\Scripts\Utility\NativeContainer\NativeBinaryHeap.cs" />
+    <Compile Include="Assets\Sources\Components\OnTileElement\MakeGhostDisappearOnEnterTileComponent.cs" />
+    <Compile Include="Assets\Sources\Systems\Ghost\MakeGhostDisappearOnEnterTileSystem.cs" />
+    <Compile Include="Assets\Sources\Generated\Element\Components\ElementMakeGhostDisappearOnEnterTileComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

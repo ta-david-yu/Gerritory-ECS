@@ -131,9 +131,24 @@ public sealed class OnGUIPlayerMovementSystem : IUpdateSystem
 					}
 					else
 					{
-						if (GUILayout.Button("Disappear"))
+						using (new GUILayout.HorizontalScope())
 						{
-							m_Contexts.TryMakeGhostDisappear(ghostEntity);
+							if (GUILayout.Button("Disappear"))
+							{
+								if (ghostEntity.HasMoveOnTile)
+								{
+									ghostEntity.IsMakeGhostDisappearOnEnterTile = true;
+								}
+								else
+								{
+									m_Contexts.TryMakeGhostDisappear(ghostEntity);
+								}
+							}
+
+							if (GUILayout.Button("Instant Disappear"))
+							{
+								m_Contexts.TryMakeGhostDisappear(ghostEntity);
+							}
 						}
 					}
 				}

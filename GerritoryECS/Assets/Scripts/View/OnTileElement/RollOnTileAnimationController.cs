@@ -11,6 +11,9 @@ public class RollOnTileAnimationController : EntityCreationEventListenerBase, IM
 	[SerializeField]
 	private Transform m_TransformToMove;
 
+	[SerializeField]
+	private bool m_ResetPositionOnMoveEnd = true;
+
 	private float m_PreviousProgress = 0;
 
 	public override void HandleOnEntityCreated(Contexts contexts, IEntity entity)
@@ -44,15 +47,18 @@ public class RollOnTileAnimationController : EntityCreationEventListenerBase, IM
 
 	public void OnMoveOnTileEndAdded(ElementEntity gameEntity, Vector2Int fromPosition, Vector2Int toPosition)
 	{
-		Vector3 fromWorldPosition = GameConstants.TilePositionToWorldPosition(fromPosition);
-		Vector3 toWorldPosition = GameConstants.TilePositionToWorldPosition(toPosition);
-		Vector3 moveDirection = (toWorldPosition - fromWorldPosition).normalized;
-		Vector3 rollingPivot = fromWorldPosition + GameConstants.TileOffset * moveDirection * 0.5f;
-		Vector3 rollingAxis = Vector3.Cross(-moveDirection, Vector3.up);
+		if (m_ResetPositionOnMoveEnd)
+		{
+			Vector3 fromWorldPosition = GameConstants.TilePositionToWorldPosition(fromPosition);
+			Vector3 toWorldPosition = GameConstants.TilePositionToWorldPosition(toPosition);
+			Vector3 moveDirection = (toWorldPosition - fromWorldPosition).normalized;
+			Vector3 rollingPivot = fromWorldPosition + GameConstants.TileOffset * moveDirection * 0.5f;
+			Vector3 rollingAxis = Vector3.Cross(-moveDirection, Vector3.up);
 
-		float adjustStep = (1.0f - m_PreviousProgress);
-		float adjustAngle = 90.0f * adjustStep;
-		m_TransformToMove.RotateAround(rollingPivot, rollingAxis, adjustAngle);
+			float adjustStep = (1.0f - m_PreviousProgress);
+			float adjustAngle = 90.0f * adjustStep;
+			m_TransformToMove.RotateAround(rollingPivot, rollingAxis, adjustAngle);
+		}
 
 		m_PreviousProgress = 0.0f;
 	}

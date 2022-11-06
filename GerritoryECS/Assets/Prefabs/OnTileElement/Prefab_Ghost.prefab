@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformToMove: {fileID: 991398530830192376}
+  m_ResetPositionOnMoveEnd: 1
 --- !u!1 &4281491413439537077
 GameObject:
   m_ObjectHideFlags: 0
